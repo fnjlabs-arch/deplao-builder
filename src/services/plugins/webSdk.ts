@@ -1,6 +1,6 @@
 /**
- * webSdk.ts: the deplao.* SDK for the plugin UI (runs in the iframe), served at
- * deplao-plugin://<id>/__deplao/sdk.js. The copy for bundlers: packages/plugin-sdk/web.js
+ * webSdk.ts: the sadshachatdesk.* SDK for the plugin UI (runs in the iframe), served at
+ * sadshachatdesk-plugin://<id>/__sadshachatdesk/sdk.js. The copy for bundlers: packages/plugin-sdk/web.js
  * (generated with `node scripts/sync-plugin-sdk.js`; a test checks that the two copies are identical).
  *
  * JSON-RPC 2.0 protocol over postMessage with the parent app:
@@ -12,13 +12,13 @@
  */
 export const WEB_SDK_VERSION = '1.0.0';
 
-export const WEB_SDK_JS = String.raw`/*! Deplao plugin SDK (web) v${'1.0.0'} */
+export const WEB_SDK_JS = String.raw`/*! SadSha ChatDesk plugin SDK (web) v${'1.0.0'} */
 (function () {
   'use strict';
-  if (window.deplao && window.deplao.__sdk) return;
+  if (window.sadshachatdesk && window.sadshachatdesk.__sdk) return;
   var host = window.parent;
   if (!host || host === window) {
-    console.warn('[deplao] SDK chỉ chạy bên trong Deplao');
+    console.warn('[sadshachatdesk] SDK chỉ chạy bên trong SadSha ChatDesk');
   }
   var nextId = 1;
   var pending = {};
@@ -41,7 +41,7 @@ export const WEB_SDK_JS = String.raw`/*! Deplao plugin SDK (web) v${'1.0.0'} */
   function emit(kind, payload) {
     var list = listeners[kind] || [];
     for (var i = 0; i < list.length; i++) {
-      try { list[i](payload); } catch (e) { console.error('[deplao] listener lỗi', e); }
+      try { list[i](payload); } catch (e) { console.error('[sadshachatdesk] listener lỗi', e); }
     }
   }
 
@@ -64,7 +64,7 @@ export const WEB_SDK_JS = String.raw`/*! Deplao plugin SDK (web) v${'1.0.0'} */
     Object.keys(eventHandlers).forEach(function (pattern) {
       if (!typeMatches(pattern, type)) return;
       eventHandlers[pattern].forEach(function (h) {
-        try { h(ev); } catch (e) { console.error('[deplao] event handler lỗi', e); }
+        try { h(ev); } catch (e) { console.error('[sadshachatdesk] event handler lỗi', e); }
       });
     });
   }
@@ -114,7 +114,7 @@ export const WEB_SDK_JS = String.raw`/*! Deplao plugin SDK (web) v${'1.0.0'} */
     });
   }
 
-  // Nhóm có hàm riêng (media.upload) vẫn gọi được operationId: deplao.media.downloadLibraryItem({ uuid })
+  // Nhóm có hàm riêng (media.upload) vẫn gọi được operationId: sadshachatdesk.media.downloadLibraryItem({ uuid })
   function apiGroup(own) {
     return new Proxy(own, {
       get: function (target, fn) {
@@ -168,7 +168,7 @@ export const WEB_SDK_JS = String.raw`/*! Deplao plugin SDK (web) v${'1.0.0'} */
     events: {
       on: function (type, handler) {
         (eventHandlers[type] = eventHandlers[type] || []).push(handler);
-        resubscribe().catch(function (e) { console.error('[deplao] events.on', e); });
+        resubscribe().catch(function (e) { console.error('[sadshachatdesk] events.on', e); });
         return function () {
           var list = eventHandlers[type] || [];
           var i = list.indexOf(handler);
@@ -213,7 +213,7 @@ export const WEB_SDK_JS = String.raw`/*! Deplao plugin SDK (web) v${'1.0.0'} */
     }
   };
 
-  window.deplao = new Proxy(special, {
+  window.sadshachatdesk = new Proxy(special, {
     get: function (target, ns) {
       if (typeof ns !== 'string') return undefined;
       if (ns in target) return target[ns];
@@ -233,6 +233,6 @@ export const WEB_SDK_JS = String.raw`/*! Deplao plugin SDK (web) v${'1.0.0'} */
     applyTheme(state.init.theme);
     state.ready = true;
     emit('ready', state.init);
-  }).catch(function (e) { console.error('[deplao] ui.ready lỗi', e); });
+  }).catch(function (e) { console.error('[sadshachatdesk] ui.ready lỗi', e); });
 })();
 `;

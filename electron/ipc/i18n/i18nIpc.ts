@@ -1,6 +1,6 @@
 /**
  * IPC for the UI language (src/services/i18n/localeStore.ts, src/shared/i18n/runtime.ts):
- * - i18n:boot (synchronous): the preload reads the catalog once, before page scripts run (window.deplaoI18n).
+ * - i18n:boot (synchronous): the preload reads the catalog once, before page scripts run (window.sadshachatdeskI18n).
  * - i18n:getLanguages / i18n:setLanguage: the language picker in Settings (Appearance). A change is saved, then the
  *   window reloads.
  */

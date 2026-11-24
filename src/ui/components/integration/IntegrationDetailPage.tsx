@@ -37,7 +37,7 @@ interface CatalogItem {
   settingFields?: { key: string; label: string; type?: string; options?: { value: string; label: string }[] }[];
 }
 
-/** Point-of-sale software sends webhooks into Deplao (services/integrations/posWebhook.ts): an auth key is always required. */
+/** Point-of-sale software sends webhooks into SadSha ChatDesk (services/integrations/posWebhook.ts): an auth key is always required. */
 const POS_WEBHOOK_TYPES = ['kiotviet', 'haravan', 'sapo', 'nhanh', 'pancake'];
 
 /** Webhook status for Casso / SePay / point-of-sale software (IntegrationRegistry.listConfigs): received / rejected counts only count from when the app was opened. */
@@ -61,9 +61,9 @@ interface SavedIntegration {
 const WEBHOOK_SECRET_GUIDE: Record<string, React.ReactNode> = {
   casso: <>{trx('Trong Casso: <0>Kết nối → Tích hợp → Webhook V2</0> (khuyên dùng), chép <1>Key bảo mật</1> và dán vào ô <2>Secret Key (webhook)</2> ở trên rồi bấm Cập nhật. Dùng Webhook cũ thì dán key bảo mật của webhook đó.', { 0: <strong />, 1: <strong />, 2: <strong /> })}</>,
   sepay: <>{trx('Trong SePay: <0>Webhooks → sửa webhook → bước Bảo mật</0>, chọn <1>HMAC-SHA256</1> (khuyên dùng) hoặc <2>API Key</2>, chép Secret Key / API Key và dán vào ô <3>Webhook Secret</3> ở trên rồi bấm Cập nhật.', { 0: <strong />, 1: <strong />, 2: <strong />, 3: <strong /> })}</>,
-  kiotviet: <>{trx('KiotViet chỉ đăng ký webhook qua API — dùng mục <0>Đăng ký webhook tự động</0> bên dưới: Deplao tự tạo Secret, lưu vào ô <1>Webhook Secret</1> và đăng ký các sự kiện đã chọn. Webhook đã đăng ký bằng công cụ khác thì dán đúng Secret (chuỗi Base64) đã dùng vào ô đó rồi bấm Cập nhật.', { 0: <strong />, 1: <strong /> })}</>,
+  kiotviet: <>{trx('KiotViet chỉ đăng ký webhook qua API — dùng mục <0>Đăng ký webhook tự động</0> bên dưới: SadSha ChatDesk tự tạo Secret, lưu vào ô <1>Webhook Secret</1> và đăng ký các sự kiện đã chọn. Webhook đã đăng ký bằng công cụ khác thì dán đúng Secret (chuỗi Base64) đã dùng vào ô đó rồi bấm Cập nhật.', { 0: <strong />, 1: <strong /> })}</>,
   haravan: <>{trx('Trong Haravan: <0>Cài đặt → Thông báo → Webhook</0>, tạo webhook (JSON) với địa chỉ nhận bên dưới, chép <1>mã xác thực</1> Haravan hiện ở đó và dán vào ô <2>Mã xác thực webhook</2> ở trên rồi bấm Cập nhật. Webhook do app Haravan đăng ký thì dùng Client Secret của app.', { 0: <strong />, 1: <strong />, 2: <strong /> })}</>,
-  sapo: <>{trx('Sapo ký webhook bằng <0>API Secret</0> của ứng dụng riêng — đã nhập ô API Secret thì không cần ô <1>Khoá xác thực webhook</1>. Dùng mục <2>Đăng ký webhook tự động</2> bên dưới để Deplao tạo webhook cho các topic đã chọn (orders/create, orders/paid…).', { 0: <strong />, 1: <strong />, 2: <strong /> })}</>,
+  sapo: <>{trx('Sapo ký webhook bằng <0>API Secret</0> của ứng dụng riêng — đã nhập ô API Secret thì không cần ô <1>Khoá xác thực webhook</1>. Dùng mục <2>Đăng ký webhook tự động</2> bên dưới để SadSha ChatDesk tạo webhook cho các topic đã chọn (orders/create, orders/paid…).', { 0: <strong />, 1: <strong />, 2: <strong /> })}</>,
   nhanh: <>{trx('Trong <0>open.nhanh.vn → Ứng dụng của tôi → ứng dụng → Webhooks</0>: nhập địa chỉ nhận bên dưới, đặt <1>Webhooks verify token</1> (chuỗi tự đặt) và chọn sự kiện (orderAdd, orderUpdate…), rồi dán đúng token đó vào ô <2>Webhooks verify token</2> ở trên và bấm Cập nhật trước khi bật webhook.', { 0: <strong />, 1: <strong />, 2: <strong /> })}</>,
   pancake: <>{trx('Trong phần <0>cấu hình Webhook</0> của Pancake POS: nhập địa chỉ nhận bên dưới, ở <1>Request Headers</1> thêm header <2>X-API-KEY</2> = một chuỗi bí mật tự đặt, chọn loại dữ liệu (đơn hàng, khách hàng…), rồi dán đúng chuỗi đó vào ô <3>Khoá webhook X-API-KEY</3> ở trên và bấm Cập nhật.', { 0: <strong />, 1: <strong />, 2: <strong />, 3: <strong /> })}</>,
 };
@@ -101,7 +101,7 @@ function WebhookSecurityCard({ type, name, info, required, onRefresh }: {
           <div className="rounded-xl border border-border bg-muted/40 px-4 py-3">
             <p className="text-xs font-semibold text-foreground">{trx('<0/> Chưa đặt khoá — {{name}} gửi webhook vào sẽ bị từ chối', { 0: <LockIcon className="w-4 h-4 inline" />, name })}</p>
             <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
-              {trx('Webhook của phần mềm bán hàng chỉ kích hoạt workflow <0>Khi phần mềm bán hàng gửi webhook</0> khi Deplao xác thực được người gửi. Chỉ tra cứu / tạo đơn trong hội thoại thì không cần mục này.', { 0: <strong className="text-foreground" /> })}
+              {trx('Webhook của phần mềm bán hàng chỉ kích hoạt workflow <0>Khi phần mềm bán hàng gửi webhook</0> khi SadSha ChatDesk xác thực được người gửi. Chỉ tra cứu / tạo đơn trong hội thoại thì không cần mục này.', { 0: <strong className="text-foreground" /> })}
             </p>
             <p className="mt-1.5 text-[11px] leading-relaxed text-foreground">{WEBHOOK_SECRET_GUIDE[type]}</p>
           </div>
@@ -109,7 +109,7 @@ function WebhookSecurityCard({ type, name, info, required, onRefresh }: {
           <div role="alert" className="rounded-xl border border-warning/40 bg-warning/10 px-4 py-3">
             <p className="text-xs font-semibold text-foreground">{trx('<0/> Chưa đặt khoá bảo mật webhook', { 0: <AlertIcon className="w-4 h-4 inline text-warning" /> })}</p>
             <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
-              {trx('Deplao vẫn nhận webhook nhưng không kiểm tra được ai gửi: ai biết địa chỉ nhận webhook đều có thể gửi giao dịch giả để kích hoạt workflow <0>Khi nhận thanh toán</0> (xác nhận đơn, gửi tin, ghi sổ…). Nên đặt khoá.', { 0: <strong className="text-foreground" /> })}
+              {trx('SadSha ChatDesk vẫn nhận webhook nhưng không kiểm tra được ai gửi: ai biết địa chỉ nhận webhook đều có thể gửi giao dịch giả để kích hoạt workflow <0>Khi nhận thanh toán</0> (xác nhận đơn, gửi tin, ghi sổ…). Nên đặt khoá.', { 0: <strong className="text-foreground" /> })}
             </p>
             <p className="mt-1.5 text-[11px] leading-relaxed text-foreground">{WEBHOOK_SECRET_GUIDE[type]}</p>
           </div>
@@ -127,7 +127,7 @@ function WebhookSecurityCard({ type, name, info, required, onRefresh }: {
           </p>
         )}
         {!info?.lastAccepted && !info?.lastRejected && (
-          <p className="text-[11px] text-subtle-foreground">{tr('Chưa nhận webhook nào từ khi mở Deplao.')}</p>
+          <p className="text-[11px] text-subtle-foreground">{tr('Chưa nhận webhook nào từ khi mở SadSha ChatDesk.')}</p>
         )}
       </div>
     </div>
@@ -156,7 +156,7 @@ export default function IntegrationDetailPage({ catalogItem, saved, webhookPort,
 
   const isPayment = catalogItem.type === 'casso' || catalogItem.type === 'sepay';
   const isPos = POS_WEBHOOK_TYPES.includes(catalogItem.type);
-  /** KiotViet / Sapo: Deplao registers the webhook for you through the platform's API. */
+  /** KiotViet / Sapo: SadSha ChatDesk registers the webhook for you through the platform's API. */
   const registrationType = isWebhookRegistrationType(catalogItem.type) ? catalogItem.type : null;
   /** Receives webhooks from the Internet: payments (Casso / SePay) and point-of-sale software. */
   const receivesWebhook = isPayment || isPos;
@@ -383,7 +383,7 @@ export default function IntegrationDetailPage({ catalogItem, saved, webhookPort,
                   {isPayment ? tr('Dùng {{name}} để nhận thanh toán tự động?', { name: catalogItem.name }) : tr('Chạy workflow khi {{name}} có đơn hàng, khách hàng mới?', { name: catalogItem.name })}
                 </p>
                 <p className="text-[11px] leading-relaxed text-muted-foreground">
-                  {trx('{{name}} gửi webhook ({{v1}}) từ Internet, còn Deplao chạy trên máy của bạn nên cần một<0> địa chỉ Internet</0> trỏ về máy. ', { name: catalogItem.name, v1: isPayment ? tr('thông báo giao dịch') : tr('thông báo đơn hàng, khách hàng…'), 0: <strong className="text-foreground" /> })}
+                  {trx('{{name}} gửi webhook ({{v1}}) từ Internet, còn SadSha ChatDesk chạy trên máy của bạn nên cần một<0> địa chỉ Internet</0> trỏ về máy. ', { name: catalogItem.name, v1: isPayment ? tr('thông báo giao dịch') : tr('thông báo đơn hàng, khách hàng…'), 0: <strong className="text-foreground" /> })}
                   {serverManaged ? tr('Địa chỉ này do máy chủ quản lý.') : tr('Bật ở Cài đặt → Internet & Cloud → Địa chỉ Internet.')}
                 </p>
               </div>
@@ -410,7 +410,7 @@ export default function IntegrationDetailPage({ catalogItem, saved, webhookPort,
                   anyMode
                 />
                 <p className="text-[11px] text-muted-foreground leading-relaxed">
-                  {trx('Sao chép địa chỉ trên, dán vào phần webhook của {{name}}. Địa chỉ chỉ chạy khi Deplao đang mở; địa chỉ tạm đổi mỗi lần khởi động lại (phải dán lại), địa chỉ cố định thì không.', { name: catalogItem.name })}
+                  {trx('Sao chép địa chỉ trên, dán vào phần webhook của {{name}}. Địa chỉ chỉ chạy khi SadSha ChatDesk đang mở; địa chỉ tạm đổi mỗi lần khởi động lại (phải dán lại), địa chỉ cố định thì không.', { name: catalogItem.name })}
                 </p>
               </div>
 
@@ -423,7 +423,7 @@ export default function IntegrationDetailPage({ catalogItem, saved, webhookPort,
           </div>
         )}
 
-        {/* KiotViet / Sapo: Deplao registers the webhook for you (the KiotViet Secret is saved to the connection → refresh the Webhook security section) */}
+        {/* KiotViet / Sapo: SadSha ChatDesk registers the webhook for you (the KiotViet Secret is saved to the connection → refresh the Webhook security section) */}
         {registrationType && (
           <WebhookRegistrationCard
             type={registrationType}

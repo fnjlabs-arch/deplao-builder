@@ -124,10 +124,10 @@ export const segmentPageKey = (uid: string, baseAt: number, index: number) => `$
 export const followersPrefix = (uid: string) => `${uid}/db/followers/`;
 export const followerKey = (uid: string, machineId: string) => `${uid}/db/followers/${machineId}.json`;
 
-/** Backup bucket name for one machine: deplao-backup-<first 8 characters of machineId>. */
+/** Backup bucket name for one machine: sadshachatdesk-backup-<first 8 characters of machineId>. */
 export function backupBucketName(machineId: string): string {
     const id = String(machineId || '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 8);
-    return `deplao-backup-${id || 'local'}`;
+    return `sadshachatdesk-backup-${id || 'local'}`;
 }
 
 /** Copy id on R2 used as the workspaceId of RemoteDbCopy: "<bucket>/<workspaceUid>". */

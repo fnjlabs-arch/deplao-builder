@@ -1,7 +1,7 @@
 /**
  * vnPlaceNames.ts: compares Vietnamese administrative names written by different systems
  * ("Thành phố Hồ Chí Minh" / "TP. Hồ Chí Minh" / "Hồ Chí Minh", "Q. Ba Đình" / "Quận Ba Đình").
- * Used to find a POS's own location id from the names picked in Deplao (KiotViet "Khu vực" list).
+ * Used to find a POS's own location id from the names picked in SadSha ChatDesk (KiotViet "Khu vực" list).
  * Pure: covered by src/__tests__/integrations/vnPlaceNames.test.ts.
  */
 
@@ -43,7 +43,7 @@ export function foldPlaceBare(value: unknown): string {
 }
 
 /**
- * Finds the "Province - Area" entry (KiotViet "Hà Nội - Quận Ba Đình") for a province + area picked in Deplao.
+ * Finds the "Province - Area" entry (KiotViet "Hà Nội - Quận Ba Đình") for a province + area picked in SadSha ChatDesk.
  * The area must match with its type ("Quận 1" ≠ "Phường 1"); an area written without its type only counts when exactly one
  * entry of that province matches. No sure match → null (better to send no area than a wrong one).
  */

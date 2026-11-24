@@ -145,7 +145,7 @@ export function buildOpenApi(routes: ListedRoute[], opts: BuildOptions): any {
     return {
         openapi: '3.1.0',
         info: {
-            title: 'Deplao Public API',
+            title: 'SadSha ChatDesk Public API',
             version: opts.version,
             description: OVERVIEW_MARKDOWN,
         },

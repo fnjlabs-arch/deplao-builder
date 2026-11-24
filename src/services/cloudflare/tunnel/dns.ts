@@ -1,12 +1,12 @@
 /**
  * DNS records for "Cloudflare tự động" (automatic Cloudflare): each name is one CNAME `<tunnelId>.cfargotunnel.com`, proxied, ttl auto,
- * comment `deplao:<tunnelId>` (marks a record created by Deplao: only records with this mark may be edited / deleted).
+ * comment `sadshachatdesk:<tunnelId>` (marks a record created by SadSha ChatDesk: only records with this mark may be edited / deleted).
  *
  * Decided by the record that currently exists for the name (GET /zones/{z}/dns_records?name.exact=<fqdn>):
  *   none                                              → create it
  *   CNAME pointing at this exact tunnel               → reuse it (fix a missing proxied / comment)
- *   CNAME pointing at another *.cfargotunnel.com with a deplao: comment → repoint it to this tunnel (machine changed)
- *   anything else (A/AAAA, another CNAME, a tunnel that is not Deplao's…) → CloudError('DNS_CONFLICT'): nothing is written
+ *   CNAME pointing at another *.cfargotunnel.com with a sadshachatdesk: comment → repoint it to this tunnel (machine changed)
+ *   anything else (A/AAAA, another CNAME, a tunnel that is not SadSha ChatDesk's…) → CloudError('DNS_CONFLICT'): nothing is written
  * Check all the names first, then write; a failure midway → delete the records created in this run.
  */
 import { CloudError, type CloudflareApi } from '../contracts';
@@ -23,7 +23,7 @@ export interface DnsRecord {
     comment?: string | null;
 }
 
-export const DNS_COMMENT_PREFIX = 'deplao:';
+export const DNS_COMMENT_PREFIX = 'sadshachatdesk:';
 
 export function dnsComment(tunnelId: string): string {
     return `${DNS_COMMENT_PREFIX}${tunnelId}`;
@@ -52,7 +52,7 @@ function contentOf(record: DnsRecord): string {
     return normalizeHostname(record?.content);
 }
 
-/** Records that belong to this tunnel: carry Deplao's comment for this tunnel, or a CNAME pointing at this exact tunnel. */
+/** Records that belong to this tunnel: carry SadSha ChatDesk's comment for this tunnel, or a CNAME pointing at this exact tunnel. */
 export function isRecordOfTunnel(record: DnsRecord, tunnelId: string): boolean {
     if (!record) return false;
     if (String(record.comment || '') === dnsComment(tunnelId)) return true;
@@ -144,7 +144,7 @@ function isNotFound(err: unknown): boolean {
 }
 
 /**
- * Deletes the DNS records of this tunnel (comment `deplao:<id>` or a CNAME pointing at this exact tunnel). A record that another machine
+ * Deletes the DNS records of this tunnel (comment `sadshachatdesk:<id>` or a CNAME pointing at this exact tunnel). A record that another machine
  * has repointed to its own tunnel (a different comment) is NOT deleted.
  *  - sweep (default true): one GET filtered by comment for the whole zone.
  *  - hostnames: names to check separately (when the sweep is off / failed / did not find that name).

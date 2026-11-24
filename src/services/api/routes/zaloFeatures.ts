@@ -1,5 +1,5 @@
 /**
- * Extended Zalo (Deplao SRS, ZL-01 → ZL-05): access status, auto-delete messages, privacy settings, zBusiness product catalog.
+ * Extended Zalo (SadSha ChatDesk SRS, ZL-01 → ZL-05): access status, auto-delete messages, privacy settings, zBusiness product catalog.
  * Mirrors the UI: chat/zalo/presence/ZaloPresenceLine.tsx, ZaloAutoDeleteSection.tsx, settings/accounts/ZaloPrivacySettings.tsx,
  * chat/zalo/catalog/ZaloCatalogPicker.tsx. Every route calls the exact zalo:* IPC handler the UI uses.
  * Conversations hidden with a PIN (ZL-03) are only a display layer in the app: the API keeps the behavior as is, no separate route.
@@ -30,7 +30,7 @@ const productBody = {
     photos: s.array(s.string().max(1000)).max(ZALO_PRODUCT_MAX_PHOTOS).optional()
         .describe(tr('URL ảnh đã có trên Zalo (vd ảnh của sản phẩm khác), giữ đúng thứ tự')),
     photo_files: s.array(photoFileInput).max(ZALO_PRODUCT_MAX_PHOTOS).optional()
-        .describe(tr('Ảnh mới: mỗi mục đúng một trong upload_id, library_uuid, url. Deplao tải lên Zalo trước rồi xếp sau photos. Tổng photos + photo_files tối đa 5', {  })),
+        .describe(tr('Ảnh mới: mỗi mục đúng một trong upload_id, library_uuid, url. SadSha ChatDesk tải lên Zalo trước rồi xếp sau photos. Tổng photos + photo_files tối đa 5', {  })),
 };
 
 function confirmIrreversible(ok: unknown, what: string): void {
@@ -63,7 +63,7 @@ async function withUploadedPhotos(ctx: ApiContext, deps: ChatRouteDeps, acc: Acc
 
 const userParams = s.object({ accountId: s.id(), userId: s.id().describe(tr('ID người dùng Zalo')) });
 
-const TTL_HELP = tr('ttl_ms (ms): {{v1}}. Zalo xoá tin trên các thiết bị Zalo; Deplao vẫn giữ tin đã lưu.', { v1: ZALO_AUTO_DELETE_OPTIONS.map((o) => `${o.value} = ${o.label}`).join(', ') });
+const TTL_HELP = tr('ttl_ms (ms): {{v1}}. Zalo xoá tin trên các thiết bị Zalo; SadSha ChatDesk vẫn giữ tin đã lưu.', { v1: ZALO_AUTO_DELETE_OPTIONS.map((o) => `${o.value} = ${o.label}`).join(', ') });
 
 async function zaloCall(ctx: ApiContext, acc: AccountInfo, action: string, channel: string, payload: Record<string, any>, timeoutMs?: number) {
     if (acc.channel !== CHANNELS.ZALO) unsupported(acc, action);
@@ -201,7 +201,7 @@ export function zaloFeatureRoutes(deps: ChatRouteDeps): RouteDef[] {
         route({
             method: 'POST', path: '/accounts/:accountId/zalo/catalogs/:catalogId/products', scope: 'crm:write', tags: ptags, operationId: 'createZaloCatalogProduct',
             summary: tr('Thêm sản phẩm vào danh mục Zalo Business'),
-            description: tr('Ảnh: photos (link đã có trên Zalo) và / hoặc photo_files (ảnh mới, Deplao tải lên Zalo trước).'),
+            description: tr('Ảnh: photos (link đã có trên Zalo) và / hoặc photo_files (ảnh mới, SadSha ChatDesk tải lên Zalo trước).'),
             params: catalogParams,
             body: s.object(productBody),
             handler: async ctx => {

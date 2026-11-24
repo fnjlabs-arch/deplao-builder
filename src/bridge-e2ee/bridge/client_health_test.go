@@ -158,7 +158,7 @@ func TestConnectE2EERollsBackPartialClientOnFailure(t *testing.T) {
 			if client.E2EE != nil {
 				t.Fatal("connectE2EE() retained a partially initialized client")
 			}
-			// DEPLAO_ADAPTER: first-time registration runs before prepare, so a
+			// SADSHA_ADAPTER: first-time registration runs before prepare, so a
 			// register/save failure leaves no prepared client to disconnect.
 			wantDisconnectCalls := 0
 			if test.failureStep == "connect" {
@@ -185,7 +185,7 @@ func TestConnectE2EERollsBackPartialClientOnFailure(t *testing.T) {
 	}
 }
 
-// DEPLAO_ADAPTER: a restored device keeps its server identity; connecting it
+// SADSHA_ADAPTER: a restored device keeps its server identity; connecting it
 // must not register it again.
 func TestConnectE2EESkipsRegistrationForRestoredDevice(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())

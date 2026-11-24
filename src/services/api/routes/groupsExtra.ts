@@ -505,7 +505,7 @@ export function groupExtraRoutes(deps: ChatRouteDeps): RouteDef[] {
         route({
             method: 'GET', path: '/accounts/:accountId/groups/:groupId/topics/:topicId/messages', scope: 'chat:read', tags, operationId: 'listForumTopicMessages',
             summary: tr('Tin mới nhất của một chủ đề, lấy trực tiếp từ Telegram'),
-            description: tr('Tin đã lưu trong Deplao đọc bằng `GET …/conversations/{groupId}/messages?topic_id=`.'),
+            description: tr('Tin đã lưu trong SadSha ChatDesk đọc bằng `GET …/conversations/{groupId}/messages?topic_id=`.'),
             params: topicParams,
             query: s.object({ limit: s.int().min(1).max(100).default(50) }),
             handler: async ctx => {
@@ -561,7 +561,7 @@ export function groupExtraRoutes(deps: ChatRouteDeps): RouteDef[] {
         })),
         route({
             method: 'PUT', path: '/accounts/:accountId/users/:userId/alias', scope: 'contacts:write', tags: ctags, operationId: 'setUserAlias',
-            summary: tr('Đặt tên gợi nhớ (Zalo: đồng bộ lên Zalo; kênh khác: lưu trong Deplao)'),
+            summary: tr('Đặt tên gợi nhớ (Zalo: đồng bộ lên Zalo; kênh khác: lưu trong SadSha ChatDesk)'),
             params: userParams,
             body: s.object({ alias: s.string().max(100).describe(tr('Chuỗi rỗng = xoá tên gợi nhớ')) }),
             handler: async ctx => {

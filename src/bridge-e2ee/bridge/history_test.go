@@ -1,6 +1,6 @@
 package bridge
 
-// DEPLAO_ADAPTER: tests for per-thread history pages (history.go).
+// SADSHA_ADAPTER: tests for per-thread history pages (history.go).
 
 import (
 	"context"

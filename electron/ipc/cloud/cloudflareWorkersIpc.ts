@@ -1,6 +1,6 @@
 /**
  * cloudflareWorkersIpc: cloudflare:workers:* channels: Worker + D1 on the connected Cloudflare account, for apps
- * (plugins) with the "cloudflare:workers" permission (fintrack-deplao-app/docs/CONTRACTS.md §1). registerCloudflareIpc() registers
+ * (plugins) with the "cloudflare:workers" permission (fintrack-sadshachatdesk-app/docs/CONTRACTS.md §1). registerCloudflareIpc() registers
  * these channels together with cloudflare:* (electron/ipc/cloud/cloudflareIpc.ts). The logic lives in src/services/cloudflare/workers.
  *
  * Who may call them (re-checked here, even though the layer above already checked):
@@ -11,7 +11,7 @@
  *    from the grant (the payload is not trusted); the folder must be inside the installed app's folder (realpath).
  *  - API keys / plugins without a grant: IpcInvoker blocks them first (admin channel 'cloudflare:'); a fromApi event without a grant
  *    (e.g. principal 'system') that still reaches here is rejected (APP_ONLY).
- *  - Domain attach (domainAttach) from an app: Deplao asks the user with its own dialog (after checking the name,
+ *  - Domain attach (domainAttach) from an app: SadSha ChatDesk asks the user with its own dialog (after checking the name,
  *    before writing DNS). One dialog per app at a time; if the user clicks "Không" (No), the app is asked again only after 60 seconds (prevents stacked prompts).
  * Returns { success: true, result } | { success: false, error, code[, retryAfterMs] }. Does not log tokens, JWTs, secrets, SQL.
  */
@@ -53,12 +53,12 @@ export interface WorkersIpcDeps {
     deployer: () => Pick<WorkersDeployer, 'scoped'>;
     isEmployeeMachine: () => boolean;
     isWorkspaceAvailable: () => boolean;
-    /** Asks the user before an app attaches a domain (default: Deplao's dialog). true = agree. */
+    /** Asks the user before an app attaches a domain (default: SadSha ChatDesk's dialog). true = agree. */
     confirmDomain?: (req: DomainConfirmRequest) => Promise<boolean>;
     now?: () => number;
 }
 
-/** Deplao's dialog (the visible main window is the parent window); the safe button ("Không" (No)) is the default. */
+/** SadSha ChatDesk's dialog (the visible main window is the parent window); the safe button ("Không" (No)) is the default. */
 async function nativeConfirmDomain(req: DomainConfirmRequest): Promise<boolean> {
     const { BrowserWindow, dialog } = require('electron') as typeof import('electron');
     const options: import('electron').MessageBoxOptions = {
@@ -181,13 +181,13 @@ export function createCloudflareWorkersHandlers(deps: WorkersIpcDeps = defaultDe
     /** Asks the user on the app's behalf: one dialog per app; if "Không" (No) is clicked, the app is asked again only after 60 seconds. */
     const confirmFor = (grant: PluginGrant): DomainConfirm => async info => {
         const ask = deps.confirmDomain;
-        if (!ask) throw new CloudError('CF_DECLINED', tr('Bản Deplao này chưa hỏi được bạn để gắn tên miền'));
+        if (!ask) throw new CloudError('CF_DECLINED', tr('Bản SadSha ChatDesk này chưa hỏi được bạn để gắn tên miền'));
         const last = declinedAt.get(grant.pluginId);
         if (last !== undefined && now() - last < DECLINE_COOLDOWN_MS) {
-            throw new CloudError('CF_DECLINED', tr('Bạn vừa chọn "Không" ở hộp thoại của Deplao, chờ 1 phút rồi thử lại'));
+            throw new CloudError('CF_DECLINED', tr('Bạn vừa chọn "Không" ở hộp thoại của SadSha ChatDesk, chờ 1 phút rồi thử lại'));
         }
         if (asking.has(grant.pluginId)) {
-            throw new CloudError('CONFLICT', tr('Deplao đang hỏi bạn ở một hộp thoại khác, trả lời hộp thoại đó trước'));
+            throw new CloudError('CONFLICT', tr('SadSha ChatDesk đang hỏi bạn ở một hộp thoại khác, trả lời hộp thoại đó trước'));
         }
         asking.add(grant.pluginId);
         try {
@@ -238,7 +238,7 @@ export function createCloudflareWorkersHandlers(deps: WorkersIpcDeps = defaultDe
         'cloudflare:workers:d1Query': wrap('cloudflare:workers:d1Query', ({ scope, arg }) => scope.d1Query(arg.name, arg.sql, arg.params)),
         'cloudflare:workers:zones': wrap('cloudflare:workers:zones', ({ scope }) => scope.zones()),
         'cloudflare:workers:domains': wrap('cloudflare:workers:domains', ({ scope, arg }) => scope.domainList(arg.name)),
-        // App call → Deplao's dialog; the machine owner's UI (the user clicks inside Deplao itself) → not asked again.
+        // App call → SadSha ChatDesk's dialog; the machine owner's UI (the user clicks inside SadSha ChatDesk itself) → not asked again.
         'cloudflare:workers:domainAttach': wrap('cloudflare:workers:domainAttach', ({ caller, scope, arg }) =>
             scope.domainAttach(arg.name, arg.hostname, caller.kind === 'plugin' ? confirmFor(caller.grant) : undefined)),
         'cloudflare:workers:domainDetach': wrap('cloudflare:workers:domainDetach', ({ scope, arg }) => scope.domainDetach(arg.name, arg.hostname)),

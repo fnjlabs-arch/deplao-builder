@@ -75,9 +75,9 @@ function InfoTile({ title, meta, desc }: { title: string; meta?: string; desc: s
 const CURL_EXAMPLE = 'curl -H "Authorization: Bearer dpk_xxx" http://127.0.0.1:9900/api/v1/accounts';
 
 const CLI_EXAMPLE = [
-  'node packages/plugin-cli/bin/deplao-plugin.js create my-app --runtime web',
-  'node packages/plugin-cli/bin/deplao-plugin.js validate my-app',
-  'node packages/plugin-cli/bin/deplao-plugin.js pack my-app --out my-app.zip',
+  'node packages/plugin-cli/bin/sadshachatdesk-plugin.js create my-app --runtime web',
+  'node packages/plugin-cli/bin/sadshachatdesk-plugin.js validate my-app',
+  'node packages/plugin-cli/bin/sadshachatdesk-plugin.js pack my-app --out my-app.zip',
 ].join('\n');
 
 const PLUGIN_PLACES: Array<{ title: string; desc: string }> = [
@@ -95,7 +95,7 @@ export function AppsApiPanel() {
       <Card>
         <SectionTitle>{trx('<0/> Ứng dụng, API & Webhook', { 0: <PluginIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <Paragraph>
-          {tr('Một trang gom mọi cách mở Deplao ra bên ngoài: cài thêm Ứng dụng chạy ngay trong Deplao; cho website, phần mềm bán hàng, n8n… đọc dữ liệu và gửi tin qua API; nhận và gửi dữ liệu bằng webhook.')}
+          {tr('Một trang gom mọi cách mở SadSha ChatDesk ra bên ngoài: cài thêm Ứng dụng chạy ngay trong SadSha ChatDesk; cho website, phần mềm bán hàng, n8n… đọc dữ liệu và gửi tin qua API; nhận và gửi dữ liệu bằng webhook.')}
         </Paragraph>
         <BulletList items={[
           tr('{{v1}} thanh điều hướng bên trái → {{v2}} → {{v3}} (hoặc tìm trong bảng Tất cả tính năng). Chỉ có trên máy chủ; máy nhân viên không chạy API.', { v1: bold(tr('Ở đâu:')), v2: bold(tr('Công cụ')), v3: bold(tr('Ứng dụng, API &amp; Webhook')) }),
@@ -107,11 +107,11 @@ export function AppsApiPanel() {
       <Card>
         <SectionTitle>{trx('<0/> Public API v1', { 0: <KeyIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <Paragraph>
-          {trx('API là "cửa" để phần mềm khác làm việc với Deplao như một người dùng: đọc hội thoại, gửi tin, cập nhật khách hàng, chạy workflow… Mỗi hệ thống dùng một <0>API key</0> riêng — giống mật khẩu, kèm danh sách <1>quyền (scope)</1> cho biết key được làm gì.', { 0: <strong className="text-foreground" />, 1: <strong className="text-foreground" /> })}
+          {trx('API là "cửa" để phần mềm khác làm việc với SadSha ChatDesk như một người dùng: đọc hội thoại, gửi tin, cập nhật khách hàng, chạy workflow… Mỗi hệ thống dùng một <0>API key</0> riêng — giống mật khẩu, kèm danh sách <1>quyền (scope)</1> cho biết key được làm gì.', { 0: <strong className="text-foreground" />, 1: <strong className="text-foreground" /> })}
         </Paragraph>
         <BulletList items={[
           tr('{{v1}} tài khoản, chat Zalo / Facebook / Telegram, nhóm, nhãn, danh bạ, CRM, workflow, tích hợp, ERP, AI, báo cáo, media, nhân viên.', { v1: bold(tr('Gần 300 thao tác:')) }),
-          tr('{{v1}}, cổng mặc định {{v2}} (chung server với kết nối nhân viên). {{v3}} cho tới khi bạn bật; mọi lời gọi đều cần API key do bạn tạo.', { v1: bold(tr('Chạy ngay trên máy cài Deplao')), v2: mono('9900'), v3: bold(tr('Mặc định tắt')) }),
+          tr('{{v1}}, cổng mặc định {{v2}} (chung server với kết nối nhân viên). {{v3}} cho tới khi bạn bật; mọi lời gọi đều cần API key do bạn tạo.', { v1: bold(tr('Chạy ngay trên máy cài SadSha ChatDesk')), v2: mono('9900'), v3: bold(tr('Mặc định tắt')) }),
           tr('{{v1}} tin gửi bằng API vẫn hiện trong khung chat, được lưu và kích hoạt workflow như khi bạn tự gửi.', { v1: bold(tr('Đi đúng luồng của app:')) }),
           tr('Gửi key trong header {{v1}} (hoặc {{v2}}).', { v1: mono('Authorization: Bearer dpk_…'), v2: mono('X-Api-Key') }),
         ]} />
@@ -153,7 +153,7 @@ export function AppsApiPanel() {
           tr('Địa chỉ tạm đổi mỗi lần khởi động lại; hệ thống chạy lâu dài nên dùng địa chỉ cố định (Cloudflare tự động).'),
         ]} />
         <Callout>
-          {tr('API và webhook chạy trong Deplao trên máy chủ: tắt Deplao hoặc tắt máy thì API, webhook nhận vào và gửi ra đều ngừng cho tới khi mở lại.')}
+          {tr('API và webhook chạy trong SadSha ChatDesk trên máy chủ: tắt SadSha ChatDesk hoặc tắt máy thì API, webhook nhận vào và gửi ra đều ngừng cho tới khi mở lại.')}
         </Callout>
       </Card>
 
@@ -173,17 +173,17 @@ export function AppsApiPanel() {
         <div className="grid gap-2 md:grid-cols-2">
           <InfoTile
             title={tr('Nhận dữ liệu vào')}
-            meta={tr('Hệ thống khác → Deplao')}
+            meta={tr('Hệ thống khác → SadSha ChatDesk')}
             desc={tr('Casso, SePay gửi giao dịch chuyển khoản, KiotViet / Haravan / Sapo / Nhanh.vn / Pancake POS gửi đơn hàng (xác thực bằng khoá webhook đặt ở trang tích hợp) vào {{v1}}; website, Zapier, Make… kích hoạt workflow có trigger "Webhook bên ngoài" qua {{v2}}. Cần bật địa chỉ "Thanh toán, tích hợp" / "Webhook workflow" ở Cài đặt → Internet &amp; Cloud; chỉ dùng trong LAN thì không cần.', { v1: mono(tr('&lt;địa chỉ&gt;/webhook/&lt;loại&gt;')), v2: mono(tr('&lt;địa chỉ&gt;/api/workflow/webhook/&lt;token&gt;')) })}
           />
           <InfoTile
             title={tr('Gửi sự kiện ra ngoài')}
-            meta={tr('Deplao → URL của bạn')}
+            meta={tr('SadSha ChatDesk → URL của bạn')}
             desc={tr('Bấm {{v1}}: tên, URL nhận (https://, hoặc http:// trong mạng nội bộ), chọn sự kiện (hoặc Mọi sự kiện) và tài khoản → Tạo webhook. {{v2}} — dùng để kiểm tra chữ ký.', { v1: bold(tr('Thêm webhook')), v2: bold(tr('Secret chỉ hiện một lần')) })}
           />
         </div>
         <BulletList items={[
-          tr('Mỗi lần gửi kèm chữ ký {{v1}} (HMAC SHA-256 tạo bằng secret) để server của bạn chắc chắn dữ liệu do Deplao gửi; cách kiểm tra xem ở nút Tài liệu webhook.', { v1: mono('X-Deplao-Signature') }),
+          tr('Mỗi lần gửi kèm chữ ký {{v1}} (HMAC SHA-256 tạo bằng secret) để server của bạn chắc chắn dữ liệu do SadSha ChatDesk gửi; cách kiểm tra xem ở nút Tài liệu webhook.', { v1: mono('X-SadSha-ChatDesk-Signature') }),
           tr('Gửi lỗi thì tự thử lại sau 30 giây, 2 phút, 10 phút, 1 giờ, 6 giờ; lỗi 100 lần liên tiếp thì webhook tự tắt — sửa server nhận rồi bật lại.'),
           tr('{{v1}}, {{v2}} (thành công / thất bại / đang chờ thử lại) và {{v3}} từng lần.', { v1: bold(tr('Gửi thử')), v2: bold(tr('Lịch sử gửi')), v3: bold(tr('Gửi lại')) }),
           tr('Webhook gửi ra vẫn chạy khi API server tắt; chỉ dừng khi tắt công tắc "Cho phép gọi API". Webhook do API key hoặc ứng dụng tự đăng ký cũng hiện ở đây để bạn quản lý.'),
@@ -191,9 +191,9 @@ export function AppsApiPanel() {
       </Card>
 
       <Card>
-        <SectionTitle>{trx('<0/> Ứng dụng: thêm tính năng ngay trong Deplao', { 0: <PackageIcon className="w-4 h-4 inline" /> })}</SectionTitle>
+        <SectionTitle>{trx('<0/> Ứng dụng: thêm tính năng ngay trong SadSha ChatDesk', { 0: <PackageIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <Paragraph>
-          {tr('Ứng dụng là phần mở rộng do nhà cung cấp hoặc chính bạn làm, cài vào là dùng ngay trong Deplao. (Trong tài liệu kỹ thuật, ứng dụng được gọi là plugin.)')}
+          {tr('Ứng dụng là phần mở rộng do nhà cung cấp hoặc chính bạn làm, cài vào là dùng ngay trong SadSha ChatDesk. (Trong tài liệu kỹ thuật, ứng dụng được gọi là plugin.)')}
         </Paragraph>
         <SubTitle>{tr('Ứng dụng có thể thêm')}</SubTitle>
         <div className="grid gap-2 md:grid-cols-2">
@@ -204,9 +204,9 @@ export function AppsApiPanel() {
         </Paragraph>
         <SubTitle>{tr('Ba loại ứng dụng')}</SubTitle>
         <BulletList items={[
-          tr('{{v1}} chỉ có giao diện chạy trong Deplao, không chạy code nền.', { v1: bold(tr('Chỉ giao diện:')) }),
-          tr('{{v1}} có phần chạy nền trên máy này, trong tiến trình riêng tách khỏi Deplao.', { v1: bold(tr('Chạy trên máy:')) }),
-          tr('{{v1}} phần xử lý chạy trên server của nhà cung cấp; Deplao gọi tới qua HTTPS có chữ ký.', { v1: bold(tr('Dịch vụ ngoài:')) }),
+          tr('{{v1}} chỉ có giao diện chạy trong SadSha ChatDesk, không chạy code nền.', { v1: bold(tr('Chỉ giao diện:')) }),
+          tr('{{v1}} có phần chạy nền trên máy này, trong tiến trình riêng tách khỏi SadSha ChatDesk.', { v1: bold(tr('Chạy trên máy:')) }),
+          tr('{{v1}} phần xử lý chạy trên server của nhà cung cấp; SadSha ChatDesk gọi tới qua HTTPS có chữ ký.', { v1: bold(tr('Dịch vụ ngoài:')) }),
         ]} />
       </Card>
 
@@ -223,7 +223,7 @@ export function AppsApiPanel() {
           },
           {
             title: tr('Dùng và quản lý'),
-            desc: tr('Bấm {{v1}} để vào trang của ứng dụng. Bấm vào ô ứng dụng để xem chi tiết: Giới thiệu (có ở đâu trong Deplao, được phép gì, tài khoản nào), Cài đặt, Nhật ký, công tắc bật / tắt, Tải lại, Gỡ ứng dụng.', { v1: bold(tr('Mở')) }),
+            desc: tr('Bấm {{v1}} để vào trang của ứng dụng. Bấm vào ô ứng dụng để xem chi tiết: Giới thiệu (có ở đâu trong SadSha ChatDesk, được phép gì, tài khoản nào), Cài đặt, Nhật ký, công tắc bật / tắt, Tải lại, Gỡ ứng dụng.', { v1: bold(tr('Mở')) }),
           },
           {
             title: tr('Cập nhật'),
@@ -232,17 +232,17 @@ export function AppsApiPanel() {
         ]} />
         <BulletList items={[
           tr('Ứng dụng chỉ làm được trong phạm vi quyền đã duyệt và trên các tài khoản được cấp — mọi lời gọi đi qua API v1 với cùng bước kiểm tra quyền, và hiện trong Nhật ký API.'),
-          tr('Ứng dụng loại Dịch vụ ngoài: khi cài, Deplao hiện một lần API key và secret ký request để cấu hình ở server của ứng dụng.'),
-          tr('Ứng dụng lỗi nhiều lần liên tiếp sẽ bị Deplao tự tắt (trạng thái "Tắt do lỗi") — xem tab Nhật ký, sửa xong bật lại.'),
+          tr('Ứng dụng loại Dịch vụ ngoài: khi cài, SadSha ChatDesk hiện một lần API key và secret ký request để cấu hình ở server của ứng dụng.'),
+          tr('Ứng dụng lỗi nhiều lần liên tiếp sẽ bị SadSha ChatDesk tự tắt (trạng thái "Tắt do lỗi") — xem tab Nhật ký, sửa xong bật lại.'),
           tr('Nút bánh răng {{v1}}: số ứng dụng bật cùng lúc (mặc định 10 — ứng dụng chạy nền tốn RAM) và request/phút cho mỗi ứng dụng.', { v1: bold(tr('Giới hạn chung cho ứng dụng')) }),
-          tr('Gỡ ứng dụng: Deplao hỏi giữ hay xoá dữ liệu riêng của ứng dụng (giữ để cài lại sau). Gỡ ứng dụng dạng thư mục không xoá thư mục code của bạn.'),
+          tr('Gỡ ứng dụng: SadSha ChatDesk hỏi giữ hay xoá dữ liệu riêng của ứng dụng (giữ để cài lại sau). Gỡ ứng dụng dạng thư mục không xoá thư mục code của bạn.'),
         ]} />
       </Card>
 
       <Card>
         <SectionTitle>{trx('<0/> Tự làm ứng dụng (cho lập trình viên)', { 0: <TerminalIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <Paragraph>
-          {tr('Ứng dụng là một web app (HTML/CSS/JS thuần, React, Vue, Svelte…) gọi Deplao qua')} <Code>deplao.*</Code>{trx('; cần xử lý nền thì thêm backend Node chạy trên máy hoặc để server riêng của bạn xử lý. Nút <0>Phát triển ứng dụng</0> mở ngăn hướng dẫn, tài liệu và bảng tra nhanh SDK.', { 0: <strong className="text-foreground" /> })}
+          {tr('Ứng dụng là một web app (HTML/CSS/JS thuần, React, Vue, Svelte…) gọi SadSha ChatDesk qua')} <Code>sadshachatdesk.*</Code>{trx('; cần xử lý nền thì thêm backend Node chạy trên máy hoặc để server riêng của bạn xử lý. Nút <0>Phát triển ứng dụng</0> mở ngăn hướng dẫn, tài liệu và bảng tra nhanh SDK.', { 0: <strong className="text-foreground" /> })}
         </Paragraph>
         <StepList steps={[
           {
@@ -250,8 +250,8 @@ export function AppsApiPanel() {
             desc: tr('Lệnh {{v1}}, chọn runtime {{v2}} (chỉ giao diện), {{v3}} (chạy nền trên máy) hoặc {{v4}} (server riêng).', { v1: mono('create'), v2: mono('web'), v3: mono('local'), v4: mono('remote') }),
           },
           {
-            title: tr('Chạy thử trong Deplao'),
-            desc: tr('{{v1}}, chọn thư mục có {{v2}}; sửa code xong bấm Tải lại trong chi tiết ứng dụng.', { v1: bold(tr('Thêm thư mục đang phát triển')), v2: mono('deplao-plugin.json') }),
+            title: tr('Chạy thử trong SadSha ChatDesk'),
+            desc: tr('{{v1}}, chọn thư mục có {{v2}}; sửa code xong bấm Tải lại trong chi tiết ứng dụng.', { v1: bold(tr('Thêm thư mục đang phát triển')), v2: mono('sadshachatdesk-plugin.json') }),
           },
           {
             title: tr('Kiểm tra'),
@@ -264,14 +264,14 @@ export function AppsApiPanel() {
         ]} />
         <CodeBlock>{CLI_EXAMPLE}</CodeBlock>
         <BulletList items={[
-          tr('Bộ công cụ nằm trong thư mục {{v1}} của mã nguồn Deplao: SDK {{v2}} và CLI {{v3}} (chạy bằng Node.js). Ứng dụng mẫu ở {{v4}}.', { v1: mono('packages/'), v2: mono('@deplao/plugin-sdk'), v3: mono('deplao-plugin'), v4: mono('examples/plugins') }),
-          tr('Ứng dụng gọi Deplao bằng chính API v1: tên hàm trong SDK trùng tên thao tác (operationId) trong tài liệu API.'),
+          tr('Bộ công cụ nằm trong thư mục {{v1}} của mã nguồn SadSha ChatDesk: SDK {{v2}} và CLI {{v3}} (chạy bằng Node.js). Ứng dụng mẫu ở {{v4}}.', { v1: mono('packages/'), v2: mono('@sadshachatdesk/plugin-sdk'), v3: mono('sadshachatdesk-plugin'), v4: mono('examples/plugins') }),
+          tr('Ứng dụng gọi SadSha ChatDesk bằng chính API v1: tên hàm trong SDK trùng tên thao tác (operationId) trong tài liệu API.'),
           tr('Script, CSS, font từ CDN bị chặn để bảo mật — build ra file tĩnh và đóng gói kèm ứng dụng.'),
         ]} />
       </Card>
 
       <Card>
-        <SectionTitle>{trx('<0/> An toàn khi mở Deplao ra bên ngoài', { 0: <ShieldIcon className="w-4 h-4 inline" /> })}</SectionTitle>
+        <SectionTitle>{trx('<0/> An toàn khi mở SadSha ChatDesk ra bên ngoài', { 0: <ShieldIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <BulletList items={[
           tr('{{v1}} không gửi qua chat, không đặt trong website công khai. Mỗi hệ thống một key, chỉ cấp quyền và tài khoản cần thiết, đặt IP được phép nếu server gọi có IP cố định, đặt hạn dùng.', { v1: bold(tr('Giữ API key như mật khẩu:')) }),
           tr('Quyền {{v1}} (Toàn quyền) gồm cả quản lý nhân viên và cài đặt — chỉ cấp cho hệ thống bạn hoàn toàn tin tưởng.', { v1: bold('admin') }),

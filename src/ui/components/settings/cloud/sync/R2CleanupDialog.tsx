@@ -376,7 +376,7 @@ export function R2CleanupPanel({
     if (problem) return;
     const api = cloudApi();
     if (typeof api?.media?.cleanupPreview !== 'function') {
-      setMessage({ tone: 'warning', text: tr('Bản app này chưa có tính năng dọn file trên {{label}}. Hãy cập nhật Deplao.', { label }) });
+      setMessage({ tone: 'warning', text: tr('Bản app này chưa có tính năng dọn file trên {{label}}. Hãy cập nhật SadSha ChatDesk.', { label }) });
       return;
     }
     const req = cleanupRequest(scopeIsAll ? { ...form, outOfScope: false } : form);
@@ -412,7 +412,7 @@ export function R2CleanupPanel({
     if (!ok) return;
     const api = cloudApi();
     if (typeof api?.media?.cleanupRun !== 'function') {
-      setMessage({ tone: 'warning', text: tr('Bản app này chưa có tính năng dọn file trên {{label}}. Hãy cập nhật Deplao.', { label }) });
+      setMessage({ tone: 'warning', text: tr('Bản app này chưa có tính năng dọn file trên {{label}}. Hãy cập nhật SadSha ChatDesk.', { label }) });
       return;
     }
     setWork('delete');

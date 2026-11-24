@@ -946,7 +946,7 @@ type NormalizedTelegramReactions = {
   emoji: Record<string, { total: number; users: Record<string, number> }>;
 };
 
-/** Convert the aggregate MTProto reaction payload into Deplao's display model.
+/** Convert the aggregate MTProto reaction payload into SadSha ChatDesk's display model.
  * Telegram only provides identities for a recent subset of reactors, so counts
  * remain authoritative while the users map contains only identities Telegram
  * actually returned (including the current account when marked as my).
@@ -1810,7 +1810,7 @@ function initializeRecoveredMessage(message: any, client: TelegramClient, entiti
   // update carries the authoritative Channel entity in `_entities`.  Preserve
   // it on our wrapper instead of forcing GramJS getChat(), which can make an
   // unnecessary RPC in the realtime hot path.
-  if (resolvedChat) (event as any).__deplaoResolvedChat = resolvedChat;
+  if (resolvedChat) (event as any).__sadshachatdeskResolvedChat = resolvedChat;
   return event;
 }
 
@@ -1949,10 +1949,10 @@ function withDeadline<T>(promise: Promise<T>, ms: number, label: string): Promis
  * calls (getDialogs/getMessages iterators, getMe, GetState). */
 function installRpcDeadline(client: TelegramClient): void {
   const anyClient = client as any;
-  if (anyClient.__deplaoRpcDeadline || typeof anyClient.invoke !== 'function') return;
+  if (anyClient.__sadshachatdeskRpcDeadline || typeof anyClient.invoke !== 'function') return;
   const invoke = anyClient.invoke.bind(client);
-  anyClient.__deplaoRpcDeadline = true;
-  // Newer layers have "communities" (Community / DialogCommunity): remove them from the results before GramJS / Deplao read them, otherwise GramJS
+  anyClient.__sadshachatdeskRpcDeadline = true;
+  // Newer layers have "communities" (Community / DialogCommunity): remove them from the results before GramJS / SadSha ChatDesk read them, otherwise GramJS
   // iterDialogs throws "Cannot cast Community" and the whole conversation list load breaks (telegramLayerCompat.ts)
   anyClient.invoke = (request: any, ...rest: any[]) => withDeadline(
     invoke(request, ...rest),
@@ -1994,8 +1994,8 @@ function logTelegramApiLayerOnce(): void {
  */
 function installSingleMainSession(client: TelegramClient): void {
   const anyClient = client as any;
-  if (anyClient.__deplaoSingleMainSession) return;
-  anyClient.__deplaoSingleMainSession = true;
+  if (anyClient.__sadshachatdeskSingleMainSession) return;
+  anyClient.__sadshachatdeskSingleMainSession = true;
   if (typeof anyClient.getSender === 'function') {
     const getSender = anyClient.getSender.bind(client);
     anyClient.getSender = (dcId?: number) => {
@@ -2007,7 +2007,7 @@ function installSingleMainSession(client: TelegramClient): void {
   if (typeof anyClient._createExportedSender === 'function') {
     const createExportedSender = anyClient._createExportedSender.bind(client);
     const created = new Set<any>();
-    anyClient.__deplaoExportedSenders = created;
+    anyClient.__sadshachatdeskExportedSenders = created;
     anyClient._createExportedSender = (dcId: number) => {
       const sender = createExportedSender(dcId);
       created.add(sender);
@@ -2091,8 +2091,8 @@ function reapRetiredSenderConnection(sender: any): void {
 }
 
 function neutralizeRetiredSender(sender: any, error: Error): void {
-  if (!sender || sender.__deplaoRetired) return;
-  sender.__deplaoRetired = true;
+  if (!sender || sender.__sadshachatdeskRetired) return;
+  sender.__sadshachatdeskRetired = true;
   try {
     // End GramJS's in-place reconnect loop after the attempt in flight and
     // never start another one for this sender.
@@ -2137,7 +2137,7 @@ async function retireTelegramClient(client: TelegramClient | null | undefined, r
   // promise in _exportedSenderPromises settles only after they connected and
   // already resent their queued requests, which is too late.
   try {
-    for (const sender of anyClient.__deplaoExportedSenders || []) neutralizeRetiredSender(sender, error);
+    for (const sender of anyClient.__sadshachatdeskExportedSenders || []) neutralizeRetiredSender(sender, error);
   } catch {}
   try {
     for (const senderPromise of anyClient._exportedSenderPromises?.values?.() || []) {
@@ -4875,7 +4875,7 @@ async function handleNewMessage(accountId: string, event: NewMessageEvent, clien
   // GramJS getChat() may issue channels.GetChannels even when _chat exists
   // (it checks whether the entity HAS a `min` field). Do not put that RPC,
   // its retries, or FLOOD_WAIT in front of persistence of a socket message.
-  const suppliedChat = (event as any).__deplaoResolvedChat || null;
+  const suppliedChat = (event as any).__sadshachatdeskResolvedChat || null;
   let chat: any = suppliedChat || message.chat || null;
   if (!chat && source !== 'socket') {
     try { chat = await message.getChat(); } catch {}
@@ -6617,7 +6617,7 @@ async function backfillSavedMessagesHistory(accountId: string, client: TelegramC
 }
 
 /**
- * Saved Messages (= chat with myself; Deplao shows it as My Documents). A conversation is only created from the chat list scan (fetchMissedMessages: the 200-300 most recent chats, skipped when incremental sync already covers everything), so this rarely used chat never gets one. Each sync asks for it separately (messages.getPeerDialogs, 1 call) → saves the conversation (channel telegram_user); if Telegram has a message newer than the mark on the machine, it catches up like fetchMissedMessages: no message yet → the 100 newest; already has some → every message after the mark from oldest to newest (up to RECOVERY_MESSAGES_PER_DIALOG; the next pass loads the rest, no gap).
+ * Saved Messages (= chat with myself; SadSha ChatDesk shows it as My Documents). A conversation is only created from the chat list scan (fetchMissedMessages: the 200-300 most recent chats, skipped when incremental sync already covers everything), so this rarely used chat never gets one. Each sync asks for it separately (messages.getPeerDialogs, 1 call) → saves the conversation (channel telegram_user); if Telegram has a message newer than the mark on the machine, it catches up like fetchMissedMessages: no message yet → the 100 newest; already has some → every message after the mark from oldest to newest (up to RECOVERY_MESSAGES_PER_DIALOG; the next pass loads the rest, no gap).
  * The first time there are scattered messages on the machine → background history load (backfillSavedMessagesHistory).
  */
 async function syncSavedMessages(accountId: string, client: TelegramClient): Promise<number> {
@@ -6982,7 +6982,7 @@ export async function getBotCommands(accountId: string, botId: string): Promise<
 export interface MiniAppRequestOptions {
   /** Conversation where the Mini App opens (button in a bot's message in a group → the group); none = private chat with the bot. */
   peerId?: string;
-  /** UI colors (tgWebAppThemeParams) matching the Deplao theme; main filters them again (sanitizeMiniAppTheme). */
+  /** UI colors (tgWebAppThemeParams) matching the SadSha ChatDesk theme; main filters them again (sanitizeMiniAppTheme). */
   themeParams?: unknown;
 }
 
@@ -7214,12 +7214,12 @@ export async function pressInlineButton(
       return { success: true, action: { kind: 'profile', userId: String(pick('userId') ?? '') } };
     }
     if (isKind('KeyboardButtonBuy', 'InlineButtonTypeBuy')) {
-      return { success: true, action: { kind: 'unsupported', reason: tr('Thanh toán của bot chưa hỗ trợ trong Deplao') } };
+      return { success: true, action: { kind: 'unsupported', reason: tr('Thanh toán của bot chưa hỗ trợ trong SadSha ChatDesk') } };
     }
     if (isKind('KeyboardButtonSwitchInline', 'InlineButtonTypeSwitchInline')) {
-      return { success: true, action: { kind: 'unsupported', reason: tr('Chế độ inline của bot chưa hỗ trợ trong Deplao') } };
+      return { success: true, action: { kind: 'unsupported', reason: tr('Chế độ inline của bot chưa hỗ trợ trong SadSha ChatDesk') } };
     }
-    return { success: true, action: { kind: 'unsupported', reason: tr('Loại nút này chưa hỗ trợ trong Deplao') } };
+    return { success: true, action: { kind: 'unsupported', reason: tr('Loại nút này chưa hỗ trợ trong SadSha ChatDesk') } };
   } catch (err: any) {
     return { success: false, error: err.message };
   }
@@ -10894,7 +10894,7 @@ export async function setChatHistoryTtl(accountId: string, chatId: string, perio
 
 /**
  * Permanently delete the group / channel for everyone (creator only): channels.DeleteChannel / messages.DeleteChat. The conversation in
- * Deplao changes to "không còn khả dụng" (unavailable) (old messages kept, removed from the main inbox), as when the group is deleted from another machine.
+ * SadSha ChatDesk changes to "không còn khả dụng" (unavailable) (old messages kept, removed from the main inbox), as when the group is deleted from another machine.
  */
 export async function deleteChat(accountId: string, chatId: string): Promise<{ success: boolean; error?: string }> {
   const conn = ensureConnected(accountId);
@@ -11092,7 +11092,7 @@ export async function getCallHistory(
 }
 
 // ── Incoming calls ───────────────────────────────────────────────────────────────
-// Deplao does not yet have Telegram's call engine (tgcalls: WebRTC + a private signaling protocol that Telegram does not publish), so
+// SadSha ChatDesk does not yet have Telegram's call engine (tgcalls: WebRTC + a private signaling protocol that Telegram does not publish), so
 // it cannot answer: it only reports "có cuộc gọi đến" (incoming call) so the user can answer on the phone / Telegram, or decline at once.
 // Does not call phone.receivedCall (that would make Telegram treat this machine as busy and reject other calls).
 

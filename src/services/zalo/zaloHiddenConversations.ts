@@ -1,5 +1,5 @@
 /**
- * zaloHiddenConversations.ts: Zalo PIN-hidden conversations (ZL-03, Deplao SRS) in the main process (the Boss machine).
+ * zaloHiddenConversations.ts: Zalo PIN-hidden conversations (ZL-03, SadSha ChatDesk SRS) in the main process (the Boss machine).
  *
  * - The hidden list and the PIN live on Zalo's servers, shared by all devices. getHiddenConversations returns the PIN as an MD5 of the 4
  *   digits, with no salt, so it only prevents peeking and is not encryption. The MD5 is kept only in the memory of the Boss main process: no IPC returns
@@ -10,7 +10,7 @@
  * - The zca-js listener does not report when the PIN is hidden / changed / deleted on the phone, so it is read again on connect (at most every 6 hours), when
  *   the red magnifier icon of the search box is clicked or Settings is opened, and when a PIN does not match while the last read is more than 30 s old (PIN just changed on the phone).
  * - If Zalo no longer has a PIN (deleted / reset on the phone), there is nothing to lock: all conversations show as normal.
- * - Forgot PIN → reset (resetHiddenConversPin): Zalo may delete the messages of the hidden conversations on the Zalo device; Deplao
+ * - Forgot PIN → reset (resetHiddenConversPin): Zalo may delete the messages of the hidden conversations on the Zalo device; SadSha ChatDesk
  *   keeps the messages on the machine. The UI asks for confirmation twice (open to everyone).
  */
 import * as crypto from 'crypto';
@@ -214,7 +214,7 @@ export async function setZaloConversationHidden(
 }
 
 /**
- * Set / change the PIN. If a PIN exists, the old PIN must be correct (zca-js does not require it, Deplao checks it itself; a wrong one counts like a wrong unlock attempt).
+ * Set / change the PIN. If a PIN exists, the old PIN must be correct (zca-js does not require it, SadSha ChatDesk checks it itself; a wrong one counts like a wrong unlock attempt).
  * Forgot the old PIN → resetZaloHiddenPin, then set the new PIN.
  */
 export async function setZaloHiddenPin(

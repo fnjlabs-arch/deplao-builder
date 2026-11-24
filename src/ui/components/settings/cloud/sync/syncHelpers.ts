@@ -137,10 +137,10 @@ export function describeSyncConfig(config: SyncConfig, accounts: ReadonlyArray<S
 /** Message after the settings are saved; `label` = storage name. */
 export function syncSavedMessage(before: SyncConfig, after: SyncConfig, rebase: boolean, label = 'R2'): string {
   if (before.mode === 'off' && after.mode !== 'off') {
-    return tr('Đã bật đồng bộ {{v1}}. Deplao chụp bản gốc ngay{{v2}}.', { v1: SYNC_MODE_LABEL[after.mode], v2: after.includeMedia ? tr(', ảnh và file tải dần lên {{label}}', { label }) : '' });
+    return tr('Đã bật đồng bộ {{v1}}. SadSha ChatDesk chụp bản gốc ngay{{v2}}.', { v1: SYNC_MODE_LABEL[after.mode], v2: after.includeMedia ? tr(', ảnh và file tải dần lên {{label}}', { label }) : '' });
   }
   if (before.mode !== 'off' && after.mode === 'off') return tr('Đã tắt đồng bộ. Bản trên {{label}} vẫn giữ.', { label });
-  if (rebase) return tr('Đã lưu. Deplao tạo bản gốc mới theo lựa chọn mới.');
+  if (rebase) return tr('Đã lưu. SadSha ChatDesk tạo bản gốc mới theo lựa chọn mới.');
   return tr('Đã lưu thiết lập đồng bộ');
 }
 

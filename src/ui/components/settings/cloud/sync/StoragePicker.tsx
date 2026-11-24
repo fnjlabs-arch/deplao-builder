@@ -253,7 +253,7 @@ function CustomClientSection({ google, disabled, onConnect, initialOpen }: {
         {!google.builtinClient && (
           <Notice tone="info">
             <p>
-              {tr('Bản Deplao này không có sẵn client Google chung. Tạo client OAuth riêng (miễn phí) theo hướng dẫn dưới đây rồi bấm Đăng nhập bằng client này.')}
+              {tr('Bản SadSha ChatDesk này không có sẵn client Google chung. Tạo client OAuth riêng (miễn phí) theo hướng dẫn dưới đây rồi bấm Đăng nhập bằng client này.')}
             </p>
           </Notice>
         )}
@@ -341,7 +341,7 @@ export function GoogleAccountBlock({ google, onStorage, inUse = false, initialCl
   const connect = async (client: GoogleClientInput | null) => {
     const api = cloudApi()?.google;
     if (typeof api?.connect !== 'function') {
-      notify(tr('Bản app này chưa có tính năng Google Drive. Hãy cập nhật Deplao.'), 'warning');
+      notify(tr('Bản app này chưa có tính năng Google Drive. Hãy cập nhật SadSha ChatDesk.'), 'warning');
       return;
     }
     cancelled.current = false;
@@ -378,7 +378,7 @@ export function GoogleAccountBlock({ google, onStorage, inUse = false, initialCl
   const disconnect = async () => {
     const ok = await showConfirm({
       title: tr('Ngắt kết nối Google Drive?'),
-      message: tr('Deplao thu hồi quyền truy cập và xoá đăng nhập Google trên máy này. File đã lên Google Drive vẫn giữ nguyên.{{v1}}', { v1: inUse ? tr(' Đồng bộ dữ liệu sẽ dừng cho tới khi đăng nhập lại.') : '' }),
+      message: tr('SadSha ChatDesk thu hồi quyền truy cập và xoá đăng nhập Google trên máy này. File đã lên Google Drive vẫn giữ nguyên.{{v1}}', { v1: inUse ? tr(' Đồng bộ dữ liệu sẽ dừng cho tới khi đăng nhập lại.') : '' }),
       confirmText: tr('Ngắt kết nối'),
       variant: 'danger',
     });
@@ -434,7 +434,7 @@ export function GoogleAccountBlock({ google, onStorage, inUse = false, initialCl
       ) : !connecting && (
         <div className="space-y-2">
           <p className="text-xs leading-relaxed text-muted-foreground">
-            {tr('Đăng nhập trên trình duyệt của máy. Deplao chỉ xem được file do chính Deplao tạo trên Drive của bạn.')}
+            {tr('Đăng nhập trên trình duyệt của máy. SadSha ChatDesk chỉ xem được file do chính SadSha ChatDesk tạo trên Drive của bạn.')}
           </p>
           {canSignIn && <Button size="sm" onClick={() => void connect(savedClient)}>{tr('Đăng nhập Google')}</Button>}
         </div>

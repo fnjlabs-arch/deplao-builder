@@ -164,7 +164,7 @@ export function DesignSystemPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <FormField label={tr('Tên hiển thị')} required hint={tr('Tên này hiện với khách hàng.')}>
-                <Input placeholder={tr('VD: Deplao Support')} defaultValue="Deplao Support" />
+                <Input placeholder={tr('VD: SadSha ChatDesk Support')} defaultValue="SadSha ChatDesk Support" />
               </FormField>
               <FormField label={tr('Số điện thoại')} error={tr('Số điện thoại không hợp lệ.')}>
                 <Input invalid defaultValue="09xx" />
@@ -357,7 +357,7 @@ export function DesignSystemPage() {
           <DialogHeader>
             <div>
               <DialogTitle>{tr('Xoá hội thoại?')}</DialogTitle>
-              <DialogDescription>{tr('Tin nhắn sẽ bị xoá khỏi Deplao. Không thể hoàn tác.')}</DialogDescription>
+              <DialogDescription>{tr('Tin nhắn sẽ bị xoá khỏi SadSha ChatDesk. Không thể hoàn tác.')}</DialogDescription>
             </div>
             <DialogClose />
           </DialogHeader>

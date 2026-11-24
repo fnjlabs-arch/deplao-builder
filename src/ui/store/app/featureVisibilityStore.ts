@@ -11,7 +11,7 @@ export type FeatureVisibilityKey =
   | 'plugins'
   | 'settings';
 
-const STORAGE_KEY = 'deplao:sidebar-feature-visibility';
+const STORAGE_KEY = 'sadshachatdesk:sidebar-feature-visibility';
 
 const DEFAULT_VISIBILITY: Record<FeatureVisibilityKey, boolean> = {
   dashboard: true,

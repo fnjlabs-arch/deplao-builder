@@ -281,7 +281,7 @@ export default function App() {
 
   // ─── Resizable sidebar width ────────────────────────────────────────────
   const [sidebarWidth, setSidebarWidth] = useState<number>(() => {
-    try { return Number(localStorage.getItem('deplao:sidebar-width') || '0') || 288; }
+    try { return Number(localStorage.getItem('sadshachatdesk:sidebar-width') || '0') || 288; }
     catch { return 288; }
   });
   const [sidebarResizing, setSidebarResizing] = useState(false);
@@ -320,7 +320,7 @@ export default function App() {
       document.body.style.userSelect = '';
       // Persist final width to DB + localStorage
       const finalWidth = Math.max(MIN_SIDEBAR_WIDTH, Math.min(MAX_SIDEBAR_WIDTH, startWidth + (lastX - startX)));
-      try { localStorage.setItem('deplao:sidebar-width', String(Math.round(finalWidth))); } catch {}
+      try { localStorage.setItem('sadshachatdesk:sidebar-width', String(Math.round(finalWidth))); } catch {}
       DataAccessor.setSetting('sidebar_width', String(Math.round(finalWidth))).catch(() => {});
     };
     document.addEventListener('mousemove', onMouseMove);
@@ -1412,7 +1412,7 @@ export default function App() {
     ipc.app?.isElevated?.().then((elevated) => {
       if (elevated) {
         useAppStore.getState().showNotification(
-          tr('Deplao đang chạy bằng quyền quản trị — Windows chặn kéo-thả ảnh / file từ File Explorer vào app. Đóng và mở lại Deplao bình thường (không chọn "Run as administrator") để kéo-thả được.', {  }),
+          tr('SadSha ChatDesk đang chạy bằng quyền quản trị — Windows chặn kéo-thả ảnh / file từ File Explorer vào app. Đóng và mở lại SadSha ChatDesk bình thường (không chọn "Run as administrator") để kéo-thả được.', {  }),
           'warning',
         );
       }
@@ -2066,7 +2066,7 @@ export default function App() {
       {/* Auto-update notification - bottom-right corner */}
       <UpdateNotification />
       <AccountSwitcherOverlay />
-      {/* Incoming Telegram call: decline / open chat (Deplao cannot answer the call yet) */}
+      {/* Incoming Telegram call: decline / open chat (SadSha ChatDesk cannot answer the call yet) */}
       <TelegramIncomingCall />
     </div>
   );

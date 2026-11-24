@@ -138,7 +138,7 @@ function CreateEmployeeContent({
       <DialogHeader>
         <div className="min-w-0">
           <DialogTitle>{tr('Thêm nhân viên')}</DialogTitle>
-          <DialogDescription>{tr('Nhân viên đăng nhập Deplao trên máy riêng bằng tài khoản này.')}</DialogDescription>
+          <DialogDescription>{tr('Nhân viên đăng nhập SadSha ChatDesk trên máy riêng bằng tài khoản này.')}</DialogDescription>
         </div>
         <DialogClose />
       </DialogHeader>

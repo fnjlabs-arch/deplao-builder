@@ -8,7 +8,7 @@ import { tr } from '../../../../shared/i18n';
 
 export function openExternalLink(url: string): boolean {
   if (!/^(https?:\/\/|mailto:)/i.test(String(url || ''))) {
-    useAppStore.getState().showNotification(tr('Deplao chưa mở được loại link này'), 'warning');
+    useAppStore.getState().showNotification(tr('SadSha ChatDesk chưa mở được loại link này'), 'warning');
     return false;
   }
   ipc.shell?.openExternal(url);

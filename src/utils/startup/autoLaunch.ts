@@ -1,12 +1,12 @@
 /**
- * Launch Deplao automatically when the computer starts (OS login). Many users restart the computer and forget to open the app → they miss messages, and they look
+ * Launch SadSha ChatDesk automatically when the computer starts (OS login). Many users restart the computer and forget to open the app → they miss messages, and they look
  * like they have stopped using it. On by default (including machines updated from an older version); turn it off / change it in Settings → Notifications → Launch at startup.
  *
  * - Windows / macOS: app.setLoginItemSettings. Windows writes the Run key (HKCU) with `--autostart`; it does not override a "Tắt" (Off) choice made in
- *   Task Manager when syncing at app start (only when the user turns it on again in Deplao).
- * - Linux: Electron does not support it → an XDG file `~/.config/autostart/deplao.desktop` (AppImage: the path of the .AppImage file).
- * - The choice is saved per machine (userData/deplao-config.json: autoLaunch, autoLaunchHidden), not per workspace / DB.
- * - Linux / macOS: an entry created by Deplao that was removed in the OS (Startup Applications, Login Items) → treated as off, not recreated automatically.
+ *   Task Manager when syncing at app start (only when the user turns it on again in SadSha ChatDesk).
+ * - Linux: Electron does not support it → an XDG file `~/.config/autostart/sadshachatdesk.desktop` (AppImage: the path of the .AppImage file).
+ * - The choice is saved per machine (userData/sadshachatdesk-config.json: autoLaunch, autoLaunchHidden), not per workspace / DB.
+ * - Linux / macOS: an entry created by SadSha ChatDesk that was removed in the OS (Startup Applications, Login Items) → treated as off, not recreated automatically.
  *   Windows always recreates it when missing (a changed install folder makes the old key no longer match, and the two cases cannot be told apart).
  * - Dev builds (not packaged) never register: they would register node_modules' electron.exe.
  */
@@ -14,9 +14,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { tr } from '../../shared/i18n';
 
-/** Command-line arguments when the OS launches Deplao automatically (Windows / Linux). */
+/** Command-line arguments when the OS launches SadSha ChatDesk automatically (Windows / Linux). */
 export const AUTOSTART_ARG = '--autostart';
-const LINUX_DESKTOP_FILE = 'deplao.desktop';
+const LINUX_DESKTOP_FILE = 'sadshachatdesk.desktop';
 
 export interface AutoLaunchStatus {
   /** Installed build on Windows / macOS / Linux (dev build: false) */
@@ -41,7 +41,7 @@ export interface AutoLaunchEnv {
   xdgConfigHome?: string;
   /** app.setLoginItemSettings / app.getLoginItemSettings */
   loginItems: { set(settings: Record<string, unknown>): void; get(options?: Record<string, unknown>): any };
-  /** userData/deplao-config.json */
+  /** userData/sadshachatdesk-config.json */
   configPath: string;
   fs?: FsLike;
 }
@@ -49,7 +49,7 @@ export interface AutoLaunchEnv {
 interface StoredChoice {
   autoLaunch?: boolean;
   autoLaunchHidden?: boolean;
-  /** Deplao created the auto-launch entry (so it can tell whether the user removed it in the OS) */
+  /** SadSha ChatDesk created the auto-launch entry (so it can tell whether the user removed it in the OS) */
   autoLaunchApplied?: boolean;
 }
 
@@ -64,10 +64,10 @@ export function linuxDesktopEntry(launchPath: string): string {
     '[Desktop Entry]',
     'Type=Application',
     'Version=1.0',
-    'Name=Deplao',
-    tr('Comment=Tự mở Deplao khi bật máy để không lỡ tin nhắn'),
+    'Name=SadSha ChatDesk',
+    tr('Comment=Tự mở SadSha ChatDesk khi bật máy để không lỡ tin nhắn'),
     `Exec=${desktopExecLine(launchPath)}`,
-    'Icon=deplao',
+    'Icon=sadshachatdesk',
     'Terminal=false',
     'X-GNOME-Autostart-enabled=true',
     '',
@@ -94,7 +94,7 @@ export function createAutoLaunch(env: AutoLaunchEnv) {
     }
   };
   const writeChoice = (patch: StoredChoice) => {
-    // Keep the other keys of deplao-config.json (dbFolder…)
+    // Keep the other keys of sadshachatdesk-config.json (dbFolder…)
     let current: Record<string, unknown> = {};
     try {
       if (files.existsSync(env.configPath)) current = JSON.parse(String(files.readFileSync(env.configPath, 'utf-8')) || '{}');
@@ -138,7 +138,7 @@ export function createAutoLaunch(env: AutoLaunchEnv) {
     }
   };
 
-  /** explicit = the user just turned it on in Deplao: it is turned on again even if the OS has this entry disabled. */
+  /** explicit = the user just turned it on in SadSha ChatDesk: it is turned on again even if the OS has this entry disabled. */
   const register = (explicit: boolean) => {
     if (env.platform === 'linux') {
       const content = readDesktopEntry();

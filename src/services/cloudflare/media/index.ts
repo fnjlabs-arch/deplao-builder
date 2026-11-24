@@ -4,7 +4,7 @@
  * Design (agreed with the user):
  *  - Media is still written to the machine first; R2 is the long-term copy. messages.local_paths does NOT change. Deleting a message in the app does NOT delete anything
  *    on R2 (R2 is an archive; only the R2 cleanup tool that the user runs deletes objects).
- *  - One private bucket per machine `deplao-media-<8 characters of machineId>`; key `<workspaceUid>/<path inside media/>` (NFC, '/').
+ *  - One private bucket per machine `sadshachatdesk-media-<8 characters of machineId>`; key `<workspaceUid>/<path inside media/>` (NFC, '/').
  *    workspaceUid + bucket are stored in the app_settings of the workspace DB, so a DB restored on another machine can still find its media.
  *  - Index `cloud_media` in the DB of the open workspace; an employee workspace (remote) does not upload (the Boss machine handles it).
  *  - Off = no timer, no DB writes, no scan. Does not block the main flow (in batches, yielding to the event loop).

@@ -38,7 +38,7 @@ export function EmployeesPanel() {
       <Card>
         <SectionTitle>{trx('<0/> Mô hình hoạt động', { 0: <HomeIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <Paragraph>
-          {trx('Máy <0>Boss</0> (máy chủ) đăng nhập các tài khoản Zalo, Facebook, Telegram và giữ toàn bộ dữ liệu. Nhân viên cài Deplao trên máy riêng, đăng nhập bằng tài khoản Boss cấp và kết nối tới máy Boss qua<1> mạng nội bộ (LAN)</1> hoặc <2>Internet</2>.', { 0: <strong className="text-foreground" />, 1: <strong className="text-foreground" />, 2: <strong className="text-foreground" /> })}
+          {trx('Máy <0>Boss</0> (máy chủ) đăng nhập các tài khoản Zalo, Facebook, Telegram và giữ toàn bộ dữ liệu. Nhân viên cài SadSha ChatDesk trên máy riêng, đăng nhập bằng tài khoản Boss cấp và kết nối tới máy Boss qua<1> mạng nội bộ (LAN)</1> hoặc <2>Internet</2>.', { 0: <strong className="text-foreground" />, 1: <strong className="text-foreground" />, 2: <strong className="text-foreground" /> })}
         </Paragraph>
         <div className="grid grid-cols-2 gap-2">
           {[
@@ -124,7 +124,7 @@ export function EmployeesPanel() {
           tr('Mất mạng hoặc máy Boss khởi động lại: máy nhân viên tự kết nối lại và <strong class="text-foreground">nhận bù các sự kiện bị lỡ</strong>; trong lúc chờ vẫn giữ dữ liệu đang xem (thanh tiêu đề báo "Đang khôi phục…" hoặc "Offline").'),
           tr('Địa chỉ tạm của Boss đã đổi: bấm <strong class="text-foreground">Kết nối lại</strong> → dán địa chỉ mới → "Kết nối địa chỉ mới", không cần nhập lại mật khẩu. Nếu Boss vừa báo địa chỉ mới, chỉ cần bấm <strong class="text-foreground">Dùng</strong>.'),
           tr('Phiên đăng nhập của nhân viên có hạn 7 ngày; hết hạn hoặc bị thu hồi thì bấm Kết nối lại và nhập mật khẩu.'),
-          tr('Máy Boss phải mở Deplao và có Internet. Bật "Tự bật khi mở app" (mục Kết nối) để nhân viên tự nối lại ngay khi Boss mở app.'),
+          tr('Máy Boss phải mở SadSha ChatDesk và có Internet. Bật "Tự bật khi mở app" (mục Kết nối) để nhân viên tự nối lại ngay khi Boss mở app.'),
         ]} />
       </Card>
 

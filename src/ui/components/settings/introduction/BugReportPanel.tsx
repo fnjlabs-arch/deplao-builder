@@ -23,13 +23,13 @@ export function BugReportPanel() {
 
       <div className="flex justify-center gap-2">
         <button
-          onClick={() => ipc.shell?.openExternal('https://github.com/babyvibe/deplao-builder/issues/new')}
+          onClick={() => ipc.shell?.openExternal('https://github.com/fnjlabs-arch/deplao-builder/issues/new')}
           className="px-4 py-2 bg-primary hover:bg-primary-hover text-primary-foreground text-xs font-medium rounded-lg transition-colors"
         >
           {tr('Tạo Issue mới trên GitHub →')}
         </button>
         <button
-          onClick={() => ipc.shell?.openExternal('https://github.com/babyvibe/deplao-builder/issues')}
+          onClick={() => ipc.shell?.openExternal('https://github.com/fnjlabs-arch/deplao-builder/issues')}
           className="px-4 py-2 bg-muted hover:bg-accent text-foreground text-xs font-medium rounded-lg transition-colors"
         >
           {tr('Xem danh sách Issues')}
@@ -53,7 +53,7 @@ export function BugReportPanel() {
           },
           {
             title: tr('Ghi thông tin môi trường'),
-            desc: tr('Phiên bản Deplao (cạnh chữ Deplao ở góc trên bên trái, hoặc Cài đặt → Log phiên bản); hệ điều hành (Windows 10/11, macOS Intel / Apple Silicon, Linux); kênh và loại tài khoản gặp lỗi (Zalo cá nhân / Business, Facebook, Telegram, Telegram Bot); dùng trên máy Boss, máy nhân viên hay dùng một mình; tính năng liên quan.'),
+            desc: tr('Phiên bản SadSha ChatDesk (cạnh chữ SadSha ChatDesk ở góc trên bên trái, hoặc Cài đặt → Log phiên bản); hệ điều hành (Windows 10/11, macOS Intel / Apple Silicon, Linux); kênh và loại tài khoản gặp lỗi (Zalo cá nhân / Business, Facebook, Telegram, Telegram Bot); dùng trên máy Boss, máy nhân viên hay dùng một mình; tính năng liên quan.'),
           },
           {
             title: tr('Tạo issue trên GitHub và theo dõi'),
@@ -92,7 +92,7 @@ export function BugReportPanel() {
             </ol>
           </div>
           <p className="text-muted-foreground leading-relaxed">
-            {trx('<0>Môi trường:</0> Deplao v26.11.2, Windows 11, Zalo cá nhân, dùng một mình (không có nhân viên). Đã thử 50 người (bình thường), 100 người (bình thường), 150 người (lỗi). Đính kèm: ảnh chụp + file nhật ký.', { 0: <strong className="text-foreground" /> })}
+            {trx('<0>Môi trường:</0> SadSha ChatDesk v26.11.2, Windows 11, Zalo cá nhân, dùng một mình (không có nhân viên). Đã thử 50 người (bình thường), 100 người (bình thường), 150 người (lỗi). Đính kèm: ảnh chụp + file nhật ký.', { 0: <strong className="text-foreground" /> })}
           </p>
           <div className="bg-success/10 border border-success/30 rounded-lg p-2 mt-2">
             <p className="text-[11px] text-success">

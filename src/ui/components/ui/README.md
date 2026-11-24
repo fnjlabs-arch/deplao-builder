@@ -1,4 +1,4 @@
-# Deplao UI kit — tokens + base components
+# SadSha ChatDesk UI kit — tokens + base components
 
 Mục tiêu: mọi màn dùng chung **một bảng màu ngữ nghĩa** (đổi theme chỉ đổi biến CSS) và
 **một bộ component cơ bản**. Không viết `bg-gray-800`, `text-white`, mã hex trong component mới.

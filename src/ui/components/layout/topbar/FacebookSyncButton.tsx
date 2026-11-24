@@ -234,7 +234,7 @@ export default function FacebookSyncButton() {
                   <p>{tr('Tải tin nhắn Messenger trong khoảng thời gian bạn chọn cho mọi hội thoại có hoạt động trong khoảng đó — tải lần lượt từng trang tới hết khoảng, không giới hạn số tin.')}</p>
                   <ul className="list-disc list-inside text-muted-foreground space-y-1 text-[13px]">
                     <li>{tr('Tin đã có được bỏ qua; tin mẫu của Trang trước đây hiện rỗng được sửa lại.')}</li>
-                    <li>{tr('Hội thoại mã hoá đầu cuối không tải được tin cũ (Facebook không cho thiết bị mới đọc), chỉ có tin nhận khi Deplao đang chạy.')}</li>
+                    <li>{tr('Hội thoại mã hoá đầu cuối không tải được tin cũ (Facebook không cho thiết bị mới đọc), chỉ có tin nhận khi SadSha ChatDesk đang chạy.')}</li>
                     <li>{tr('Tải nhiều có thể mất vài giờ — ẩn popup, đồng bộ vẫn chạy nền.')}</li>
                   </ul>
                 </div>
@@ -311,7 +311,7 @@ export default function FacebookSyncButton() {
                   <div className="min-w-0">
                     <p className="text-orange-500 text-xs font-semibold mb-0.5">{tr('Không cần tin nhắn cũ thì đừng tải')}</p>
                     <p className="text-orange-400 text-[11px] leading-relaxed">
-                      {trx('Tin nhắn mới vẫn tự về khi Deplao đang chạy — không cần đồng bộ. Tải lịch sử gửi nhiều yêu cầu tới Facebook: Deplao đã giãn nhịp như người dùng thật (nghỉ ngẫu nhiên giữa các trang, nghỉ giải lao sau mỗi 30–50 trang, tối đa khoảng 240 trang / giờ, tự dừng khi Facebook có dấu hiệu hạn chế) nhưng <0>vẫn có rủi ro bị checkpoint</0> (Facebook yêu cầu xác minh hoặc tạm khoá tài khoản). Chọn khoảng thời gian ngắn nhất đủ dùng.', { 0: <strong className="text-orange-300" /> })}
+                      {trx('Tin nhắn mới vẫn tự về khi SadSha ChatDesk đang chạy — không cần đồng bộ. Tải lịch sử gửi nhiều yêu cầu tới Facebook: SadSha ChatDesk đã giãn nhịp như người dùng thật (nghỉ ngẫu nhiên giữa các trang, nghỉ giải lao sau mỗi 30–50 trang, tối đa khoảng 240 trang / giờ, tự dừng khi Facebook có dấu hiệu hạn chế) nhưng <0>vẫn có rủi ro bị checkpoint</0> (Facebook yêu cầu xác minh hoặc tạm khoá tài khoản). Chọn khoảng thời gian ngắn nhất đủ dùng.', { 0: <strong className="text-orange-300" /> })}
                     </p>
                     <label className="mt-2 flex items-center gap-2 text-xs text-foreground cursor-pointer select-none">
                       <input

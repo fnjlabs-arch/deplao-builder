@@ -10,7 +10,7 @@
  *
  * Catalogs are flat JSON in resources/locales/<code>.json. The main process loads them
  * (src/services/i18n/localeStore.ts); the renderer gets them from the preload before any page script runs
- * (window.deplaoI18n), so module-level constants that call `tr` are already in the right language. Changing the
+ * (window.sadshachatdeskI18n), so module-level constants that call `tr` are already in the right language. Changing the
  * language reloads the window.
  */
 import { FALLBACK_LANGUAGE, PSEUDO_LANGUAGE, SOURCE_LANGUAGE, findLanguage, type TextDirection } from './languages';
@@ -139,10 +139,10 @@ export function trc(context: string, source: string, vars?: TrVars): string {
   return interpolate(resolveTemplate(contextKey(context, source), source, vars), vars);
 }
 
-// Renderer: the preload exposes window.deplaoI18n before page scripts run. Main process: localeStore calls
+// Renderer: the preload exposes window.sadshachatdeskI18n before page scripts run. Main process: localeStore calls
 // setI18nState. Jest, workers and the README harness without a payload stay Vietnamese.
 try {
-  const boot = (globalThis as { deplaoI18n?: I18nBootPayload }).deplaoI18n;
+  const boot = (globalThis as { sadshachatdeskI18n?: I18nBootPayload }).sadshachatdeskI18n;
   if (boot && typeof boot.lang === 'string') setI18nState(boot);
 } catch {
   /* no boot payload */

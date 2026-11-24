@@ -132,7 +132,7 @@ func captureStdout(t *testing.T, fn func()) string {
 	return string(data)
 }
 
-// DEPLAO_ADAPTER: a panic inside one request (seen in the Messenger Lite Bloks
+// SADSHA_ADAPTER: a panic inside one request (seen in the Messenger Lite Bloks
 // interpreter) must become an error response instead of killing the bridge.
 func TestHandleSafelyTurnsPanicIntoErrorResponse(t *testing.T) {
 	originalHandler := handleRequest

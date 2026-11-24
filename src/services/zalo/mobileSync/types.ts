@@ -1,5 +1,5 @@
 /**
- * Types for the "Đồng bộ tin nhắn từ điện thoại" (sync messages from phone) feature (Zalo mobile → Deplao).
+ * Types for the "Đồng bộ tin nhắn từ điện thoại" (sync messages from phone) feature (Zalo mobile → SadSha ChatDesk).
  * Based on zca-js PR #269 (pullMobile + sync_event) and the Zalo PC 26.9 flow.
  */
 

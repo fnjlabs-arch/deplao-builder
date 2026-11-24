@@ -1,11 +1,11 @@
 /**
- * PluginProtocol: serves the plugin UI through deplao-plugin://<id>/<path> (each plugin has its own origin,
+ * PluginProtocol: serves the plugin UI through sadshachatdesk-plugin://<id>/<path> (each plugin has its own origin,
  * different from the app's origin → the plugin iframe cannot reach the app's DOM / IPC).
  *
  *  - Only enabled plugins; files must be inside the plugin folder (realpath is checked, symlinks pointing outside are blocked).
  *  - Strict CSP: script/style only from the plugin itself; no fetch to the outside except ui.connectSrc, no external images except ui.imgSrc
  *    (both need the network permission).
- *  - /__deplao/sdk.js returns the web SDK embedded in the app.
+ *  - /__sadshachatdesk/sdk.js returns the web SDK embedded in the app.
  *  - Pages embedded from an unknown external web (unfamiliar http/https Referer) are rejected.
  */
 import * as fs from 'fs';
@@ -15,8 +15,8 @@ import { isImageSource } from './manifest';
 import { WEB_SDK_JS } from './webSdk';
 import { tr } from '../../shared/i18n';
 
-export const PLUGIN_SCHEME = 'deplao-plugin';
-export const SDK_PATH = '__deplao/sdk.js';
+export const PLUGIN_SCHEME = 'sadshachatdesk-plugin';
+export const SDK_PATH = '__sadshachatdesk/sdk.js';
 export const DEV_RENDERER_ORIGIN = 'http://localhost:27799';
 
 const MIME: Record<string, string> = {
@@ -30,7 +30,7 @@ export function mimeFor(file: string): string {
     return MIME[path.extname(file).slice(1).toLowerCase()] || 'application/octet-stream';
 }
 
-/** deplao-plugin://vn.acme.spa/ui/index.html → { pluginId, relPath: 'ui/index.html' }. */
+/** sadshachatdesk-plugin://vn.acme.spa/ui/index.html → { pluginId, relPath: 'ui/index.html' }. */
 export function parsePluginUrl(raw: string): { pluginId: string; relPath: string } | null {
     let u: URL;
     try { u = new URL(raw); } catch { return null; }
@@ -91,7 +91,7 @@ export function buildCsp(rec: PluginRecord, devOrigin = DEV_RENDERER_ORIGIN): st
         "object-src 'none'",
         "base-uri 'self'",
         "form-action 'self'",
-        // Who may embed the app pages: the app itself, the installed Deplao UI (file://) and the dev build (Vite). Do not use
+        // Who may embed the app pages: the app itself, the installed SadSha ChatDesk UI (file://) and the dev build (Vite). Do not use
         // '*': under CSP, '*' only matches http/https/ws/wss, so it would block the installed file:// UI (blank page) and also allow
         // any external web page to embed it.
         `frame-ancestors 'self' file: ${devOrigin}`,
@@ -153,7 +153,7 @@ export function isBlockedMediaRequest(headers: { get(name: string): string | nul
     return false;
 }
 
-/** An iframe at deplao-plugin://<id> may only navigate inside that same origin. */
+/** An iframe at sadshachatdesk-plugin://<id> may only navigate inside that same origin. */
 export function shouldBlockPluginFrameNavigation(currentUrl: string, targetUrl: string): boolean {
     if (!String(currentUrl || '').startsWith(`${PLUGIN_SCHEME}:`)) return false;
     try {

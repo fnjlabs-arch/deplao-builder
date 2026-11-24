@@ -313,7 +313,7 @@ export default function AddressSection({
   const moveHere = async () => {
     const ok = await showConfirm({
       title: tr('Chuyển địa chỉ sang máy này?'),
-      message: tr('Deplao tạo tunnel mới trên máy này và trỏ tên miền về đây. Máy đang giữ địa chỉ sẽ ngừng nhận nhân viên, API và webhook.'),
+      message: tr('SadSha ChatDesk tạo tunnel mới trên máy này và trỏ tên miền về đây. Máy đang giữ địa chỉ sẽ ngừng nhận nhân viên, API và webhook.'),
       confirmText: tr('Chuyển sang máy này'),
       variant: 'warning',
     });
@@ -340,7 +340,7 @@ export default function AddressSection({
   const teardown = async () => {
     const ok = await showConfirm({
       title: tr('Gỡ tunnel và địa chỉ?'),
-      message: tr('Xoá tunnel và tên miền con Deplao đã tạo trên Cloudflare. Nhân viên ở xa và đối tác sẽ không vào được cho tới khi tạo lại. Dữ liệu trong app không bị ảnh hưởng.'),
+      message: tr('Xoá tunnel và tên miền con SadSha ChatDesk đã tạo trên Cloudflare. Nhân viên ở xa và đối tác sẽ không vào được cho tới khi tạo lại. Dữ liệu trong app không bị ảnh hưởng.'),
       confirmText: tr('Gỡ tunnel'),
       variant: 'danger',
     });
@@ -413,7 +413,7 @@ export default function AddressSection({
           <div>
             <p className="text-sm font-semibold text-foreground">{tr('Cloudflare tự động')} <Badge size="sm" variant="primary" className="ml-1 align-middle">{tr('Khuyên dùng')}</Badge></p>
             <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
-              {tr('Deplao tự tạo tunnel và tên miền con trên Cloudflare của bạn. Địa chỉ không đổi khi khởi động lại; nhân viên và đối tác chỉ cần cài một lần.')}
+              {tr('SadSha ChatDesk tự tạo tunnel và tên miền con trên Cloudflare của bạn. Địa chỉ không đổi khi khởi động lại; nhân viên và đối tác chỉ cần cài một lần.')}
             </p>
           </div>
 
@@ -564,7 +564,7 @@ export default function AddressSection({
         <Card className="px-4">
           <SettingRow
             title={tr('Tự bật khi mở app')}
-            description={legacyMode ? LEGACY_AUTOSTART_HINT : tr('Tunnel chạy lại ngay khi mở Deplao, nhân viên và đối tác không phải chờ.')}
+            description={legacyMode ? LEGACY_AUTOSTART_HINT : tr('Tunnel chạy lại ngay khi mở SadSha ChatDesk, nhân viên và đối tác không phải chờ.')}
             control={(
               <Switch
                 checked={!!config?.autoStart}
@@ -611,7 +611,7 @@ export default function AddressSection({
                 )}
                 <SettingRow
                   title={tr('Gỡ tunnel và địa chỉ')}
-                  description={tr('Xoá tunnel và tên miền con Deplao đã tạo trên Cloudflare.')}
+                  description={tr('Xoá tunnel và tên miền con SadSha ChatDesk đã tạo trên Cloudflare.')}
                   control={<Button size="sm" variant="destructive" loading={busy === 'teardown'} onClick={() => void teardown()}>{tr('Gỡ tunnel và địa chỉ')}</Button>}
                 />
               </>

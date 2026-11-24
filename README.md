@@ -1,13 +1,13 @@
 <div align="center">
 
-<img src="https://deplaoapp.com/assets/icon-CuJ0M91u.png" alt="Deplao" width="120" />
+<img src="https://chatdesk.sadsha.com/assets/icon-CuJ0M91u.png" alt="SadSha ChatDesk" width="120" />
 
-# Deplao
+# SadSha ChatDesk
 
 **Desktop app for managing multiple Zalo, Facebook & Telegram accounts**
 CRM · Marketing · ERP · POS · Workflow · AI Assistant — all in one unified workspace
 
-[🌐 Website](https://deplaoapp.com/) · [🇻🇳 Tiếng Việt](./README.vi.md)
+[🌐 Website](https://chatdesk.sadsha.com/) · [🇻🇳 Tiếng Việt](./README.vi.md)
 
 ![Version](https://img.shields.io/badge/version-26.11.2-22c55e)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux%20%7C%20Ubuntu-3b82f6)
@@ -15,9 +15,9 @@ CRM · Marketing · ERP · POS · Workflow · AI Assistant — all in one unifie
 ![React](https://img.shields.io/badge/React-18-61dafb?logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)
-![License](https://img.shields.io/github/license/babyvibe/deplao-builder)
-![Stars](https://img.shields.io/github/stars/babyvibe/deplao-builder?style=social)
-![Forks](https://img.shields.io/github/forks/babyvibe/deplao-builder?style=social)
+![License](https://img.shields.io/github/license/fnjlabs-arch/deplao-builder)
+![Stars](https://img.shields.io/github/stars/fnjlabs-arch/deplao-builder?style=social)
+![Forks](https://img.shields.io/github/forks/fnjlabs-arch/deplao-builder?style=social)
 
 </div>
 
@@ -42,54 +42,54 @@ CRM · Marketing · ERP · POS · Workflow · AI Assistant — all in one unifie
 <tr>
 <td align="center" width="50%">
 
-<a href="https://github.com/babyvibe/deplao-builder/releases/latest/download/Deplao-Setup-26.11.2.exe">
+<a href="https://github.com/fnjlabs-arch/deplao-builder/releases/latest/download/SadSha ChatDesk-Setup-26.11.2.exe">
 <img src="https://img.shields.io/badge/🪟_Windows_10/11-v26.11.2-0078d4?style=for-the-badge&logo=windows&logoColor=white" alt="Download Windows" />
 </a>
 
-<big><strong>Deplao-Setup-26.11.2.exe</strong></big>
+<big><strong>SadSha ChatDesk-Setup-26.11.2.exe</strong></big>
 
 </td>
 <td align="center" width="50%">
 
-<a href="https://github.com/babyvibe/deplao-builder/releases/latest/download/Deplao-26.11.2-arm64.dmg">
+<a href="https://github.com/fnjlabs-arch/deplao-builder/releases/latest/download/SadSha ChatDesk-26.11.2-arm64.dmg">
 <img src="https://img.shields.io/badge/🍎_macOS_M1+-v26.11.2-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Download macOS Apple Silicon" />
 </a>
 
-<big><strong>Deplao-26.11.2-arm64.dmg</strong></big>
+<big><strong>SadSha ChatDesk-26.11.2-arm64.dmg</strong></big>
 
 </td>
 </tr>
 <tr>
 <td align="center" width="50%">
 
-<a href="https://github.com/babyvibe/deplao-builder/releases/latest/download/Deplao-26.11.2.AppImage">
+<a href="https://github.com/fnjlabs-arch/deplao-builder/releases/latest/download/SadSha ChatDesk-26.11.2.AppImage">
 <img src="https://img.shields.io/badge/🐧_Ubuntu_Linux-v26.11.2-e95420?style=for-the-badge&logo=ubuntu&logoColor=white" alt="Download Ubuntu" />
 </a>
 
-<big><strong>Deplao-26.11.2.AppImage</strong></big><br>
+<big><strong>SadSha ChatDesk-26.11.2.AppImage</strong></big><br>
 <big>works on any distro - <code>chmod +x</code> & run</big>
 
 </td>
 <td align="center" width="50%">
 
-<a href="https://github.com/babyvibe/deplao-builder/releases/latest/download/Deplao-26.11.2.dmg">
+<a href="https://github.com/fnjlabs-arch/deplao-builder/releases/latest/download/SadSha ChatDesk-26.11.2.dmg">
 <img src="https://img.shields.io/badge/🍎_macOS_Intel-v26.11.2-555555?style=for-the-badge&logo=apple&logoColor=white" alt="Download macOS Intel" />
 </a>
 
-<big><strong>Deplao-26.11.2.dmg</strong></big>
+<big><strong>SadSha ChatDesk-26.11.2.dmg</strong></big>
 
 </td>
 </tr>
 </table>
 
 <p align="center">
-👉 <strong><a href="https://github.com/babyvibe/deplao-builder/releases">View all releases</a></strong>
+👉 <strong><a href="https://github.com/fnjlabs-arch/deplao-builder/releases">View all releases</a></strong>
 </p>
 
 <details>
 <summary>⚠️ Security warning on first launch (blocked by Windows / macOS / Linux)</summary>
 
-Deplao is not code-signed (we're bootstrapped), so your OS may show a warning when opening the installer.
+SadSha ChatDesk is not code-signed (we're bootstrapped), so your OS may show a warning when opening the installer.
 
 ---
 
@@ -125,8 +125,8 @@ macOS may show **"cannot be opened because it is from an unidentified developer"
 After downloading the `.AppImage` file:
 
 ```bash
-chmod +x Deplao-*.AppImage
-./Deplao-*.AppImage
+chmod +x SadSha ChatDesk-*.AppImage
+./SadSha ChatDesk-*.AppImage
 ```
 
 > If you get "FUSE: fuse2 not available", install `libfuse2`:
@@ -136,7 +136,7 @@ chmod +x Deplao-*.AppImage
 
 Or install the `.deb` package:
 ```bash
-sudo dpkg -i Deplao_*_amd64.deb
+sudo dpkg -i SadSha ChatDesk_*_amd64.deb
 ```
 
 </details>
@@ -145,7 +145,7 @@ sudo dpkg -i Deplao_*_amd64.deb
 
 ## 🛠️ Tech Stack
 
-Deplao is built on the following core technologies:
+SadSha ChatDesk is built on the following core technologies:
 
 - **Messaging libraries:** zca-js (Zalo), fbchat-v2 (Facebook Messenger, a Go bridge based on mautrix-meta), GramJS (Telegram User), Telegram Bot API
 - **AI Gateway:** 9router, OpenRouter or direct OpenAI, Claude, Gemini...
@@ -244,7 +244,7 @@ flowchart LR
 
 ```mermaid
 mindmap
-  root((🖥️ Deplao))
+  root((🖥️ SadSha ChatDesk))
     ⚙️ Main Process
       📡 IPC Handlers
         login · zalo · fb · telegram
@@ -306,7 +306,7 @@ flowchart TB
     end
 
     subgraph EMP["💻 Employee - Remote Workspace"]
-        EA("📲 Deplao App\nEmployee Mode")
+        EA("📲 SadSha ChatDesk App\nEmployee Mode")
         DA("🔀 DataAccessor\nauto routing")
         RQ("🌐 RestQueryService\nHTTP REST client")
         EP("🔐 Permission Filter\nerp · crm · workflow · ...")
@@ -348,7 +348,7 @@ flowchart LR
     end
 
     subgraph STORE["💾 Local Storage"]
-        DB[("🗄️ SQLite\ndeplao-tool.db\nmessages · contacts\ncrm · workflow · erp")]
+        DB[("🗄️ SQLite\nsadshachatdesk-tool.db\nmessages · contacts\ncrm · workflow · erp")]
         MED("📁 FileStorage\n~/media/\nphotos · videos · files")
         ES("🔑 electron-store\ncookies · tokens\nsettings")
     end
@@ -382,7 +382,7 @@ flowchart LR
 
 ## 🌐 Public API & Extension Apps
 
-Deplao ships a **Public API v1** with ~300 operations (accounts, Zalo / Facebook / Telegram chat, groups, labels, contacts, CRM, workflows, integrations, ERP, AI, reports, media, employees) to connect your website, n8n, sales software or your own systems. The API runs **on the machine where Deplao is installed** (default port `9900`) and is **off by default** until you enable it. Every call goes through the app's normal flow: a message sent via the API shows up in the chat window, is saved to the DB and triggers workflows just like one you send yourself.
+SadSha ChatDesk ships a **Public API v1** with ~300 operations (accounts, Zalo / Facebook / Telegram chat, groups, labels, contacts, CRM, workflows, integrations, ERP, AI, reports, media, employees) to connect your website, n8n, sales software or your own systems. The API runs **on the machine where SadSha ChatDesk is installed** (default port `9900`) and is **off by default** until you enable it. Every call goes through the app's normal flow: a message sent via the API shows up in the chat window, is saved to the DB and triggers workflows just like one you send yourself.
 
 ### Quick start
 
@@ -401,17 +401,17 @@ curl -H "Authorization: Bearer dpk_xxx" http://127.0.0.1:9900/api/v1/accounts
 
 ### Build your own apps
 
-Apps (plugins) run inside Deplao: their own page, chat side panels, composer buttons, settings, workflow nodes and schedules. Install from a zip file or a folder and review permissions before they run; an app can only call the API within the permissions you approved and on the accounts you granted. The toolkit lives in [`packages/`](./packages): the `@deplao/plugin-sdk` SDK and the `deplao-plugin` CLI.
+Apps (plugins) run inside SadSha ChatDesk: their own page, chat side panels, composer buttons, settings, workflow nodes and schedules. Install from a zip file or a folder and review permissions before they run; an app can only call the API within the permissions you approved and on the accounts you granted. The toolkit lives in [`packages/`](./packages): the `@sadshachatdesk/plugin-sdk` SDK and the `sadshachatdesk-plugin` CLI.
 
 ```bash
-node packages/plugin-cli/bin/deplao-plugin.js create my-app --runtime web
-node packages/plugin-cli/bin/deplao-plugin.js validate my-app
-node packages/plugin-cli/bin/deplao-plugin.js pack my-app --out my-app.zip
+node packages/plugin-cli/bin/sadshachatdesk-plugin.js create my-app --runtime web
+node packages/plugin-cli/bin/sadshachatdesk-plugin.js validate my-app
+node packages/plugin-cli/bin/sadshachatdesk-plugin.js pack my-app --out my-app.zip
 ```
 
-## 🚀 What is Deplao?
+## 🚀 What is SadSha ChatDesk?
 
-At a glance, Deplao is:
+At a glance, SadSha ChatDesk is:
 
 - **An operations hub**: multiple Zalo, Facebook, Telegram accounts, a unified inbox, quick replies, chat history sync
 - **A customer management layer**: CRM, labels, interaction history, campaigns for friends and customers who have messaged you
@@ -428,7 +428,7 @@ At a glance, Deplao is:
 - ⚙️ **Workflow automation** - drag-and-drop Trigger → Node → Action or chat with the AI copilot to build flows, test them in Simulation mode, run 24/7 with no code
 - 🤖 **AI Assistant** - reply suggestions, in-chat AI Q&A, message classification and 24/7 auto-replies
 - 🔗 **External integrations** - POS, shipping, payments, Google Sheets, Telegram, Email, HTTP Request... usable in chat or workflows
-- 🧩 **Apps & Public API** - ~300 APIs, webhooks, realtime events and your own apps running inside Deplao
+- 🧩 **Apps & Public API** - ~300 APIs, webhooks, realtime events and your own apps running inside SadSha ChatDesk
 - ☁️ **Internet & Cloud** - a fixed Internet address through your own Cloudflare; media plus encrypted DB backup + sync on Cloudflare R2 or Google Drive (Google One), with usage and estimated cost; restore to a new machine
 - 📈 **Reports & analytics** - track messages, contacts, labels, employees, campaigns, workflows, AI
 - 🗂️ **Internal ERP** - tasks, calendars, notes and team coordination within the same system
@@ -445,80 +445,80 @@ Screens are ordered by real usage flow: dashboard → chat → CRM → workflow 
 <table>
   <tr>
     <td>
-      <img src="./assets/dashboard.png" alt="Multi-account dashboard for Zalo, Facebook, Telegram in Deplao" width="360" />
+      <img src="./assets/dashboard.png" alt="Multi-account dashboard for Zalo, Facebook, Telegram in SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Multi-account dashboard</strong></sub>
     </td>
     <td>
-      <img src="./assets/chat.png" alt="Unified chat interface in Deplao" width="360" />
+      <img src="./assets/chat.png" alt="Unified chat interface in SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Unified chat with AI reply suggestions</strong></sub>
     </td>
     <td>
-      <img src="./assets/crm.png" alt="CRM and contact management in Deplao" width="360" />
+      <img src="./assets/crm.png" alt="CRM and contact management in SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>CRM & contacts</strong></sub>
     </td>
   </tr>
   <tr>
     <td>
-      <img src="./assets/campaign.png" alt="Campaigns for friends and customers who have messaged you in Deplao" width="360" />
+      <img src="./assets/campaign.png" alt="Campaigns for friends and customers who have messaged you in SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Campaigns for friends & customers</strong></sub>
     </td>
     <td>
-      <img src="./assets/workflow.png" alt="Drag-and-drop workflow designer in Deplao" width="360" />
+      <img src="./assets/workflow.png" alt="Drag-and-drop workflow designer in SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Workflow editor</strong></sub>
     </td>
     <td>
-      <img src="./assets/detail-workflow.png" alt="Workflow node configuration in Deplao" width="360" />
+      <img src="./assets/detail-workflow.png" alt="Workflow node configuration in SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Workflow details</strong></sub>
     </td>
   </tr>
   <tr>
     <td>
-      <img src="./assets/workflow-ai.png" alt="AI-powered workflow creation in Deplao" width="360" />
+      <img src="./assets/workflow-ai.png" alt="AI-powered workflow creation in SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Create workflows by talking to AI</strong></sub>
     </td>
     <td>
-      <img src="./assets/pos.png" alt="POS and sales integrations in Deplao" width="360" />
+      <img src="./assets/pos.png" alt="POS and sales integrations in SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>POS, shipping & payment integrations</strong></sub>
     </td>
     <td>
-      <img src="./assets/report.png" alt="Reports and performance analytics in Deplao" width="360" />
+      <img src="./assets/report.png" alt="Reports and performance analytics in SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Reports & analytics</strong></sub>
     </td>
   </tr>
   <tr>
     <td>
-      <img src="./assets/employees.png" alt="Employee management and permissions in Deplao" width="360" />
+      <img src="./assets/employees.png" alt="Employee management and permissions in SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Employee management</strong></sub>
     </td>
     <td>
-      <img src="./assets/erp.png" alt="Internal ERP and team coordination in Deplao" width="360" />
+      <img src="./assets/erp.png" alt="Internal ERP and team coordination in SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Internal ERP</strong></sub>
     </td>
     <td>
-      <img src="./assets/apps-api.png" alt="Apps, API and Webhook in Deplao" width="360" />
+      <img src="./assets/apps-api.png" alt="Apps, API and Webhook in SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Apps, API & Webhook</strong></sub>
     </td>
   </tr>
   <tr>
     <td>
-      <img src="./assets/cloud.png" alt="Internet and Cloud with Cloudflare and Google Drive in Deplao" width="360" />
+      <img src="./assets/cloud.png" alt="Internet and Cloud with Cloudflare and Google Drive in SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Internet & Cloud (Cloudflare · Google Drive)</strong></sub>
     </td>
     <td>
-      <img src="./assets/mobile-sync.png" alt="Sync old Zalo messages from the phone in Deplao" width="360" />
+      <img src="./assets/mobile-sync.png" alt="Sync old Zalo messages from the phone in SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Sync old messages from your phone</strong></sub>
     </td>
@@ -527,7 +527,7 @@ Screens are ordered by real usage flow: dashboard → chat → CRM → workflow 
 
 ## 🎯 Who is it for?
 
-Deplao is a great fit for:
+SadSha ChatDesk is a great fit for:
 
 - Online shops and sales teams closing orders via Zalo, Facebook, Telegram
 - Workflow automation and customer care, with campaigns for friends and customers who have messaged you
@@ -601,11 +601,11 @@ Deplao is a great fit for:
 ### 8) 🧩 Apps, Public API & Webhook
 - Public API v1 with ~300 operations, API keys scoped by permission / account / IP / expiry, request log
 - Realtime events and signed outgoing webhooks, a docs page + OpenAPI
-- Install or write your own apps that run inside Deplao, with an SDK and CLI (see [Public API](#public-api))
+- Install or write your own apps that run inside SadSha ChatDesk, with an SDK and CLI (see [Public API](#public-api))
 
 ### 9) ☁️ Internet & Cloud (Cloudflare · Google Drive)
 - One place to configure your Internet address (temporary address, automatic Cloudflare, ngrok, manual Cloudflare) for remote employees, webhooks and payments
-- Choose where to store: Cloudflare R2 or Google Drive (Google One) — sign in to Google in your browser; Deplao only sees the files it created
+- Choose where to store: Cloudflare R2 or Google Drive (Google One) — sign in to Google in your browser; SadSha ChatDesk only sees the files it created
 - Store media on the chosen storage, fetch it back when local files are missing, optionally free up disk space
 - Back up & sync the DB to the chosen storage, encrypted on your machine; restore to a new or standby machine
 - Usage & cost: % of the free tier and billing thresholds, this month's estimated cost (R2), what counts as a write / read / download
@@ -614,16 +614,16 @@ Deplao is a great fit for:
 
 ## 🔒 Security & data
 
-Deplao is designed to run locally on the user's machine:
+SadSha ChatDesk is designed to run locally on the user's machine:
 
 - All messages, contacts, CRM data, settings and media are stored locally
 - Zalo logs in with a QR code and no password is stored; login sessions (cookies, tokens) stay on the machine and are encrypted with the OS key (Zalo and Telegram sessions, bot tokens, Facebook cookies)
 - Storage directory can be moved to another drive at any time
-- The cloud is optional and uses your own Cloudflare / Google account (on Google Drive, Deplao only gets access to the files it created); DB backups are encrypted on the machine before upload
+- The cloud is optional and uses your own Cloudflare / Google account (on Google Drive, SadSha ChatDesk only gets access to the files it created); DB backups are encrypted on the machine before upload
 - The Public API is off by default, API keys are limited by permission, account and IP; apps run only within the permissions you approved
 - Employees can only access their assigned accounts; locking an employee or changing their password revokes their session immediately
 - Ideal for teams wanting tighter internal data control
-- Deplao is a tool for managing your own accounts: follow the terms of Zalo, Facebook, Telegram and the personal data protection rules that apply to you; do not use it to send spam or collect data unlawfully
+- SadSha ChatDesk is a tool for managing your own accounts: follow the terms of Zalo, Facebook, Telegram and the personal data protection rules that apply to you; do not use it to send spam or collect data unlawfully
 
 ## 💻 Runtime requirements
 
@@ -637,7 +637,7 @@ Deplao is designed to run locally on the user's machine:
 
 ## 📣 Contact & support
 
-- Bug reports, feedback or support: 👉 [Open an issue](https://github.com/babyvibe/deplao-builder/issues)
+- Bug reports, feedback or support: 👉 [Open an issue](https://github.com/fnjlabs-arch/deplao-builder/issues)
 
 ## 🙏 Acknowledgements
 

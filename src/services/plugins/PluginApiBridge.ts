@@ -1,11 +1,11 @@
 /**
- * PluginApiBridge: every deplao.* call from a plugin (UI through postMessage → IPC, backend through RPC).
+ * PluginApiBridge: every sadshachatdesk.* call from a plugin (UI through postMessage → IPC, backend through RPC).
  *
  *  - API function (operationId or "METHOD /path") → ApiRouter.invoke with the principal plugin:<id>:
  *    the same scope / account checks, the same validation, the same IPC handler as external apps and the UI.
  *  - The plugin's own functions (storage, settings, log, events, http, workflow.trigger, media.upload,
  *    system) check the plugin permission here before touching any data.
- *  - deplao.cloudflare.* (backend only, permission "cloudflare:workers"): checks the manifest permission, the Worker / D1 names by prefix
+ *  - sadshachatdesk.cloudflare.* (backend only, permission "cloudflare:workers"): checks the manifest permission, the Worker / D1 names by prefix
  *    (pluginShortName) and that the folder is inside the app HERE, and only then calls the cloudflare:workers:* channel through IpcInvoker
  *    with a delegation grant (PluginGrant): the only admin channel a plugin can reach, the Cloudflare token never leaves main.
  */
@@ -47,7 +47,7 @@ export interface BridgeDeps {
     /**
      * Admin channels delegated to plugins (cloudflare:workers:*, see PLUGIN_DELEGATED_CHANNEL_PREFIXES): the bridge has already checked
      * the permission + prefix, and `grant` is passed along to the handler. Returns the handler result UNCHANGED ({ success, result } | { success:false,
-     * error, code }) to keep the CF_* error codes. Missing (old test builds) → deplao.cloudflare reports NOT_IMPLEMENTED.
+     * error, code }) to keep the CF_* error codes. Missing (old test builds) → sadshachatdesk.cloudflare reports NOT_IMPLEMENTED.
      */
     invokeDelegated?: (channel: string, payload: any, principal: Principal, grant: PluginGrant, timeoutMs: number) => Promise<any>;
     uploads: () => UploadStore;
@@ -73,7 +73,7 @@ function looksLikeText(body: Buffer): boolean {
     }
 }
 
-/** Maximum wait time for each deplao.cloudflare function (deploys that upload assets + scripts can take a few minutes). */
+/** Maximum wait time for each sadshachatdesk.cloudflare function (deploys that upload assets + scripts can take a few minutes). */
 const CLOUDFLARE_TIMEOUTS_MS = {
     status: 60_000,
     get: 60_000,
@@ -83,7 +83,7 @@ const CLOUDFLARE_TIMEOUTS_MS = {
     deploy: 10 * 60_000,
     zones: 60_000,
     domains: 60_000,
-    /** This includes the time spent waiting for the user to answer Deplao's confirmation dialog. */
+    /** This includes the time spent waiting for the user to answer SadSha ChatDesk's confirmation dialog. */
     domainAttach: 10 * 60_000,
     domainDetach: 60_000,
 };
@@ -319,12 +319,12 @@ export class PluginApiBridge {
     }
 
     /**
-     * deplao.cloudflare.*: checked BEFORE calling IPC: backend only, manifest permission "cloudflare:workers" (PLUGIN_PERMISSION),
+     * sadshachatdesk.cloudflare.*: checked BEFORE calling IPC: backend only, manifest permission "cloudflare:workers" (PLUGIN_PERMISSION),
      * Worker / D1 name = the prefix or "<prefix>-…" (CF_NAME_FORBIDDEN), bundleDir / dir must be a relative folder inside the
      * app (CF_BUNDLE_INVALID). Then calls the cloudflare:workers:* channel with the delegation grant; the handler in main checks again.
      */
     private async cloudflare(rec: PluginRecord, principal: Principal, method: string, p: any, origin: 'ui' | 'backend'): Promise<any> {
-        if (origin !== 'backend') throw new ApiError(400, 'VALIDATION_ERROR', tr('deplao.cloudflare chỉ dùng ở backend của ứng dụng (UI gọi qua deplao.backend.call)'));
+        if (origin !== 'backend') throw new ApiError(400, 'VALIDATION_ERROR', tr('sadshachatdesk.cloudflare chỉ dùng ở backend của ứng dụng (UI gọi qua sadshachatdesk.backend.call)'));
         if (!rec.granted_permissions.includes(WORKERS_PERMISSION)) {
             throw new ApiError(403, 'PLUGIN_PERMISSION', tr('Ứng dụng cần quyền "{{WORKERS_PERMISSION}}" trong manifest', { WORKERS_PERMISSION }), { required: WORKERS_PERMISSION });
         }
@@ -403,7 +403,7 @@ export class PluginApiBridge {
         } catch (err) {
             throw toCloudflareApiError(err);
         }
-        if (!this.deps.invokeDelegated) throw new ApiError(501, 'NOT_IMPLEMENTED', tr('Bản app này chưa hỗ trợ deplao.cloudflare'));
+        if (!this.deps.invokeDelegated) throw new ApiError(501, 'NOT_IMPLEMENTED', tr('Bản app này chưa hỗ trợ sadshachatdesk.cloudflare'));
         const grant: PluginGrant = Object.freeze({
             pluginId: rec.id,
             pluginName: String(rec.name || rec.id).slice(0, 80),

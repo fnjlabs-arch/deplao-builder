@@ -17,7 +17,7 @@ function headerValue(s: string): string {
     return String(s).replace(/[\r\n]+/g, ' ').replace(/"/g, '%22');
 }
 
-export function buildMultipart(parts: MultipartPart[], boundary = `----DeplaoBoundary${crypto.randomBytes(12).toString('hex')}`): { body: Buffer; contentType: string } {
+export function buildMultipart(parts: MultipartPart[], boundary = `----SadShaChatDeskBoundary${crypto.randomBytes(12).toString('hex')}`): { body: Buffer; contentType: string } {
     const chunks: Buffer[] = [];
     for (const part of parts) {
         let head = `--${boundary}\r\nContent-Disposition: form-data; name="${headerValue(part.name)}"`;

@@ -12,7 +12,7 @@ import {
 import { tr, appLocale } from '../../../../shared/i18n';
 import { trx } from '@/lib/i18n/trx';
 
-const ACK_STORAGE_KEY = 'deplao_relay_url_ack';
+const ACK_STORAGE_KEY = 'sadshachatdesk_relay_url_ack';
 const ACK_EVENT = 'relay:urlNoticeAck';
 
 function readAck(): string | null {

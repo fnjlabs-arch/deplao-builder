@@ -148,7 +148,7 @@ export function useRelayProviderConfig({ active, relayOn, initial, initialRunnin
     try {
       const res = await ipc.relay?.setTunnelConfig?.(cfg);
       if (!res) {
-        notify(tr('Bản app này chưa lưu được cấu hình tunnel. Hãy cập nhật Deplao.'), 'warning');
+        notify(tr('Bản app này chưa lưu được cấu hình tunnel. Hãy cập nhật SadSha ChatDesk.'), 'warning');
         return false;
       }
       if (!res.success) {

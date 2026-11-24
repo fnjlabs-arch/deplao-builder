@@ -2,7 +2,7 @@
  * posOrderOwnership.ts: keeps only the orders that really belong to the customer a POS lookup asked about.
  *
  * Several POS APIs silently drop a filter they do not support and then return the newest orders of the whole shop:
- *  - KiotViet `/orders` only knows `customerIds` / `customerCode` (Deplao used to send `customerId`);
+ *  - KiotViet `/orders` only knows `customerIds` / `customerCode` (SadSha ChatDesk used to send `customerId`);
  *  - Haravan documents no customer filter on `orders.json` (`customer_id` may be ignored);
  *  - Pancake `search` also matches order notes, so a phone number written in another order's note matches too.
  * A workflow would then answer a customer with someone else's order (name, address, phone), so every

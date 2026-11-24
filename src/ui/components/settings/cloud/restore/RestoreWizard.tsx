@@ -206,7 +206,7 @@ export function CopyScopeNotice({ copy }: { copy: RemoteDbCopy }) {
   );
 }
 
-/** Details of one copy on R2: name, machine, last sync, size, scope ("Gồm: …" (Includes: …)), Deplao version. */
+/** Details of one copy on R2: name, machine, last sync, size, scope ("Gồm: …" (Includes: …)), SadSha ChatDesk version. */
 export function RemoteCopyDetails({ copy, appVersion = APP_VERSION }: { copy: RemoteDbCopy; appVersion?: string }) {
   const newer = isNewerThanApp(copy.appVersion, appVersion);
   return (
@@ -218,15 +218,15 @@ export function RemoteCopyDetails({ copy, appVersion = APP_VERSION }: { copy: Re
       <span className="block text-xs text-muted-foreground">{trx('Gồm: {{v1}}', { v1: describeCopyScope(copy) })}</span>
       <span className={cn('block text-[11px]', newer ? 'text-warning' : 'text-subtle-foreground')}>
         {newer
-          ? tr('Tạo bởi Deplao {{appVersion}}, mới hơn bản đang dùng ({{appVersion1}}). Cập nhật app trước khi khôi phục.', { appVersion: copy.appVersion, appVersion1: appVersion })
-          : `Deplao ${copy.appVersion}`}
+          ? tr('Tạo bởi SadSha ChatDesk {{appVersion}}, mới hơn bản đang dùng ({{appVersion1}}). Cập nhật app trước khi khôi phục.', { appVersion: copy.appVersion, appVersion1: appVersion })
+          : `SadSha ChatDesk ${copy.appVersion}`}
       </span>
     </span>
   );
 }
 
 /**
- * List of workspace copies on R2 (pick one). A copy made by a newer Deplao is locked.
+ * List of workspace copies on R2 (pick one). A copy made by a newer SadSha ChatDesk is locked.
  * `onDelete` + `canDelete`: the "Xoá bản này trên R2" (Delete this copy on R2) button next to the copies that may be deleted (outside the select button).
  */
 export function RemoteCopyList({ copies, selectedId, onSelect, appVersion = APP_VERSION, canDelete, onDelete, deletingId = null }: {
@@ -661,7 +661,7 @@ export function RestoreWizard({
     body = (
       <div className="space-y-4">
         <StepTitle title={tr('Nhập mật khẩu sao lưu')}>
-          {tr('Mật khẩu đặt khi bật Đồng bộ dữ liệu trên máy chủ. Deplao giải mã trên máy này, không gửi mật khẩu đi đâu.')}
+          {tr('Mật khẩu đặt khi bật Đồng bộ dữ liệu trên máy chủ. SadSha ChatDesk giải mã trên máy này, không gửi mật khẩu đi đâu.')}
         </StepTitle>
         <FormField
           label={tr('Mật khẩu sao lưu')}
@@ -781,9 +781,9 @@ export function RestoreWizard({
     body = (
       <div className="space-y-4">
         <StepTitle title={tr('Bật lại tự động hoá')}>
-          {tr('Chiến dịch, workflow và lịch của ứng dụng đang tạm dừng để không gửi trùng với máy cũ. Chỉ bật khi máy cũ đã tắt hoặc đã ngắt Deplao.')}
+          {tr('Chiến dịch, workflow và lịch của ứng dụng đang tạm dừng để không gửi trùng với máy cũ. Chỉ bật khi máy cũ đã tắt hoặc đã ngắt SadSha ChatDesk.')}
         </StepTitle>
-        <Checkbox checked={oldMachineOff} onCheckedChange={setOldMachineOff} label={tr('Máy cũ đã tắt hoặc đã ngắt Deplao')} />
+        <Checkbox checked={oldMachineOff} onCheckedChange={setOldMachineOff} label={tr('Máy cũ đã tắt hoặc đã ngắt SadSha ChatDesk')} />
         {tunnelAuto && (
           <Checkbox
             checked={moveAddress}

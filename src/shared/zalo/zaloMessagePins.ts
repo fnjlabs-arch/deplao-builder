@@ -19,7 +19,7 @@ const MAX_PIN_TITLE = 500;
 
 /**
  * Zalo client message type (the number used in pins and quotes) of a stored msg_type. Same table as zca-js
- * getClientMessageType, plus the short names Deplao stores for some messages ("photo", "video"…). Unknown = text (1).
+ * getClientMessageType, plus the short names SadSha ChatDesk stores for some messages ("photo", "video"…). Unknown = text (1).
  */
 export function zaloClientMsgType(msgType: unknown): number {
   const t = String(msgType || '').toLowerCase();
@@ -35,7 +35,7 @@ export function zaloClientMsgType(msgType: unknown): number {
   return 1;
 }
 
-/** The message a pin names, as stored in Deplao. */
+/** The message a pin names, as stored in SadSha ChatDesk. */
 export interface ZaloPinSource {
   /** Global message ID (messages.msg_id). */
   msgId: string;

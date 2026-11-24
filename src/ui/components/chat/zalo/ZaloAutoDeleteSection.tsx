@@ -1,6 +1,6 @@
 /**
  * "Tự xoá tin nhắn" (Auto-delete messages) section of a Zalo conversation (ZL-05): Off / 1 / 7 / 14 days, like the Zalo app. Zalo deletes messages on the
- * Zalo devices; Deplao always keeps the saved messages (a fixed explanation line). Opening the section → reads again from Zalo (at most once per minute per account),
+ * Zalo devices; SadSha ChatDesk always keeps the saved messages (a fixed explanation line). Opening the section → reads again from Zalo (at most once per minute per account),
  * because Zalo does not report a change made on the phone.
  */
 import React from 'react';

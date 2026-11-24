@@ -780,7 +780,7 @@ declare global {
         flashFrame: (active: boolean) => void;
         /** Windows: the app is running with admin rights (drag-and-drop from File Explorer is blocked) */
         isElevated?: () => Promise<boolean>;
-        /** Launch Deplao when the computer starts (saved per machine, src/utils/startup/autoLaunch.ts) */
+        /** Launch SadSha ChatDesk when the computer starts (saved per machine, src/utils/startup/autoLaunch.ts) */
         getAutoLaunch?: () => Promise<AutoLaunchStatus>;
         setAutoLaunch?: (patch: { enabled?: boolean; hidden?: boolean }) => Promise<AutoLaunchStatus & { success: boolean; error?: string }>;
       };

@@ -1,7 +1,7 @@
 /**
- * Installing a new build while the old one still runs in the background (the X button only hides Deplao to the tray): when the new build is launched,
+ * Installing a new build while the old one still runs in the background (the X button only hides SadSha ChatDesk to the tray): when the new build is launched,
  * the single-instance lock hands it to the old build and the new one exits right away, so the user sees "cài lại không chạy" (reinstalled, but it does not start)
- * (Ubuntu: install the new .deb / download a new AppImage; macOS: drag over Deplao.app). The new build sends its version + run path via requestSingleInstanceLock;
+ * (Ubuntu: install the new .deb / download a new AppImage; macOS: drag over SadSha ChatDesk.app). The new build sends its version + run path via requestSingleInstanceLock;
  * the old build, seeing a newer one, quits and opens the new build. Same build or an older one: only show the window as before. Windows: the installer closes the app first.
  */
 export interface LaunchInfo {

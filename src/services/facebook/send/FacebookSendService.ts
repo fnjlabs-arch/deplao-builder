@@ -118,7 +118,7 @@ export class FacebookSendService {
     const SEND_TIMEOUT_MS = 30000; // 30s - enough for bridge E2EE + REST fallback
     let result: any;
     try {
-      // DEPLAO_ADAPTER: Preserve typeChat tri-state.
+      // SADSHA_ADAPTER: Preserve typeChat tri-state.
       // null = explicitly group, 'user' = explicitly user, undefined = resolve from DB.
       // NEVER use ?? which converts null → undefined.
       result = await Promise.race([
@@ -186,7 +186,7 @@ export class FacebookSendService {
     const threadId = String(params.threadId);
 
     // ── File validation ───────────────────────────────────────────────────
-    // DEPLAO_ADAPTER: Validate file before routing to prevent wasted uploads
+    // SADSHA_ADAPTER: Validate file before routing to prevent wasted uploads
     // and bridge calls. Mirror Go bridge's readAndValidateLocalPath checks.
     const MAX_ATTACHMENT_BYTES = 25 * 1024 * 1024; // 25 MiB — matches bridge limit
     const ALLOWED_EXTENSIONS = /\.(jpg|jpeg|png|gif|webp|bmp|mp4|webm|mov|avi|mp3|wav|ogg|m4a|aac|flac|wma|pdf|doc|docx|xls|xlsx|ppt|pptx|txt|zip|rar|7z)$/i;
@@ -268,7 +268,7 @@ export class FacebookSendService {
           result = await service.sendE2EEFile(chatJid, params.filePath, fileName);
         }
       } catch (err: any) {
-        // DEPLAO_ADAPTER: No REST fallback for E2EE failures.
+        // SADSHA_ADAPTER: No REST fallback for E2EE failures.
         return { success: false, error: `E2EE send failed: ${err.message}` };
       }
 

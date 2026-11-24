@@ -10,9 +10,9 @@
  * SePay (developer.sepay.vn → Webhook authentication):
  *   - HMAC-SHA256: `X-SePay-Signature: sha256=<hex>` + `X-SePay-Timestamp: <seconds>`, signed over `${timestamp}.${body}` using the raw bytes
  *     of the body; clock skew up to 5 minutes.
- *   - API Key: `Authorization: Apikey <key>`. OAuth 2.0 is not supported (Deplao has no token endpoint).
+ *   - API Key: `Authorization: Apikey <key>`. OAuth 2.0 is not supported (SadSha ChatDesk has no token endpoint).
  *   - Body: one transaction; transferType 'in' | 'out', transferAmount is always positive.
- * Once a key is set in Deplao → a valid signature / key is required. Not set → still accepted (method 'none'), the UI warns to set a key.
+ * Once a key is set in SadSha ChatDesk → a valid signature / key is required. Not set → still accepted (method 'none'), the UI warns to set a key.
  */
 import * as crypto from 'crypto';
 import { tr } from '../../shared/i18n';
@@ -69,7 +69,7 @@ export interface ParsedPayment {
 
 /** Adapter that receives authenticated webhooks (Casso, SePay). */
 export interface WebhookCapableAdapter {
-  /** Whether a webhook security key is set in Deplao (not set → accepted without verification, the UI warns). */
+  /** Whether a webhook security key is set in SadSha ChatDesk (not set → accepted without verification, the UI warns). */
   hasWebhookSecret(): boolean;
   verifyWebhook(req: WebhookRequest): WebhookAuthResult;
   parseWebhook(body: any): ParsedPayment[];

@@ -949,7 +949,7 @@ export default function MessageInput() {
     return () => window.removeEventListener('chat:dragDropFiles', handleDragDropFiles);
   }, [activeThreadId, activeAccountId, activeThreadType, activeTopicId, replyTo, getAuth, activeContact]);
 
-  // Plugin (deplao.ui.insertComposerText / composer button): insert text at the end of the composer.
+  // Plugin (sadshachatdesk.ui.insertComposerText / composer button): insert text at the end of the composer.
   useEffect(() => {
     const onInsert = (e: Event) => {
       const value = String((e as CustomEvent).detail?.text || '');

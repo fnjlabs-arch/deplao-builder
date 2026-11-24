@@ -71,7 +71,7 @@ export function registerPluginIpc(): void {
             const win = BrowserWindow.fromWebContents(e.sender) || undefined;
             const res = await dialog.showOpenDialog(win as any, {
                 title: tr('Chọn gói ứng dụng (.zip)'),
-                filters: [{ name: 'Plugin Deplao', extensions: ['zip'] }],
+                filters: [{ name: 'Plugin SadSha ChatDesk', extensions: ['zip'] }],
                 properties: ['openFile'],
             });
             if (res.canceled || !res.filePaths[0]) return { success: true, canceled: true };

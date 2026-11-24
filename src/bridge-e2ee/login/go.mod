@@ -57,12 +57,12 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-// DEPLAO_ADAPTER: mautrix-meta is vendored locally (login/meta) so the Bloks
+// SADSHA_ADAPTER: mautrix-meta is vendored locally (login/meta) so the Bloks
 // interpreter can be patched for Facebook's current Messenger Lite login pages
 // (adds bk.action.string.StartsWith/EndsWith/Contains, missing upstream).
 replace go.mau.fi/mautrix-meta => ./meta
 
-// DEPLAO_ADAPTER: mautrix-meta replaces imroc/req with Beeper's fork (the
+// SADSHA_ADAPTER: mautrix-meta replaces imroc/req with Beeper's fork (the
 // upstream release does not build against its quic-go). Replace directives are
 // not inherited from dependencies, so it is repeated here.
 replace github.com/imroc/req/v3 => github.com/beeper/req/v3 v3.0.0-20260925135712-b49593750e56

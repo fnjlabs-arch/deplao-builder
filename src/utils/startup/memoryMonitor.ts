@@ -1,5 +1,5 @@
 /**
- * Deplao RAM per process (app.getAppMetrics: main, windows, GPU, utility) is written to Logs as "[Hiệu năng]" (Performance)
+ * SadSha ChatDesk RAM per process (app.getAppMetrics: main, windows, GPU, utility) is written to Logs as "[Hiệu năng]" (Performance)
  * every 30 minutes and when a window is hidden / shown again, so the next time the machine is slow you can see right away which process holds the RAM. Measured in 11/2026 (dev build running for
  * 6 hours): GPU 1,015 MB private but only 28 MB in RAM, main window 937 MB (378 MB in RAM), main 293 MB.
  *
@@ -62,7 +62,7 @@ let hiddenSince = 0;
 function logMemory(reason: string): void {
     if (!metricsFn) return;
     try {
-        Logger.log(`[Hiệu năng] RAM Deplao (${reason}): ${describeAppMemory(metricsFn())}`);
+        Logger.log(`[Hiệu năng] RAM SadSha ChatDesk (${reason}): ${describeAppMemory(metricsFn())}`);
     } catch { /* a failed measurement does not affect the app */ }
 }
 

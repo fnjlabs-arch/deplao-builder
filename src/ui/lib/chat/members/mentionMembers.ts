@@ -16,7 +16,7 @@ export const MENTION_REMOTE_SEARCH_TTL_MS = 10 * 60 * 1000;
 /** Search Telegram only after typing has paused this long. */
 export const MENTION_REMOTE_SEARCH_DELAY_MS = 350;
 
-const SYNC_PREFIX = 'deplao:mentionMembersSync:';
+const SYNC_PREFIX = 'sadshachatdesk:mentionMembersSync:';
 
 /** Time of the most recent API fetch of recent members for the @mention box (0 = never). */
 export function mentionMembersSyncedAt(accountId: string, groupId: string): number {

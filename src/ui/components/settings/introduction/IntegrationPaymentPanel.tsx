@@ -33,7 +33,7 @@ export function IntegrationPaymentPanel() {
       <Card>
         <SectionTitle>{trx('<0/> Tích hợp thanh toán — tự nhận biết chuyển khoản', { 0: <CreditCardIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <Paragraph>
-          {trx('Kết nối Casso hoặc SePay (VietQR) để Deplao nhận thông báo ngay khi tài khoản ngân hàng có giao dịch mới. Mỗi thông báo kích hoạt các workflow có bước <0>Khi nhận thanh toán</0> — tự báo cho nhân viên, ghi sổ Google Sheets… thay vì ngồi soát sao kê.', { 0: <strong className="text-foreground" /> })}
+          {trx('Kết nối Casso hoặc SePay (VietQR) để SadSha ChatDesk nhận thông báo ngay khi tài khoản ngân hàng có giao dịch mới. Mỗi thông báo kích hoạt các workflow có bước <0>Khi nhận thanh toán</0> — tự báo cho nhân viên, ghi sổ Google Sheets… thay vì ngồi soát sao kê.', { 0: <strong className="text-foreground" /> })}
         </Paragraph>
         <Tip>
           {trx('Casso / SePay gửi thông báo qua Internet về máy bạn, nên cần bật địa chỉ <0>Thanh toán, tích hợp</0> ở Cài đặt → Internet & Cloud → Địa chỉ Internet.', { 0: <strong className="text-foreground" /> })}
@@ -62,13 +62,13 @@ export function IntegrationPaymentPanel() {
       <Card>
         <SectionTitle>{trx('<0/> Địa chỉ Internet để nhận thông báo', { 0: <GlobeIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <Paragraph>
-          {trx('Deplao chạy trên máy bạn, còn Casso / SePay ở trên Internet nên cần một địa chỉ Internet trỏ về máy. Mọi cấu hình địa chỉ nằm ở một chỗ: <0>Cài đặt → Internet & Cloud → Địa chỉ Internet</0>, mục <1>Cách tạo địa chỉ</1>:', { 0: <strong className="text-foreground" />, 1: <strong className="text-foreground" /> })}
+          {trx('SadSha ChatDesk chạy trên máy bạn, còn Casso / SePay ở trên Internet nên cần một địa chỉ Internet trỏ về máy. Mọi cấu hình địa chỉ nằm ở một chỗ: <0>Cài đặt → Internet & Cloud → Địa chỉ Internet</0>, mục <1>Cách tạo địa chỉ</1>:', { 0: <strong className="text-foreground" />, 1: <strong className="text-foreground" /> })}
         </Paragraph>
         <BulletList items={[
-          tr('<strong class="text-foreground">Cloudflare tự động</strong> (khuyên dùng, cần kết nối tài khoản Cloudflare có tên miền): địa chỉ cố định, không đổi khi khởi động lại — chỉ dán vào Casso / SePay một lần. Bật <strong class="text-foreground">Tự bật khi mở app</strong> để mở Deplao là nhận được ngay.'),
+          tr('<strong class="text-foreground">Cloudflare tự động</strong> (khuyên dùng, cần kết nối tài khoản Cloudflare có tên miền): địa chỉ cố định, không đổi khi khởi động lại — chỉ dán vào Casso / SePay một lần. Bật <strong class="text-foreground">Tự bật khi mở app</strong> để mở SadSha ChatDesk là nhận được ngay.'),
           tr('<strong class="text-foreground">Địa chỉ tạm</strong>: không cần tài khoản (dạng https://….trycloudflare.com) nhưng đổi mỗi lần khởi động lại — phải dán lại vào Casso / SePay. Chỉ nên dùng thử.'),
           tr('<strong class="text-foreground">ngrok</strong> / <strong class="text-foreground">Cloudflare thủ công</strong>: chỉ áp dụng cho Nhân viên và API; địa chỉ nhận thanh toán vẫn là địa chỉ tạm.'),
-          tr('Trong bảng địa chỉ của từng dịch vụ, bật dòng <strong class="text-foreground">Thanh toán, tích hợp</strong>. Trừ Cloudflare tự động, dòng này không tự bật khi mở app — mở lại Deplao thì bật lại.'),
+          tr('Trong bảng địa chỉ của từng dịch vụ, bật dòng <strong class="text-foreground">Thanh toán, tích hợp</strong>. Trừ Cloudflare tự động, dòng này không tự bật khi mở app — mở lại SadSha ChatDesk thì bật lại.'),
         ]} />
       </Card>
 
@@ -103,9 +103,9 @@ export function IntegrationPaymentPanel() {
       <Card>
         <SectionTitle>{trx('<0/> Lưu ý', { 0: <AlertIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <BulletList items={[
-          tr('Deplao phải đang mở và địa chỉ <strong class="text-foreground">Thanh toán, tích hợp</strong> đang chạy thì mới nhận được thông báo.'),
+          tr('SadSha ChatDesk phải đang mở và địa chỉ <strong class="text-foreground">Thanh toán, tích hợp</strong> đang chạy thì mới nhận được thông báo.'),
           tr('Thông báo chuyển khoản không cho biết khách nào trên Zalo / Facebook. Bước <strong class="text-foreground">Gửi tin nhắn</strong> sau “Khi nhận thanh toán” phải chọn sẵn hội thoại nhận (vd. nhóm nội bộ).'),
-          tr('Dùng địa chỉ tạm: mỗi lần mở lại Deplao phải bật lại địa chỉ và dán địa chỉ mới vào Casso / SePay. Muốn cố định, dùng Cloudflare tự động.'),
+          tr('Dùng địa chỉ tạm: mỗi lần mở lại SadSha ChatDesk phải bật lại địa chỉ và dán địa chỉ mới vào Casso / SePay. Muốn cố định, dùng Cloudflare tự động.'),
           tr('Mỗi kết nối có đường dẫn riêng; xoá kết nối rồi tạo lại thì đường dẫn đổi — nhớ dán lại vào Casso / SePay.'),
           tr('Máy nhân viên không cấu hình địa chỉ Internet — địa chỉ nhận thanh toán do máy chủ quản lý.'),
           tr('Không thấy workflow chạy? Kiểm tra: trang Tích hợp báo “Đang nhận webhook”, địa chỉ trong Casso / SePay khớp địa chỉ đang hiện, workflow đã bật.'),

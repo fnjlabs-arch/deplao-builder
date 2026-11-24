@@ -211,7 +211,7 @@ export default function TelegramChatSettings({ accountId, chatId, onDeleted }: {
       if (res?.needsHistory && group) {
         const ok = await showConfirm({
           title: tr('Bật hiện lịch sử cho thành viên mới?'),
-          message: tr('Nhóm "{{title}}" đang ẩn tin cũ với thành viên mới. Nhóm thảo luận của kênh cần hiện lịch sử — Deplao sẽ bật rồi gắn nhóm.', { title: group.title }),
+          message: tr('Nhóm "{{title}}" đang ẩn tin cũ với thành viên mới. Nhóm thảo luận của kênh cần hiện lịch sử — SadSha ChatDesk sẽ bật rồi gắn nhóm.', { title: group.title }),
           confirmText: tr('Bật và gắn nhóm'),
         });
         if (ok) await linkGroup(group, true);

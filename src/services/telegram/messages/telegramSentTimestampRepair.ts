@@ -1,5 +1,5 @@
 /**
- * One-time fix for the timestamps of Telegram messages (personal / bot) sent from Deplao before version 26.10.3: these messages were stamped with the
+ * One-time fix for the timestamps of Telegram messages (personal / bot) sent from SadSha ChatDesk before version 26.10.3: these messages were stamped with the
  * machine's clock (with milliseconds, while the Telegram server clock only has seconds), so when the machine runs a few seconds fast, a customer's immediate reply gets sorted
  * BEFORE my message (the project server is 6.4 s fast: "nhớ update vào repo…" (remember to update the repo…) at 16:53:00.646 sorted after 2 customer messages at 16:52:58 / :59).
  *

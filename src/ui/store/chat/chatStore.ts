@@ -21,7 +21,7 @@ function ownerChannelFix(zaloId: string): Channel | null {
   const channel = useAccountStore.getState().accounts.find((account) => account.zalo_id === zaloId)?.channel;
   return channel && channel !== CHANNEL.ZALO ? channel : null;
 }
-const FORUM_TOPICS_STORAGE_PREFIX = 'deplao_forum_topics_';
+const FORUM_TOPICS_STORAGE_PREFIX = 'sadshachatdesk_forum_topics_';
 
 /** Restore persisted forum topics from localStorage (survives app restart). */
 function loadPersistedForumTopics(): Record<string, any[]> {
@@ -182,7 +182,7 @@ export interface ContactItem {
   reply_marked_at?: number;
   /** 1 = has unread messages with an @mention (name tag or @all) */
   has_mention?: number;
-  /** Zalo auto-deletes new messages after N ms (ZL-05, 0 = off); Deplao still keeps the messages */
+  /** Zalo auto-deletes new messages after N ms (ZL-05, 0 = off); SadSha ChatDesk still keeps the messages */
   zalo_auto_delete_ttl?: number;
   /** 1 = conversation is hidden on Zalo (ZL-03, a PIN is needed to view it) */
   zalo_hidden?: number;

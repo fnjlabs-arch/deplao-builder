@@ -372,7 +372,7 @@ export const DEFAULT_CONFIGS: Record<string, Record<string, any>> = {
   'nhanh.lookupCustomer':    { phone: '{{ $trigger.fromPhone }}' },
   'nhanh.lookupOrder':       { phone: '{{ $trigger.fromPhone }}', orderId: '' },
   'nhanh.lookupProduct':     { keyword: '{{ $trigger.content }}', code: '', limit: 10 },
-  'nhanh.createOrder':       { order: '{"info":{"type":1},"channel":{"appOrderId":"","sourceName":"deplaoapp"},"shippingAddress":{"name":"","mobile":"","address":"","locationVersion":"v2"},"products":[{"id":0,"price":0,"quantity":1}]}' },
+  'nhanh.createOrder':       { order: '{"info":{"type":1},"channel":{"appOrderId":"","sourceName":"sadshachatdeskapp"},"shippingAddress":{"name":"","mobile":"","address":"","locationVersion":"v2"},"products":[{"id":0,"price":0,"quantity":1}]}' },
   'pancake.lookupCustomer':  { phone: '{{ $trigger.fromPhone }}' },
   'pancake.lookupOrder':     { phone: '{{ $trigger.fromPhone }}', orderId: '' },
   'pancake.lookupProduct':   { keyword: '{{ $trigger.content }}', code: '', limit: 10 },

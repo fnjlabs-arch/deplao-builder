@@ -114,7 +114,7 @@ export default function EmployeeConnectionSection({ connection, internet, online
     <>
     {/* The Internet address just changed (the temporary address restarted…): remind to send it again to remote employees */}
     <RelayAddressNotice status={connection.tunnel} />
-    <SettingsSection title={tr('Kết nối')} footer={tr('Nhân viên chỉ vào được khi Deplao trên máy này đang mở.')}>
+    <SettingsSection title={tr('Kết nối')} footer={tr('Nhân viên chỉ vào được khi SadSha ChatDesk trên máy này đang mở.')}>
       <SettingsRow
         title={tr('Cho nhân viên kết nối')}
         description={<span className={cn(running && !busy && 'text-success')}>{status}</span>}
@@ -155,7 +155,7 @@ export default function EmployeeConnectionSection({ connection, internet, online
 
       <SettingsRow
         title={tr('Tự bật khi mở app')}
-        description={tr('Mở Deplao là nhân viên vào lại được ngay.')}
+        description={tr('Mở SadSha ChatDesk là nhân viên vào lại được ngay.')}
         control={(
           <Switch checked={autoStart} onCheckedChange={(on) => { void connection.setAutoStart(on, portValid ? draftPort : port); }}
             aria-label={tr('Tự bật khi mở app')} />

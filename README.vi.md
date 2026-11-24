@@ -1,13 +1,13 @@
 <div align="center">
 
-<img src="https://deplaoapp.com/assets/icon-CuJ0M91u.png" alt="Deplao" width="120" />
+<img src="https://chatdesk.sadsha.com/assets/icon-CuJ0M91u.png" alt="SadSha ChatDesk" width="120" />
 
-# Deplao
+# SadSha ChatDesk
 
 **Phần mềm desktop quản lý tài khoản Zalo, Facebook & Telegram đa tài khoản**
 Tích hợp CRM · MARKETING · ERP · POS · Workflow · Trợ lý AI - vận hành tập trung trong một app duy nhất
 
-[🌐 Website](https://deplaoapp.com/) · [🇬🇧 English](./README.md)
+[🌐 Website](https://chatdesk.sadsha.com/) · [🇬🇧 English](./README.md)
 
 ![Version](https://img.shields.io/badge/version-26.11.2-22c55e)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux%20%7C%20Ubuntu-3b82f6)
@@ -15,9 +15,9 @@ Tích hợp CRM · MARKETING · ERP · POS · Workflow · Trợ lý AI - vận h
 ![React](https://img.shields.io/badge/React-18-61dafb?logo=react&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)
-![License](https://img.shields.io/github/license/babyvibe/deplao-builder)
-![Stars](https://img.shields.io/github/stars/babyvibe/deplao-builder?style=social)
-![Forks](https://img.shields.io/github/forks/babyvibe/deplao-builder?style=social)
+![License](https://img.shields.io/github/license/fnjlabs-arch/deplao-builder)
+![Stars](https://img.shields.io/github/stars/fnjlabs-arch/deplao-builder?style=social)
+![Forks](https://img.shields.io/github/forks/fnjlabs-arch/deplao-builder?style=social)
 
 </div>
 
@@ -42,54 +42,54 @@ Tích hợp CRM · MARKETING · ERP · POS · Workflow · Trợ lý AI - vận h
 <tr>
 <td align="center" width="50%">
 
-<a href="https://github.com/babyvibe/deplao-builder/releases/latest/download/Deplao-Setup-26.11.2.exe">
+<a href="https://github.com/fnjlabs-arch/deplao-builder/releases/latest/download/SadSha ChatDesk-Setup-26.11.2.exe">
 <img src="https://img.shields.io/badge/🪟_Windows_10/11-v26.11.2-0078d4?style=for-the-badge&logo=windows&logoColor=white" alt="Download Windows" />
 </a>
 
-<big><strong>Deplao-Setup-26.11.2.exe</strong></big>
+<big><strong>SadSha ChatDesk-Setup-26.11.2.exe</strong></big>
 
 </td>
 <td align="center" width="50%">
 
-<a href="https://github.com/babyvibe/deplao-builder/releases/latest/download/Deplao-26.11.2-arm64.dmg">
+<a href="https://github.com/fnjlabs-arch/deplao-builder/releases/latest/download/SadSha ChatDesk-26.11.2-arm64.dmg">
 <img src="https://img.shields.io/badge/🍎_macOS_M1+-v26.11.2-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Download macOS Apple Silicon" />
 </a>
 
-<big><strong>Deplao-26.11.2-arm64.dmg</strong></big>
+<big><strong>SadSha ChatDesk-26.11.2-arm64.dmg</strong></big>
 
 </td>
 </tr>
 <tr>
 <td align="center" width="50%">
 
-<a href="https://github.com/babyvibe/deplao-builder/releases/latest/download/Deplao-26.11.2.AppImage">
+<a href="https://github.com/fnjlabs-arch/deplao-builder/releases/latest/download/SadSha ChatDesk-26.11.2.AppImage">
 <img src="https://img.shields.io/badge/🐧_Ubuntu_Linux-v26.11.2-e95420?style=for-the-badge&logo=ubuntu&logoColor=white" alt="Download Ubuntu" />
 </a>
 
-<big><strong>Deplao-26.11.2.AppImage</strong></big><br>
+<big><strong>SadSha ChatDesk-26.11.2.AppImage</strong></big><br>
 <big>chạy mọi distro - <code>chmod +x</code> là dùng được</big>
 
 </td>
 <td align="center" width="50%">
 
-<a href="https://github.com/babyvibe/deplao-builder/releases/latest/download/Deplao-26.11.2.dmg">
+<a href="https://github.com/fnjlabs-arch/deplao-builder/releases/latest/download/SadSha ChatDesk-26.11.2.dmg">
 <img src="https://img.shields.io/badge/🍎_macOS_Intel-v26.11.2-555555?style=for-the-badge&logo=apple&logoColor=white" alt="Download macOS Intel" />
 </a>
 
-<big><strong>Deplao-26.11.2.dmg</strong></big>
+<big><strong>SadSha ChatDesk-26.11.2.dmg</strong></big>
 
 </td>
 </tr>
 </table>
 
 <p align="center">
-👉 <strong><a href="https://github.com/babyvibe/deplao-builder/releases">Xem tất cả phiên bản</a></strong>
+👉 <strong><a href="https://github.com/fnjlabs-arch/deplao-builder/releases">Xem tất cả phiên bản</a></strong>
 </p>
 
 <details>
 <summary>⚠️ Lưu ý khi mở file cài đặt (bị chặn bởi Windows / macOS / Linux)</summary>
 
-Do Deplao chưa được ký chứng chỉ (code signing) - nói thẳng ra là nghèo, nên hệ điều hành có thể hiển thị cảnh báo khi mở file. Bạn có thể làm theo hướng dẫn dưới đây:
+Do SadSha ChatDesk chưa được ký chứng chỉ (code signing) - nói thẳng ra là nghèo, nên hệ điều hành có thể hiển thị cảnh báo khi mở file. Bạn có thể làm theo hướng dẫn dưới đây:
 
 ---
 
@@ -125,8 +125,8 @@ Khi mở file `.dmg`, macOS có thể báo **"cannot be opened because it is fro
 Sau khi tải file `.AppImage`:
 
 ```bash
-chmod +x Deplao-*.AppImage
-./Deplao-*.AppImage
+chmod +x SadSha ChatDesk-*.AppImage
+./SadSha ChatDesk-*.AppImage
 ```
 
 > Nếu gặp lỗi "FUSE: fuse2 not available", cài `libfuse2`:
@@ -136,7 +136,7 @@ chmod +x Deplao-*.AppImage
 
 Hoặc cài bản `.deb`:
 ```bash
-sudo dpkg -i Deplao_*_amd64.deb
+sudo dpkg -i SadSha ChatDesk_*_amd64.deb
 ```
 
 </details>
@@ -145,7 +145,7 @@ sudo dpkg -i Deplao_*_amd64.deb
 
 ## 🛠️ Công nghệ & ngôn ngữ sử dụng
 
-Deplao hiện được xây dựng trên các công nghệ chính sau:
+SadSha ChatDesk hiện được xây dựng trên các công nghệ chính sau:
 
 - **Thư viện kênh nhắn tin:** zca-js (Zalo), fbchat-v2 (Facebook Messenger, bridge Go dựa trên mautrix-meta), GramJS (Telegram User), Telegram Bot API
 - **AI Gateway:** 9router, OpenRouter hoặc kết nối trực tiếp OpenAI, Claude, Gemini...
@@ -245,7 +245,7 @@ flowchart LR
 
 ```mermaid
 mindmap
-  root((🖥️ Deplao))
+  root((🖥️ SadSha ChatDesk))
     ⚙️ Main Process
       📡 IPC Handlers
         login · zalo · fb · telegram
@@ -307,7 +307,7 @@ flowchart TB
     end
 
     subgraph EMP["💻 Nhân Viên - Remote Workspace"]
-        EA("📲 Deplao App\nEmployee Mode")
+        EA("📲 SadSha ChatDesk App\nEmployee Mode")
         DA("🔀 DataAccessor\ntự động routing")
         RQ("🌐 RestQueryService\nHTTP REST client")
         EP("🔐 Permission Filter\nerp · crm · workflow · ...")
@@ -349,7 +349,7 @@ flowchart LR
     end
 
     subgraph STORE["💾 Lưu trữ cục bộ"]
-        DB[("🗄️ SQLite\ndeplao-tool.db\nmessages · contacts\ncrm · workflow · erp")]
+        DB[("🗄️ SQLite\nsadshachatdesk-tool.db\nmessages · contacts\ncrm · workflow · erp")]
         MED("📁 FileStorage\n~/media/\nảnh · video · file")
         ES("🔑 electron-store\ncookies · tokens\nsettings")
     end
@@ -383,7 +383,7 @@ flowchart LR
 
 ## 🌐 Public API & Ứng dụng mở rộng
 
-Deplao có **Public API v1** với gần 300 thao tác (tài khoản, chat Zalo / Facebook / Telegram, nhóm, nhãn, danh bạ, CRM, workflow, tích hợp, ERP, AI, báo cáo, media, nhân viên) để kết nối website, n8n, phần mềm bán hàng hay hệ thống riêng của bạn. API chạy **ngay trên máy cài Deplao** (cổng mặc định `9900`) và **tắt sẵn** cho tới khi bạn bật. Mọi lời gọi đi qua đúng luồng của app: tin gửi bằng API vẫn hiện trong khung chat, lưu DB, kích hoạt workflow như khi bạn tự gửi.
+SadSha ChatDesk có **Public API v1** với gần 300 thao tác (tài khoản, chat Zalo / Facebook / Telegram, nhóm, nhãn, danh bạ, CRM, workflow, tích hợp, ERP, AI, báo cáo, media, nhân viên) để kết nối website, n8n, phần mềm bán hàng hay hệ thống riêng của bạn. API chạy **ngay trên máy cài SadSha ChatDesk** (cổng mặc định `9900`) và **tắt sẵn** cho tới khi bạn bật. Mọi lời gọi đi qua đúng luồng của app: tin gửi bằng API vẫn hiện trong khung chat, lưu DB, kích hoạt workflow như khi bạn tự gửi.
 
 ### Bắt đầu nhanh
 
@@ -402,17 +402,17 @@ curl -H "Authorization: Bearer dpk_xxx" http://127.0.0.1:9900/api/v1/accounts
 
 ### Ứng dụng tự phát triển
 
-Ứng dụng (plugin) chạy ngay trong Deplao: trang riêng, panel trong khung chat, nút ở ô soạn tin, cài đặt riêng, node workflow và lịch chạy. Cài từ file zip hoặc thư mục, duyệt quyền trước khi chạy; ứng dụng chỉ gọi được API trong phạm vi quyền đã duyệt và trên các tài khoản được cấp. Bộ công cụ nằm trong thư mục [`packages/`](./packages): SDK `@deplao/plugin-sdk` và CLI `deplao-plugin`.
+Ứng dụng (plugin) chạy ngay trong SadSha ChatDesk: trang riêng, panel trong khung chat, nút ở ô soạn tin, cài đặt riêng, node workflow và lịch chạy. Cài từ file zip hoặc thư mục, duyệt quyền trước khi chạy; ứng dụng chỉ gọi được API trong phạm vi quyền đã duyệt và trên các tài khoản được cấp. Bộ công cụ nằm trong thư mục [`packages/`](./packages): SDK `@sadshachatdesk/plugin-sdk` và CLI `sadshachatdesk-plugin`.
 
 ```bash
-node packages/plugin-cli/bin/deplao-plugin.js create my-app --runtime web
-node packages/plugin-cli/bin/deplao-plugin.js validate my-app
-node packages/plugin-cli/bin/deplao-plugin.js pack my-app --out my-app.zip
+node packages/plugin-cli/bin/sadshachatdesk-plugin.js create my-app --runtime web
+node packages/plugin-cli/bin/sadshachatdesk-plugin.js validate my-app
+node packages/plugin-cli/bin/sadshachatdesk-plugin.js pack my-app --out my-app.zip
 ```
 
-## 🚀 Deplao là gì?
+## 🚀 SadSha ChatDesk là gì?
 
-Nếu nhìn nhanh, có thể hiểu Deplao là:
+Nếu nhìn nhanh, có thể hiểu SadSha ChatDesk là:
 
 - **trung tâm vận hành**: nhiều tài khoản Zalo, Facebook, Telegram, inbox tập trung, trả lời nhanh, đồng bộ lịch sử chat
 - **lớp quản lý khách hàng**: CRM, nhãn, lịch sử tương tác, chiến dịch cho bạn bè và khách hàng đã nhắn tin
@@ -429,7 +429,7 @@ Nếu nhìn nhanh, có thể hiểu Deplao là:
 - ⚙️ **Workflow tự động hóa** - kéo-thả Trigger → Node → Action hoặc trò chuyện với AI copilot để tạo quy trình, chạy thử ở chế độ Mô phỏng, chạy nền 24/7 không cần code
 - 🤖 **AI Assistant** - hỗ trợ gợi ý câu trả lời, chat trực tiếp trong hội thoại. Còn giúp phân loại tin nhắn, trả lời khách hàng 24/7.
 - 🔗 **Tích hợp ngoài** - POS, vận chuyển, thanh toán, Google Sheets, Telegram, Email, HTTP Request... Kết hợp sử dụng khi chat hoặc workflow
-- 🧩 **Ứng dụng & Public API** - gần 300 API, webhook, sự kiện realtime và ứng dụng tự phát triển chạy ngay trong Deplao
+- 🧩 **Ứng dụng & Public API** - gần 300 API, webhook, sự kiện realtime và ứng dụng tự phát triển chạy ngay trong SadSha ChatDesk
 - ☁️ **Internet & Cloud** - địa chỉ Internet cố định qua Cloudflare của bạn; lưu media, sao lưu + đồng bộ DB đã mã hoá lên Cloudflare R2 hoặc Google Drive (Google One), xem mức dùng và phí ước tính; khôi phục sang máy mới
 - 📈 **Báo cáo & phân tích** - theo dõi tin nhắn, liên hệ, nhãn, nhân viên, chiến dịch, workflow, AI.
 - 🗂️ **ERP nội bộ** - task, lịch làm việc, notes và phối hợp vận hành nội bộ ngay trong cùng hệ thống
@@ -439,87 +439,87 @@ Nếu nhìn nhanh, có thể hiểu Deplao là:
 - 🔐 **Dữ liệu lưu cục bộ** - ưu tiên quyền kiểm soát dữ liệu và bảo mật trên máy người dùng
 
 
-### Xem nhanh giao diện Deplao
+### Xem nhanh giao diện SadSha ChatDesk
 
 Các màn hình dưới đây được sắp theo luồng sử dụng thực tế: từ dashboard → chat → CRM → workflow → tích hợp / báo cáo / ERP → công cụ mở rộng (ảnh dùng dữ liệu demo).
 
 <table>
   <tr>
     <td>
-      <img src="./assets/dashboard.png" alt="Dashboard quản lý đa tài khoản Zalo, Facebook, Telegram trong Deplao" width="360" />
+      <img src="./assets/dashboard.png" alt="Dashboard quản lý đa tài khoản Zalo, Facebook, Telegram trong SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Dashboard đa tài khoản</strong></sub>
     </td>
     <td>
-      <img src="./assets/chat.png" alt="Giao diện chat tập trung trong Deplao" width="360" />
+      <img src="./assets/chat.png" alt="Giao diện chat tập trung trong SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Chat tập trung tích hợp AI gợi ý trả lời</strong></sub>
     </td>
     <td>
-      <img src="./assets/crm.png" alt="Màn hình CRM và quản lý liên hệ trong Deplao" width="360" />
+      <img src="./assets/crm.png" alt="Màn hình CRM và quản lý liên hệ trong SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>CRM & liên hệ</strong></sub>
     </td>
   </tr>
   <tr>
     <td>
-      <img src="./assets/campaign.png" alt="Chiến dịch cho bạn bè và khách hàng đã nhắn tin trong Deplao" width="360" />
+      <img src="./assets/campaign.png" alt="Chiến dịch cho bạn bè và khách hàng đã nhắn tin trong SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Chiến dịch cho bạn bè, khách đã nhắn tin</strong></sub>
     </td>
     <td>
-      <img src="./assets/workflow.png" alt="Trình thiết kế workflow kéo thả trong Deplao" width="360" />
+      <img src="./assets/workflow.png" alt="Trình thiết kế workflow kéo thả trong SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Workflow editor</strong></sub>
     </td>
     <td>
-      <img src="./assets/detail-workflow.png" alt="Chi tiết cấu hình workflow trong Deplao" width="360" />
+      <img src="./assets/detail-workflow.png" alt="Chi tiết cấu hình workflow trong SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Chi tiết workflow</strong></sub>
     </td>
   </tr>
   <tr>
     <td>
-      <img src="./assets/workflow-ai.png" alt="Workflow kết hợp AI trong Deplao" width="360" />
+      <img src="./assets/workflow-ai.png" alt="Workflow kết hợp AI trong SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Ra lệnh tạo Workflow bằng AI</strong></sub>
     </td>
     <td>
-      <img src="./assets/pos.png" alt="Tích hợp POS và bán hàng trong Deplao" width="360" />
+      <img src="./assets/pos.png" alt="Tích hợp POS và bán hàng trong SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Tích hợp POS, VC, Thanh toán</strong></sub>
     </td>
     <td>
-      <img src="./assets/report.png" alt="Báo cáo và phân tích hiệu suất trong Deplao" width="360" />
+      <img src="./assets/report.png" alt="Báo cáo và phân tích hiệu suất trong SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Báo cáo & phân tích</strong></sub>
     </td>
   </tr>
   <tr>
     <td>
-      <img src="./assets/employees.png" alt="Quản lý nhân viên và phân quyền trong Deplao" width="360" />
+      <img src="./assets/employees.png" alt="Quản lý nhân viên và phân quyền trong SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Quản lý nhân viên</strong></sub>
     </td>
     <td>
-      <img src="./assets/erp.png" alt="ERP nội bộ và phối hợp vận hành trong Deplao" width="360" />
+      <img src="./assets/erp.png" alt="ERP nội bộ và phối hợp vận hành trong SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>ERP nội bộ</strong></sub>
     </td>
     <td>
-      <img src="./assets/apps-api.png" alt="Ứng dụng, API và Webhook trong Deplao" width="360" />
+      <img src="./assets/apps-api.png" alt="Ứng dụng, API và Webhook trong SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Ứng dụng, API & Webhook</strong></sub>
     </td>
   </tr>
   <tr>
     <td>
-      <img src="./assets/cloud.png" alt="Internet & Cloud với Cloudflare, Google Drive trong Deplao" width="360" />
+      <img src="./assets/cloud.png" alt="Internet & Cloud với Cloudflare, Google Drive trong SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Internet & Cloud (Cloudflare · Google Drive)</strong></sub>
     </td>
     <td>
-      <img src="./assets/mobile-sync.png" alt="Đồng bộ tin nhắn cũ Zalo từ điện thoại trong Deplao" width="360" />
+      <img src="./assets/mobile-sync.png" alt="Đồng bộ tin nhắn cũ Zalo từ điện thoại trong SadSha ChatDesk" width="360" />
       <br />
       <sub><strong>Đồng bộ tin nhắn cũ từ điện thoại</strong></sub>
     </td>
@@ -528,7 +528,7 @@ Các màn hình dưới đây được sắp theo luồng sử dụng thực t�
 
 ## 🎯 Phù hợp với ai?
 
-Deplao phù hợp cho:
+SadSha ChatDesk phù hợp cho:
 
 - Shop online và đội ngũ chốt đơn qua Zalo, Facebook, Telegram
 - Tự động hoá quy trình làm việc và chăm sóc khách hàng, gửi chiến dịch cho bạn bè và khách hàng đã nhắn tin
@@ -602,11 +602,11 @@ Deplao phù hợp cho:
 ### 8) 🧩 Ứng dụng, Public API & Webhook
 - Public API v1 gần 300 thao tác, API key theo quyền / tài khoản / IP / hạn dùng, nhật ký request
 - Sự kiện realtime và webhook gửi ra có chữ ký, trang tài liệu + OpenAPI
-- Cài và tự viết ứng dụng chạy ngay trong Deplao, có SDK và CLI (xem mục [Public API](#public-api))
+- Cài và tự viết ứng dụng chạy ngay trong SadSha ChatDesk, có SDK và CLI (xem mục [Public API](#public-api))
 
 ### 9) ☁️ Internet & Cloud (Cloudflare · Google Drive)
 - Một chỗ cấu hình địa chỉ Internet (địa chỉ tạm, Cloudflare tự động, ngrok, Cloudflare thủ công) cho nhân viên ở xa, webhook và thanh toán
-- Chọn kho lưu: Cloudflare R2 hoặc Google Drive (Google One) — đăng nhập Google trên trình duyệt, Deplao chỉ thấy file do chính nó tạo
+- Chọn kho lưu: Cloudflare R2 hoặc Google Drive (Google One) — đăng nhập Google trên trình duyệt, SadSha ChatDesk chỉ thấy file do chính nó tạo
 - Lưu media lên kho đã chọn, tự lấy lại khi file trên máy thiếu, tuỳ chọn giải phóng ổ đĩa
 - Sao lưu & đồng bộ DB lên kho đã chọn, mã hoá ngay trên máy; khôi phục sang máy mới hoặc máy dự phòng
 - Mức sử dụng & chi phí: % phần miễn phí và ngưỡng tính phí, phí ước tính tháng này (R2), giải thích Ghi / Đọc / Tải xuống
@@ -615,16 +615,16 @@ Deplao phù hợp cho:
 
 ## 🔒 Bảo mật & dữ liệu
 
-Deplao ưu tiên kiến trúc chạy cục bộ trên máy người dùng:
+SadSha ChatDesk ưu tiên kiến trúc chạy cục bộ trên máy người dùng:
 
 - Tất cả dữ liệu tin nhắn, danh bạ, CRM, cài đặt và media được lưu trên máy
 - Đăng nhập Zalo bằng QR Code, không lưu mật khẩu; phiên đăng nhập (cookie, token) chỉ lưu trên máy và được mã hoá bằng khoá của hệ điều hành (phiên Zalo, Telegram, token bot, cookie Facebook)
 - Người dùng có thể đổi thư mục lưu trữ dữ liệu sang ổ đĩa khác khi cần
-- Đám mây là tuỳ chọn và dùng tài khoản Cloudflare / Google của chính bạn (với Google Drive, Deplao chỉ được quyền với file do chính nó tạo); bản sao lưu DB được mã hoá trên máy trước khi tải lên
+- Đám mây là tuỳ chọn và dùng tài khoản Cloudflare / Google của chính bạn (với Google Drive, SadSha ChatDesk chỉ được quyền với file do chính nó tạo); bản sao lưu DB được mã hoá trên máy trước khi tải lên
 - Public API tắt sẵn, API key giới hạn theo quyền, tài khoản, IP; ứng dụng chỉ chạy trong phạm vi quyền đã duyệt
 - Nhân viên chỉ truy cập được tài khoản được giao; khoá hoặc đổi mật khẩu nhân viên là thu hồi phiên ngay
 - Phù hợp với đội nhóm muốn kiểm soát dữ liệu nội bộ chặt chẽ hơn
-- Deplao là công cụ quản lý tài khoản của chính bạn: hãy tuân thủ điều khoản của Zalo, Facebook, Telegram và quy định về bảo vệ dữ liệu cá nhân, không dùng để gửi tin rác hay thu thập dữ liệu trái phép
+- SadSha ChatDesk là công cụ quản lý tài khoản của chính bạn: hãy tuân thủ điều khoản của Zalo, Facebook, Telegram và quy định về bảo vệ dữ liệu cá nhân, không dùng để gửi tin rác hay thu thập dữ liệu trái phép
 
 ## 💻 Yêu cầu vận hành
 
@@ -638,11 +638,11 @@ Deplao ưu tiên kiến trúc chạy cục bộ trên máy người dùng:
 
 ## 📣 Liên hệ
 
-- Báo lỗi, góp ý hoặc cần hỗ trợ: 👉 [Tạo issue tại đây](https://github.com/babyvibe/deplao-builder/issues)
+- Báo lỗi, góp ý hoặc cần hỗ trợ: 👉 [Tạo issue tại đây](https://github.com/fnjlabs-arch/deplao-builder/issues)
 
 ## 🙏 Lời cảm ơn
 
-Deplao xin gửi lời cảm ơn đến các dự án: zca-js, fbchat-v2 (mautrix-meta) & GramJS.
+SadSha ChatDesk xin gửi lời cảm ơn đến các dự án: zca-js, fbchat-v2 (mautrix-meta) & GramJS.
 
 ---
 

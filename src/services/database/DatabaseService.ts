@@ -215,7 +215,7 @@ class DatabaseService {
                 const WorkspaceManager = require('../../utils/app/WorkspaceManager').default;
                 const wm = WorkspaceManager.getInstance();
                 const runtimeWs = wm.getRuntimeWorkspace();
-                const runtimeDbPath = runtimeWs ? wm.resolveDbPath(runtimeWs.dbPath || 'deplao-tool.db') : '';
+                const runtimeDbPath = runtimeWs ? wm.resolveDbPath(runtimeWs.dbPath || 'sadshachatdesk-tool.db') : '';
                 if (runtimeDbPath) {
                     this.dbPath = runtimeDbPath;
                     resolvedViaWorkspace = true;
@@ -225,7 +225,7 @@ class DatabaseService {
                 if (uiWs?.type === 'remote') {
                     uiRemote = {
                         workspaceId: uiWs.id,
-                        dbPath: wm.resolveDbPath(uiWs.dbPath || `workspace-${uiWs.id}/deplao-tool.db`),
+                        dbPath: wm.resolveDbPath(uiWs.dbPath || `workspace-${uiWs.id}/sadshachatdesk-tool.db`),
                         mediaDir: wm.resolveMediaPath(uiWs),
                     };
                 }
@@ -233,7 +233,7 @@ class DatabaseService {
 
             if (!resolvedViaWorkspace) {
                 let dbFolder = userDataPath;
-                const configPath = path.join(userDataPath, 'deplao-config.json');
+                const configPath = path.join(userDataPath, 'sadshachatdesk-config.json');
                 if (fs.existsSync(configPath)) {
                     try {
                         const cfg = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
@@ -254,7 +254,7 @@ class DatabaseService {
                         }
                     } catch {}
                 }
-                this.dbPath = path.join(dbFolder, 'deplao-tool.db');
+                this.dbPath = path.join(dbFolder, 'sadshachatdesk-tool.db');
             }
 
             const dir = path.dirname(this.dbPath);
@@ -457,7 +457,7 @@ class DatabaseService {
     }
 
     /**
-     * Reinitialize DatabaseService from the new path (re-reads deplao-config.json).
+     * Reinitialize DatabaseService from the new path (re-reads sadshachatdesk-config.json).
      * Call after changing dbFolder in the config so it applies at once, without a restart.
      */
     public async reinitialize(): Promise<void> {
@@ -1881,7 +1881,7 @@ class DatabaseService {
                 Logger.log('[DatabaseService] Migration: added is_edited column');
             }
 
-            // Zalo sets an auto-delete time for messages (ms, ZL-05): only for showing the countdown: Deplao does not delete messages by TTL
+            // Zalo sets an auto-delete time for messages (ms, ZL-05): only for showing the countdown: SadSha ChatDesk does not delete messages by TTL
             const hasTtl = cols.some((c: any) => c.name === 'ttl');
             if (!hasTtl) {
                 conn().exec(`ALTER TABLE messages ADD COLUMN ttl INTEGER DEFAULT 0`);
@@ -2405,7 +2405,7 @@ class DatabaseService {
                 Logger.log('[DatabaseService] Migration: added is_in_others to contacts');
                 needSave = true;
             }
-            // Zalo: auto-delete time for messages (ms, ZL-05 - Deplao only displays it, does not delete messages) and conversations hidden by PIN (ZL-03)
+            // Zalo: auto-delete time for messages (ms, ZL-05 - SadSha ChatDesk only displays it, does not delete messages) and conversations hidden by PIN (ZL-03)
             if (!names.includes('zalo_auto_delete_ttl')) {
                 conn().exec(`ALTER TABLE contacts ADD COLUMN zalo_auto_delete_ttl INTEGER DEFAULT 0`);
                 Logger.log('[DatabaseService] Migration: added zalo_auto_delete_ttl to contacts');
@@ -3716,7 +3716,7 @@ class DatabaseService {
 
     /**
      * Encrypts the login session before writing accounts.cookies with safeStorage: only this machine + this Windows account can decrypt it
-     * (dev and the installed build share the userData %APPDATA%\Deplao folder, so they share the key). A value that is already encrypted (and can be decrypted) is kept
+     * (dev and the installed build share the userData %APPDATA%\SadSha ChatDesk folder, so they share the key). A value that is already encrypted (and can be decrypted) is kept
      * as is, not encrypted twice; safeStorage not ready → stored as is, encryptStoredCredentials encrypts it on the next DB open.
      */
     private encryptCookiesForStorage(value: string | null | undefined): string {
@@ -4169,7 +4169,7 @@ class DatabaseService {
                     row.params
                 );
             }
-            // Zalo message with an auto-delete time (ms) → saved to show the countdown; Deplao does not delete messages by TTL
+            // Zalo message with an auto-delete time (ms) → saved to show the countdown; SadSha ChatDesk does not delete messages by TTL
             const ttl = Number(rawMessage?.data?.ttl) || 0;
             if (ttl > 0) this.setMessageTtl(ownerZaloId, String(row.params[0]), ttl);
 
@@ -4284,7 +4284,7 @@ class DatabaseService {
 
     /**
      * The same Zalo message = same account + conversation + sender + cliMsgId (the sender's id, in milliseconds). The phone
-     * does not store a real id (GlbMsgId = 0) for messages I sent from another device (Deplao / Zalo PC) → the synced copy carries the temporary id `mb_…`
+     * does not store a real id (GlbMsgId = 0) for messages I sent from another device (SadSha ChatDesk / Zalo PC) → the synced copy carries the temporary id `mb_…`
      * and before this was added as a second copy (a customer reported: syncing today's messages duplicated the sent messages).
      */
     private findZaloRowByCli(
@@ -4991,13 +4991,13 @@ class DatabaseService {
         return changed;
     }
 
-    /** Auto-delete time (ms) that Zalo attaches to a message - for display only; Deplao does not delete messages by TTL. */
+    /** Auto-delete time (ms) that Zalo attaches to a message - for display only; SadSha ChatDesk does not delete messages by TTL. */
     public setMessageTtl(ownerZaloId: string, msgId: string, ttl: number): void {
         if (!this.initialized || !msgId || !(ttl > 0) || !this.hasColumn('messages', 'ttl')) return;
         this.run('UPDATE messages SET ttl = ? WHERE owner_zalo_id = ? AND msg_id = ?', [ttl, ownerZaloId, msgId]);
     }
 
-    /** Auto-delete (ms) currently on for a Zalo conversation; 0 = off / unknown. Messages sent from Deplao carry this ttl (FR-ZL05.7). */
+    /** Auto-delete (ms) currently on for a Zalo conversation; 0 = off / unknown. Messages sent from SadSha ChatDesk carry this ttl (FR-ZL05.7). */
     public getContactAutoDeleteTtl(ownerZaloId: string, contactId: string): number {
         if (!this.initialized || !contactId) return 0;
         const row = this.queryOne<{ zalo_auto_delete_ttl: number | null }>(
@@ -5008,7 +5008,7 @@ class DatabaseService {
 
     /**
      * The messages in `msgIds` (msg_id or cli_msg_id) have passed their auto-delete time on Zalo: their delete / unsend events come from Zalo
-     * cleaning up expired messages → Deplao keeps the content and does not mark them "đã thu hồi" (unsent) (FR-ZL05.6).
+     * cleaning up expired messages → SadSha ChatDesk keeps the content and does not mark them "đã thu hồi" (unsent) (FR-ZL05.6).
      */
     public zaloTtlExpiredMessageIds(
         ownerZaloId: string, msgIds: string[], threadId?: string, now: number = Date.now(), graceMs: number = ZALO_TTL_EXPIRY_GRACE_MS,
@@ -5942,7 +5942,7 @@ class DatabaseService {
      * of doing raw string replacement.
      *
      * Example:
-     *   baseDir = "C:\Users\Admin\AppData\Roaming\Deplao\media"
+     *   baseDir = "C:\Users\Admin\AppData\Roaming\SadSha ChatDesk\media"
      *   stored  = {"main":"C:\\Users\\Admin\\...\\media\\zaloId\\date\\img.jpg"}
      *   →         {"main":"zaloId/date/img.jpg"}
      *
@@ -6765,13 +6765,13 @@ class DatabaseService {
         );
     }
 
-    /** The connection already has the SQL function `deplao_fold` (the main DB and the secondary DB of withDbPath are different connections). */
+    /** The connection already has the SQL function `sadshachatdesk_fold` (the main DB and the secondary DB of withDbPath are different connections). */
     private static readonly foldFunctionDbs = new WeakSet<object>();
 
-    /** SQL function `deplao_fold(text)`: strips Vietnamese diacritics + lowercase (foldSearchText), for searching / sorting member names. */
+    /** SQL function `sadshachatdesk_fold(text)`: strips Vietnamese diacritics + lowercase (foldSearchText), for searching / sorting member names. */
     private ensureFoldFunction(): void {
         if (!currentDb() || DatabaseService.foldFunctionDbs.has(conn())) return;
-        conn().function('deplao_fold', { deterministic: true }, (value: unknown) => foldSearchText(value));
+        conn().function('sadshachatdesk_fold', { deterministic: true }, (value: unknown) => foldSearchText(value));
         DatabaseService.foldFunctionDbs.add(conn());
     }
 
@@ -6804,14 +6804,14 @@ class DatabaseService {
         const query = foldSearchText(options.query);
         if (query) {
             const like = `%${escapeLikePattern(query)}%`;
-            conditions.push(`(deplao_fold(gm.display_name) LIKE ? ESCAPE '\\' OR deplao_fold(${username}) LIKE ? ESCAPE '\\' OR gm.member_id LIKE ? ESCAPE '\\')`);
+            conditions.push(`(sadshachatdesk_fold(gm.display_name) LIKE ? ESCAPE '\\' OR sadshachatdesk_fold(${username}) LIKE ? ESCAPE '\\' OR gm.member_id LIKE ? ESCAPE '\\')`);
             params.push(like, like, like);
         }
         const where = conditions.join(' AND ');
         const columns = `gm.member_id, gm.display_name, gm.avatar, gm.role, ${username} AS username, gm.updated_at`;
         const order = `ORDER BY CASE WHEN gm.role = ? THEN 0 WHEN gm.role > 0 THEN 1 ELSE 2 END,
                       CASE WHEN TRIM(COALESCE(gm.display_name, '')) = '' OR gm.display_name = gm.member_id THEN 1 ELSE 0 END,
-                      deplao_fold(gm.display_name), gm.member_id`;
+                      sadshachatdesk_fold(gm.display_name), gm.member_id`;
         if (query) {
             // Search by @username: a required condition from telegram_peers for every row
             const total = Number(this.queryOne<{ n: number }>(`SELECT COUNT(*) AS n FROM page_group_member gm ${join} WHERE ${where}`, params)?.n || 0);
@@ -6823,7 +6823,7 @@ class DatabaseService {
         }
         // Not searching: count, sort and cut the page only on page_group_member; @username is only fetched for the rows of the page. The JOIN uses the
         // primary key, so it does not change the row count, and re-sorting on the same key (member_id is unique within the group) keeps the old order. A group of 5k people:
-        // count 8 → 0,7 ms, page 28 → 12 ms (the rest is deplao_fold for each name).
+        // count 8 → 0,7 ms, page 28 → 12 ms (the rest is sadshachatdesk_fold for each name).
         const total = Number(this.queryOne<{ n: number }>(`SELECT COUNT(*) AS n FROM page_group_member gm WHERE ${where}`, params)?.n || 0);
         const members = this.query<any>(
             `SELECT ${columns}

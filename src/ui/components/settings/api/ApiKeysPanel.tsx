@@ -164,7 +164,7 @@ export function KeysTable({ keys, accounts, usage, onRevoke, onPurge, onUsage }:
     return (
       <Section title={tr('Chưa có API key')} icon={<KeyIcon className="w-4 h-4" />}>
         <p className="text-xs text-muted-foreground leading-relaxed">
-          {tr('Tạo key cho từng hệ thống sẽ gọi vào Deplao (website, n8n, worker, chatbot). Key chỉ hiện một lần lúc tạo.')}
+          {tr('Tạo key cho từng hệ thống sẽ gọi vào SadSha ChatDesk (website, n8n, worker, chatbot). Key chỉ hiện một lần lúc tạo.')}
         </p>
       </Section>
     );

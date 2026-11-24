@@ -1,6 +1,6 @@
 /**
- * Dialog to set / change the Zalo hidden-conversation PIN (ZL-03). The PIN is shared with the Zalo app on the phone; Deplao does not store the PIN.
- * Changing the PIN requires the correct old PIN (Deplao checks it in main itself, zca-js does not require it). Forgot the old PIN: Settings → Account → the
+ * Dialog to set / change the Zalo hidden-conversation PIN (ZL-03). The PIN is shared with the Zalo app on the phone; SadSha ChatDesk does not store the PIN.
+ * Changing the PIN requires the correct old PIN (SadSha ChatDesk checks it in main itself, zca-js does not require it). Forgot the old PIN: Settings → Account → the
  * "Hội thoại ẩn" (Hidden conversations) row under the Zalo account → "Quên mã PIN? Đặt lại" (Forgot PIN? Reset) (ZaloHiddenPinSection).
  *
  *   const ok = await showZaloPinDialog({ accountId, mode: 'setup' });

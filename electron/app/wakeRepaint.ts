@@ -1,5 +1,5 @@
 /**
- * After the laptop wakes or the screen unlocks, Deplao asks the main window for a fresh picture (webContents.invalidate)
+ * After the laptop wakes or the screen unlocks, SadSha ChatDesk asks the main window for a fresh picture (webContents.invalidate)
  * and times how long the UI takes to paint again. The time goes to Settings → Logs as "[Hiệu năng] …", so a slow wake can
  * be measured instead of guessed.
  *

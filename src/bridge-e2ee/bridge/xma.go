@@ -1,12 +1,12 @@
 package bridge
 
-// DEPLAO_ADAPTER: Facebook Page templates / XMA cards.
+// SADSHA_ADAPTER: Facebook Page templates / XMA cards.
 //
 // Upstream fbchat-v2 turns an XMA into a "link" attachment only when it has a
 // URL or a preview image, keeps a single CTA per attachment (WrapMessages maps
 // CTAs by attachment fbid) and ignores carousel items and legacy attachments.
 // Button templates, marketing opt-in requests ("Offers and updates") and
-// carousels from Pages therefore reached Deplao as empty messages. This file
+// carousels from Pages therefore reached SadSha ChatDesk as empty messages. This file
 // keeps every XMA as a structured "template" attachment with its texts, image,
 // all buttons and carousel items. Plain URL previews stay "link" attachments.
 
@@ -175,7 +175,7 @@ func isNonButtonCta(kind string) bool {
 // "Tư vấn sản phẩm") has no XMA card: the text is the message text and the
 // buttons are CTA rows tied to the message, or to an attachment row without
 // card fields. Upstream drops them, and the MQTT copy of the same message is
-// only Facebook's "Attachment unavailable" placeholder, so Deplao showed
+// only Facebook's "Attachment unavailable" placeholder, so SadSha ChatDesk showed
 // nothing usable. cardFbids are attachments already turned into cards (their
 // CTAs were considered there); used are CTA ids already shown as buttons.
 func (x *tableExtras) orphanButtons(msg *table.WrappedMessage, cardFbids map[string]bool, used map[string]bool) []*TemplateButton {

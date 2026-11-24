@@ -3,7 +3,7 @@
  * contacts.zalo_auto_delete_ttl so the UI can show the countdown, and notifies the UI through db:contactFlagsChanged (relayed to employees).
  *
  * The zca-js listener does not report turning auto-delete on / off on the phone, so getAutoDeleteChat is read again when the account connects (at most
- * once every 6 hours) and when the user opens the "Tự xoá tin nhắn" (Auto-delete messages) section. Deplao does not delete messages by TTL.
+ * once every 6 hours) and when the user opens the "Tự xoá tin nhắn" (Auto-delete messages) section. SadSha ChatDesk does not delete messages by TTL.
  */
 import EventBroadcaster from '../event/EventBroadcaster';
 import Logger from '../../utils/Logger';
@@ -29,7 +29,7 @@ export function applyZaloAutoDeleteList(zaloId: string, res: any, now: number = 
   return ttls;
 }
 
-/** One conversation was changed on Zalo from Deplao: write the DB + notify the UI. */
+/** One conversation was changed on Zalo from SadSha ChatDesk: write the DB + notify the UI. */
 export function applyZaloAutoDeleteOne(zaloId: string, threadId: string, ttl: number): void {
   if (!zaloId || !threadId) return;
   if (EventBroadcaster.withBossDb((db) => db.setContactAutoDeleteTtl(zaloId, threadId, ttl))) emitTtl(zaloId, threadId, ttl);

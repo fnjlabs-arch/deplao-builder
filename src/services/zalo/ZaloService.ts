@@ -1879,7 +1879,7 @@ export default class ZaloService {
         return Array.from(ttls, ([threadId, ttl]) => ({ threadId, ttl }));
     }
 
-    /** Turn auto-delete of messages in one conversation on or off in Zalo (ttl ms: 0 | 1 | 7 | 14 days); Deplao still keeps the messages. */
+    /** Turn auto-delete of messages in one conversation on or off in Zalo (ttl ms: 0 | 1 | 7 | 14 days); SadSha ChatDesk still keeps the messages. */
     public async setAutoDeleteChat(ttl: number, threadId: string, type?: ThreadType | number): Promise<{ ttl: number }> {
         if (!this.api) throw new Error("API not initialized");
         if (!threadId) throw new Error(tr('Thiếu threadId'));
@@ -1933,7 +1933,7 @@ export default class ZaloService {
         return setZaloHiddenPin(this.zaloId || '', String(pin || ''), oldPin ? String(oldPin) : undefined, zaloHiddenApiOf(this.api));
     }
 
-    /** Forgot PIN → reset it on Zalo (Zalo may delete the messages of the hidden conversations on the Zalo device; Deplao keeps the messages). */
+    /** Forgot PIN → reset it on Zalo (Zalo may delete the messages of the hidden conversations on the Zalo device; SadSha ChatDesk keeps the messages). */
     public async resetHiddenConversationPin(): Promise<HiddenStatus> {
         if (!this.api) throw new Error("API not initialized");
         return resetZaloHiddenPin(this.zaloId || '', zaloHiddenApiOf(this.api));

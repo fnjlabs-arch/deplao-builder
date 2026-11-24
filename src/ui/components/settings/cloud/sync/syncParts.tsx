@@ -359,8 +359,8 @@ export function StandbyCard({ status, ready, onWizard, onStatus, onRefresh, clas
         <>
           <p className="text-xs text-foreground">
             {provider === 'gdrive'
-              ? tr('Máy khác cài Deplao, chọn kho Google Drive và đăng nhập cùng tài khoản Google rồi bật Theo dõi bản sao.')
-              : tr('Máy khác cài Deplao, kết nối cùng Cloudflare rồi bật Theo dõi bản sao.')}
+              ? tr('Máy khác cài SadSha ChatDesk, chọn kho Google Drive và đăng nhập cùng tài khoản Google rồi bật Theo dõi bản sao.')
+              : tr('Máy khác cài SadSha ChatDesk, kết nối cùng Cloudflare rồi bật Theo dõi bản sao.')}
           </p>
           <p className="text-xs leading-relaxed text-muted-foreground">
             {tr('Máy đó tải đoạn mới mỗi phút; khi cần thì bấm Chuyển sang máy này ngay trên máy đó.')}

@@ -1,10 +1,10 @@
-/*! Deplao plugin SDK (web) v1.0.0 */
+/*! SadSha ChatDesk plugin SDK (web) v1.0.0 */
 (function () {
   'use strict';
-  if (window.deplao && window.deplao.__sdk) return;
+  if (window.sadshachatdesk && window.sadshachatdesk.__sdk) return;
   var host = window.parent;
   if (!host || host === window) {
-    console.warn('[deplao] SDK chỉ chạy bên trong Deplao');
+    console.warn('[sadshachatdesk] SDK chỉ chạy bên trong SadSha ChatDesk');
   }
   var nextId = 1;
   var pending = {};
@@ -27,7 +27,7 @@
   function emit(kind, payload) {
     var list = listeners[kind] || [];
     for (var i = 0; i < list.length; i++) {
-      try { list[i](payload); } catch (e) { console.error('[deplao] listener lỗi', e); }
+      try { list[i](payload); } catch (e) { console.error('[sadshachatdesk] listener lỗi', e); }
     }
   }
 
@@ -50,7 +50,7 @@
     Object.keys(eventHandlers).forEach(function (pattern) {
       if (!typeMatches(pattern, type)) return;
       eventHandlers[pattern].forEach(function (h) {
-        try { h(ev); } catch (e) { console.error('[deplao] event handler lỗi', e); }
+        try { h(ev); } catch (e) { console.error('[sadshachatdesk] event handler lỗi', e); }
       });
     });
   }
@@ -100,7 +100,7 @@
     });
   }
 
-  // Nhóm có hàm riêng (media.upload) vẫn gọi được operationId: deplao.media.downloadLibraryItem({ uuid })
+  // Nhóm có hàm riêng (media.upload) vẫn gọi được operationId: sadshachatdesk.media.downloadLibraryItem({ uuid })
   function apiGroup(own) {
     return new Proxy(own, {
       get: function (target, fn) {
@@ -154,7 +154,7 @@
     events: {
       on: function (type, handler) {
         (eventHandlers[type] = eventHandlers[type] || []).push(handler);
-        resubscribe().catch(function (e) { console.error('[deplao] events.on', e); });
+        resubscribe().catch(function (e) { console.error('[sadshachatdesk] events.on', e); });
         return function () {
           var list = eventHandlers[type] || [];
           var i = list.indexOf(handler);
@@ -199,7 +199,7 @@
     }
   };
 
-  window.deplao = new Proxy(special, {
+  window.sadshachatdesk = new Proxy(special, {
     get: function (target, ns) {
       if (typeof ns !== 'string') return undefined;
       if (ns in target) return target[ns];
@@ -219,5 +219,5 @@
     applyTheme(state.init.theme);
     state.ready = true;
     emit('ready', state.init);
-  }).catch(function (e) { console.error('[deplao] ui.ready lỗi', e); });
+  }).catch(function (e) { console.error('[sadshachatdesk] ui.ready lỗi', e); });
 })();

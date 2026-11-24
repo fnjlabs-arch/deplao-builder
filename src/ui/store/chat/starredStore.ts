@@ -3,7 +3,7 @@
  *
  * Loaded once per account (DataAccessor → local DB, or owner's machine REST in employee mode). `version`
  * bumps on every change so the "Tin đánh dấu" panel knows when to reload its list.
- * Components read it with selectors only (see deplao UI perf rules).
+ * Components read it with selectors only (see sadshachatdesk UI perf rules).
  */
 import { create } from 'zustand';
 import DataAccessor, { isReadFailure } from '@/lib/data/DataAccessor';

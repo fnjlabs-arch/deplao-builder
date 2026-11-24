@@ -1,8 +1,8 @@
 /**
- * "Đăng ký webhook tự động" (Auto-register webhook) on the KiotViet / Sapo integration page: Deplao calls the platform API to create a webhook pointing to the
+ * "Đăng ký webhook tự động" (Auto-register webhook) on the KiotViet / Sapo integration page: SadSha ChatDesk calls the platform API to create a webhook pointing to the
  * receiving address (services/integrations/posWebhookRegistration.ts, runs on the owner machine; employee machines hand the work over to the owner).
  * KiotViet has no webhook admin screen, so this needs no technical person. The list shows every webhook of the shop:
- * Deplao's (current or old address) or another system's; removing another system's webhook must be confirmed again.
+ * SadSha ChatDesk's (current or old address) or another system's; removing another system's webhook must be confirmed again.
  */
 import React, { useCallback, useEffect, useState } from 'react';
 import ipc from '@/lib/ipc';
@@ -17,14 +17,14 @@ import { tr } from '../../../shared/i18n';
 import { trx } from '@/lib/i18n/trx';
 
 const OWNERSHIP: Record<WebhookOwnership, { label: string; className: string }> = {
-  current: { label: tr('Deplao — đang nhận'), className: 'bg-success/15 text-success' },
-  stale: { label: tr('Deplao — địa chỉ cũ'), className: 'bg-warning/15 text-warning' },
+  current: { label: tr('SadSha ChatDesk — đang nhận'), className: 'bg-success/15 text-success' },
+  stale: { label: tr('SadSha ChatDesk — địa chỉ cũ'), className: 'bg-warning/15 text-warning' },
   other: { label: tr('Hệ thống khác'), className: 'bg-muted text-muted-foreground' },
 };
 
 const INTRO: Record<WebhookRegistrationType, string> = {
-  kiotviet: tr('KiotViet không có màn hình quản trị webhook — Deplao đăng ký giúp qua API: tự tạo Webhook Secret (lưu vào ô Webhook Secret ở trên) và trỏ các sự kiện đã chọn về địa chỉ nhận webhook ở trên. Bấm lại bất cứ lúc nào để làm mới — webhook cũ của Deplao được thay, webhook của hệ thống khác giữ nguyên.'),
-  sapo: tr('Deplao tạo webhook trên Sapo bằng ứng dụng riêng đã kết nối, trỏ về địa chỉ nhận webhook ở trên. Sapo ký webhook bằng API Secret nên không cần khoá riêng. Webhook đã đúng địa chỉ được giữ nguyên, địa chỉ cũ được sửa.'),
+  kiotviet: tr('KiotViet không có màn hình quản trị webhook — SadSha ChatDesk đăng ký giúp qua API: tự tạo Webhook Secret (lưu vào ô Webhook Secret ở trên) và trỏ các sự kiện đã chọn về địa chỉ nhận webhook ở trên. Bấm lại bất cứ lúc nào để làm mới — webhook cũ của SadSha ChatDesk được thay, webhook của hệ thống khác giữ nguyên.'),
+  sapo: tr('SadSha ChatDesk tạo webhook trên Sapo bằng ứng dụng riêng đã kết nối, trỏ về địa chỉ nhận webhook ở trên. Sapo ký webhook bằng API Secret nên không cần khoá riêng. Webhook đã đúng địa chỉ được giữ nguyên, địa chỉ cũ được sửa.'),
 };
 
 export default function WebhookRegistrationCard({ type, name, integrationId, onChanged }: {
@@ -91,7 +91,7 @@ export default function WebhookRegistrationCard({ type, name, integrationId, onC
     const ok = await showConfirm({
       title: tr('Gỡ webhook'),
       message: webhook.ownership === 'other'
-        ? tr('Webhook {{event}} trỏ tới {{url}} không phải của kết nối Deplao này — hệ thống đó sẽ ngừng nhận dữ liệu. Vẫn gỡ?', { event: webhook.event, url: webhook.url })
+        ? tr('Webhook {{event}} trỏ tới {{url}} không phải của kết nối SadSha ChatDesk này — hệ thống đó sẽ ngừng nhận dữ liệu. Vẫn gỡ?', { event: webhook.event, url: webhook.url })
         : tr('Gỡ webhook {{event}} khỏi {{name}}? Workflow "Khi phần mềm bán hàng gửi webhook" sẽ không nhận sự kiện này nữa.', { event: webhook.event, name }),
       confirmText: tr('Gỡ'),
       variant: 'danger',
@@ -136,12 +136,12 @@ export default function WebhookRegistrationCard({ type, name, integrationId, onC
             )}
             {address && state?.temporary && (
               <div role="alert" className="rounded-xl border border-warning/40 bg-warning/10 px-4 py-2.5 text-[11px] text-foreground">
-                {trx('<0/> Đang dùng địa chỉ tạm (đổi mỗi lần khởi động lại Deplao) — sau mỗi lần mở lại phải bấm Đăng ký webhook để {{name}} gửi tới địa chỉ mới. Dùng Cloudflare tự động để có địa chỉ cố định.', { 0: <AlertIcon className="w-4 h-4 inline text-warning" />, name })}
+                {trx('<0/> Đang dùng địa chỉ tạm (đổi mỗi lần khởi động lại SadSha ChatDesk) — sau mỗi lần mở lại phải bấm Đăng ký webhook để {{name}} gửi tới địa chỉ mới. Dùng Cloudflare tự động để có địa chỉ cố định.', { 0: <AlertIcon className="w-4 h-4 inline text-warning" />, name })}
               </div>
             )}
 
             <div>
-              <p className="mb-1.5 text-[11px] font-medium text-foreground">{tr('Sự kiện gửi về Deplao')}</p>
+              <p className="mb-1.5 text-[11px] font-medium text-foreground">{tr('Sự kiện gửi về SadSha ChatDesk')}</p>
               <div className="grid gap-1 sm:grid-cols-2">
                 {WEBHOOK_EVENT_OPTIONS[type].map(option => (
                   <label key={option.value} className="flex cursor-pointer items-center gap-2 text-[11px] text-muted-foreground">

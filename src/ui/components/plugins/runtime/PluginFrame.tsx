@@ -3,7 +3,7 @@
  *
  * Security:
  *  - the sandbox has no allow-popups / allow-top-navigation / allow-modals; the iframe origin is
- *    deplao-plugin://<id> (different from the app), so it cannot touch the DOM, store or electronAPI;
+ *    sadshachatdesk-plugin://<id> (different from the app), so it cannot touch the DOM, store or electronAPI;
  *  - only accepts messages whose event.source is this exact iframe AND whose origin is the right plugin;
  *  - pluginId comes from the prop (whichever iframe sent it), the value inside the message is not trusted.
  */

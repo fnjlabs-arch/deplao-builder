@@ -145,7 +145,7 @@ export function schemaFingerprint(conn: SqlConn, sel: TableSelection): string {
     const sqlByName = new Map<string, string>();
     for (const r of rows) sqlByName.set(String(r.name).toLowerCase(), String(r.sql || ''));
     const h = createHash('sha256');
-    h.update(`deplao-dbsync-v${DBSYNC_FORMAT_VERSION}\n`);
+    h.update(`sadshachatdesk-dbsync-v${DBSYNC_FORMAT_VERSION}\n`);
     for (const t of sel.included) {
         h.update(t.name);
         h.update('\u0000');

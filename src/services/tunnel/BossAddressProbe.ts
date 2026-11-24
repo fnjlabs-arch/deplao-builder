@@ -93,7 +93,7 @@ function getHealth(baseUrl: string): Promise<HttpOutcome> {
         timeout: HTTP_TIMEOUT_MS,
         headers: {
           Accept: 'application/json',
-          'User-Agent': 'Deplao-AddressProbe',
+          'User-Agent': 'SadSha ChatDesk-AddressProbe',
           // Do not let the warning page of ngrok / loca.lt hide the real response
           'ngrok-skip-browser-warning': '1',
           'Bypass-Tunnel-Reminder': '1',

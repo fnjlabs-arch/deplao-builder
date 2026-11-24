@@ -49,7 +49,7 @@ function readPoll(msg: any): {
 }
 
 /** Renders the read-only state Telegram sends for polls. Voting stays in Telegram
- * because neither user nor bot channels currently expose a vote action in Deplao. */
+ * because neither user nor bot channels currently expose a vote action in SadSha ChatDesk. */
 export default function TelegramPollBubble({ msg, isSent }: { msg: any; isSent: boolean }) {
   const poll = React.useMemo(() => readPoll(msg), [msg]);
   if (!poll) return null;

@@ -534,7 +534,7 @@ class HttpClientService {
                 let targetDbPath: string | null = null;
                 if (this.workspaceId) {
                     const ws = WorkspaceManager.getInstance().getWorkspaceById(this.workspaceId);
-                    if (ws) targetDbPath = WorkspaceManager.getInstance().resolveDbPath(ws.dbPath || 'deplao-tool.db');
+                    if (ws) targetDbPath = WorkspaceManager.getInstance().resolveDbPath(ws.dbPath || 'sadshachatdesk-tool.db');
                 }
                 const activeDbPath = db.getDbPath();
                 const msgId = String(data.msgId || '');
@@ -592,7 +592,7 @@ class HttpClientService {
                 let targetDbPath: string | null = null;
                 if (this.workspaceId) {
                     const ws = WorkspaceManager.getInstance().getWorkspaceById(this.workspaceId);
-                    if (ws) targetDbPath = WorkspaceManager.getInstance().resolveDbPath(ws.dbPath || 'deplao-tool.db');
+                    if (ws) targetDbPath = WorkspaceManager.getInstance().resolveDbPath(ws.dbPath || 'sadshachatdesk-tool.db');
                 }
                 const runOnWsDb = (fn: () => void) => {
                     if (targetDbPath && targetDbPath !== db.getDbPath()) {
@@ -641,7 +641,7 @@ class HttpClientService {
             let targetDbPath: string | null = null;
             if (this.workspaceId) {
                 const ws = WorkspaceManager.getInstance().getWorkspaceById(this.workspaceId);
-                if (ws) targetDbPath = WorkspaceManager.getInstance().resolveDbPath(ws.dbPath || 'deplao-tool.db');
+                if (ws) targetDbPath = WorkspaceManager.getInstance().resolveDbPath(ws.dbPath || 'sadshachatdesk-tool.db');
             }
             const runOnWsDb = (fn: () => void) => {
                 if (targetDbPath && targetDbPath !== db.getDbPath()) {
@@ -818,7 +818,7 @@ class HttpClientService {
             if (this.workspaceId) {
                 const ws = wm.getWorkspaceById(this.workspaceId);
                 if (ws) {
-                    targetDbPath = wm.resolveDbPath(ws.dbPath || 'deplao-tool.db');
+                    targetDbPath = wm.resolveDbPath(ws.dbPath || 'sadshachatdesk-tool.db');
                 }
             }
 
@@ -854,7 +854,7 @@ class HttpClientService {
             const WorkspaceManager = require('../../utils/app/WorkspaceManager').default;
             const db = DatabaseService.getInstance();
             const ws = this.workspaceId ? WorkspaceManager.getInstance().getWorkspaceById(this.workspaceId) : null;
-            const targetDbPath = ws ? WorkspaceManager.getInstance().resolveDbPath(ws.dbPath || 'deplao-tool.db') : null;
+            const targetDbPath = ws ? WorkspaceManager.getInstance().resolveDbPath(ws.dbPath || 'sadshachatdesk-tool.db') : null;
             const doDelete = () => db.deleteMessages(zaloId, msgIds, data?.threadId ? String(data.threadId) : undefined);
             if (targetDbPath && targetDbPath !== db.getDbPath()) db.withDbPath(targetDbPath, doDelete);
             else doDelete();
@@ -875,7 +875,7 @@ class HttpClientService {
             if (this.workspaceId) {
                 const ws = wm.getWorkspaceById(this.workspaceId);
                 if (ws) {
-                    targetDbPath = wm.resolveDbPath(ws.dbPath || 'deplao-tool.db');
+                    targetDbPath = wm.resolveDbPath(ws.dbPath || 'sadshachatdesk-tool.db');
                 }
             }
 
@@ -929,7 +929,7 @@ class HttpClientService {
             if (this.workspaceId) {
                 const ws = wm.getWorkspaceById(this.workspaceId);
                 if (ws) {
-                    targetDbPath = wm.resolveDbPath(ws.dbPath || 'deplao-tool.db');
+                    targetDbPath = wm.resolveDbPath(ws.dbPath || 'sadshachatdesk-tool.db');
                 }
             }
 

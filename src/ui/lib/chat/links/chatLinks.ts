@@ -358,7 +358,7 @@ async function openTelegramLink(link: TelegramLink, raw: string, ctx: ChatLinkCo
 }
 
 /**
- * Tapping a link inside the app. true = Deplao opens it itself (conversation, join box, Mini App...), false = open in the browser / ignore.
+ * Tapping a link inside the app. true = SadSha ChatDesk opens it itself (conversation, join box, Mini App...), false = open in the browser / ignore.
  */
 export function openChatLink(url: string, ctx: ChatLinkContext = {}): boolean {
   const raw = String(url || '').trim();
@@ -421,7 +421,7 @@ async function pressTelegramInlineButton(
         if (action.userId) openThread(accountId, action.userId, 0, { channel: 'telegram_user' });
         return;
       default:
-        notify(action.reason || tr('Loại nút này chưa hỗ trợ trong Deplao'), 'warning');
+        notify(action.reason || tr('Loại nút này chưa hỗ trợ trong SadSha ChatDesk'), 'warning');
     }
   } catch (err: any) {
     notify(tr('Bấm nút không được: {{v1}}', { v1: err?.message || err }));

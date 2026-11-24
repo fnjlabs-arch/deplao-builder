@@ -941,7 +941,7 @@ export function registerFacebookIpc(): void {
 
   /**
    * Send an attachment (C2: auto-route 1:1 via E2EE)
-   * DEPLAO_ADAPTER: Delegates to FacebookSendService.sendAttachment() for
+   * SADSHA_ADAPTER: Delegates to FacebookSendService.sendAttachment() for
    * consolidated route matrix. No fallback between E2EE and REST routes.
    */
   ipcMain.handle('fb:sendAttachment', async (_event, params: {
@@ -972,7 +972,7 @@ export function registerFacebookIpc(): void {
 
   /**
    * Send several images/files in one request (batch attachments)
-   * DEPLAO_ADAPTER: Delegates to FacebookSendService.sendAttachment() per file.
+   * SADSHA_ADAPTER: Delegates to FacebookSendService.sendAttachment() per file.
    */
   ipcMain.handle('fb:sendAttachments', async (_event, params: {
     accountId: string; threadId: string; filePaths: string[]; body?: string; typeChat?: 'user' | null;
@@ -1030,7 +1030,7 @@ export function registerFacebookIpc(): void {
 
   /**
    * Reaction (C3: auto-route via service)
-   * DEPLAO_ADAPTER: Delegate entirely to FacebookService.addReaction().
+   * SADSHA_ADAPTER: Delegate entirely to FacebookService.addReaction().
    * Service handles: resolveMessageThreadKind → E2EE/REST routing,
    * correct sender JID from DB, idempotent remove via empty emoji.
    * No local DB write on failure — only on success through the service.

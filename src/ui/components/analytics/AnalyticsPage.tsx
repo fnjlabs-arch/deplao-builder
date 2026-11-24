@@ -276,7 +276,7 @@ const GUIDE_CONTENT: Record<TabId, { title: string; sections: Array<{ heading: s
     title: tr('Hướng dẫn - Tin nhắn'),
     sections: [
       { heading: tr('KPI'), content: tr('Hôm nay: tin gửi + nhận từ 00:00 hôm nay. Tổng tin nhắn: trong khoảng thời gian đang chọn. TB/ngày: tổng tin chia số ngày của khoảng. Tỷ lệ gửi: % tin bạn gửi trên tổng.') },
-      { heading: tr('Tin gửi đi'), content: tr('Người nhận: số hội thoại 1-1 có tin bạn gửi trong khoảng, mỗi người tính một lần theo tin đầu tiên. Đã nhận: nền tảng báo đã nhận (Zalo, Facebook; Telegram không có). Đã xem: có báo đã xem hoặc khách đã trả lời. Đã phản hồi: khách nhắn lại sau tin của bạn (bỏ tin hệ thống). Zalo chỉ báo "đã xem" khi người nhận bật trạng thái Đã xem; Deplao cần đang mở để nhận các báo này. Chọn nhiều tài khoản thì có bảng theo tài khoản: tài khoản gửi nhiều mà ít người nhận / xem là dấu hiệu bị hạn chế.') },
+      { heading: tr('Tin gửi đi'), content: tr('Người nhận: số hội thoại 1-1 có tin bạn gửi trong khoảng, mỗi người tính một lần theo tin đầu tiên. Đã nhận: nền tảng báo đã nhận (Zalo, Facebook; Telegram không có). Đã xem: có báo đã xem hoặc khách đã trả lời. Đã phản hồi: khách nhắn lại sau tin của bạn (bỏ tin hệ thống). Zalo chỉ báo "đã xem" khi người nhận bật trạng thái Đã xem; SadSha ChatDesk cần đang mở để nhận các báo này. Chọn nhiều tài khoản thì có bảng theo tài khoản: tài khoản gửi nhiều mà ít người nhận / xem là dấu hiệu bị hạn chế.') },
       { heading: tr('Thời gian phản hồi'), content: tr('Đo từ lúc khách nhắn đến khi bạn trả lời, chỉ tính chat 1-1 và các lần trả lời trong vòng 7 ngày (bỏ qua hội thoại bị bỏ quên). Không hiện khi chọn loại hội thoại "Nhóm".\n\n• TB phản hồi: thời gian trả lời trung bình\n• Trung vị: một nửa số lần trả lời nhanh hơn con số này\n• Nhanh nhất / Chậm nhất: hai mức cực trị\n• Hội thoại: số chat 1-1 có ít nhất một lần trả lời') },
       { heading: tr('Phân bổ thời gian phản hồi'), content: tr('Số lần trả lời theo từng khoảng: < 1 phút, 1–5 phút, 5–15 phút … > 24 giờ (xanh = nhanh, đỏ = chậm), kèm % tin được phản hồi trong 15 phút.') },
       { heading: tr('Thời gian phản hồi TB theo giờ'), content: tr('Thời gian trả lời trung bình theo giờ khách nhắn đến (0h–23h), chỉ ra giờ bạn trả lời nhanh nhất và chậm nhất.') },
@@ -305,7 +305,7 @@ const GUIDE_CONTENT: Record<TabId, { title: string; sections: Array<{ heading: s
     title: tr('Hướng dẫn - Chiến dịch'),
     sections: [
       { heading: tr('KPI'), content: tr('Tổng chiến dịch, Đã gửi (kèm Gửi thành công % = đã gửi ÷ tổng liên hệ), Đã nhận %, Đã xem %, Phản hồi % (trên số đã gửi) và Lỗi, cộng trên mọi chiến dịch.') },
-      { heading: tr('Đã nhận, đã xem, phản hồi'), content: tr('Đã nhận: nền tảng báo đã nhận (Zalo, Facebook; Telegram không có). Đã xem: có báo đã xem hoặc khách đã trả lời. Đã phản hồi: khách nhắn lại sau tin của bạn (bỏ tin hệ thống). Zalo chỉ báo "đã xem" khi người nhận bật trạng thái Đã xem; Deplao cần đang mở để nhận các báo này. Chiến dịch chỉ kết bạn / mời nhóm không có tin để nhận / xem.') },
+      { heading: tr('Đã nhận, đã xem, phản hồi'), content: tr('Đã nhận: nền tảng báo đã nhận (Zalo, Facebook; Telegram không có). Đã xem: có báo đã xem hoặc khách đã trả lời. Đã phản hồi: khách nhắn lại sau tin của bạn (bỏ tin hệ thống). Zalo chỉ báo "đã xem" khi người nhận bật trạng thái Đã xem; SadSha ChatDesk cần đang mở để nhận các báo này. Chiến dịch chỉ kết bạn / mời nhóm không có tin để nhận / xem.') },
       { heading: tr('Top chiến dịch (theo số gửi)'), content: tr('Biểu đồ ngang so sánh Đã gửi, Đã xem, Phản hồi, Lỗi của 10 chiến dịch gửi nhiều nhất.') },
       { heading: tr('Chi tiết chiến dịch'), content: tr('Bảng 20 chiến dịch mới nhất với trạng thái, Tổng, Đã gửi, Đã nhận, Đã xem, Phản hồi, Lỗi; có thêm cột Tài khoản khi chọn nhiều tài khoản. Lọc người đã xem / chưa xem để gửi tiếp: mở chiến dịch ở CRM → Chiến dịch.') },
       { heading: tr('Phạm vi'), content: tr('Tab này tính trên mọi chiến dịch của các tài khoản đang chọn, không phụ thuộc khoảng thời gian.') },
@@ -1014,14 +1014,14 @@ function OutreachSection({ outreach, byAccount, accountsById, periodLabel }: {
                 <tbody>
                   {[...byAccount].sort((a, b) => (b.data.sent || 0) - (a.data.sent || 0)).map(({ zaloId, data }) => {
                     const p = engagementPercents(data);
-                    // Sends a lot but few recipients / viewers: a sign the account is restricted (or Deplao was off when the customer received it)
+                    // Sends a lot but few recipients / viewers: a sign the account is restricted (or SadSha ChatDesk was off when the customer received it)
                     const low = (data.deliveredBase || 0) >= 20 && p.delivered !== null && p.delivered < 50;
                     return (
                       <tr key={zaloId} className="border-b border-border/50">
                         <td className="max-w-[220px] px-2 py-2"><AccountName account={accountsById.get(zaloId)} zaloId={zaloId} /></td>
                         <td className="px-2 py-2 text-right tabular-nums text-foreground/80">{(data.sent || 0).toLocaleString(appLocale())}</td>
                         <td className={`px-2 py-2 text-right tabular-nums ${low ? 'text-yellow-400' : 'text-foreground/80'}`}
-                          title={low ? tr('Ít người nhận so với số đã gửi: tài khoản có thể bị hạn chế, hoặc Deplao không mở lúc khách nhận tin') : undefined}>
+                          title={low ? tr('Ít người nhận so với số đã gửi: tài khoản có thể bị hạn chế, hoặc SadSha ChatDesk không mở lúc khách nhận tin') : undefined}>
                           {formatRate(p.delivered)}
                         </td>
                         <td className="px-2 py-2 text-right tabular-nums text-foreground/80">{formatRate(p.seen)}</td>

@@ -1,6 +1,6 @@
 /**
  * PluginsPlatform: connects the plugin module to the app:
- *   PluginManager (lifecycle) ↔ PluginApiBridge (deplao.*) ↔ ApiPlatform (v1 router, events)
+ *   PluginManager (lifecycle) ↔ PluginApiBridge (sadshachatdesk.*) ↔ ApiPlatform (v1 router, events)
  *   ↔ PluginNodeRegistry (workflow) ↔ PluginScheduler (cron) ↔ renderer (contributions, UI events).
  *
  * Does nothing until init(); start() only starts enabled plugins, and does not create tables if plugins were never used.
@@ -31,7 +31,7 @@ export interface UiContribution {
     origin: string;
     width?: number;
     target?: 'ui' | 'backend';
-    /** Approved permissions (the renderer checks deplao.ui.*). */
+    /** Approved permissions (the renderer checks sadshachatdesk.ui.*). */
     permissions: string[];
 }
 

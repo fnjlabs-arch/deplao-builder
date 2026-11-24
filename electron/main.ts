@@ -168,20 +168,20 @@ app.commandLine.appendSwitch('lang', 'vi-VN');
 app.commandLine.appendSwitch('accept-lang', 'vi-VN,vi;q=0.9');
 
 // Set the app name (shown on the taskbar, tray, macOS dock)
-app.setName('Deplao');
+app.setName('SadSha ChatDesk');
 
 // Windows: set the AppUserModelId so the taskbar / notifications show the right icon & name
 // Dev: a unique AUMID every run → Windows creates a new icon cache → the right icon shows
 // Production: fixed AUMID (matches the electron-builder appId; the exe has the icon embedded via afterPack)
 if (process.platform === 'win32') {
-  app.setAppUserModelId(isDev ? `com.Deplao.dev.${Date.now()}` : 'com.Deplao.app');
+  app.setAppUserModelId(isDev ? `com.SadSha ChatDesk.dev.${Date.now()}` : 'com.sadsha.chatdesk');
 }
 
 // ─── Register custom protocol BEFORE app ready (required by Electron) ─────────
 // local-media://abs-path  →  serve file from absolute path on disk
 // Usage in renderer: local-media:///D:/path/to/file.jpg
 //
-// deplao://openChat?accountId=xxx&threadId=yyy&threadType=0&channel=zalo
+// sadshachatdesk://openChat?accountId=xxx&threadId=yyy&threadType=0&channel=zalo
 //   → deep link: opens the app + activates the right conversation
 protocol.registerSchemesAsPrivileged([
   {
@@ -195,7 +195,7 @@ protocol.registerSchemesAsPrivileged([
     },
   },
   {
-    scheme: 'deplao',
+    scheme: 'sadshachatdesk',
     privileges: {
       secure: true,
       bypassCSP: true,
@@ -204,8 +204,8 @@ protocol.registerSchemesAsPrivileged([
     },
   },
   {
-    // Plugin UI: each plugin gets its own origin deplao-plugin://<id> (does not bypass CSP).
-    scheme: 'deplao-plugin',
+    // Plugin UI: each plugin gets its own origin sadshachatdesk-plugin://<id> (does not bypass CSP).
+    scheme: 'sadshachatdesk-plugin',
     privileges: {
       standard: true,
       secure: true,
@@ -246,7 +246,7 @@ let tray: Tray | null = null;
 let rendererReportedReady = false;
 
 // ─── Launch at login (src/utils/startup/autoLaunch.ts) ─────────────────────────────────
-// Create when needed: userData is only correct after app.setName('Deplao').
+// Create when needed: userData is only correct after app.setName('SadSha ChatDesk').
 let autoLaunchInstance: AutoLaunch | null = null;
 function getAutoLaunch(): AutoLaunch {
   autoLaunchInstance ??= createAutoLaunch({
@@ -260,7 +260,7 @@ function getAutoLaunch(): AutoLaunch {
       set: (settings) => app.setLoginItemSettings(settings as any),
       get: (options) => app.getLoginItemSettings(options as any),
     },
-    configPath: path.join(app.getPath('userData'), 'deplao-config.json'),
+    configPath: path.join(app.getPath('userData'), 'sadshachatdesk-config.json'),
   });
   return autoLaunchInstance;
 }
@@ -340,7 +340,7 @@ function createWindow() {
     height: 800,
     minWidth: 900,
     minHeight: 600,
-    title: 'Deplao',
+    title: 'SadSha ChatDesk',
     // Windows: frameless → custom title bar
     // macOS: hiddenInset → hides the title bar, keeps the traffic light buttons
     frame: isMac,
@@ -393,10 +393,10 @@ function createWindow() {
     if (cachedNormalIcon && !cachedNormalIcon.isEmpty()) {
       mainWindow?.setIcon(cachedNormalIcon);
     }
-    // Launch at login: runs in the background in the tray, notifies once (click the tray or open Deplao again to show the window)
+    // Launch at login: runs in the background in the tray, notifies once (click the tray or open SadSha ChatDesk again to show the window)
     if (startHiddenAtLogin) {
       startHiddenAtLogin = false;
-      showTrayNotification(tr('Deplao đã mở cùng máy'), tr('Đang chạy ngầm để nhận tin nhắn. Bấm biểu tượng Deplao ở khay để mở.'));
+      showTrayNotification(tr('SadSha ChatDesk đã mở cùng máy'), tr('Đang chạy ngầm để nhận tin nhắn. Bấm biểu tượng SadSha ChatDesk ở khay để mở.'));
       return;
     }
     mainWindow?.show();
@@ -419,7 +419,7 @@ function createWindow() {
   }, 8_000).unref();
 
   // Links / navigation (app/mainWindowLinks): the preload attaches electronAPI to every page of this window → the main window only stays in the
-  // Deplao UI. Web links (link not caught by a click, window.open, target="_blank", middle click, Telegram mini apps) open
+  // SadSha ChatDesk UI. Web links (link not caught by a click, window.open, target="_blank", middle click, Telegram mini apps) open
   // in the machine's browser to keep the login session; no Electron window is opened.
   const linkOptions = { isDev, devOrigin: 'http://localhost:27799', entryFile: path.join(__dirname, '../../dist/index.html') };
   // Telegram / Zalo group links: the UI opens the conversation / Mini App inside the app (app:openChatLink), not in the browser
@@ -546,8 +546,8 @@ function createWindow() {
     try { return mainWindow && !mainWindow.isDestroyed() ? mainWindow.webContents.id : null; } catch { return null; }
   };
 
-  // CSP: blocks external inline scripts in production, applies only to Deplao's own content (app/rendererCsp). The internal browser
-  // and Telegram mini apps that share the session stay as in the dev build; deplao-plugin:// app pages keep their own CSP.
+  // CSP: blocks external inline scripts in production, applies only to SadSha ChatDesk's own content (app/rendererCsp). The internal browser
+  // and Telegram mini apps that share the session stay as in the dev build; sadshachatdesk-plugin:// app pages keep their own CSP.
   // ⚠️ Also only ONE onHeadersReceived listener for this session (see the note below).
   if (!isDev) {
     mainWindow.webContents.session.webRequest.onHeadersReceived((details, callback) => {
@@ -621,7 +621,7 @@ function createWindow() {
     const newer = newerInstallToRelaunch(launchInfo, additionalData);
     if (newer) {
       Logger.log(`[main] Bản ${newer.version} vừa được mở (đang chạy ${launchInfo.version}) → thoát để mở bản mới`);
-      const deepLink = argv.find((arg: string) => arg.startsWith('deplao://'));
+      const deepLink = argv.find((arg: string) => arg.startsWith('sadshachatdesk://'));
       app.relaunch({ execPath: newer.execPath, args: deepLink ? [deepLink] : [] });
       isQuitting = true;
       app.quit();
@@ -636,7 +636,7 @@ function createWindow() {
     }
 
     // Parse the deep link URL from the command line (Windows protocol handler)
-    const deepLinkUrl = argv.find((arg: string) => arg.startsWith('deplao://'));
+    const deepLinkUrl = argv.find((arg: string) => arg.startsWith('sadshachatdesk://'));
     if (deepLinkUrl) {
       handleDeepLink(deepLinkUrl);
     }
@@ -644,7 +644,7 @@ function createWindow() {
 
   // macOS: open-url event khi click deep link
   app.on('open-url', (_event, url) => {
-    if (url.startsWith('deplao://')) {
+    if (url.startsWith('sadshachatdesk://')) {
       handleDeepLink(url);
     }
   });
@@ -656,7 +656,7 @@ function createWindow() {
 function buildTrayMenu(): Menu {
   return Menu.buildFromTemplate([
     {
-      label: tr('Mở Deplao'),
+      label: tr('Mở SadSha ChatDesk'),
       click: () => { mainWindow?.show(); mainWindow?.focus(); },
     },
     { type: 'separator' },
@@ -689,7 +689,7 @@ function createTray() {
 
   tray = new Tray(icon.isEmpty() ? nativeImage.createEmpty() : icon);
 
-  tray.setToolTip('Deplao');
+  tray.setToolTip('SadSha ChatDesk');
   tray.setContextMenu(buildTrayMenu());
 
   // Double-click the tray → open the app
@@ -707,7 +707,7 @@ function createTray() {
 
 /** Show a system tray notification when the app is hidden to the tray */
 function showTrayNotification(
-  title = tr('Deplao đang chạy ngầm'),
+  title = tr('SadSha ChatDesk đang chạy ngầm'),
   body = tr('Ứng dụng vẫn đang hoạt động và nhận tin nhắn bình thường. Nhấn vào biểu tượng tray để mở lại.'),
 ) {
   if (!Notification.isSupported()) return;
@@ -829,8 +829,8 @@ function registerWindowControls() {
       require('child_process').execFile('net', ['session'], { windowsHide: true, timeout: 5000 }, (err: unknown) => resolve(!err));
     }).then((elevated) => {
       if (elevated) {
-        Logger.warn('[Kéo thả] Deplao đang chạy bằng quyền quản trị (Run as administrator) — Windows chặn kéo-thả file '
-          + 'từ File Explorer vào app. Mở lại Deplao bình thường để kéo-thả được.');
+        Logger.warn('[Kéo thả] SadSha ChatDesk đang chạy bằng quyền quản trị (Run as administrator) — Windows chặn kéo-thả file '
+          + 'từ File Explorer vào app. Mở lại SadSha ChatDesk bình thường để kéo-thả được.');
       }
       return elevated;
     });
@@ -865,7 +865,7 @@ function registerWindowControls() {
             tray?.setImage(cachedDotIcon);
           }
         }
-        tray?.setToolTip(tr('Deplao - {{count}} tin chưa đọc', { count }));
+        tray?.setToolTip(tr('SadSha ChatDesk - {{count}} tin chưa đọc', { count }));
       } else {
         if (currentIconIsDot) {
           currentIconIsDot = false;
@@ -874,7 +874,7 @@ function registerWindowControls() {
             tray?.setImage(cachedNormalIcon);
           }
         }
-        tray?.setToolTip('Deplao');
+        tray?.setToolTip('SadSha ChatDesk');
       }
     } else {
       try { app.setBadgeCount(count > 0 ? count : 0); } catch {}
@@ -921,10 +921,10 @@ function registerWindowControls() {
 }
 
 /**
- * Handle the deep link URL from the custom protocol deplao://
+ * Handle the deep link URL from the custom protocol sadshachatdesk://
  *
  * Format:
- *   deplao://openChat?accountId=xxx&threadId=yyy&threadType=0&channel=zalo
+ *   sadshachatdesk://openChat?accountId=xxx&threadId=yyy&threadType=0&channel=zalo
  *
  * Add a new action by extending the switch(action) below.
  */
@@ -1096,7 +1096,7 @@ async function startupAllWorkspaces(): Promise<void> {
 
   for (const ws of localWorkspaces) {
     try {
-      const dbPath = wsMgr.resolveDbPath(ws.dbPath || 'deplao-tool.db');
+      const dbPath = wsMgr.resolveDbPath(ws.dbPath || 'sadshachatdesk-tool.db');
       if (!dbPath || !require('fs').existsSync(dbPath)) continue;
 
       // Read accounts from this workspace's DB (without switching active DB)
@@ -1276,7 +1276,7 @@ function deferQuitForCloudShutdown(event: { preventDefault(): void }): boolean {
 app.whenReady().then(async () => {
   // Main thread blocked ≥ 1 s (sync SQLite, long loops…) → Log "[Hiệu năng] …" (performance) to find the cause of "Not Responding".
   startMainThreadWatchdog();
-  // RAM per process (main, windows, GPU…) → Log "[Hiệu năng] RAM Deplao …" (performance) every 30 minutes
+  // RAM per process (main, windows, GPU…) → Log "[Hiệu năng] RAM SadSha ChatDesk …" (performance) every 30 minutes
   startMemoryMonitor(() => app.getAppMetrics());
   // Heavy DB reads (opening a conversation, searching messages, lists of images / files / conversations) run in the read worker, not blocking the main thread
   dbReads.enable({ log: (msg) => Logger.warn(msg) });
@@ -1548,15 +1548,15 @@ app.whenReady().then(async () => {
 
   loadIcons();
 
-  // ── Register deplao:// as default protocol client ─────────────────────
-  // Let the OS open the app when a deplao:// link is clicked in the browser
+  // ── Register sadshachatdesk:// as default protocol client ─────────────────────
+  // Let the OS open the app when a sadshachatdesk:// link is clicked in the browser
   //
   // ⚠️ Production: the app is packaged → setAsDefaultProtocolClient works correctly.
   // ⚠️ Development: do NOT call setAsDefaultProtocolClient - use the manual registration script
   //    (see the guide in agents/references/deep-link-feature.md)
   if (app.isPackaged) {
-    if (!app.isDefaultProtocolClient('deplao')) {
-      app.setAsDefaultProtocolClient('deplao');
+    if (!app.isDefaultProtocolClient('sadshachatdesk')) {
+      app.setAsDefaultProtocolClient('sadshachatdesk');
     }
   }
 
@@ -1593,10 +1593,10 @@ app.whenReady().then(async () => {
   });
 
   // ── Handle the deep link from the initial launch (first instance) ──────────
-  // When a deplao:// link is clicked for the first time:
+  // When a sadshachatdesk:// link is clicked for the first time:
   //   - Production (correct): the URL is in process.argv[1] or after a `--`
   //   - Dev / wrong config: Electron receives the URL in argv[1] instead of the main script path
-  const initialDeepLink = process.argv.find((arg) => arg.startsWith('deplao://'));
+  const initialDeepLink = process.argv.find((arg) => arg.startsWith('sadshachatdesk://'));
   if (initialDeepLink) {
     setTimeout(() => handleDeepLink(initialDeepLink), 3000);
   }
@@ -1645,7 +1645,7 @@ app.whenReady().then(async () => {
   });
   // Events for the API/plugins: only registers the hook; writes nothing until someone uses the API.
   ApiPlatform.getInstance().startEvents();
-  // Plugins: IPC + protocol deplao-plugin://; enabled plugins start after the window is shown.
+  // Plugins: IPC + protocol sadshachatdesk-plugin://; enabled plugins start after the window is shown.
   registerPluginIpc();
   // UI language: language picker IPC. A change rebuilds the tray menu (its labels are translated).
   registerI18nIpc({ onLanguageChanged: () => { if (tray) tray.setContextMenu(buildTrayMenu()); } });
@@ -1659,7 +1659,7 @@ app.whenReady().then(async () => {
         try { if (mainWindow && !mainWindow.isDestroyed()) mainWindow.webContents.send(channel, payload); } catch {}
       },
     });
-    protocol.handle('deplao-plugin', (request) => handlePluginRequest(request as any, {
+    protocol.handle('sadshachatdesk-plugin', (request) => handlePluginRequest(request as any, {
       activeRecord: (id: string) => PluginsPlatform.getInstance().activeRecord(id),
       devOrigin: 'http://localhost:27799',
     }));

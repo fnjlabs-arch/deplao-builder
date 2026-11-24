@@ -273,7 +273,7 @@ export default function CloudSettings({ initialSubtab, initial }: CloudSettingsP
       <SettingsPage title={tr('Internet & Cloud')} description={pageDescription} width="wide">
       <div className="space-y-5">
         <Notice tone="warning" title={tr('Bản app này chưa có tính năng Cloudflare')}>
-          <p>{tr('Cập nhật Deplao lên bản mới nhất để dùng địa chỉ cố định, lưu media và sao lưu lên Cloudflare.')}</p>
+          <p>{tr('Cập nhật SadSha ChatDesk lên bản mới nhất để dùng địa chỉ cố định, lưu media và sao lưu lên Cloudflare.')}</p>
         </Notice>
       </div>
       </SettingsPage>

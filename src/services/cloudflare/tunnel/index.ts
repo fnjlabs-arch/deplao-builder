@@ -73,7 +73,7 @@ function createTunnelServiceRunner(): CloudTunnelRunner {
         publicUrl: input.publicUrl,
         // Fixed address: if the first start fails (no network yet…), it still retries by itself
         keepAlive: true,
-        // Ingress is managed by Deplao through the API (many names / paths): not matched like a single Public Hostname
+        // Ingress is managed by SadSha ChatDesk through the API (many names / paths): not matched like a single Public Hostname
         managedIngress: true,
     });
     return {
@@ -205,7 +205,7 @@ async function startLegacyTunnel(service: TunnelServiceId): Promise<void> {
     const gateway = require('../../workflow/WebhookGatewayService').default.getInstance();
     const status = gateway.getStatus();
     if (!status.running) {
-        throw new CloudError('GATEWAY_NOT_RUNNING', tr('Máy chủ nhận webhook workflow (cổng {{port}}) chưa chạy — khởi động lại Deplao rồi thử lại', { port: status.port }));
+        throw new CloudError('GATEWAY_NOT_RUNNING', tr('Máy chủ nhận webhook workflow (cổng {{port}}) chưa chạy — khởi động lại SadSha ChatDesk rồi thử lại', { port: status.port }));
     }
     const res = await gateway.startTunnel();
     if (!res?.success) throw legacyFailure(service, true, res?.error);

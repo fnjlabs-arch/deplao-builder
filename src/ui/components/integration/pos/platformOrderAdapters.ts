@@ -166,8 +166,8 @@ function toHaravan(data: GenericOrderData) {
         title: tr('Phí vận chuyển'),
         price: data.shippingFee,
       }] : [],
-      tags: 'deplaoapp',
-      source_name: 'deplaoapp',
+      tags: 'sadshachatdeskapp',
+      source_name: 'sadshachatdeskapp',
     },
   };
 }
@@ -224,10 +224,10 @@ function toSapo(data: GenericOrderData) {
       email: data.customer.email || undefined,
       billing_address: address,
       shipping_address: address,
-      discount_codes: totalDiscount > 0 ? [{ code: 'DEPLAO', amount: totalDiscount, type: 'fixed_amount' }] : undefined,
+      discount_codes: totalDiscount > 0 ? [{ code: 'SADSHA_CHATDESK', amount: totalDiscount, type: 'fixed_amount' }] : undefined,
       note: data.note || undefined,
-      tags: 'deplaoapp',
-      source_name: 'deplaoapp',
+      tags: 'sadshachatdeskapp',
+      source_name: 'sadshachatdeskapp',
       financial_status: data.paymentMethod === 'cod' ? 'pending' : 'paid',
       shipping_lines: data.shippingFee > 0 ? [{
         title: tr('Phí vận chuyển'),
@@ -263,8 +263,8 @@ function toNhanh(data: GenericOrderData) {
     },
     // channel.appOrderId = unique order ID on our side (Nhanh deduplicates by appId + appOrderId)
     channel: {
-      appOrderId: `DEPLAO-${Date.now()}`,
-      sourceName: 'deplaoapp',
+      appOrderId: `SADSHA_CHATDESK-${Date.now()}`,
+      sourceName: 'sadshachatdeskapp',
     },
     shippingAddress: {
       name: data.customer.name || tr('Khách vãng lai'),
@@ -357,7 +357,7 @@ function toPancake(data: GenericOrderData) {
     cash: data.paymentMethod === 'cash' ? totalMoney : 0,
     account: (data.paymentMethod === 'bank_transfer' || data.paymentMethod === 'card') ? totalMoney : 0,
     note: data.note || undefined,
-    order_sources: ['deplaoapp'],
+    order_sources: ['sadshachatdeskapp'],
   };
 }
 

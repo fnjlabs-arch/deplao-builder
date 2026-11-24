@@ -177,7 +177,7 @@ function MeterRow({ meter, periodKind }: { meter: CloudUsageMeter; periodKind: '
         <p className="flex flex-wrap items-center gap-2 text-sm font-medium text-foreground">
           {info.label}
           {meter.source === 'local' && (
-            <Badge size="sm" title={tr('Chỉ tính Deplao trên máy này, chưa gồm máy khác hay ứng dụng khác')}>{tr('máy này')}</Badge>
+            <Badge size="sm" title={tr('Chỉ tính SadSha ChatDesk trên máy này, chưa gồm máy khác hay ứng dụng khác')}>{tr('máy này')}</Badge>
           )}
         </p>
         <p className="text-sm tabular-nums text-foreground">
@@ -374,7 +374,7 @@ export function UsageCard({ provider, accountId = null, reloadKey = '', initialR
             >
               <p>
                 {view.accountNote || (r2
-                  ? tr('Số liệu dưới đây chỉ tính Deplao trên máy này.')
+                  ? tr('Số liệu dưới đây chỉ tính SadSha ChatDesk trên máy này.')
                   : tr('Chưa đọc được dung lượng tài khoản Google.'))}
               </p>
               {r2 && <p className="text-muted-foreground">{tr('Tạo xong, bấm Quản lý → Đổi token ở đầu trang để dán token mới.')}</p>}
@@ -389,7 +389,7 @@ export function UsageCard({ provider, accountId = null, reloadKey = '', initialR
 
           {view.sharedProject && (
             <p className="text-xs leading-relaxed text-muted-foreground">
-              {tr('Đang dùng client Google chung của Deplao: hạn mức ngày tính chung cho mọi người dùng Deplao, phí (nếu có) do Deplao chịu — bạn chỉ trả gói Google One.')}
+              {tr('Đang dùng client Google chung của SadSha ChatDesk: hạn mức ngày tính chung cho mọi người dùng SadSha ChatDesk, phí (nếu có) do SadSha ChatDesk chịu — bạn chỉ trả gói Google One.')}
             </p>
           )}
 

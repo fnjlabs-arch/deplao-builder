@@ -1,6 +1,6 @@
 package bridge
 
-// DEPLAO_ADAPTER: per-thread message history.
+// SADSHA_ADAPTER: per-thread message history.
 //
 // fbchat-v2 has no history fetch: its bridge only reloads the inbox page
 // (LoadMessagesPage = roughly the last message of recent threads) and drops

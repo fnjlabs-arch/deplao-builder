@@ -1,17 +1,17 @@
 /**
- * Automatically registers webhooks on KiotViet / Sapo pointing to Deplao's webhook receiving address (IntegrationRegistry, the
+ * Automatically registers webhooks on KiotViet / Sapo pointing to SadSha ChatDesk's webhook receiving address (IntegrationRegistry, the
  * 'payments' service of the Internet address), so the trigger "When the sales software sends a webhook" works without a technical person.
  * Does not depend on Electron: the adapter (PosWebhookApi) and the credential store are passed in → tested with a fake API.
  *
  * KiotViet: the webhook is signed with the Secret sent at registration and can NOT be read back → use the saved Webhook Secret field (create + save it first
- *   if missing / not Base64), each registration removes the old Deplao webhook of the same type and creates it again to make sure
+ *   if missing / not Base64), each registration removes the old SadSha ChatDesk webhook of the same type and creates it again to make sure
  *   the key matches. Webhooks from other systems are left alone.
  * Sapo: signed with the private app's API Secret (no separate Secret) → the webhook at the correct address is kept as is, an old address is
  *   edited (PUT), if none exists it is created. A connection using an OAuth Access Token must enter the Client Secret in the "Khoá xác thực webhook" field.
  */
 import * as crypto from 'crypto';
 import {
-  WEBHOOK_EVENT_OPTIONS, WebhookOwnership, WebhookRegistrationType, classifyWebhook, deplaoWebhookUrl,
+  WEBHOOK_EVENT_OPTIONS, WebhookOwnership, WebhookRegistrationType, classifyWebhook, sadshachatdeskWebhookUrl,
 } from '../../shared/integrations/posWebhookTopics';
 import { POS_WEBHOOK_SECRET_FIELD } from './posWebhook';
 import { tr } from '../../shared/i18n';
@@ -111,7 +111,7 @@ function emptyRegister(ctx: RegistrationContext, error: string): WebhookRegister
   };
 }
 
-/** Webhooks currently on the platform + which of them belong to Deplao (correct / old address). */
+/** Webhooks currently on the platform + which of them belong to SadSha ChatDesk (correct / old address). */
 export async function listPosWebhooks(ctx: RegistrationContext): Promise<WebhookListResult> {
   const base = { address: ctx.address.url, temporary: ctx.address.temporary };
   try {
@@ -137,7 +137,7 @@ function prepareSecret(ctx: RegistrationContext, notes: string[]): { secret?: st
   const apiKey = String(ctx.credentials.apiKey || '').trim();
   const apiSecret = String(ctx.credentials.apiSecret || '').trim();
   if (apiKey && apiSecret) {
-    // Private app: Sapo signs with the API Secret; if a separate key field is used, Deplao rejects every webhook
+    // Private app: Sapo signs with the API Secret; if a separate key field is used, SadSha ChatDesk rejects every webhook
     if (stored && stored !== apiSecret) {
       ctx.saveCredentials({ [POS_WEBHOOK_SECRET_FIELD]: apiSecret });
       notes.push(tr('Sapo ký webhook bằng API Secret của ứng dụng riêng — đã đặt Khoá xác thực webhook = API Secret'));
@@ -175,9 +175,9 @@ export async function registerPosWebhooks(ctx: RegistrationContext, events: read
 
   const result: WebhookRegisterResult = { ...emptyRegister(ctx, ''), success: true, error: undefined, notes };
   const ownership = (w: RemoteWebhook) => classifyWebhook(ctx.type, w, ctx.integrationId, base);
-  const description = `Deplao - ${ctx.integrationName || ctx.type}`.slice(0, 100);
+  const description = `SadSha ChatDesk - ${ctx.integrationName || ctx.type}`.slice(0, 100);
   for (const event of wanted) {
-    const url = deplaoWebhookUrl(ctx.type, base, ctx.integrationId, event);
+    const url = sadshachatdeskWebhookUrl(ctx.type, base, ctx.integrationId, event);
     const mine = remote.filter(w => w.event === event && ownership(w) !== 'other');
     try {
       if (ctx.type === 'kiotviet') {
@@ -200,7 +200,7 @@ export async function registerPosWebhooks(ctx: RegistrationContext, events: read
         await ctx.api.createWebhook({ event, url, description });
         result.created.push(event);
       }
-      // Duplicates (registered several times / several old addresses): each event keeps only one Deplao webhook
+      // Duplicates (registered several times / several old addresses): each event keeps only one SadSha ChatDesk webhook
       for (const w of mine) {
         if (w === target) continue;
         await ctx.api.deleteWebhook(w.id);
@@ -220,7 +220,7 @@ export async function registerPosWebhooks(ctx: RegistrationContext, events: read
   return result;
 }
 
-/** Removes one webhook (the integration page asks again before removing a webhook that is not Deplao's). */
+/** Removes one webhook (the integration page asks again before removing a webhook that is not SadSha ChatDesk's). */
 export async function removePosWebhook(ctx: RegistrationContext, webhookId: string): Promise<WebhookListResult> {
   const fail = (error: string): WebhookListResult => ({ success: false, error, address: ctx.address.url, temporary: ctx.address.temporary, webhooks: [] });
   let remote: RemoteWebhook[];

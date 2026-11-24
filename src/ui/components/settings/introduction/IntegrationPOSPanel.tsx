@@ -29,7 +29,7 @@ const PLATFORMS: Platform[] = [
     icon: <ShoppingCartIcon className="w-4 h-4" />, name: 'KiotViet',
     fields: ['Client ID', 'Client Secret', tr('Tên gian hàng (Retailer)')],
     hint: <>{trx('Client ID / Client Secret lấy trong trang quản trị KiotViet; tên gian hàng dạng <0>myshop</0>. Ô tuỳ chọn <1>Branch ID mặc định</1> là chi nhánh nhận đơn khi tạo đơn trong hội thoại.', { 0: <em />, 1: <strong className="text-foreground" /> })}</>,
-    webhook: tr('KiotViet không có màn hình quản trị webhook: bấm <strong class="text-foreground">Đăng ký webhook tự động</strong> trong trang KiotViet — Deplao tự tạo Secret, lưu vào ô <strong class="text-foreground">Webhook Secret</strong> và đăng ký các sự kiện đã chọn. Webhook đăng ký bằng công cụ khác thì dán đúng Secret (chuỗi Base64) đã dùng. KiotViet ký bằng header X-Hub-Signature.'),
+    webhook: tr('KiotViet không có màn hình quản trị webhook: bấm <strong class="text-foreground">Đăng ký webhook tự động</strong> trong trang KiotViet — SadSha ChatDesk tự tạo Secret, lưu vào ô <strong class="text-foreground">Webhook Secret</strong> và đăng ký các sự kiện đã chọn. Webhook đăng ký bằng công cụ khác thì dán đúng Secret (chuỗi Base64) đã dùng. KiotViet ký bằng header X-Hub-Signature.'),
   },
   {
     icon: <StoreIcon className="w-4 h-4" />, name: 'Haravan',
@@ -41,7 +41,7 @@ const PLATFORMS: Platform[] = [
     icon: <CheckCircleIcon className="w-4 h-4" />, name: 'Sapo',
     fields: [tr('Tên cửa hàng'), 'API Key', 'API Secret'],
     hint: <>{trx('Dùng <0>ứng dụng riêng</0>: Sapo Web → Ứng dụng → Ứng dụng riêng → Tạo ứng dụng riêng, cấp quyền Khách hàng, Đơn hàng, Sản phẩm rồi chép API Key + API Secret. Tên cửa hàng: <1>myshop</1> hoặc <2>myshop.mysapo.net</2>. Ô Access Token OAuth không bắt buộc — để trống.', { 0: <strong className="text-foreground" />, 1: <em />, 2: <em /> })}</>,
-    webhook: tr('Bấm <strong class="text-foreground">Đăng ký webhook tự động</strong> trong trang Sapo để Deplao tạo webhook cho các topic đã chọn. Sapo ký webhook (header X-Sapo-Hmac-Sha256) bằng <strong class="text-foreground">API Secret</strong> của ứng dụng riêng — đã nhập API Secret thì để trống ô Khoá xác thực webhook.'),
+    webhook: tr('Bấm <strong class="text-foreground">Đăng ký webhook tự động</strong> trong trang Sapo để SadSha ChatDesk tạo webhook cho các topic đã chọn. Sapo ký webhook (header X-Sapo-Hmac-Sha256) bằng <strong class="text-foreground">API Secret</strong> của ứng dụng riêng — đã nhập API Secret thì để trống ô Khoá xác thực webhook.'),
   },
   {
     icon: <LightningIcon className="w-4 h-4" />, name: 'Nhanh.vn',
@@ -70,7 +70,7 @@ export function IntegrationPOSPanel() {
       <Card>
         <SectionTitle>{trx('<0/> Tích hợp POS / Bán hàng', { 0: <ShoppingCartIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <Paragraph>
-          {tr('Kết nối Deplao với phần mềm bán hàng để tra cứu khách hàng, đơn hàng, sản phẩm và tạo đơn ngay bên cạnh hội thoại — không phải mở thêm trang quản trị. Các bước tra cứu, tạo đơn cũng có sẵn trong Workflow; phần mềm bán hàng gửi webhook (đơn mới, đổi trạng thái…) thì workflow tự chạy.')}
+          {tr('Kết nối SadSha ChatDesk với phần mềm bán hàng để tra cứu khách hàng, đơn hàng, sản phẩm và tạo đơn ngay bên cạnh hội thoại — không phải mở thêm trang quản trị. Các bước tra cứu, tạo đơn cũng có sẵn trong Workflow; phần mềm bán hàng gửi webhook (đơn mới, đổi trạng thái…) thì workflow tự chạy.')}
         </Paragraph>
         <Tip>
           {trx('Màn hình kết nối: thanh điều hướng bên trái → <0>Công cụ</0> → <1>Tích hợp</1> → tab <2>POS / Bán hàng</2>.', { 0: <strong className="text-foreground" />, 1: <strong className="text-foreground" />, 2: <strong className="text-foreground" /> })}
@@ -108,11 +108,11 @@ export function IntegrationPOSPanel() {
       <Card>
         <SectionTitle>{trx('<0/> Nhận webhook — tự chạy workflow khi có đơn', { 0: <WebhookIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <Paragraph>
-          {trx('Trigger <0>Khi phần mềm bán hàng gửi webhook</0> (nhóm Kích hoạt của Workflow) chạy khi KiotViet, Haravan, Sapo, Nhanh.vn hoặc Pancake POS báo đơn hàng, hoá đơn, khách hàng, sản phẩm, tồn kho — lọc được theo phần mềm, loại dữ liệu, tên sự kiện và trạng thái. Deplao chỉ nhận webhook xác thực đúng khoá.', { 0: <strong className="text-foreground" /> })}
+          {trx('Trigger <0>Khi phần mềm bán hàng gửi webhook</0> (nhóm Kích hoạt của Workflow) chạy khi KiotViet, Haravan, Sapo, Nhanh.vn hoặc Pancake POS báo đơn hàng, hoá đơn, khách hàng, sản phẩm, tồn kho — lọc được theo phần mềm, loại dữ liệu, tên sự kiện và trạng thái. SadSha ChatDesk chỉ nhận webhook xác thực đúng khoá.', { 0: <strong className="text-foreground" /> })}
         </Paragraph>
         <StepList steps={[
-          { title: tr('Bật địa chỉ nhận'), desc: tr('Cài đặt → Internet &amp; Cloud → Địa chỉ Internet → bật <strong class="text-foreground">Thanh toán, tích hợp</strong> (chỉ chạy khi Deplao đang mở trên máy Boss).') },
-          { title: tr('KiotViet / Sapo: Đăng ký webhook tự động'), desc: tr('Trang nền tảng → mục <strong class="text-foreground">Đăng ký webhook tự động</strong> → chọn sự kiện → <strong class="text-foreground">Đăng ký webhook</strong>. Deplao tạo webhook trỏ về địa chỉ nhận (KiotViet: tự tạo và lưu Secret) — không cần bước 3, 4.') },
+          { title: tr('Bật địa chỉ nhận'), desc: tr('Cài đặt → Internet &amp; Cloud → Địa chỉ Internet → bật <strong class="text-foreground">Thanh toán, tích hợp</strong> (chỉ chạy khi SadSha ChatDesk đang mở trên máy Boss).') },
+          { title: tr('KiotViet / Sapo: Đăng ký webhook tự động'), desc: tr('Trang nền tảng → mục <strong class="text-foreground">Đăng ký webhook tự động</strong> → chọn sự kiện → <strong class="text-foreground">Đăng ký webhook</strong>. SadSha ChatDesk tạo webhook trỏ về địa chỉ nhận (KiotViet: tự tạo và lưu Secret) — không cần bước 3, 4.') },
           { title: tr('Nền tảng khác: đặt khoá xác thực webhook'), desc: tr('Haravan / Nhanh.vn / Pancake: trang nền tảng → ô khoá webhook (bảng dưới) → <strong class="text-foreground">Cập nhật</strong>. Làm bước này TRƯỚC khi bật webhook bên phần mềm bán hàng.') },
           { title: tr('Dán địa chỉ vào phần mềm bán hàng'), desc: tr('Sao chép <strong class="text-foreground">Địa chỉ nhận webhook</strong> trong trang nền tảng, dán vào phần cấu hình webhook của phần mềm bán hàng, dùng cùng khoá.') },
           { title: tr('Tạo workflow'), desc: tr('Kéo trigger <strong class="text-foreground">Khi phần mềm bán hàng gửi webhook</strong>, chọn phần mềm và loại dữ liệu, nối các bước xử lý.') },
@@ -125,9 +125,9 @@ export function IntegrationPOSPanel() {
           ))}
         </div>
         <BulletList items={[
-          tr('Thiếu khoá hoặc sai chữ ký → Deplao trả lỗi 401 và không chạy workflow; mục <strong class="text-foreground">Bảo mật webhook</strong> trong trang nền tảng hiện lần nhận / từ chối gần nhất. KiotViet ngừng gửi tới địa chỉ trả lỗi 4xx, Nhanh.vn tắt webhook khi lỗi kéo dài — vì vậy đặt khoá trong Deplao trước khi đăng ký / bật webhook.'),
+          tr('Thiếu khoá hoặc sai chữ ký → SadSha ChatDesk trả lỗi 401 và không chạy workflow; mục <strong class="text-foreground">Bảo mật webhook</strong> trong trang nền tảng hiện lần nhận / từ chối gần nhất. KiotViet ngừng gửi tới địa chỉ trả lỗi 4xx, Nhanh.vn tắt webhook khi lỗi kéo dài — vì vậy đặt khoá trong SadSha ChatDesk trước khi đăng ký / bật webhook.'),
           tr('Mỗi đơn / khách / sản phẩm chạy workflow một lần; nền tảng gửi lại đúng dữ liệu đó (khi mạng lỗi) thì bỏ qua.'),
-          tr('Địa chỉ tạm (đổi mỗi lần khởi động lại Deplao): sau mỗi lần mở lại phải đăng ký lại — KiotViet / Sapo bấm <strong class="text-foreground">Đăng ký webhook</strong> (webhook cũ của Deplao được thay), nền tảng khác dán lại địa chỉ. Cloudflare tự động cho địa chỉ cố định.'),
+          tr('Địa chỉ tạm (đổi mỗi lần khởi động lại SadSha ChatDesk): sau mỗi lần mở lại phải đăng ký lại — KiotViet / Sapo bấm <strong class="text-foreground">Đăng ký webhook</strong> (webhook cũ của SadSha ChatDesk được thay), nền tảng khác dán lại địa chỉ. Cloudflare tự động cho địa chỉ cố định.'),
           tr('Biến dùng ở bước sau: <code class="font-mono text-foreground">{{ $trigger.code }}</code>, <code class="font-mono text-foreground">{{ $trigger.status }}</code>, <code class="font-mono text-foreground">{{ $trigger.customerName }}</code>, <code class="font-mono text-foreground">{{ $trigger.customerPhone }}</code>, <code class="font-mono text-foreground">{{ $trigger.total }}</code>, <code class="font-mono text-foreground">{{ $trigger.event }}</code> và trường gốc <code class="font-mono text-foreground">{{ $trigger.data.&lt;trường&gt; }}</code>. <code class="font-mono text-foreground">{{ $trigger.fromPhone }}</code> = SĐT khách nên bước tra cứu POS, “Tìm user bằng số điện thoại” dùng được ngay.'),
           tr('Webhook không gắn với hội thoại nào → bước gửi tin phải chọn người nhận (vd. “Tìm user bằng số điện thoại” rồi gửi tới user đó) hoặc gửi vào nhóm nội bộ / Telegram.'),
           tr('Nền tảng không gửi tên sự kiện: thêm <code class="font-mono text-foreground">?event=&lt;tên&gt;</code> vào cuối địa chỉ nhận (vd. <code class="font-mono text-foreground">…/webhook/&lt;id&gt;?event=orders/paid</code>) để lọc theo tên sự kiện.'),
@@ -176,7 +176,7 @@ export function IntegrationPOSPanel() {
       <Card>
         <SectionTitle>{trx('<0/> Lưu ý', { 0: <AlertIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <BulletList items={[
-          tr('Mỗi lần tra cứu, Deplao hỏi trực tiếp phần mềm bán hàng nên luôn thấy số liệu mới nhất; dữ liệu bán hàng không được đồng bộ về Deplao — webhook chỉ dùng để kích hoạt workflow.'),
+          tr('Mỗi lần tra cứu, SadSha ChatDesk hỏi trực tiếp phần mềm bán hàng nên luôn thấy số liệu mới nhất; dữ liệu bán hàng không được đồng bộ về SadSha ChatDesk — webhook chỉ dùng để kích hoạt workflow.'),
           tr('Máy nhân viên: Tích hợp nhanh và Test kết nối chạy trên máy Boss (kết nối và khoá API nằm ở Boss) — nhân viên cần quyền <strong class="text-foreground">Tích hợp</strong>; mất kết nối tới Boss thì không tra cứu được.'),
           tr('Tài khoản / ứng dụng dùng để kết nối cần đủ quyền với khách hàng, đơn hàng, sản phẩm — thiếu quyền thì tra cứu báo lỗi.'),
           tr('Sapo: ô mã đơn cần <strong class="text-foreground">ID số của đơn</strong> (xem trong địa chỉ trang chi tiết đơn trên Sapo).'),

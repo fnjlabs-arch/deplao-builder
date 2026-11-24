@@ -118,14 +118,14 @@ export class PluginSandbox implements PluginRuntimeHandle {
         const rec = this.ctx.record;
         const fork = this.opts.fork || forkElectron;
         const child = fork(this.opts.workerPath || defaultWorkerPath(), {
-            serviceName: `deplao-plugin:${rec.id}`,
+            serviceName: `sadshachatdesk-plugin:${rec.id}`,
             execArgv: this.opts.execArgv || ['--max-old-space-size=256'],
             env: pluginEnv({
-                DEPLAO_PLUGIN_ID: rec.id,
-                DEPLAO_PLUGIN_DIR: rec.install_path,
-                DEPLAO_PLUGIN_ENTRY: rec.manifest.backend?.entry || '',
-                DEPLAO_PLUGIN_DATA_DIR: this.ctx.dataDir,
-                DEPLAO_PLUGIN_DEV: rec.source_type === 'dev' ? '1' : '0',
+                SADSHA_CHATDESK_PLUGIN_ID: rec.id,
+                SADSHA_CHATDESK_PLUGIN_DIR: rec.install_path,
+                SADSHA_CHATDESK_PLUGIN_ENTRY: rec.manifest.backend?.entry || '',
+                SADSHA_CHATDESK_PLUGIN_DATA_DIR: this.ctx.dataDir,
+                SADSHA_CHATDESK_PLUGIN_DEV: rec.source_type === 'dev' ? '1' : '0',
             }),
         });
         this.child = child;

@@ -23,7 +23,7 @@ import { trx } from '@/lib/i18n/trx';
  *   after 01/07/2025) by default, the old 3-level units (province → district → ward) on demand; the choice is kept per machine
  */
 
-const ADDRESS_MODEL_KEY = 'deplao.posOrder.addressModel';
+const ADDRESS_MODEL_KEY = 'sadshachatdesk.posOrder.addressModel';
 
 function readAddressModel(): AddressModel {
   try {

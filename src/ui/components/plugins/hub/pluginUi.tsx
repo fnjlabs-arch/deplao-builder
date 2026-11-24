@@ -14,16 +14,16 @@ import { tr } from '../../../../shared/i18n';
 import { trx } from '@/lib/i18n/trx';
 
 export const STATUS: Record<PluginInfo['status'], { label: string; tone: 'green' | 'gray' | 'red' | 'yellow'; hint: string }> = {
-  enabled: { label: tr('Đang bật'), tone: 'green', hint: tr('Ứng dụng đang chạy và hiện trong Deplao.') },
-  disabled: { label: tr('Đang tắt'), tone: 'gray', hint: tr('Ứng dụng không chạy, không hiện trong Deplao. Dữ liệu vẫn giữ.') },
-  invalid: { label: tr('Lỗi gói'), tone: 'red', hint: tr('Gói ứng dụng hỏng hoặc không hợp lệ với bản Deplao này.') },
-  disabled_crash: { label: tr('Tắt do lỗi'), tone: 'red', hint: tr('Ứng dụng lỗi nhiều lần liên tiếp nên Deplao đã tự tắt nó.') },
+  enabled: { label: tr('Đang bật'), tone: 'green', hint: tr('Ứng dụng đang chạy và hiện trong SadSha ChatDesk.') },
+  disabled: { label: tr('Đang tắt'), tone: 'gray', hint: tr('Ứng dụng không chạy, không hiện trong SadSha ChatDesk. Dữ liệu vẫn giữ.') },
+  invalid: { label: tr('Lỗi gói'), tone: 'red', hint: tr('Gói ứng dụng hỏng hoặc không hợp lệ với bản SadSha ChatDesk này.') },
+  disabled_crash: { label: tr('Tắt do lỗi'), tone: 'red', hint: tr('Ứng dụng lỗi nhiều lần liên tiếp nên SadSha ChatDesk đã tự tắt nó.') },
 };
 
 export const RUNTIME: Record<PluginInfo['runtime'], { label: string; hint: string }> = {
-  web: { label: tr('Chỉ giao diện'), hint: tr('Chỉ có giao diện chạy trong Deplao, không chạy code nền.') },
-  local: { label: tr('Chạy trên máy'), hint: tr('Có phần chạy nền trên máy này, trong tiến trình riêng tách khỏi Deplao.') },
-  remote: { label: tr('Dịch vụ ngoài'), hint: tr('Phần xử lý chạy trên server của nhà cung cấp; Deplao gọi tới qua HTTPS có chữ ký.') },
+  web: { label: tr('Chỉ giao diện'), hint: tr('Chỉ có giao diện chạy trong SadSha ChatDesk, không chạy code nền.') },
+  local: { label: tr('Chạy trên máy'), hint: tr('Có phần chạy nền trên máy này, trong tiến trình riêng tách khỏi SadSha ChatDesk.') },
+  remote: { label: tr('Dịch vụ ngoài'), hint: tr('Phần xử lý chạy trên server của nhà cung cấp; SadSha ChatDesk gọi tới qua HTTPS có chữ ký.') },
 };
 
 /** Uninstall an app: asks for confirmation, then asks whether to delete its data (like the old action in Settings). Returns true if uninstalled. */
@@ -31,7 +31,7 @@ export async function uninstallPlugin(p: PluginInfo, notify: (msg: string, kind:
   const ok = await showConfirm({
     title: tr('Gỡ ứng dụng "{{name}}"?', { name: p.name }),
     message: p.source_type === 'dev'
-      ? tr('Ứng dụng sẽ bị gỡ khỏi Deplao. Thư mục dev của bạn KHÔNG bị xoá.')
+      ? tr('Ứng dụng sẽ bị gỡ khỏi SadSha ChatDesk. Thư mục dev của bạn KHÔNG bị xoá.')
       : tr('Mã của ứng dụng sẽ bị xoá khỏi máy. Dữ liệu riêng của ứng dụng (lưu trữ, file, nhật ký) được giữ lại để cài lại sau.'),
     confirmText: tr('Gỡ'),
     variant: 'danger',
@@ -246,7 +246,7 @@ export function PluginLogs({ pluginId }: { pluginId: string }) {
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <p className="text-[11px] text-subtle-foreground">{tr('300 dòng gần nhất (console.log của ứng dụng, lỗi, cảnh báo của Deplao).')}</p>
+        <p className="text-[11px] text-subtle-foreground">{tr('300 dòng gần nhất (console.log của ứng dụng, lỗi, cảnh báo của SadSha ChatDesk).')}</p>
         <button type="button" className={btn.link} onClick={load}>{tr('Tải lại')}</button>
       </div>
       {rows === null ? (

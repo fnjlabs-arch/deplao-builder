@@ -16,7 +16,7 @@ import { tr } from '../../../shared/i18n';
 import { trx } from '@/lib/i18n/trx';
 import LanguagePicker from '@/components/common/i18n/LanguagePicker';
 
-const SUPPORT_GITHUB_URL = 'https://github.com/babyvibe/deplao-builder';
+const SUPPORT_GITHUB_URL = 'https://github.com/fnjlabs-arch/deplao-builder';
 
 export default function Dashboard() {
   const { updateAccountStatus, reorderAccounts } = useAccountStore();

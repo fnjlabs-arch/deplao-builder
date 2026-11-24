@@ -105,7 +105,7 @@ export interface TunnelOptions {
   publicUrl?: string;
   /** A first start that fails (e.g. no network when the app opens) → keep the session and retry on the backoff schedule instead of giving up. */
   keepAlive?: boolean;
-  /** cloudflare_named: ingress managed by Deplao through the API (Cloudflare automatic) → do not check the Public Hostname / port. */
+  /** cloudflare_named: ingress managed by SadSha ChatDesk through the API (Cloudflare automatic) → do not check the Public Hostname / port. */
   managedIngress?: boolean;
 }
 

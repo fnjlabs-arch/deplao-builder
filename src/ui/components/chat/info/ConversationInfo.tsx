@@ -810,7 +810,7 @@ function UserConversationInfo() {
       </div>
 
 
-      {/* Auto-delete messages on Zalo (ZL-05): Deplao still keeps the messages */}
+      {/* Auto-delete messages on Zalo (ZL-05): SadSha ChatDesk still keeps the messages */}
       {zaloDirect && activeAccountId && activeThreadId && (
         <div className="border-b border-border">
           <ZaloAutoDeleteSection accountId={activeAccountId} threadId={activeThreadId} isGroup={false} bordered={false} />

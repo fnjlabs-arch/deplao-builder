@@ -90,7 +90,7 @@ export function WorkflowPanel() {
       <Card>
         <SectionTitle>{trx('<0/> Workflow tự động - không cần viết code', { 0: <LightningIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <Paragraph>
-          {trx('Workflow là kịch bản tự động dạng sơ đồ kéo-thả: một <0>Kích hoạt</0> (có tin nhắn, đến giờ hẹn, có webhook...) nối tới các bước <1>điều kiện, xử lý và hành động</1> (gửi tin, gắn nhãn, hỏi AI, ghi Google Sheets...). Workflow đang bật tự chạy nền mỗi khi có sự kiện, miễn là Deplao đang mở. Mở tại thanh bên <2>Công cụ → Workflow (n8n)</2> (hoặc nút <3>Tất cả tính năng</3> → Workflow).', { 0: <strong className="text-foreground font-semibold" />, 1: <strong className="text-foreground font-semibold" />, 2: <strong className="text-foreground font-semibold" />, 3: <strong className="text-foreground font-semibold" /> })}
+          {trx('Workflow là kịch bản tự động dạng sơ đồ kéo-thả: một <0>Kích hoạt</0> (có tin nhắn, đến giờ hẹn, có webhook...) nối tới các bước <1>điều kiện, xử lý và hành động</1> (gửi tin, gắn nhãn, hỏi AI, ghi Google Sheets...). Workflow đang bật tự chạy nền mỗi khi có sự kiện, miễn là SadSha ChatDesk đang mở. Mở tại thanh bên <2>Công cụ → Workflow (n8n)</2> (hoặc nút <3>Tất cả tính năng</3> → Workflow).', { 0: <strong className="text-foreground font-semibold" />, 1: <strong className="text-foreground font-semibold" />, 2: <strong className="text-foreground font-semibold" />, 3: <strong className="text-foreground font-semibold" /> })}
         </Paragraph>
         <StepList steps={[
           {
@@ -228,7 +228,7 @@ export function WorkflowPanel() {
       <Card>
         <SectionTitle>{trx('<0/> Lưu ý khi dùng Workflow', { 0: <AlertIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <BulletList items={[
-          tr('Workflow chạy trên chính máy đang mở Deplao. Bấm ✕ chỉ ẩn app xuống khay hệ thống, workflow vẫn chạy; chọn <strong class="text-foreground">Thoát hoàn toàn</strong> ở biểu tượng khay hoặc tắt máy thì workflow dừng. Muốn chạy 24/7, để máy và app luôn bật, Internet ổn định.'),
+          tr('Workflow chạy trên chính máy đang mở SadSha ChatDesk. Bấm ✕ chỉ ẩn app xuống khay hệ thống, workflow vẫn chạy; chọn <strong class="text-foreground">Thoát hoàn toàn</strong> ở biểu tượng khay hoặc tắt máy thì workflow dừng. Muốn chạy 24/7, để máy và app luôn bật, Internet ổn định.'),
           tr('Workflow mới tạo, cài từ Kho mẫu hay nhập từ file đều ở trạng thái <strong class="text-foreground">Tắt</strong>. Luôn <strong class="text-foreground">Mô phỏng</strong> trước khi bật; nhớ rằng <strong class="text-foreground">Chạy thử</strong> là gửi tin thật.'),
           tr('Workflow áp dụng cho nhiều tài khoản trả lời bằng đúng tài khoản nhận tin. Tài khoản của workflow mất kết nối thì node báo lỗi, không tự gửi bằng tài khoản khác. Node gửi lỗi (VD khách đã chặn Bot) được ghi lỗi trong Lịch sử chạy và dừng workflow, trừ khi bật <strong class="text-foreground">Tiếp tục workflow dù gửi thất bại</strong>.'),
           tr('Chống spam: các node gửi tin Zalo xếp hàng theo từng tài khoản và giãn cách ngẫu nhiên giữa các lần gửi (node mới mặc định 1-3 giây, chỉnh ở <strong class="text-foreground">Giãn cách gửi tối thiểu / tối đa</strong>).'),

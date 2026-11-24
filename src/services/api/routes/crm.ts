@@ -116,7 +116,7 @@ export function crmRoutes(): RouteDef[] {
         }),
         route({
             method: 'PATCH', path: '/accounts/:accountId/crm/contacts/:contactId', scope: 'crm:write', tags, operationId: 'updateCrmContact',
-            summary: tr('Cập nhật số điện thoại / tên hiển thị / biệt danh (lưu trên Deplao)'),
+            summary: tr('Cập nhật số điện thoại / tên hiển thị / biệt danh (lưu trên SadSha ChatDesk)'),
             params: contactParams,
             body: s.object({
                 phone: s.string().max(30).optional(),

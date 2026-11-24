@@ -99,7 +99,7 @@ export default function LibraryPickerModal({
     accounts.filter(account => !!account.zalo_id).map(account => [account.zalo_id, account]),
   ).values()), [accounts]);
   const [libraryScope, setLibraryScope] = useState<string>(() => {
-    try { return window.localStorage.getItem('deplao:library-scope:v1') || zaloId; }
+    try { return window.localStorage.getItem('sadshachatdesk:library-scope:v1') || zaloId; }
     catch { return zaloId; }
   });
   const [items, setItems] = useState<LibraryItem[]>([]);
@@ -179,7 +179,7 @@ export default function LibraryPickerModal({
     setActiveFolderId(undefined as any);
     setSelected(new Set());
     setPage(1);
-    try { window.localStorage.setItem('deplao:library-scope:v1', nextScope); } catch {}
+    try { window.localStorage.setItem('sadshachatdesk:library-scope:v1', nextScope); } catch {}
   }, []);
 
   // A cached selection may point to a page that was deleted / another workspace.

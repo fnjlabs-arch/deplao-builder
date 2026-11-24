@@ -32,7 +32,7 @@ export function MultiAccountPanel() {
       <Card>
         <SectionTitle>{trx('<0/> Thêm tài khoản Zalo, Facebook, Telegram', { 0: <UserPlusIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <Paragraph>
-          {trx('Deplao cho phép đăng nhập <0>không giới hạn tài khoản</0> Zalo (cá nhân / Business), Facebook (Messenger), Telegram (tài khoản cá nhân) và Telegram Bot trong một giao diện. Mỗi tài khoản có phiên đăng nhập riêng (Zalo, Facebook gắn được proxy riêng) và hoạt động độc lập với nhau.', { 0: <strong className="text-foreground font-semibold" /> })}
+          {trx('SadSha ChatDesk cho phép đăng nhập <0>không giới hạn tài khoản</0> Zalo (cá nhân / Business), Facebook (Messenger), Telegram (tài khoản cá nhân) và Telegram Bot trong một giao diện. Mỗi tài khoản có phiên đăng nhập riêng (Zalo, Facebook gắn được proxy riêng) và hoạt động độc lập với nhau.', { 0: <strong className="text-foreground font-semibold" /> })}
         </Paragraph>
         <StepList steps={[
           { title: tr('Mở hộp "Thêm tài khoản"'), desc: tr('Bấm <strong class="text-foreground">Thêm tài khoản</strong> trên Dashboard, hoặc nút <strong class="text-foreground">+</strong> (viền nét đứt) dưới danh sách avatar ở thanh bên trái.') },
@@ -80,7 +80,7 @@ export function MultiAccountPanel() {
         <BulletList items={[
           tr('<strong class="text-foreground">Tạo proxy:</strong> Cài đặt → Proxy → <em>Thêm proxy</em> → nhập Tên proxy, Giao thức (HTTP · HTTPS · SOCKS4 · SOCKS5), Host / IP, Port, Username / Password nếu có → <em>Lưu proxy</em>. Bấm <em>Thử kết nối</em> để kiểm tra.'),
           tr('<strong class="text-foreground">Gán khi đăng nhập:</strong> ở bước <em>Chọn Proxy (tuỳ chọn)</em>, chọn proxy → <em>Test ngay</em> → <em>Tiếp tục với proxy</em>. Proxy lỗi thì đăng nhập sẽ thất bại - sửa proxy hoặc tiếp tục không dùng proxy.'),
-          tr('<strong class="text-foreground">Thêm, đổi, bỏ proxy về sau:</strong> Cài đặt → Tài khoản → dòng <em>Proxy</em> dưới tài khoản → chọn proxy (hoặc <em>Không dùng proxy</em>) → <em>Áp dụng</em>. Hoặc Cài đặt → Proxy → dòng <em>Tài khoản</em> dưới mỗi proxy → tick tài khoản. Deplao thử proxy trước, rồi tài khoản tự kết nối lại qua proxy mới, không cần đăng nhập lại. Proxy không phản hồi thì giữ nguyên như cũ.'),
+          tr('<strong class="text-foreground">Thêm, đổi, bỏ proxy về sau:</strong> Cài đặt → Tài khoản → dòng <em>Proxy</em> dưới tài khoản → chọn proxy (hoặc <em>Không dùng proxy</em>) → <em>Áp dụng</em>. Hoặc Cài đặt → Proxy → dòng <em>Tài khoản</em> dưới mỗi proxy → tick tài khoản. SadSha ChatDesk thử proxy trước, rồi tài khoản tự kết nối lại qua proxy mới, không cần đăng nhập lại. Proxy không phản hồi thì giữ nguyên như cũ.'),
           tr('<strong class="text-foreground">Theo dõi:</strong> Cài đặt → Proxy ghi tài khoản đang dùng dưới mỗi proxy. Sửa thông tin proxy thì các tài khoản đó kết nối lại ngay với thông tin mới; xoá proxy thì các tài khoản đó kết nối lại không qua proxy.'),
           tr('Telegram hiện chưa có bước chọn proxy.'),
         ]} />
@@ -114,7 +114,7 @@ export function MultiAccountPanel() {
         <SectionTitle>{trx('<0/> Lưu ý quan trọng', { 0: <AlertIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <BulletList items={[
           tr('Zalo: dùng tài khoản cá nhân (kể cả Zalo Business) đang hoạt động bình thường; tài khoản bị Zalo khoá hoặc hạn chế tính năng có thể không đăng nhập hoặc không gửi tin được.'),
-          tr('Deplao đăng nhập Zalo theo kiểu Zalo Web: Zalo trên điện thoại và Zalo PC vẫn dùng song song bình thường, nhưng sau khi đăng nhập vào Deplao thì không đăng nhập thêm Zalo Web (chat.zalo.me) cho cùng tài khoản được.'),
+          tr('SadSha ChatDesk đăng nhập Zalo theo kiểu Zalo Web: Zalo trên điện thoại và Zalo PC vẫn dùng song song bình thường, nhưng sau khi đăng nhập vào SadSha ChatDesk thì không đăng nhập thêm Zalo Web (chat.zalo.me) cho cùng tài khoản được.'),
           tr('App không lưu mật khẩu Zalo, Facebook, Telegram - chỉ giữ phiên đăng nhập trên máy này.'),
           tr('Gửi hàng loạt (chiến dịch, workflow) càng nhiều thao tác, nội dung càng dài và delay càng ngắn thì càng dễ bị đánh dấu spam - hãy giãn cách và tuân thủ quy định của từng nền tảng.'),
           tr('Facebook: đồng bộ lịch sử tin nhắn và quét dữ liệu gửi nhiều yêu cầu, vẫn có rủi ro bị checkpoint (Facebook yêu cầu xác minh hoặc tạm khoá) - chỉ tải khoảng thời gian cần thiết, nên dùng tài khoản phụ để quét dữ liệu.'),

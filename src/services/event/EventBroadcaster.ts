@@ -112,7 +112,7 @@ class EventBroadcaster {
             if (!activeIsDefault) {
                 const defaultWs = wm.getWorkspaceById('default');
                 if (defaultWs) {
-                    return { bossDbPath: wm.resolveDbPath(defaultWs.dbPath || 'deplao-tool.db'), activeIsDefault: false };
+                    return { bossDbPath: wm.resolveDbPath(defaultWs.dbPath || 'sadshachatdesk-tool.db'), activeIsDefault: false };
                 }
             }
             return { bossDbPath: null, activeIsDefault: true };
@@ -359,7 +359,7 @@ class EventBroadcaster {
                     if (!activeIsDefault) {
                         const defaultWs = wm.getWorkspaceById('default');
                         if (defaultWs) {
-                            bossDbPath = wm.resolveDbPath(defaultWs.dbPath || 'deplao-tool.db');
+                            bossDbPath = wm.resolveDbPath(defaultWs.dbPath || 'sadshachatdesk-tool.db');
                         }
                     }
                 } catch {}
@@ -1203,7 +1203,7 @@ class EventBroadcaster {
                 const d = rawEvent?.data || rawEvent || {};
                 const topic = d.topic;
                 if (topic && groupId && Number(topic.type) === ZALO_PINNED_MESSAGE_TOPIC) {
-                    // A pinned message (from the phone or from Deplao), not a note: it used to be listed twice
+                    // A pinned message (from the phone or from SadSha ChatDesk), not a note: it used to be listed twice
                     try { this.runOnBossDb((db) => EventBroadcaster.saveTopicMessagePin(db, zaloId, groupId, topic)); } catch {}
                     this.sendAware('event:pinsUpdated', { zaloId, threadId: groupId });
                 } else if (topic && groupId) {
@@ -1585,7 +1585,7 @@ class EventBroadcaster {
         }
     }
 
-    /** Zalo message past its auto-delete time (FR-ZL05.6): Zalo cleans up the message on Zalo devices, Deplao keeps the content. */
+    /** Zalo message past its auto-delete time (FR-ZL05.6): Zalo cleans up the message on Zalo devices, SadSha ChatDesk keeps the content. */
     private static ttlExpiredIds(zaloId: string, msgIds: string[], threadId?: string): Set<string> {
         try {
             return this.withBossDb((db) => db.zaloTtlExpiredMessageIds(zaloId, msgIds, threadId));

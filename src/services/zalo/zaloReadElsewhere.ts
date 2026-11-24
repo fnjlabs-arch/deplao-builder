@@ -1,12 +1,12 @@
 /**
- * Read on another device (Zalo on the phone / Zalo PC, same account) → Deplao removes the unread count of the conversation.
+ * Read on another device (Zalo on the phone / Zalo PC, same account) → SadSha ChatDesk removes the unread count of the conversation.
  *
  * Zalo pushes cmd 504 (1-1 chat) / 524 (group), subCmd 0, about 1 second after the conversation is read on another device:
  * `{ data: { clearUnreads: [{ idTo, isGroup, lastMsgId, ts, type }], msgs: [], groupMsgs: [] } }`. zca-js 2.2.0 ignores this
- * frame (a proposed `unread_cleared` event: RFS-ADRENO/zca-js#380, not merged yet), so Deplao reads it directly from the websocket, like the
+ * frame (a proposed `unread_cleared` event: RFS-ADRENO/zca-js#380, not merged yet), so SadSha ChatDesk reads it directly from the websocket, like the
  * "syncmsgmb" control (mobileSync/zcaMobileSync.ts). Only `type: 0` is a real conversation (`type: 2` goes with idTo "-1").
  *
- * This frame also arrives after Deplao itself sends "đã xem" (read) (liveReadSync): the conversation is already read, so nothing changes and no
+ * This frame also arrives after SadSha ChatDesk itself sends "đã xem" (read) (liveReadSync): the conversation is already read, so nothing changes and no
  * event is emitted. Marking as read here does NOT send "đã xem" back to Zalo (no loop).
  */
 import Logger from '../../utils/Logger';
@@ -132,7 +132,7 @@ function lastReadTimestamp(db: ZaloReadDb, ownerId: string, threadId: string, ms
 /**
  * Writes "read on another device" to the DB: the unread count = RECEIVED messages newer than the last read message (messages that arrived during / after reading). It
  * never increases. If the last read message is not found on the machine, everything is read. When everything is read → the latest received message becomes 'read', and the @ flag is turned off.
- * Nothing changes (the conversation is already read, e.g. an echo of Deplao's own "đã xem" (read)) → nothing is written, and the caller emits no event.
+ * Nothing changes (the conversation is already read, e.g. an echo of SadSha ChatDesk's own "đã xem" (read)) → nothing is written, and the caller emits no event.
  */
 export function applyZaloClearUnread(db: ZaloReadDb, ownerId: string, item: ZaloClearUnread): ZaloReadResult {
   const result: ZaloReadResult = { mentionCleared: false };

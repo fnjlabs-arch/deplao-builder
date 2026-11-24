@@ -103,15 +103,15 @@ export function eventRoutes(deps: EventRouteDeps): RouteDef[] {
         route({
             method: 'POST', path: '/webhooks', scope: 'webhooks:manage', tags: wtags, operationId: 'createWebhook',
             summary: tr('Đăng ký webhook (trả secret một lần)'),
-            description: tr('Deplao POST sự kiện tới `url` kèm chữ ký `X-Deplao-Signature: v1=<HMAC-SHA256(secret, timestamp + "." + body)>`. Xem hướng dẫn "Webhook".\n\nURL trong mạng nội bộ (localhost, 192.168.x, 10.x) chỉ được phép khi gọi từ chính máy chạy Deplao (không qua tunnel), hoặc khi bật cài đặt `api_allow_private_urls`.'),
+            description: tr('SadSha ChatDesk POST sự kiện tới `url` kèm chữ ký `X-SadSha-ChatDesk-Signature: v1=<HMAC-SHA256(secret, timestamp + "." + body)>`. Xem hướng dẫn "Webhook".\n\nURL trong mạng nội bộ (localhost, 192.168.x, 10.x) chỉ được phép khi gọi từ chính máy chạy SadSha ChatDesk (không qua tunnel), hoặc khi bật cài đặt `api_allow_private_urls`.'),
             body: s.object({
                 name: s.string().max(100).default(''),
                 url: s.string().format('uri').max(2000),
                 events: s.array(s.string().max(100)).max(50).default(['*']),
                 account_ids: s.array(s.id()).max(200).optional(),
-                secret: s.string().min(16).max(200).optional().describe(tr('Bỏ trống = Deplao tự sinh')),
+                secret: s.string().min(16).max(200).optional().describe(tr('Bỏ trống = SadSha ChatDesk tự sinh')),
             }),
-            examples: { request: { name: 'CRM sync', url: 'https://crm.example.com/deplao', events: ['message.received', 'friend.request.received'] } },
+            examples: { request: { name: 'CRM sync', url: 'https://crm.example.com/sadshachatdesk', events: ['message.received', 'friend.request.received'] } },
             handler: ctx => {
                 checkAccounts(ctx, ctx.body.account_ids);
                 const { subscription, secret } = deps.webhooks.create({

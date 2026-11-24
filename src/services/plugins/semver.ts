@@ -1,6 +1,6 @@
 /**
  * semver.ts: minimal version comparison (MAJOR.MINOR.PATCH[-pre][+build]) for plugins.
- * No extra dependency; enough to check "the new version is greater" and minDeplaoVersion.
+ * No extra dependency; enough to check "the new version is greater" and minSadShaChatDeskVersion.
  */
 
 export interface SemVer {

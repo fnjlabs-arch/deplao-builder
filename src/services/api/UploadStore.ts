@@ -186,7 +186,7 @@ export class UploadStore {
                 allowPrivate: !!opts.allowPrivate,
                 timeoutMs: opts.timeoutMs || 60_000,
                 maxRedirects: 5,
-                headers: { 'User-Agent': 'Deplao-API/1', Accept: '*/*' },
+                headers: { 'User-Agent': 'SadSha ChatDesk-API/1', Accept: '*/*' },
             });
         } catch (err) {
             throw mapFetchError(err);

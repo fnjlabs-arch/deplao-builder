@@ -2,12 +2,12 @@
  * GoogleDriveService: Google Drive as the storage (instead of R2) for images / files + the DB copies.
  *
  *  - Sign-in: OAuth "Desktop app" (PKCE + loopback 127.0.0.1, drive.file scope) in the machine's browser. The shared client
- *    of Deplao (googleOAuthClient) or a private client entered by the user (client_id stored normally, secret via safeStorage).
+ *    of SadSha ChatDesk (googleOAuthClient) or a private client entered by the user (client_id stored normally, secret via safeStorage).
  *    Only one sign-in at a time (connecting shows in the UI, and it can be cancelled).
  *  - Refresh token stored with safeStorage (cloudSettings); the access token is kept only in RAM, refreshed 60 s before it expires, with one
  *    refresh shared by the whole app. invalid_grant = the session is dead → delete the refresh token, write lastError, notify the UI.
- *  - Root folder "Deplao" in My Drive: id stored in settings.google.rootFolderId, re-checked once per session (missing / in the
- *    trash → look it up by name again, the earliest-created one; none found → create it). "Bucket" = subfolder Deplao/<bucket>; a client
+ *  - Root folder "SadSha ChatDesk" in My Drive: id stored in settings.google.rootFolderId, re-checked once per session (missing / in the
+ *    trash → look it up by name again, the earliest-created one; none found → create it). "Bucket" = subfolder SadSha ChatDesk/<bucket>; a client
  *    of the R2Client kind = DriveStore (cache per bucket name, forgotten on sign-in / disconnect).
  *  - status() makes no network calls; refresh() reloads the email + quota (about.get).
  *  - Touches neither Electron / network / disk at startup (CloudflareService creates it in its constructor, even in tests).
@@ -26,14 +26,14 @@ import {
 } from './googleOAuth';
 import { tr } from '../../../shared/i18n';
 
-export const ROOT_FOLDER_NAME = 'Deplao';
+export const ROOT_FOLDER_NAME = 'SadSha ChatDesk';
 /** Refresh the access token this many ms before it expires. */
 const TOKEN_SKEW_MS = 60_000;
 const ABOUT_FIELDS = 'user(emailAddress,displayName),storageQuota(limit,usage,usageInDrive,usageInDriveTrash)';
 const CLIENT_ID_RE = /^[A-Za-z0-9][A-Za-z0-9._-]*\.apps\.googleusercontent\.com$/;
 
 export const MSG_NOT_CONNECTED = tr('Chưa đăng nhập Google Drive — đăng nhập Google ở phần Kho lưu.');
-export const MSG_CLIENT_REQUIRED = tr('Bản app này chưa có sẵn client Google của Deplao — nhập client OAuth riêng (mục Nâng cao) rồi đăng nhập.');
+export const MSG_CLIENT_REQUIRED = tr('Bản app này chưa có sẵn client Google của SadSha ChatDesk — nhập client OAuth riêng (mục Nâng cao) rồi đăng nhập.');
 export const MSG_BAD_CLIENT_ID = tr('Client ID Google không hợp lệ (dạng …apps.googleusercontent.com)');
 
 export interface GoogleDriveDeps {
@@ -129,7 +129,7 @@ export class GoogleDriveService implements GoogleDriveCore {
     private connecting = false;
     private cancelRequested = false;
     private abortLogin: (() => void) | null = null;
-    /** id of the "Deplao" folder, checked in this session. */
+    /** id of the "SadSha ChatDesk" folder, checked in this session. */
     private rootVerified: string | null = null;
     private rootJob: { create: boolean; promise: Promise<string | null> } | null = null;
 
@@ -250,7 +250,7 @@ export class GoogleDriveService implements GoogleDriveCore {
         let token: string | null = null;
         try { token = this.settings.getGoogleRefreshToken(); } catch { token = null; }
         if (token) {
-            // Also revoke Deplao's permission on the Google account (best effort: an error still deletes the session on this machine)
+            // Also revoke SadSha ChatDesk's permission on the Google account (best effort: an error still deletes the session on this machine)
             const ok = await revokeToken(this.fetchImpl, token).catch(() => false);
             if (!ok) this.log('warn', '[GoogleDrive] Không thu hồi được quyền trên Google (bỏ qua) — vẫn xoá phiên trên máy');
         }
@@ -408,9 +408,9 @@ export class GoogleDriveService implements GoogleDriveCore {
         this.safeNotify();
     }
 
-    // ── Root folder "Deplao" ──
+    // ── Root folder "SadSha ChatDesk" ──
 
-    /** id of the "Deplao" folder (checked once per session; create=false: do not create, null if it does not exist yet). */
+    /** id of the "SadSha ChatDesk" folder (checked once per session; create=false: do not create, null if it does not exist yet). */
     rootId(create: boolean): Promise<string | null> {
         if (this.rootVerified) return Promise.resolve(this.rootVerified);
         const job = this.rootJob;
@@ -516,7 +516,7 @@ export class GoogleDriveService implements GoogleDriveCore {
             g.connectedAt = this.now();
             if (choice.kind === 'custom') g.customClientId = choice.client.clientId;
             else if (choice.kind === 'builtin') g.customClientId = null;
-            // Different account → the old account's "Deplao" folder cannot be used
+            // Different account → the old account's "SadSha ChatDesk" folder cannot be used
             if (!sameAccount) g.rootFolderId = null;
         });
         this.access = { token: tokens.accessToken, expiresAt: tokens.expiresAt, refreshToken: tokens.refreshToken };

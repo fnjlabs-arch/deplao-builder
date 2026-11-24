@@ -3,7 +3,7 @@
  *
  * Previously, on every keystroke, each contact called matchQuery on 4 fields and normalized the Unicode of both the name and the keyword again
  * (up to 16 NFC / NFD normalizations + regex per contact, plus the friend list). Now each row's search key is computed ONCE when the list changes (buildSearchIndex in useMemo), the keyword is folded once, and matched with includes.
- * Matches more widely than before: accents are removed and "đ" → "d" too ("duc" matches "Đức"), like the group member search box (deplao_fold).
+ * Matches more widely than before: accents are removed and "đ" → "d" too ("duc" matches "Đức"), like the group member search box (sadshachatdesk_fold).
  */
 import { foldSearchText } from '../../../../shared/chat/searchFold';
 

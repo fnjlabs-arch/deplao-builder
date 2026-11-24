@@ -1,6 +1,6 @@
 /**
  * cloudContracts: shared contracts for the "Internet & Cloud" feature (Cloudflare: fixed tunnel, R2 media, DB sync). Used by both main (src/services/cloudflare/**, electron/ipc/cloud/cloudflareIpc.ts) and the renderer
- * (src/ui/components/settings/cloud/**). Design: Claude Doc "Deplao × Cloudflare" (main tab + UI tab).
+ * (src/ui/components/settings/cloud/**). Design: Claude Doc "SadSha ChatDesk × Cloudflare" (main tab + UI tab).
  *
  * Rules:
  *  - The Cloudflare token and the backup password NEVER go through IPC to the renderer; the renderer only sees the status.
@@ -394,7 +394,7 @@ export interface GoogleDriveStatus {
     displayName: string | null;
     /** Using an OAuth client the user created (their own Google Cloud quota). */
     customClient: boolean;
-    /** The app build has Deplao's shared OAuth client (if not, a separate client must be entered). */
+    /** The app build has SadSha ChatDesk's shared OAuth client (if not, a separate client must be entered). */
     builtinClient: boolean;
     /** client_id in use (not a secret), to show / edit. */
     clientId: string | null;
@@ -485,7 +485,7 @@ export interface CloudUsageMeter {
     /** Estimated cost of this item alone (USD): up to now / the whole period. */
     costSoFar: number;
     costProjected: number;
-    /** 'account' = whole-account figures; 'local' = Deplao on this machine only. */
+    /** 'account' = whole-account figures; 'local' = SadSha ChatDesk on this machine only. */
     source: 'account' | 'local';
 }
 
@@ -501,7 +501,7 @@ export interface CloudUsageReport {
     meters: CloudUsageMeter[];
     /** Total estimated cost (USD) for the period: up to now and the whole period. Google: always 0 (below the threshold nothing is charged). */
     cost: { soFar: number; projected: number };
-    /** Google: using Deplao's shared client (the project threshold is shared by all Deplao users). */
+    /** Google: using SadSha ChatDesk's shared client (the project threshold is shared by all SadSha ChatDesk users). */
     sharedProject?: boolean;
 }
 
@@ -560,7 +560,7 @@ export interface CloudflareIpc {
     google: {
         /**
          * Opens the Google sign-in in the browser. Returns when the user agrees (up to 5 minutes) or cancels.
-         * client: the user's own OAuth client; leave empty = Deplao's shared client (if the app build includes one).
+         * client: the user's own OAuth client; leave empty = SadSha ChatDesk's shared client (if the app build includes one).
          */
         connect: (client?: GoogleClientInput | null) => CloudResult<{ storage: CloudStorageStatus }>;
         cancelConnect: () => CloudResult;

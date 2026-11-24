@@ -1,7 +1,7 @@
 /**
  * Usage & cost of the selected storage (Settings → Data sync): `core.usage`.
  *
- *  - Counts Deplao operations on this machine (UsageMeter): R2Client calls recordR2 after every request to R2, and the Google Drive client
+ *  - Counts SadSha ChatDesk operations on this machine (UsageMeter): R2Client calls recordR2 after every request to R2, and the Google Drive client
  *    calls recordGoogle. Hot path: O(1), never throws.
  *  - R2 (period = UTC calendar month): account-wide figures via GraphQL Analytics (r2Analytics) once Cloudflare is connected:
  *    cached for 10 minutes; a refresh re-reads if the last read is ≥ 60 s old. Token missing the "Account Analytics: Read" permission / error → use
@@ -44,19 +44,19 @@ const GOOGLE_REFRESH_WAIT_MS = 20_000;
 /** If the remaining Cloudflare request budget is below this, do not read analytics (leave room for the tunnel / R2); use the cached figures / on-machine counts. */
 const MIN_API_BUDGET = 5;
 
-export const R2_NOTE_NO_PERMISSION = tr('Token Cloudflare chưa có quyền "Account Analytics: Read" — thêm quyền này vào token (Quản lý → Đổi token) để xem số liệu toàn tài khoản. Hiện chỉ đếm thao tác của Deplao trên máy này.', {  });
-export const R2_NOTE_NOT_CONNECTED = tr('Chưa kết nối Cloudflare — chỉ có số đếm của Deplao trên máy này.');
-export const GOOGLE_NOTE = tr('Google không cho đọc mức dùng hạn mức của project — số lượt và dung lượng tải là của Deplao trên máy này.');
-export const GOOGLE_NOTE_NOT_CONNECTED = tr('Chưa đăng nhập Google Drive — chỉ có số đếm của Deplao trên máy này.');
+export const R2_NOTE_NO_PERMISSION = tr('Token Cloudflare chưa có quyền "Account Analytics: Read" — thêm quyền này vào token (Quản lý → Đổi token) để xem số liệu toàn tài khoản. Hiện chỉ đếm thao tác của SadSha ChatDesk trên máy này.', {  });
+export const R2_NOTE_NOT_CONNECTED = tr('Chưa kết nối Cloudflare — chỉ có số đếm của SadSha ChatDesk trên máy này.');
+export const GOOGLE_NOTE = tr('Google không cho đọc mức dùng hạn mức của project — số lượt và dung lượng tải là của SadSha ChatDesk trên máy này.');
+export const GOOGLE_NOTE_NOT_CONNECTED = tr('Chưa đăng nhập Google Drive — chỉ có số đếm của SadSha ChatDesk trên máy này.');
 
 export function r2NoteFailed(reason: string): string {
-    return tr('Chưa đọc được số liệu từ Cloudflare ({{reason}}) — tạm dùng số đếm của Deplao trên máy này.', { reason });
+    return tr('Chưa đọc được số liệu từ Cloudflare ({{reason}}) — tạm dùng số đếm của SadSha ChatDesk trên máy này.', { reason });
 }
 
 export interface CloudUsageDeps {
     /** Cloudflare core: lazy getter (never called inside createCloudUsage). */
     core: () => CloudflareCore;
-    /** Bytes Deplao has pushed to the storage (uploaded media + DB copies), used when there are no account-wide figures. */
+    /** Bytes SadSha ChatDesk has pushed to the storage (uploaded media + DB copies), used when there are no account-wide figures. */
     localStoredBytes?: () => number;
     /** Default userData/cloud-usage.json (late require('electron')). */
     filePath?: () => string;
@@ -185,7 +185,7 @@ class CloudUsage implements CloudUsageModule {
             classA = account.data.classA;
             classB = account.data.classB;
         } else {
-            // No account-wide figures: the storage Deplao has pushed is treated as unchanged since the start of the month.
+            // No account-wide figures: the storage SadSha ChatDesk has pushed is treated as unchanged since the start of the month.
             storedBytes = this.localStoredBytes();
             gbMonthSoFar = (storedBytes / BYTES_PER_GB) * elapsedDays / BILLING_PERIOD_DAYS;
             classA = local.classA;
@@ -230,7 +230,7 @@ class CloudUsage implements CloudUsageModule {
                 costProjected: r2OpsCostUsd(projectedB, 'B'),
                 source,
             },
-            // Downloads from R2 are free; for information only, Deplao's count on this machine.
+            // Downloads from R2 are free; for information only, SadSha ChatDesk's count on this machine.
             { id: 'r2Egress', unit: 'bytes', used: local.bytesDown, limit: null, projected: null, costSoFar: 0, costProjected: 0, source: 'local' },
         ];
         return {
@@ -282,7 +282,7 @@ class CloudUsage implements CloudUsageModule {
                 if (typeof api.budgetRemaining === 'function') budget = Number(api.budgetRemaining());
             } catch { /* cannot read → treat as still available */ }
             if (Number.isFinite(budget) && budget < MIN_API_BUDGET) {
-                return cached ?? { data: null, note: r2NoteFailed(tr('Deplao đang dùng hết lượt gọi Cloudflare, thử lại sau ít phút')) };
+                return cached ?? { data: null, note: r2NoteFailed(tr('SadSha ChatDesk đang dùng hết lượt gọi Cloudflare, thử lại sau ít phút')) };
             }
             promise = this.queryAccount(api, accountId, key, period, now);
         }

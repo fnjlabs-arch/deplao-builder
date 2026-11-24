@@ -12,8 +12,8 @@
  *
  * A service that is turned off → its rule is dropped (the ingress changes, cloudflared is not restarted). A layout name that no rule catches any more
  * (e.g. 'single' with the relay off but payments on) → a separate 404 is added for that name, so the paths of services that are off always return 404,
- * even when the user has a wildcard rule. Rules of OTHER domains (the user added them in the dashboard) are kept, placed AFTER Deplao's rules
- * (their wildcard does not swallow Deplao's names). The last rule is always { service: 'http_status:404' }.
+ * even when the user has a wildcard rule. Rules of OTHER domains (the user added them in the dashboard) are kept, placed AFTER SadSha ChatDesk's rules
+ * (their wildcard does not swallow SadSha ChatDesk's names). The last rule is always { service: 'http_status:404' }.
  */
 import {
     SINGLE_HOST_PATH_RULES,
@@ -100,7 +100,7 @@ export function distinctHostnames(config: HostConfig): string[] {
     return Array.from(new Set(TUNNEL_SERVICES.map((service) => hostnameFor(config, service))));
 }
 
-/** Every Deplao name that can be used with this prefix (both layouts): their rules are always managed by Deplao. */
+/** Every SadSha ChatDesk name that can be used with this prefix (both layouts): their rules are always managed by SadSha ChatDesk. */
 export function managedHostnames(prefix: string, zoneName: string): string[] {
     const p = normalizeHostname(prefix);
     const zone = normalizeHostname(zoneName);
@@ -108,7 +108,7 @@ export function managedHostnames(prefix: string, zoneName: string): string[] {
     return Array.from(new Set(TUNNEL_SERVICES.map((service) => splitHostname(p, service, zone))));
 }
 
-/** Rules the user added (domains not managed by Deplao): kept as they are when PUT replaces the whole config. */
+/** Rules the user added (domains not managed by SadSha ChatDesk): kept as they are when PUT replaces the whole config. */
 export function foreignRules(existingRules: unknown, managed: Iterable<string>): IngressRule[] {
     if (!Array.isArray(existingRules)) return [];
     const managedSet = new Set(Array.from(managed, normalizeHostname));
@@ -129,9 +129,9 @@ export function foreignRules(existingRules: unknown, managed: Iterable<string>):
 }
 
 /**
- * The full ingress for PUT …/configurations (PUT replaces the WHOLE config): Deplao's rules per the layout + the services that are on,
+ * The full ingress for PUT …/configurations (PUT replaces the WHOLE config): SadSha ChatDesk's rules per the layout + the services that are on,
  * then the other domains' rules taken from the current config, and finally the 404.
- * opts.managedHosts: Deplao names used before (prefix / domain changed): their old rules are dropped.
+ * opts.managedHosts: SadSha ChatDesk names used before (prefix / domain changed): their old rules are dropped.
  */
 export function buildIngress(
     layout: AddressLayout,

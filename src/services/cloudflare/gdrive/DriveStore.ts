@@ -1,5 +1,5 @@
 /**
- * DriveStore: one "bucket" on Google Drive (folder Deplao/<bucket>) that follows the R2Client contract exactly, so the media module and the
+ * DriveStore: one "bucket" on Google Drive (folder SadSha ChatDesk/<bucket>) that follows the R2Client contract exactly, so the media module and the
  * DB sync can use it unchanged without knowing they run on Drive.
  *
  *  - Key `a/b/c.jpg` = folder a → b (inside the bucket folder) + file `c.jpg`. Reads never create folders (missing =
@@ -52,7 +52,7 @@ type PutFileOptions = R2PutOptions & {
 export interface DriveStoreOptions {
     bucket: string;
     api: DriveApi;
-    /** id of the root folder "Deplao" (create=false: do not create; null if it does not exist yet). */
+    /** id of the root folder "SadSha ChatDesk" (create=false: do not create; null if it does not exist yet). */
     rootId: (create: boolean) => Promise<string | null>;
     /** A remembered id that is gone → next time, re-check the root folder. */
     invalidateRoot: () => void;
@@ -430,7 +430,7 @@ export class DriveStore implements R2Client {
         throw new CloudError('UNSUPPORTED', tr('Google Drive không có liên kết tải ký sẵn'));
     }
 
-    /** Creates the folder Deplao/<bucket> if it does not exist yet (ensureBucket). */
+    /** Creates the folder SadSha ChatDesk/<bucket> if it does not exist yet (ensureBucket). */
     async ensureBucketFolder(): Promise<string> {
         this.sync();
         return this.retryStale(async () => {
@@ -609,7 +609,7 @@ export class DriveStore implements R2Client {
                 hit.checkedAt = this.now();
                 return hit.id;
             }
-            // The bucket folder (or "Deplao") was deleted / moved to the trash on Drive → forget all ids, re-check the root folder
+            // The bucket folder (or "SadSha ChatDesk") was deleted / moved to the trash on Drive → forget all ids, re-check the root folder
             if (gen === this.cacheGen) {
                 this.resetCaches();
                 this.opts.invalidateRoot();

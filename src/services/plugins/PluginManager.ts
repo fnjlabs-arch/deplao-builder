@@ -4,7 +4,7 @@
  * Layout on disk (split by workspace so no workspace overwrites another workspace's plugins):
  *   <userData>/plugins/<ws>/<id>/        plugin code installed from a zip
  *   <userData>/plugins-tmp/<token>/      package waiting for approval
- *   <userData>/plugin-data/<ws>/<id>/    the plugin's own files (deplao.storage.dataDir)
+ *   <userData>/plugin-data/<ws>/<id>/    the plugin's own files (sadshachatdesk.storage.dataDir)
  * Dev folders run in place and are never deleted.
  *
  * The records live in the `plugins` table of the open workspace. The runtime (local sandbox / remote client)
@@ -88,7 +88,7 @@ export interface PluginRuntimeHandle {
     stats(): RuntimeStats;
 }
 
-/** Plugin → host (deplao.* on the backend side). Implemented by PluginApiBridge. */
+/** Plugin → host (sadshachatdesk.* on the backend side). Implemented by PluginApiBridge. */
 export type PluginRequestHandler = (pluginId: string, method: string, params: any, origin: 'ui' | 'backend') => Promise<any>;
 
 export interface RuntimeContext {

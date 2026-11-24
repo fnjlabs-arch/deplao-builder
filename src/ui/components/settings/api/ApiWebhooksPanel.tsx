@@ -1,5 +1,5 @@
 /**
- * Webhook: Deplao POSTs events to your URL (signed with HMAC, retried automatically).
+ * Webhook: SadSha ChatDesk POSTs events to your URL (signed with HMAC, retried automatically).
  * A webhook created here belongs to the app (receives all selected accounts, may point to the internal network).
  * Webhooks created by an API key also show up here so the machine owner can manage them.
  */
@@ -84,7 +84,7 @@ export default function ApiWebhooksPanel() {
   return (
     <div className="space-y-4">
       <p className="text-xs text-muted-foreground leading-relaxed">
-        {trx('Deplao gửi sự kiện (tin nhắn mới, kết bạn, thanh toán…) tới URL của bạn ngay khi có, kèm chữ ký<0>X-Deplao-Signature</0> để kiểm tra. Lỗi thì tự thử lại sau 30 giây, 2 phút, 10 phút, 1 giờ, 6 giờ.', { 0: <code className="mx-1 text-success" /> })}
+        {trx('SadSha ChatDesk gửi sự kiện (tin nhắn mới, kết bạn, thanh toán…) tới URL của bạn ngay khi có, kèm chữ ký<0>X-SadSha-ChatDesk-Signature</0> để kiểm tra. Lỗi thì tự thử lại sau 30 giây, 2 phút, 10 phút, 1 giờ, 6 giờ.', { 0: <code className="mx-1 text-success" /> })}
       </p>
 
       {created && (
@@ -159,7 +159,7 @@ export function WebhookList({ hooks, openId, testing, testResult, onToggleOpen, 
           </div>
           <div className="flex flex-wrap gap-1">
             {h.events.map(e => <Badge key={e} tone="blue">{e}</Badge>)}
-            <Badge>{h.owner === 'app' ? tr('tạo trong Deplao') : h.owner.startsWith('plugin:') ? tr('ứng dụng: {{v1}}', { v1: h.owner.slice(7) }) : tr('key: {{owner}}', { owner: h.owner })}</Badge>
+            <Badge>{h.owner === 'app' ? tr('tạo trong SadSha ChatDesk') : h.owner.startsWith('plugin:') ? tr('ứng dụng: {{v1}}', { v1: h.owner.slice(7) }) : tr('key: {{owner}}', { owner: h.owner })}</Badge>
             {h.account_ids && <Badge>{trx('{{count}} tài khoản', { count: h.account_ids.length })}</Badge>}
             {h.consecutive_failures > 0 && <Badge tone="yellow">{trx('{{consecutive_failures}} lỗi liên tiếp', { consecutive_failures: h.consecutive_failures })}</Badge>}
           </div>
@@ -307,7 +307,7 @@ export function WebhookForm({ types, accounts, onCancel, onCreated }: {
           <input className={inputCls} value={name} maxLength={100} placeholder={tr('n8n đơn hàng')} onChange={e => setName(e.target.value)} />
         </Field>
         <Field label={tr('URL nhận')}>
-          <input className={`${inputCls} font-mono`} value={url} placeholder="https://n8n.example.com/webhook/deplao" onChange={e => setUrl(e.target.value)} />
+          <input className={`${inputCls} font-mono`} value={url} placeholder="https://n8n.example.com/webhook/sadshachatdesk" onChange={e => setUrl(e.target.value)} />
         </Field>
       </div>
       <div className="space-y-2">

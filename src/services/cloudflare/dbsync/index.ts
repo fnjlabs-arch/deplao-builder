@@ -1,7 +1,7 @@
 /**
  * dbsync: syncs the workspace DB to Cloudflare R2 (optional, off by default). Contract: CloudDbModule (../contracts).
  *
- *  - One SyncEngine per LOCAL workspace that has a DB file; the machine's bucket: deplao-backup-<8 characters of machineId>.
+ *  - One SyncEngine per LOCAL workspace that has a DB file; the machine's bucket: sadshachatdesk-backup-<8 characters of machineId>.
  *  - All SQLite operations run in worker_threads (their own connection), so main does not wait on SQLite for long.
  *  - 'off' = no triggers (removed when turned off), no timers, no worker.
  *  - pauseFor(): wraps an operation that replaces the DB file (changing the storage folder, changing/deleting a workspace, restoring).
@@ -38,7 +38,7 @@ import { StateStore } from './state';
 import { EngineContext, Mutex, RECHECK_DELAY_MS, SyncEngine, describeScope, pool, userMessage } from './SyncEngine';
 import { rowToEntry } from './syncLog';
 
-const DEFAULT_DB = 'deplao-tool.db';
+const DEFAULT_DB = 'sadshachatdesk-tool.db';
 const FOLLOWERS_REFRESH_MS = 10 * 60_000;
 const FOLLOWER_MAX_AGE_MS = 7 * 24 * 3600_000;
 const PAUSE_WAIT_MS = 30_000;
@@ -532,9 +532,9 @@ interface ResolvedCopy {
 async function discoverBuckets(): Promise<string[]> {
     const names = new Set<string>();
     try {
-        // R2: the account's bucket; Google Drive: a subfolder of the Deplao folder
-        for (const n of await cloudflare.listBuckets('deplao-backup-')) {
-            if (/^deplao-backup-[a-z0-9-]+$/.test(n)) names.add(n);
+        // R2: the account's bucket; Google Drive: a subfolder of the SadSha ChatDesk folder
+        for (const n of await cloudflare.listBuckets('sadshachatdesk-backup-')) {
+            if (/^sadshachatdesk-backup-[a-z0-9-]+$/.test(n)) names.add(n);
         }
     } catch (err: any) {
         logLine('warn', `[CloudDb] không liệt kê được bản sao trên ${storeName()} (chỉ xem bản của máy này): ${err?.message || err}`);

@@ -1,5 +1,5 @@
 /**
- * Deplao UI kit — barrel. Import from '@/components/ui'.
+ * SadSha ChatDesk UI kit — barrel. Import from '@/components/ui'.
  * Tokens + contract: ./README.md · gallery: ./DesignSystemPage.tsx
  */
 export * from './button';

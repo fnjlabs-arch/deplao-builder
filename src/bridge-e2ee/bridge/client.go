@@ -75,7 +75,7 @@ type Client struct {
 	recentMessageSweep  int64
 	liveMessageCutoffMs int64
 	regularConnected    atomic.Bool
-	// DEPLAO_ADAPTER: per-thread history requests waiting for their upsert page (history.go).
+	// SADSHA_ADAPTER: per-thread history requests waiting for their upsert page (history.go).
 	historyMu         sync.Mutex
 	historyCollectors map[int64]*historyCollector
 }
@@ -91,14 +91,14 @@ type ClientConfig struct {
 }
 
 type e2eeConnectOperations struct {
-	// DEPLAO_ADAPTER: registration runs only for a device without a server
+	// SADSHA_ADAPTER: registration runs only for a device without a server
 	// identity, and before prepare (see ConnectE2EE). nil means "register".
 	needsRegistration func() bool
 	prepare           func() (*whatsmeow.Client, error)
 	register          func() error
 	save              func() error
 	connect           func(*whatsmeow.Client) error
-	// DEPLAO_ADAPTER: optional wait for the encrypted socket to authenticate.
+	// SADSHA_ADAPTER: optional wait for the encrypted socket to authenticate.
 	waitReady  func(*whatsmeow.Client) error
 	disconnect func(*whatsmeow.Client)
 }
@@ -159,7 +159,7 @@ func NewClient(cfg *ClientConfig) (*Client, error) {
 		// Use provided device data (no file I/O)
 		deviceStore, err = NewDeviceStoreFromData(cfg.DeviceData)
 	} else if cfg.DevicePath == "" {
-		// DEPLAO_ADAPTER: Electron persists state through safeStorage. Keep the
+		// SADSHA_ADAPTER: Electron persists state through safeStorage. Keep the
 		// first device in memory and publish snapshots instead of creating an
 		// unencrypted e2ee_device.json in the process working directory.
 		deviceStore, err = NewDeviceStoreMemoryOnly()
@@ -289,7 +289,7 @@ func (c *Client) collectInitialData(initialTable *table.LSTable) *InitialData {
 	}
 
 	upsert, insert := initialTable.WrapMessages()
-	// DEPLAO_ADAPTER: CTA + carousel rows for template cards (xma.go).
+	// SADSHA_ADAPTER: CTA + carousel rows for template cards (xma.go).
 	extras := newTableExtras(initialTable)
 	seen := make(map[string]struct{})
 	appendMessage := func(wrapped *table.WrappedMessage) {
@@ -348,7 +348,7 @@ func (c *Client) ConnectE2EE() error {
 }
 
 // connectE2EE keeps fbchat-v2 2.3.2's guarantee that a failed attempt never
-// leaves a partially initialized client behind, with Deplao's ordering:
+// leaves a partially initialized client behind, with SadSha ChatDesk's ordering:
 // first-time registration happens before prepare so that whatsmeow is built
 // from the already-registered device and restored sessions keep their keys.
 func (c *Client) connectE2EE(operations e2eeConnectOperations) (err error) {

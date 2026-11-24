@@ -15,7 +15,7 @@ import { tr, appLocale } from '../../../../shared/i18n';
 /** Status of MY sent message being drawn (ChatWindow provides it per message); null = no tick drawn (received messages / channel does not support it). */
 export const MessageStatusContext = React.createContext<OutgoingStatus | null>(null);
 
-/** Zalo self-delete timer for the message being drawn (ms, ZL-05); 0 = none. Deplao does not delete messages by TTL, it only shows the clock. */
+/** Zalo self-delete timer for the message being drawn (ms, ZL-05); 0 = none. SadSha ChatDesk does not delete messages by TTL, it only shows the clock. */
 export const MessageTtlContext = React.createContext<number>(0);
 
 /**
@@ -42,15 +42,15 @@ export function useZaloTtlExpired(sentAt?: number | string | null, ttl?: number 
 
 /**
  * Small clock next to the sent time when the message has a Zalo self-delete timer; once expired → a crossed-out clock with "Đã tự xoá trên Zalo" (Deleted on Zalo)
- * (Deplao still keeps the content, FR-ZL05.6). `sentAt` = sent time (ms).
+ * (SadSha ChatDesk still keeps the content, FR-ZL05.6). `sentAt` = sent time (ms).
  */
 export function TtlMark({ ttl, sentAt, className = '' }: { ttl?: number | null; sentAt?: number | string | null; className?: string }) {
   const value = Number(ttl) || 0;
   const expired = useZaloTtlExpired(sentAt, value);
   if (value <= 0) return null;
   const label = expired
-    ? tr('{{ZALO_TTL_EXPIRED_LABEL}} (sau {{v1}}) — Deplao vẫn giữ tin này trên máy', { ZALO_TTL_EXPIRED_LABEL, v1: zaloAutoDeleteLabel(value) })
-    : tr('Zalo tự xoá tin này sau {{v1}} — Deplao vẫn giữ trên máy này', { v1: zaloAutoDeleteLabel(value) });
+    ? tr('{{ZALO_TTL_EXPIRED_LABEL}} (sau {{v1}}) — SadSha ChatDesk vẫn giữ tin này trên máy', { ZALO_TTL_EXPIRED_LABEL, v1: zaloAutoDeleteLabel(value) })
+    : tr('Zalo tự xoá tin này sau {{v1}} — SadSha ChatDesk vẫn giữ trên máy này', { v1: zaloAutoDeleteLabel(value) });
   return (
     <svg viewBox="0 0 12 12" width="10" height="10" aria-label={label} className={`inline-block flex-shrink-0 ${className}`}
       fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round">
@@ -68,7 +68,7 @@ export function TtlExpiredNote({ ttl, sentAt }: { ttl?: number | null; sentAt?: 
   if (!expired) return null;
   return (
     <span className="ml-1 text-[10px] opacity-60 select-none font-normal"
-      title={tr('Zalo đã xoá tin này trên điện thoại và Zalo PC theo hẹn tự xoá; Deplao vẫn giữ trên máy này')}>
+      title={tr('Zalo đã xoá tin này trên điện thoại và Zalo PC theo hẹn tự xoá; SadSha ChatDesk vẫn giữ trên máy này')}>
       ({ZALO_TTL_EXPIRED_LABEL.charAt(0).toLowerCase() + ZALO_TTL_EXPIRED_LABEL.slice(1)})
     </span>
   );

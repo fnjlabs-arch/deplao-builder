@@ -12,31 +12,31 @@ import { STATUS } from './pluginUi';
 import { tr } from '../../../../shared/i18n';
 import { trx } from '@/lib/i18n/trx';
 
-const CLI = 'node packages/plugin-cli/bin/deplao-plugin.js';
+const CLI = 'node packages/plugin-cli/bin/sadshachatdesk-plugin.js';
 
 export const DOC_LINKS: Array<{ hash: string; title: string; desc: string }> = [
   { hash: '#guide/plugins', title: tr('Ứng dụng: bắt đầu'), desc: tr('Tạo ứng dụng đầu tiên, cấu trúc thư mục, chạy thử, đóng gói.') },
-  { hash: '#guide/plugin-reference', title: tr('Ứng dụng: tham chiếu'), desc: tr('Manifest, quyền, SDK deplao.*, backend, node workflow, route, lịch chạy.') },
-  { hash: '#overview', title: tr('Toàn bộ API'), desc: tr('Mọi endpoint ứng dụng gọi được qua deplao.<nhóm>.<tên>(…), có thử gọi trực tiếp.') },
-  { hash: '#guide/events', title: tr('Sự kiện realtime'), desc: tr('Tin nhắn mới, đổi trạng thái… nhận bằng deplao.events.on().') },
+  { hash: '#guide/plugin-reference', title: tr('Ứng dụng: tham chiếu'), desc: tr('Manifest, quyền, SDK sadshachatdesk.*, backend, node workflow, route, lịch chạy.') },
+  { hash: '#overview', title: tr('Toàn bộ API'), desc: tr('Mọi endpoint ứng dụng gọi được qua sadshachatdesk.<nhóm>.<tên>(…), có thử gọi trực tiếp.') },
+  { hash: '#guide/events', title: tr('Sự kiện realtime'), desc: tr('Tin nhắn mới, đổi trạng thái… nhận bằng sadshachatdesk.events.on().') },
 ];
 
 export const SDK_CHEATSHEET: Array<[string, string]> = [
-  ['deplao.ready(cb)', tr('Chờ Deplao gửi ngữ cảnh, theme, cài đặt rồi mới chạy.')],
-  ['deplao.chat.sendMessage({…})', tr('Gọi bất kỳ API v1 theo tên: deplao.<nhóm>.<operationId>(tham số).')],
-  ['deplao.api.request(method, path, opts)', tr('Gọi API v1 theo đường dẫn (khi cần tự ghép URL).')],
-  ['deplao.events.on(type, cb)', tr('Nhận sự kiện realtime (vd message.received).')],
-  ['deplao.ui.context() / onContext(cb)', tr('Hội thoại đang mở — dùng trong panel chat.')],
-  ['deplao.ui.toast / openConversation / insertComposerText / navigate', tr('Điều khiển giao diện Deplao.')],
-  ['deplao.storage.get / set / list / delete', tr('Lưu dữ liệu riêng của ứng dụng (không đụng DB của Deplao).')],
-  ['deplao.settings.get() / onChange(cb)', tr('Đọc cài đặt người dùng nhập ở trang Ứng dụng, API & Webhook.')],
-  ['deplao.backend.call(name, params)', tr('Gọi lệnh trong backend của ứng dụng (commands).')],
-  ['deplao.media.upload(file)', tr('Tải file lên để gửi kèm tin nhắn.')],
+  ['sadshachatdesk.ready(cb)', tr('Chờ SadSha ChatDesk gửi ngữ cảnh, theme, cài đặt rồi mới chạy.')],
+  ['sadshachatdesk.chat.sendMessage({…})', tr('Gọi bất kỳ API v1 theo tên: sadshachatdesk.<nhóm>.<operationId>(tham số).')],
+  ['sadshachatdesk.api.request(method, path, opts)', tr('Gọi API v1 theo đường dẫn (khi cần tự ghép URL).')],
+  ['sadshachatdesk.events.on(type, cb)', tr('Nhận sự kiện realtime (vd message.received).')],
+  ['sadshachatdesk.ui.context() / onContext(cb)', tr('Hội thoại đang mở — dùng trong panel chat.')],
+  ['sadshachatdesk.ui.toast / openConversation / insertComposerText / navigate', tr('Điều khiển giao diện SadSha ChatDesk.')],
+  ['sadshachatdesk.storage.get / set / list / delete', tr('Lưu dữ liệu riêng của ứng dụng (không đụng DB của SadSha ChatDesk).')],
+  ['sadshachatdesk.settings.get() / onChange(cb)', tr('Đọc cài đặt người dùng nhập ở trang Ứng dụng, API & Webhook.')],
+  ['sadshachatdesk.backend.call(name, params)', tr('Gọi lệnh trong backend của ứng dụng (commands).')],
+  ['sadshachatdesk.media.upload(file)', tr('Tải file lên để gửi kèm tin nhắn.')],
 ];
 
 /** Open /docs at the right section in the browser (the API server turns itself on if it is off). */
 export function openDocs(hash: string, notify: (msg: string, kind: 'error') => void) {
-  if (!ipc.api) { notify(tr('Bản Deplao này chưa có module API'), 'error'); return; }
+  if (!ipc.api) { notify(tr('Bản SadSha ChatDesk này chưa có module API'), 'error'); return; }
   ipc.api.openDocs(hash).then(res => { if (!res?.success) notify(res?.error || tr('Không mở được tài liệu'), 'error'); });
 }
 
@@ -72,10 +72,10 @@ export default function PluginDevPanel({ plugins, busy, onAddDevFolder, onOpenDe
         <div className="flex-1 min-w-[260px]">
           <p className="text-base font-semibold text-foreground">{tr('Tự làm ứng dụng — làm gì, công nghệ gì cũng được')}</p>
           <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-            {trx('Ứng dụng là một web app chạy ngay trong Deplao (HTML/CSS/JS thuần, React, Vue, Svelte…), giao diện hoàn toàn của bạn, gọi Deplao qua <0>deplao.*</0>. Cần xử lý nền thì thêm backend Node chạy trên máy, hoặc để server riêng của bạn xử lý.', { 0: <code className="text-foreground" /> })}
+            {trx('Ứng dụng là một web app chạy ngay trong SadSha ChatDesk (HTML/CSS/JS thuần, React, Vue, Svelte…), giao diện hoàn toàn của bạn, gọi SadSha ChatDesk qua <0>sadshachatdesk.*</0>. Cần xử lý nền thì thêm backend Node chạy trên máy, hoặc để server riêng của bạn xử lý.', { 0: <code className="text-foreground" /> })}
           </p>
           <p className="text-xs text-subtle-foreground mt-1.5 leading-relaxed">
-            {trx('Trong mã nguồn, SDK và tài liệu, ứng dụng gọi là <0>plugin</0>: file <1>deplao-plugin.json</1>, gói <2>@deplao/plugin-sdk</2>, lệnh <3>deplao-plugin</3>.', { 0: <i />, 1: <code className="text-foreground" />, 2: <code className="text-foreground" />, 3: <code className="text-foreground" /> })}
+            {trx('Trong mã nguồn, SDK và tài liệu, ứng dụng gọi là <0>plugin</0>: file <1>sadshachatdesk-plugin.json</1>, gói <2>@sadshachatdesk/plugin-sdk</2>, lệnh <3>sadshachatdesk-plugin</3>.', { 0: <i />, 1: <code className="text-foreground" />, 2: <code className="text-foreground" />, 3: <code className="text-foreground" /> })}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -97,7 +97,7 @@ export default function PluginDevPanel({ plugins, busy, onAddDevFolder, onOpenDe
               <Command text={`${CLI} create my-plugin --runtime web --id vn.acme.myplugin --name "My Plugin"`} />
             </li>
             <li className="space-y-1.5">
-              <p className="text-xs text-foreground/80">{trx('<0>2.</0> Bấm <1>Thêm thư mục đang phát triển</1>, chọn thư mục có <2>deplao-plugin.json</2>. Ứng dụng chạy tại chỗ: sửa code xong bấm <3>Tải lại</3> trong chi tiết ứng dụng.', { 0: <span className="text-primary font-semibold" />, 1: <b />, 2: <code />, 3: <b /> })}</p>
+              <p className="text-xs text-foreground/80">{trx('<0>2.</0> Bấm <1>Thêm thư mục đang phát triển</1>, chọn thư mục có <2>sadshachatdesk-plugin.json</2>. Ứng dụng chạy tại chỗ: sửa code xong bấm <3>Tải lại</3> trong chi tiết ứng dụng.', { 0: <span className="text-primary font-semibold" />, 1: <b />, 2: <code />, 3: <b /> })}</p>
             </li>
             <li className="space-y-1.5">
               <p className="text-xs text-foreground/80">{trx('<0>3.</0> Kiểm tra manifest trước khi gửi:', { 0: <span className="text-primary font-semibold" /> })}</p>
@@ -132,7 +132,7 @@ export default function PluginDevPanel({ plugins, busy, onAddDevFolder, onOpenDe
           <div className="space-y-1 pt-1">
             <p className="text-xs font-semibold text-foreground/80">{tr('Giao diện: tự do')}</p>
             <p className="text-[11px] text-subtle-foreground leading-relaxed">
-              {trx('CSS và framework là của ứng dụng: CSS thuần, Tailwind, React, Vue, Svelte… Chỉ cần build ra file tĩnh và đóng gói kèm (script, CSS, font từ CDN bị chặn để bảo mật). Muốn hợp theme sáng/tối của Deplao thì đọc <0>deplao.ui.theme()</0> hoặc dùng biến CSS <1>--dp-bg</1>, <2>--dp-text</2>, <3>--dp-accent</3>… — tuỳ bạn.', { 0: <code />, 1: <code />, 2: <code />, 3: <code /> })}
+              {trx('CSS và framework là của ứng dụng: CSS thuần, Tailwind, React, Vue, Svelte… Chỉ cần build ra file tĩnh và đóng gói kèm (script, CSS, font từ CDN bị chặn để bảo mật). Muốn hợp theme sáng/tối của SadSha ChatDesk thì đọc <0>sadshachatdesk.ui.theme()</0> hoặc dùng biến CSS <1>--dp-bg</1>, <2>--dp-text</2>, <3>--dp-accent</3>… — tuỳ bạn.', { 0: <code />, 1: <code />, 2: <code />, 3: <code /> })}
             </p>
           </div>
         </section>
@@ -165,7 +165,7 @@ export default function PluginDevPanel({ plugins, busy, onAddDevFolder, onOpenDe
       </section>
 
       <section className="rounded-2xl border border-border bg-card p-5 space-y-3">
-        <p className="text-sm font-semibold text-foreground">{trx('Tra nhanh SDK <0>/__deplao/sdk.js</0>', { 0: <code className="text-xs text-muted-foreground font-normal" /> })}</p>
+        <p className="text-sm font-semibold text-foreground">{trx('Tra nhanh SDK <0>/__sadshachatdesk/sdk.js</0>', { 0: <code className="text-xs text-muted-foreground font-normal" /> })}</p>
         <div className="rounded-xl border border-border overflow-hidden">
           {SDK_CHEATSHEET.map(([code, desc]) => (
             <div key={code} className="grid grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-3 px-3 py-2 border-t border-border first:border-t-0">

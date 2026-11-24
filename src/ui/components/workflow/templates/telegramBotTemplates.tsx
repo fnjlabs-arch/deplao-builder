@@ -147,7 +147,7 @@ export const TELEGRAM_BOT_TEMPLATES: WorkflowTemplate[] = [
       { id: 'n5', type: 'tgbot.action.sendMessage', label: tr('Báo khách chờ nhân viên'), position: { x: 600, y: 380 },
         config: botMessage(tr('🙋 Mình đã báo nhân viên, bạn chờ một chút nhé. Bạn có thể nhắn thêm nhu cầu ngay tại đây.')) },
       { id: 'n6', type: 'tgbot.action.sendMessage', label: tr('Báo nhóm nhân viên (chọn nhóm)'), position: { x: 600, y: 540 },
-        config: botMessage(tr('🙋 Khách {{ $trigger.fromName }} (Telegram ID {{ $trigger.fromId }}) muốn gặp nhân viên.\n👉 Trả lời khách trong hộp thư Deplao.'), { chatId: '' }) },
+        config: botMessage(tr('🙋 Khách {{ $trigger.fromName }} (Telegram ID {{ $trigger.fromId }}) muốn gặp nhân viên.\n👉 Trả lời khách trong hộp thư SadSha ChatDesk.'), { chatId: '' }) },
     ],
     edges: [
       { id: 'e1', source: 'n1', target: 'n2' },
@@ -189,7 +189,7 @@ export const TELEGRAM_BOT_TEMPLATES: WorkflowTemplate[] = [
   {
     id: 'tpl-bot-support-forward',
     name: tr('Chuyển tin khách vào nhóm nhân viên'),
-    description: tr('Mọi tin khách nhắn riêng cho Bot được chuyển tiếp vào nhóm Telegram của nhân viên để cả nhóm cùng theo dõi. Trả lời khách ngay trong hộp thư Deplao. Chọn nhóm nhận trước khi bật.'),
+    description: tr('Mọi tin khách nhắn riêng cho Bot được chuyển tiếp vào nhóm Telegram của nhân viên để cả nhóm cùng theo dõi. Trả lời khách ngay trong hộp thư SadSha ChatDesk. Chọn nhóm nhận trước khi bật.'),
     category: 'ban-hang',
     tags: ['telegram bot', 'CSKH', tr('chuyển tiếp'), tr('nhóm nội bộ')],
     icon: <UsersIcon className="w-4 h-4" />,

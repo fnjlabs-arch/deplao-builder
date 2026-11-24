@@ -300,7 +300,7 @@ export interface TelegramContactItem {
   /** The two sides have saved each other's number. */
   mutual: boolean;
   presence: TelegramPresence;
-  /** A conversation already exists in Deplao. */
+  /** A conversation already exists in SadSha ChatDesk. */
   hasChat: boolean;
   bot: boolean;
 }

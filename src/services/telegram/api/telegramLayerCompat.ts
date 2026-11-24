@@ -1,13 +1,13 @@
 /**
- * Compatibility between GramJS's original schema (layer 198) and the new layer Deplao loads (telegramApiLayer.ts): the places where Telegram changed
- * the structure that Deplao reads / sends. Every function works with BOTH layers (DEPLAO_TELEGRAM_LAYER=198; tests use the original GramJS).
+ * Compatibility between GramJS's original schema (layer 198) and the new layer SadSha ChatDesk loads (telegramApiLayer.ts): the places where Telegram changed
+ * the structure that SadSha ChatDesk reads / sends. Every function works with BOTH layers (SADSHA_CHATDESK_TELEGRAM_LAYER=198; tests use the original GramJS).
  */
 
 /**
  * "Community" (layer 22x): `Community` / `CommunityForbidden` in `chats`, `DialogCommunity` (no `peer`) in
  * `dialogs`. GramJS 2.26 calls getPeerId on every chat / dialog when iterating the conversation list (iterDialogs) → throws "Cannot
- * cast Community…" and the whole load fails; Deplao code also treats every chat as a group / channel. Deplao does not support communities yet, so they are removed
- * from the results before GramJS / Deplao read them (the groups / channels inside a community are still separate conversations).
+ * cast Community…" and the whole load fails; SadSha ChatDesk code also treats every chat as a group / channel. SadSha ChatDesk does not support communities yet, so they are removed
+ * from the results before GramJS / SadSha ChatDesk read them (the groups / channels inside a community are still separate conversations).
  */
 import { tr } from '../../../shared/i18n';
 
@@ -67,7 +67,7 @@ export function inlineButtonInfo(button: any): InlineButtonInfo {
 /**
  * Result of joining a group (messages.importChatInvite / channels.joinChannel): layer 198 = Updates; layer 23x =
  * messages.ChatInviteJoinResultOk { updates } or messages.ChatInviteJoinResultWebView (a group that requires verification through a bot:
- * must be opened in the Telegram app, Deplao cannot open the bot's page).
+ * must be opened in the Telegram app, SadSha ChatDesk cannot open the bot's page).
  */
 export function chatInviteJoinOutcome(result: any): { kind: 'joined'; updates: any } | { kind: 'bot_verification' } {
   const kind = String(result?.className || '');
@@ -77,4 +77,4 @@ export function chatInviteJoinOutcome(result: any): { kind: 'joined'; updates: a
 }
 
 export const TELEGRAM_BOT_VERIFICATION_ERROR =
-  tr('Nhóm này yêu cầu xác minh qua bot trước khi tham gia — hãy tham gia bằng app Telegram rồi Deplao sẽ tự cập nhật.');
+  tr('Nhóm này yêu cầu xác minh qua bot trước khi tham gia — hãy tham gia bằng app Telegram rồi SadSha ChatDesk sẽ tự cập nhật.');

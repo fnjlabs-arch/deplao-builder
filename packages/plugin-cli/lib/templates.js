@@ -1,5 +1,5 @@
 'use strict';
-/** Mẫu khởi tạo plugin cho `deplao-plugin create`. */
+/** Mẫu khởi tạo plugin cho `sadshachatdesk-plugin create`. */
 
 function manifest({ id, name, runtime }) {
   const short = id.split('.').pop();
@@ -42,7 +42,7 @@ const INDEX_HTML = `<!doctype html>
 <head>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="style.css" />
-  <script src="/__deplao/sdk.js"></script>
+  <script src="/__sadshachatdesk/sdk.js"></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -54,9 +54,9 @@ const INDEX_HTML = `<!doctype html>
 </html>
 `;
 
-const APP_JS = `/* global deplao */
-deplao.ready(async () => {
-  const accounts = await deplao.accounts.listAccounts();
+const APP_JS = `/* global sadshachatdesk */
+sadshachatdesk.ready(async () => {
+  const accounts = await sadshachatdesk.accounts.listAccounts();
   const ul = document.getElementById('accounts');
   accounts.forEach((a) => {
     const li = document.createElement('li');
@@ -75,7 +75,7 @@ function backend(id) {
   const short = id.split('.').pop();
   return `'use strict';
 module.exports = {
-  async activate({ deplao, settings }) {
+  async activate({ sadshachatdesk, settings }) {
     console.log('Plugin đã bật', settings);
   },
   async deactivate() {},
@@ -92,11 +92,11 @@ module.exports = {
 function readme(name, runtime) {
   return `# ${name}
 
-Plugin Deplao (runtime \`${runtime}\`).
+Plugin SadSha ChatDesk (runtime \`${runtime}\`).
 
-- Phát triển: Deplao → **Công cụ → Ứng dụng, API & Webhook** (thanh điều hướng) → nút **Phát triển ứng dụng** → **Thêm thư mục đang phát triển**.
-- Kiểm tra: \`node packages/plugin-cli/bin/deplao-plugin.js validate .\`
-- Đóng gói: \`node packages/plugin-cli/bin/deplao-plugin.js pack .\`
+- Phát triển: SadSha ChatDesk → **Công cụ → Ứng dụng, API & Webhook** (thanh điều hướng) → nút **Phát triển ứng dụng** → **Thêm thư mục đang phát triển**.
+- Kiểm tra: \`node packages/plugin-cli/bin/sadshachatdesk-plugin.js validate .\`
+- Đóng gói: \`node packages/plugin-cli/bin/sadshachatdesk-plugin.js pack .\`
 `;
 }
 

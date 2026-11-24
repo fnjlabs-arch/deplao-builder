@@ -314,7 +314,7 @@ class MobileSyncService {
             }
         } finally {
             session.privateKey = '';
-            if (process.env.DEPLAO_KEEP_MOBILE_SYNC_FILES !== '1') {
+            if (process.env.SADSHA_CHATDESK_KEEP_MOBILE_SYNC_FILES !== '1') {
                 await fs.promises.rm(workDir, { recursive: true, force: true }).catch(() => {});
             }
             session.importing = false;

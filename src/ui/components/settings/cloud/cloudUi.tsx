@@ -66,7 +66,7 @@ export function cloudApi(): CloudflareIpc | undefined {
 /** Electron IPC error → a sentence for the user (strips the "Error invoking remote method…" prefix). */
 export function cleanIpcError(err: unknown): string {
   const raw = String((err as { message?: string } | null)?.message ?? err ?? '').trim();
-  if (/No handler registered/i.test(raw)) return tr('Bản app này chưa có tính năng này. Hãy cập nhật Deplao.');
+  if (/No handler registered/i.test(raw)) return tr('Bản app này chưa có tính năng này. Hãy cập nhật SadSha ChatDesk.');
   const text = raw.replace(/^Error invoking remote method '[^']*':\s*/i, '').replace(/^(Cloud)?Error:\s*/i, '').trim();
   return text || tr('Thao tác không thành công, thử lại sau.');
 }
@@ -282,7 +282,7 @@ export function compareVersions(a: string, b: string): number {
   return 0;
 }
 
-/** A backup made by a newer Deplao than the running one (the schema may be newer). Unknown version → do not block. */
+/** A backup made by a newer SadSha ChatDesk than the running one (the schema may be newer). Unknown version → do not block. */
 export function isNewerThanApp(version: string, appVersion: string = APP_VERSION): boolean {
   if (!version || !appVersion || !/\d/.test(appVersion)) return false;
   return compareVersions(version, appVersion) > 0;
@@ -552,7 +552,7 @@ export function useCloudAction() {
     try {
       const pending = fn();
       if (!pending) {
-        notify(tr('Bản app này chưa có tính năng Cloudflare. Hãy cập nhật Deplao.'), 'warning');
+        notify(tr('Bản app này chưa có tính năng Cloudflare. Hãy cập nhật SadSha ChatDesk.'), 'warning');
         return null;
       }
       const res = await pending;

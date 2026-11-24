@@ -75,7 +75,7 @@ export const SCOPE_PRESETS: Record<string, { label: string; scopes: ApiScope[] }
 export type ErpRoleName = 'owner' | 'admin' | 'manager' | 'member' | 'guest';
 
 export interface Principal {
-    /** 'system' = internal Deplao call (reads the account list, anonymous for public routes). */
+    /** 'system' = internal SadSha ChatDesk call (reads the account list, anonymous for public routes). */
     kind: 'apikey' | 'employee' | 'plugin' | 'system';
     /** api_keys.id | employee_id | plugin id */
     id: string;

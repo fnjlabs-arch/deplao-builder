@@ -80,16 +80,16 @@ ipcRenderer.on('app:wakePaint', (_event, id) => {
 });
 
 // UI language: fetch the catalog once, synchronously, before page scripts run, so src/shared/i18n/runtime.ts
-// (window.deplaoI18n) also translates module-level constants. Main side: electron/ipc/i18n/i18nIpc.ts.
+// (window.sadshachatdeskI18n) also translates module-level constants. Main side: electron/ipc/i18n/i18nIpc.ts.
 let i18nBoot: { lang?: string; messages?: Record<string, unknown> | null; fallback?: Record<string, unknown> | null } | null = null;
 try {
   i18nBoot = ipcRenderer.sendSync('i18n:boot');
-  if (i18nBoot && typeof i18nBoot.lang === 'string') contextBridge.exposeInMainWorld('deplaoI18n', i18nBoot);
+  if (i18nBoot && typeof i18nBoot.lang === 'string') contextBridge.exposeInMainWorld('sadshachatdeskI18n', i18nBoot);
 } catch {
   /* no i18n handler in main: the UI stays Vietnamese */
 }
 
-// Boot screen of index.html (#boot[data-deplao-boot], shown until React's first render replaces #root): the saved theme and
+// Boot screen of index.html (#boot[data-sadshachatdesk-boot], shown until React's first render replaces #root): the saved theme and
 // the translated text are applied as soon as the HTML is parsed, before the app scripts load, so a reload after the laptop
 // wakes (or a slow cold start) shows "loading" in the user's colors instead of an empty dark window. Plain lookups: the
 // preload requires no other file at runtime. Named `tr` so scripts/i18n extracts these strings.
@@ -107,7 +107,7 @@ const BOOT_TEXT: Record<string, string> = {
 // The electron tsconfig has no DOM lib: reach the page through globalThis
 const pageDocument: any = (globalThis as any).document;
 function prepareBootScreen(): void {
-  const boot = pageDocument?.querySelector('#boot[data-deplao-boot]');
+  const boot = pageDocument?.querySelector('#boot[data-sadshachatdesk-boot]');
   if (!boot) return; // not the app page: never touch another document's theme
   try {
     // Same default as appStore.loadTheme: light unless dark was chosen
@@ -503,7 +503,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
     flashFrame: (active: boolean) => ipcRenderer.send('app:flashFrame', { active }),
     /** Windows: the app runs with administrator rights (dragging from File Explorer is blocked) */
     isElevated: (): Promise<boolean> => ipcRenderer.invoke('app:isElevated'),
-    /** Open Deplao automatically when the machine starts (saved per machine) */
+    /** Open SadSha ChatDesk automatically when the machine starts (saved per machine) */
     getAutoLaunch: () => ipcRenderer.invoke('app:getAutoLaunch'),
     setAutoLaunch: (patch: { enabled?: boolean; hidden?: boolean }) => ipcRenderer.invoke('app:setAutoLaunch', patch),
   },

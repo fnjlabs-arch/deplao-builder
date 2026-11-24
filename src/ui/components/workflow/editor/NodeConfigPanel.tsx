@@ -1967,7 +1967,7 @@ export const CONFIG_SCHEMA: Record<string, Field[]> = {
   'nhanh.createOrder': [
     {
       key: 'order', label: tr('Dữ liệu đơn hàng (JSON)'), type: 'json',
-      hint: tr('{"info":{"type":1,"description":"Đặt hàng qua Zalo"},"channel":{"appOrderId":"DH001","sourceName":"deplaoapp"},"shippingAddress":{"name":"Nguyễn Văn A","mobile":"0901234567","address":"123 Đường ABC, Phường Hoàn Kiếm, Hà Nội","locationVersion":"v2"},"products":[{"id":123,"price":150000,"quantity":1}]}'),
+      hint: tr('{"info":{"type":1,"description":"Đặt hàng qua Zalo"},"channel":{"appOrderId":"DH001","sourceName":"sadshachatdeskapp"},"shippingAddress":{"name":"Nguyễn Văn A","mobile":"0901234567","address":"123 Đường ABC, Phường Hoàn Kiếm, Hà Nội","locationVersion":"v2"},"products":[{"id":123,"price":150000,"quantity":1}]}'),
       desc: tr('Đơn hàng theo Nhanh.vn API v3 (order/add). Bắt buộc: channel.appOrderId (mã đơn riêng, Nhanh chặn trùng theo mã này), shippingAddress.name + mobile, products[].id + price + quantity (id lấy từ bước tra cứu sản phẩm). locationVersion: v2 = địa chỉ mới 2 cấp, v1 = địa chỉ cũ 3 cấp.'),
     },
   ],

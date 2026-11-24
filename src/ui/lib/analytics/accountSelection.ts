@@ -3,7 +3,7 @@
  * Pure — covered by src/__tests__/analytics/analyticsMerge.test.ts.
  */
 
-export const ANALYTICS_ACCOUNTS_STORAGE_KEY = 'deplao:analytics-accounts:v1';
+export const ANALYTICS_ACCOUNTS_STORAGE_KEY = 'sadshachatdesk:analytics-accounts:v1';
 
 /** 'all' = every account, including ones added later; null = never chosen (→ the active account). */
 export type StoredAccountSelection = 'all' | string[] | null;

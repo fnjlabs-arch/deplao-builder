@@ -187,7 +187,7 @@ function mediaOptionsArg(v: unknown): Partial<MediaSyncOptions> {
     return out;
 }
 
-/** Google's own OAuth client: null / empty = Deplao's shared client. The secret is not trimmed and not logged. */
+/** Google's own OAuth client: null / empty = SadSha ChatDesk's shared client. The secret is not trimmed and not logged. */
 function googleClientArg(v: unknown): GoogleClientInput | null {
     if (v === undefined || v === null) return null;
     const o = obj(v);

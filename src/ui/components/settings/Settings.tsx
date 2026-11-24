@@ -337,7 +337,7 @@ export default function Settings() {
               {trx('<0/> Thư mục đã có dữ liệu', { 0: <FolderIcon className="h-5 w-5 text-primary" /> })}
             </h3>
             <PathText value={pendingFolder} className="mt-2" />
-            <p className="mt-2 text-xs text-muted-foreground">{tr('Ở đây đã có file dữ liệu Deplao. Bạn muốn làm gì?')}</p>
+            <p className="mt-2 text-xs text-muted-foreground">{tr('Ở đây đã có file dữ liệu SadSha ChatDesk. Bạn muốn làm gì?')}</p>
           </div>
 
           <div className="space-y-2.5 p-4">
@@ -360,7 +360,7 @@ export default function Settings() {
               onClick={async () => {
                 const ok = await showConfirm({
                   title: tr('Ghi đè dữ liệu cũ?'),
-                  message: tr('Dữ liệu hiện tại sẽ được sao chép vào:\n{{pendingFolder}}\n\nFile deplao-tool.db cũ tại đó sẽ bị GHI ĐÈ. Thao tác không thể hoàn tác.', { pendingFolder }),
+                  message: tr('Dữ liệu hiện tại sẽ được sao chép vào:\n{{pendingFolder}}\n\nFile sadshachatdesk-tool.db cũ tại đó sẽ bị GHI ĐÈ. Thao tác không thể hoàn tác.', { pendingFolder }),
                   confirmText: tr('Ghi đè'),
                   variant: 'danger',
                 });
@@ -580,10 +580,10 @@ function NotificationsPage() {
 
 
   return (
-    <SettingsPage title={tr('Thông báo')} description={tr('Cách Deplao báo tin nhắn mới. Lưu riêng trên máy này.')}>
+    <SettingsPage title={tr('Thông báo')} description={tr('Cách SadSha ChatDesk báo tin nhắn mới. Lưu riêng trên máy này.')}>
       <SettingsSection
         title={tr('Popup và âm thanh')}
-        footer={tr('Hội thoại đã tắt thông báo sẽ không báo. Không thấy popup? Bật thông báo cho Deplao trong cài đặt Windows / macOS.')}
+        footer={tr('Hội thoại đã tắt thông báo sẽ không báo. Không thấy popup? Bật thông báo cho SadSha ChatDesk trong cài đặt Windows / macOS.')}
         action={(
           <AccountSelect
             aria-label={tr('Áp dụng cho tài khoản')}
@@ -622,7 +622,7 @@ function NotificationsPage() {
               checked={settings.desktopEnabled}
               onCheckedChange={(v) => {
                 if (v) requestNotificationPermission().then(granted => {
-                  if (!granted) { showNotification(tr('Máy đang chặn thông báo của Deplao. Hãy cho phép trong cài đặt hệ thống.'), 'warning'); return; }
+                  if (!granted) { showNotification(tr('Máy đang chặn thông báo của SadSha ChatDesk. Hãy cho phép trong cài đặt hệ thống.'), 'warning'); return; }
                   saveSettings({ desktopEnabled: true });
                 });
                 else saveSettings({ desktopEnabled: false });
@@ -658,7 +658,7 @@ function NotificationsPage() {
                 onClick={() => {
                   requestNotificationPermission().then(granted => {
                     if (!granted) { showNotification(tr('Cần cấp quyền thông báo'), 'warning'); return; }
-                    showDesktopNotification('Deplao', tr('Đây là thông báo thử nghiệm 🎉'));
+                    showDesktopNotification('SadSha ChatDesk', tr('Đây là thông báo thử nghiệm 🎉'));
                   });
                 }}>
                 {tr('Popup')}
@@ -672,7 +672,7 @@ function NotificationsPage() {
         <InAppNotifySettings />
       </SettingsSection>
 
-      {/* Start with the computer: after a restart you do not need to open Deplao yourself (saved per machine) */}
+      {/* Start with the computer: after a restart you do not need to open SadSha ChatDesk yourself (saved per machine) */}
       <AutoLaunchSettings />
     </SettingsPage>
   );

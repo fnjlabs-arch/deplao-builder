@@ -375,7 +375,7 @@ function ZaloGroupMembersTab() {
   }, [activeAccountId, loadGroupsFromDB, groupsLoadFailed]);
 
   // ── Fetch members from the shared scan API ─────────────────────────────
-  // Scanning through the Deplao server = sends the Zalo cookie → ask for consent first if not given yet (useGroupMemberSync, askConsent)
+  // Scanning through the SadSha ChatDesk server = sends the Zalo cookie → ask for consent first if not given yet (useGroupMemberSync, askConsent)
   const fetchMembersFromAPI = useCallback(async () => {
     if (!activeAccountId || !selectedGroupId) return;
     // Existing members (owner / deputy roles) could not be read → no scan yet: saving now would be based on incomplete data
@@ -599,7 +599,7 @@ function ZaloGroupMembersTab() {
   }, [activeAccountId, loadGroupsFromDB]);
 
   // ── Scan from the "Quét thành viên" (Member scan) tab (calls the backend API) ──────────────
-  // Sends the cookie + Zalo IMEI to deplaoapp.com → asks for consent BEFORE anything else; without consent it stops and sends nothing.
+  // Sends the cookie + Zalo IMEI to chatdesk.sadsha.com → asks for consent BEFORE anything else; without consent it stops and sends nothing.
   const handleScanTab = useCallback(async () => {
     if (!activeAccountId || !scanLinkInput.trim()) return;
 
@@ -950,7 +950,7 @@ function ZaloGroupMembersTab() {
               <p className="text-sm text-muted-foreground mt-1">{tr('Tiếp cận hàng nghìn khách hàng tiềm năng từ các nhóm Zalo chất lượng')}</p>
             </div>
 
-            {/* Send the Zalo cookie to the Deplao server only when turned on (off by default; turning it on must go through the consent dialog) */}
+            {/* Send the Zalo cookie to the SadSha ChatDesk server only when turned on (off by default; turning it on must go through the consent dialog) */}
             <HiddenScanConsentSwitch />
 
             {/* Feature cards */}

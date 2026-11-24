@@ -312,7 +312,7 @@ func castFloat(val *BloksScriptLiteral, where string) (float64, error) {
 	return 0, fmt.Errorf("expected int64 or float64 in %s, got %T", where, val.Value())
 }
 
-// DEPLAO_ADAPTER: numeric literal coercion for bk.action.f32.Eq, which
+// SADSHA_ADAPTER: numeric literal coercion for bk.action.f32.Eq, which
 // upstream still compares by Go type (int64 6 != float64 6.0).
 func asFloat(val *BloksScriptLiteral) (float64, bool) {
 	switch v := val.Value().(type) {
@@ -822,7 +822,7 @@ func (i *Interpreter) Evaluate(ctx context.Context, form *BloksScriptNode) (*Blo
 		if err != nil {
 			return nil, err
 		}
-		// DEPLAO_ADAPTER: numeric equality coerces int64/float64 so 6 == 6.0 is true.
+		// SADSHA_ADAPTER: numeric equality coerces int64/float64 so 6 == 6.0 is true.
 		firstFloat, firstIsNum := asFloat(first)
 		secondFloat, secondIsNum := asFloat(second)
 		if firstIsNum && secondIsNum {

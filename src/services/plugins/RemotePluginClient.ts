@@ -1,10 +1,10 @@
 /**
  * RemotePluginClient: the "remote" runtime: plugin logic that runs on a third party's server.
  *
- * Deplao → plugin: POST {remote.baseUrl}/rpc   body { id, method, params }
- *   X-Deplao-Plugin: <id>   X-Deplao-Timestamp: <seconds>   X-Deplao-Signature: v1=<HMAC-SHA256(secret, ts + "." + body)>
+ * SadSha ChatDesk → plugin: POST {remote.baseUrl}/rpc   body { id, method, params }
+ *   X-SadSha-ChatDesk-Plugin: <id>   X-SadSha-ChatDesk-Timestamp: <seconds>   X-SadSha-ChatDesk-Signature: v1=<HMAC-SHA256(secret, ts + "." + body)>
  *   Returns HTTP 200 { result } or { error: { code, message } }.
- * Plugin → Deplao: calls API v1 with an API key created automatically at install (tied to plugin_id, revoked on uninstall).
+ * Plugin → SadSha ChatDesk: calls API v1 with an API key created automatically at install (tied to plugin_id, revoked on uninstall).
  *
  * A remote server that is temporarily down when the app starts → only logs a warning, does not disable the plugin.
  */
@@ -52,10 +52,10 @@ export class RemotePluginClient implements PluginRuntimeHandle {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'User-Agent': 'Deplao-Plugin/1',
-                'X-Deplao-Plugin': this.ctx.record.id,
-                'X-Deplao-Timestamp': String(ts),
-                'X-Deplao-Signature': signPayload(secret, ts, body),
+                'User-Agent': 'SadSha ChatDesk-Plugin/1',
+                'X-SadSha-ChatDesk-Plugin': this.ctx.record.id,
+                'X-SadSha-ChatDesk-Timestamp': String(ts),
+                'X-SadSha-ChatDesk-Signature': signPayload(secret, ts, body),
             },
             body,
             timeoutMs,

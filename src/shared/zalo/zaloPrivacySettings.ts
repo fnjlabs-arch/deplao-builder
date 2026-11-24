@@ -1,5 +1,5 @@
 /**
- * zaloPrivacySettings.ts: Zalo privacy settings (ZL-02, SRS Deplao): table shared by main (checks the key / value before calling Zalo) + renderer (draws the Settings → Account → Zalo privacy screen).
+ * zaloPrivacySettings.ts: Zalo privacy settings (ZL-02, SRS SadSha ChatDesk): table shared by main (checks the key / value before calling Zalo) + renderer (draws the Settings → Account → Zalo privacy screen).
  *
  * zca-js 2.2.0: getSettings() → UserSetting; updateSettings(type, value), one setting at a time. The two write keys
  * archivedChatStatus / quickMessageStatus (camelCase) differ from the read fields archived_chat_status / quick_message_status.
@@ -52,7 +52,7 @@ export const ZALO_PRIVACY_SETTINGS: ReadonlyArray<ZaloSettingDef> = [
   },
   {
     key: 'display_seen_status', readField: 'display_seen_status', group: 'display', kind: 'toggle', label: tr('Hiện trạng thái "Đã xem"'),
-    hint: tr('Tắt thì người gửi không thấy bạn đã xem tin; Deplao cũng có thể không nhận được dấu đã xem từ Zalo.'),
+    hint: tr('Tắt thì người gửi không thấy bạn đã xem tin; SadSha ChatDesk cũng có thể không nhận được dấu đã xem từ Zalo.'),
   },
   {
     key: 'receive_message', readField: 'receive_message', group: 'messaging', kind: 'select', label: tr('Cho phép nhắn tin'),

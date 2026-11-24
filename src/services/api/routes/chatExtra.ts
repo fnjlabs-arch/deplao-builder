@@ -112,7 +112,7 @@ export function chatExtraRoutes(deps: ChatRouteDeps): RouteDef[] {
             method: pin ? 'POST' : 'DELETE', path: '/accounts/:accountId/conversations/:threadId/pin', scope: 'chat:manage', tags,
             operationId: pin ? 'pinConversation' : 'unpinConversation',
             summary: pin ? tr('Ghim hội thoại (trên kênh nếu kênh hỗ trợ)') : tr('Bỏ ghim hội thoại'),
-            description: tr('Như menu "Ghim hội thoại": Zalo/Telegram ghim trên server (hiện ở mọi thiết bị); kênh không hỗ trợ thì ghim trong Deplao. `where` cho biết đã ghim ở đâu.'),
+            description: tr('Như menu "Ghim hội thoại": Zalo/Telegram ghim trên server (hiện ở mọi thiết bị); kênh không hỗ trợ thì ghim trong SadSha ChatDesk. `where` cho biết đã ghim ở đâu.'),
             params: threadParams,
             handler: async (ctx: ApiContext) => {
                 const acc = await ctx.account(ctx.params.accountId);
@@ -133,8 +133,8 @@ export function chatExtraRoutes(deps: ChatRouteDeps): RouteDef[] {
         })),
         route({
             method: 'POST', path: '/accounts/:accountId/conversations/:threadId/mute', scope: 'chat:manage', tags, operationId: 'muteConversation',
-            summary: tr('Tắt thông báo (lưu trong Deplao + đồng bộ lên Zalo/Telegram)'),
-            description: tr('`until` = epoch ms hết hạn; bỏ trống hoặc 0 = vô thời hạn. `synced` = đã đồng bộ lên kênh hay chưa (kênh không hỗ trợ / lỗi mạng vẫn tắt trong Deplao).'),
+            summary: tr('Tắt thông báo (lưu trong SadSha ChatDesk + đồng bộ lên Zalo/Telegram)'),
+            description: tr('`until` = epoch ms hết hạn; bỏ trống hoặc 0 = vô thời hạn. `synced` = đã đồng bộ lên kênh hay chưa (kênh không hỗ trợ / lỗi mạng vẫn tắt trong SadSha ChatDesk).'),
             params: threadParams,
             body: s.object({ until: s.timestamp().default(0) }).optional(),
             handler: async ctx => {
@@ -206,7 +206,7 @@ export function chatExtraRoutes(deps: ChatRouteDeps): RouteDef[] {
         })),
         route({
             method: 'DELETE', path: '/accounts/:accountId/conversations/:threadId', scope: 'chat:manage', tags, operationId: 'deleteConversation',
-            summary: tr('Xoá hội thoại (toàn bộ tin trong Deplao; Zalo xoá cả trên server)'),
+            summary: tr('Xoá hội thoại (toàn bộ tin trong SadSha ChatDesk; Zalo xoá cả trên server)'),
             description: tr('Không thể hoàn tác — bắt buộc `?confirm=true`. Như menu "Xóa hội thoại": Zalo gọi `zalo:deleteChat` theo tin cuối rồi xoá khỏi DB.'),
             params: threadParams,
             query: s.object({ confirm: s.boolean().default(false).describe(tr('Phải là true')) }),
@@ -232,7 +232,7 @@ export function chatExtraRoutes(deps: ChatRouteDeps): RouteDef[] {
         }),
         route({
             method: 'POST', path: '/accounts/:accountId/conversations/:threadId/history/sync', scope: 'chat:read', tags, operationId: 'syncConversationHistory',
-            summary: tr('Tải tin cũ từ server của kênh vào Deplao'),
+            summary: tr('Tải tin cũ từ server của kênh vào SadSha ChatDesk'),
             description: [
                 tr('Lưu vào DB rồi đọc bằng `GET …/messages`. Telegram: `before_msg_id` = msg_id cũ nhất bạn đang có để lấy trang cũ hơn.'),
                 tr('Facebook: dùng `next_cursor` của lần trước làm `before_cursor`. Zalo: chỉ nhóm (Zalo không cho tải lịch sử chat 1-1).'),

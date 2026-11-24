@@ -1,7 +1,7 @@
 /**
  * Telegram poll (MessageMediaPoll): a `poll` attachment saved with the message (question, options, number of voters), and the results are updated
  * afterwards (Telegram pushes UpdateMessagePoll, messages.getPollResults while the conversation is open, as in the Telegram app).
- * Previously the results were only captured when the message arrived, so Deplao showed "0 lượt bình chọn" (0 votes) forever while Telegram already had voters.
+ * Previously the results were only captured when the message arrived, so SadSha ChatDesk showed "0 lượt bình chọn" (0 votes) forever while Telegram already had voters.
  */
 
 import { tr } from '../../../shared/i18n';

@@ -31,7 +31,7 @@ function buildBlockForm(dataFB: FBSessionData, userId: string, choice: BlockChoi
       friendlyName: 'ProfileCometActionBlockUserMutation',
       docId: '6305880099497989',
     });
-    const placeholder = '__DEPLAO_BLOCK_USER_ID__';
+    const placeholder = '__SADSHA_CHATDESK_BLOCK_USER_ID__';
     form['variables'] = variablesWithIntegerUserId({
       collectionID: null,
       hasCollectionAndSectionID: false,

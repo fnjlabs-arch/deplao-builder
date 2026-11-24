@@ -9,7 +9,7 @@ import { tr } from '../../../../shared/i18n';
 import { trx } from '@/lib/i18n/trx';
 
 const NINE_ROUTER_DASHBOARD_URL = 'http://localhost:20128';
-const NINE_ROUTER_ISSUE_URL = 'https://github.com/babyvibe/deplao-builder/issues/31';
+const NINE_ROUTER_ISSUE_URL = 'https://github.com/fnjlabs-arch/deplao-builder/issues/31';
 
 /**
  * Opens another page of the app like the "Tất cả tính năng" (All features) panel: changes the view, then tells the target page to open the right tab.
@@ -184,7 +184,7 @@ export function AIAssistantPanel() {
           <div>
             <h3 className="text-foreground font-bold text-base">{tr('9Router - dùng AI miễn phí ngay trên máy bạn')}</h3>
             <p className="text-muted-foreground text-xs mt-0.5 leading-relaxed">
-              {trx('9Router là cổng trung gian (proxy) AI chạy trên máy của bạn tại <0>http://localhost:20128</0>: gom nhiều nhà cung cấp AI về một địa chỉ, trong đó có nhiều model miễn phí. Deplao kết nối tới 9Router qua nền tảng <1>9Router Proxy</1> của trợ lý AI.', { 0: <strong className="text-foreground" />, 1: <strong className="text-foreground" /> })}
+              {trx('9Router là cổng trung gian (proxy) AI chạy trên máy của bạn tại <0>http://localhost:20128</0>: gom nhiều nhà cung cấp AI về một địa chỉ, trong đó có nhiều model miễn phí. SadSha ChatDesk kết nối tới 9Router qua nền tảng <1>9Router Proxy</1> của trợ lý AI.', { 0: <strong className="text-foreground" />, 1: <strong className="text-foreground" /> })}
             </p>
             <div className="flex gap-1.5 mt-2 flex-wrap">
               <Badge text={tr('Có model FREE')} color="bg-success/15 text-success" />
@@ -195,11 +195,11 @@ export function AIAssistantPanel() {
         </div>
 
         <Card>
-          <SectionTitle>{trx('<0/> Vì sao dùng 9Router với Deplao?', { 0: <TargetIcon className="w-4 h-4 inline" /> })}</SectionTitle>
+          <SectionTitle>{trx('<0/> Vì sao dùng 9Router với SadSha ChatDesk?', { 0: <TargetIcon className="w-4 h-4 inline" /> })}</SectionTitle>
           <BulletList items={[
-            tr('<strong class="text-foreground">Model miễn phí</strong>: danh sách model của 9Router trong Deplao có nhiều model gắn nhãn (free), VD <strong class="text-foreground">Kiro: Claude 4.5 Sonnet (free)</strong>, <strong class="text-foreground">OpenCode: DeepSeek V4 Flash (free)</strong>.'),
+            tr('<strong class="text-foreground">Model miễn phí</strong>: danh sách model của 9Router trong SadSha ChatDesk có nhiều model gắn nhãn (free), VD <strong class="text-foreground">Kiro: Claude 4.5 Sonnet (free)</strong>, <strong class="text-foreground">OpenCode: DeepSeek V4 Flash (free)</strong>.'),
             tr('<strong class="text-foreground">Dùng cho mọi tính năng AI</strong>: gợi ý trả lời trong hội thoại, hỏi đáp với AI trong hội thoại, AI tạo workflow bằng câu lệnh, node AI trả lời khách 24/7.'),
-            tr('<strong class="text-foreground">Một địa chỉ cho nhiều nhà cung cấp</strong>: kết nối nhà cung cấp trong Dashboard 9Router, phía Deplao chỉ cần một trợ lý trỏ tới 9Router.'),
+            tr('<strong class="text-foreground">Một địa chỉ cho nhiều nhà cung cấp</strong>: kết nối nhà cung cấp trong Dashboard 9Router, phía SadSha ChatDesk chỉ cần một trợ lý trỏ tới 9Router.'),
             tr('<strong class="text-foreground">Tự nhập model</strong>: model chưa có trong danh sách thì chọn <strong class="text-foreground">Custom model - tự nhập...</strong> rồi gõ đúng tên model.'),
           ]} />
         </Card>
@@ -235,7 +235,7 @@ export function AIAssistantPanel() {
               </p>
             </SetupStep>
 
-            <SetupStep n={5} title={tr('Cấu hình trong Deplao')} done>
+            <SetupStep n={5} title={tr('Cấu hình trong SadSha ChatDesk')} done>
               <p>
                 {trx('Tạo trợ lý với nền tảng <0>9Router Proxy</0>, chọn model (free), dán API key → <1>Tạo trợ lý</1> → <2>Test kết nối</2>. Chi tiết từng ô ở mục bên dưới.', { 0: <strong className="text-foreground" />, 1: <strong className="text-foreground" />, 2: <strong className="text-foreground" /> })}
               </p>
@@ -246,7 +246,7 @@ export function AIAssistantPanel() {
             <div className="flex items-start gap-2.5">
               <SunIcon className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-foreground text-[11px] font-semibold">{tr('Danh sách model 9Router là danh sách có sẵn trong Deplao')}</p>
+                <p className="text-foreground text-[11px] font-semibold">{tr('Danh sách model 9Router là danh sách có sẵn trong SadSha ChatDesk')}</p>
                 <p className="text-muted-foreground text-[11px] leading-relaxed mt-0.5">
                   {trx('Danh sách này chưa tự đồng bộ theo Dashboard 9Router. Model mới hoặc model không có trong danh sách: chọn <0>Custom model - tự nhập...</0> rồi gõ đúng tên model như trong Dashboard. Gặp lỗi kết nối 9Router? ', { 0: <strong className="text-foreground" /> })}
                   <button
@@ -263,7 +263,7 @@ export function AIAssistantPanel() {
         </Card>
 
         <Card>
-          <SectionTitle>{trx('<0/> Cấu hình trợ lý 9Router trong Deplao', { 0: <WrenchIcon className="w-4 h-4 inline" /> })}</SectionTitle>
+          <SectionTitle>{trx('<0/> Cấu hình trợ lý 9Router trong SadSha ChatDesk', { 0: <WrenchIcon className="w-4 h-4 inline" /> })}</SectionTitle>
           <Paragraph>
             {trx('Khi 9Router đang chạy, vào <0>Công cụ → Tích hợp</0> → tab <1>Trợ lý AI</1> → <2>+ Tạo trợ lý</2> và điền:', { 0: <strong className="text-foreground font-semibold" />, 1: <strong className="text-foreground font-semibold" />, 2: <strong className="text-foreground font-semibold" /> })}
           </Paragraph>
@@ -271,7 +271,7 @@ export function AIAssistantPanel() {
             tr('<strong class="text-foreground">Nền tảng AI</strong>: chọn <strong class="text-foreground">9Router Proxy</strong>.'),
             tr('<strong class="text-foreground">Model</strong>: chọn lại model trong danh sách của 9Router (ô Model có thể còn giữ model của nền tảng trước), VD <strong class="text-foreground">Kiro: Claude 4.5 Sonnet (free)</strong> hoặc <strong class="text-foreground">OpenCode: DeepSeek V4 Flash (free)</strong>; model khác chọn <strong class="text-foreground">Custom model - tự nhập...</strong> rồi gõ tên model.'),
             tr('<strong class="text-foreground">API Key</strong>: dán key lấy ở Dashboard 9Router → <strong class="text-foreground">API Keys</strong> (ô này không được để trống). Khi chọn nền tảng 9Router, ngay dưới ô có nút <strong class="text-foreground">Mở Dashboard 9Router</strong>.'),
-            tr('<strong class="text-foreground">Base URL (tuỳ chọn)</strong> trong <strong class="text-foreground">Cài đặt nâng cao</strong>: để trống - Deplao tự gọi 9Router tại http://localhost:20128. Chỉ điền khi 9Router chạy ở địa chỉ hoặc cổng khác.'),
+            tr('<strong class="text-foreground">Base URL (tuỳ chọn)</strong> trong <strong class="text-foreground">Cài đặt nâng cao</strong>: để trống - SadSha ChatDesk tự gọi 9Router tại http://localhost:20128. Chỉ điền khi 9Router chạy ở địa chỉ hoặc cổng khác.'),
             tr('Bấm <strong class="text-foreground">Tạo trợ lý</strong> → <strong class="text-foreground">Test kết nối</strong>. Muốn gợi ý chat dùng luôn trợ lý này, bật <strong class="text-foreground">Đặt làm trợ lý mặc định</strong> hoặc gán ở <strong class="text-foreground">Gán theo tài khoản</strong>.'),
           ]} />
         </Card>

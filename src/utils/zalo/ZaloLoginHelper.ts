@@ -1206,7 +1206,7 @@ class ZaloLoginHelper {
 
         // Sync messages from the phone: API pullMobile/znoise + control event "syncmsgmb"
         MobileSyncService.getInstance().attachToApi(zaloId, connection.api);
-        // Read on the phone / Zalo PC: cmd 504 / 524 (zca-js does not emit an event yet) → clear the unread count in Deplao
+        // Read on the phone / Zalo PC: cmd 504 / 524 (zca-js does not emit an event yet) → clear the unread count in SadSha ChatDesk
         attachZaloReadElsewhere(zaloId, connection.api, (items) => EventBroadcaster.broadcastZaloReadElsewhere(zaloId, items));
 
         listener.start({ retryOnClose: true });

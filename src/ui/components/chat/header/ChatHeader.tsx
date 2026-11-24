@@ -815,10 +815,10 @@ export default function ChatHeader() {
                   </svg>
               }
             </button>
-            {/* Auto-delete messages is on in Zalo (ZL-05): Deplao still keeps the messages */}
+            {/* Auto-delete messages is on in Zalo (ZL-05): SadSha ChatDesk still keeps the messages */}
             {isZalo(activeAccount?.channel) && Number(contact?.zalo_auto_delete_ttl) > 0 && (
               <span className="flex-shrink-0 text-muted-foreground ml-1"
-                title={tr('Zalo tự xoá tin nhắn mới sau {{v1}} — Deplao vẫn giữ tin trên máy này', { v1: zaloAutoDeleteLabel(Number(contact?.zalo_auto_delete_ttl)) })}>
+                title={tr('Zalo tự xoá tin nhắn mới sau {{v1}} — SadSha ChatDesk vẫn giữ tin trên máy này', { v1: zaloAutoDeleteLabel(Number(contact?.zalo_auto_delete_ttl)) })}>
                 <ClockIcon className="w-3.5 h-3.5" />
               </span>
             )}

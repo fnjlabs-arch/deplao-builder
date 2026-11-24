@@ -1140,7 +1140,7 @@ function MembersPanel({ groupInfo, groupId, onBack, onRefresh, onApiSync, myAcco
   const channel = channelCap?.id || CHANNEL.ZALO;
   const reloadRef = useRef<() => Promise<void>>(async () => {});
   // ── Hidden-member scan is a Zalo-only capability ──────────────────────
-  // Scan through the Deplao server, sending Zalo cookies to deplaoapp.com: only once the user has agreed (off by default). The reload button
+  // Scan through the SadSha ChatDesk server, sending Zalo cookies to chatdesk.sadsha.com: only once the user has agreed (off by default). The reload button
   // only scans after agreement; until then show the "Quét đủ thành viên" (Scan all members) row (click → a dialog asks for consent before sending).
   const { syncMembers } = useGroupMemberSync({
     accountId: myAccountId,
@@ -2353,7 +2353,7 @@ export function ManagePanel({ groupInfo, groupId, onBack, myAccountId, asModal, 
       {/* Pending join requests: visible to admins when joinAppr is on */}
       <PendingMembersSection groupId={groupId} isAdmin={isAdmin} channel={channel || CHANNEL.ZALO} />
 
-      {/* Auto-delete messages on Zalo (ZL-05): Deplao still keeps the messages */}
+      {/* Auto-delete messages on Zalo (ZL-05): SadSha ChatDesk still keeps the messages */}
       {isZalo && myAccountId && groupId && (
         <ZaloAutoDeleteSection accountId={myAccountId} threadId={groupId} isGroup />
       )}

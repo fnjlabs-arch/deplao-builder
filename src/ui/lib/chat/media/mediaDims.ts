@@ -18,7 +18,7 @@ export interface MediaBox {
   height: number;
 }
 
-const STORAGE_KEY = 'deplao_media_dims_v1';
+const STORAGE_KEY = 'sadshachatdesk_media_dims_v1';
 const MAX_ENTRIES = 5000;
 
 let cache: Map<string, MediaDims> | null = null;

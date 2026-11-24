@@ -51,7 +51,7 @@ export interface DriveFetchResponse {
 }
 export type DriveFetch = (url: string, init: any) => Promise<DriveFetchResponse>;
 
-/** Drive file metadata (only the fields Deplao asks for; Drive returns int64 numbers as strings). */
+/** Drive file metadata (only the fields SadSha ChatDesk asks for; Drive returns int64 numbers as strings). */
 export interface DriveFileMeta {
     id: string;
     name?: string;
@@ -389,7 +389,7 @@ export class DriveApi {
         fileId?: string | null; metadata: Record<string, unknown>; mimeType: string; content: ContentSource; fields: string;
         onProgress?: (sent: number) => void;
     }): Promise<DriveFileMeta> {
-        const boundary = `deplao_${randomBytes(16).toString('hex')}`;
+        const boundary = `sadshachatdesk_${randomBytes(16).toString('hex')}`;
         const head = Buffer.from(
             `--${boundary}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${JSON.stringify(p.metadata)}\r\n`
             + `--${boundary}\r\nContent-Type: ${safeMime(p.mimeType)}\r\n\r\n`,

@@ -1,11 +1,11 @@
 /**
- * Telegram API schema (TL) layer 232 for GramJS: Deplao loads it in place of the layer 198 schema that ships with GramJS 2.26.22 (the newest
+ * Telegram API schema (TL) layer 232 for GramJS: SadSha ChatDesk loads it in place of the layer 198 schema that ships with GramJS 2.26.22 (the newest
  * on npm), see telegramApiLayer.ts.
  *
  * Source: Telegram Desktop v7.3.3 (release tag 21/10/2026), Telegram/SourceFiles/mtproto/scheme/api.tl ("// LAYER 232"),
  * with the comment lines and blank lines removed. Auto-generated file: do not edit by hand. To bump the layer: download the api.tl
  * of the new Telegram Desktop release, regenerate this file, run the telegramApiLayer + telegramRichMessage tests, and check the methods / types
- * Deplao uses that changed or were removed (forum topics, inline buttons, group join results, Community…).
+ * SadSha ChatDesk uses that changed or were removed (forum topics, inline buttons, group join results, Community…).
  */
 /* eslint-disable */
 

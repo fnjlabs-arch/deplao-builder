@@ -1,10 +1,10 @@
 /**
- * Backend Service: the app calls the deplaoapp.com server for the Zalo group CRM (hidden group member scan, the shared group library).
+ * Backend Service: the app calls the chatdesk.sadsha.com server for the Zalo group CRM (hidden group member scan, the shared group library).
  *
  * API:
- *   POST https://deplaoapp.com/api/scan/group            → scans group members (SENDS THE ZALO COOKIE, see below)
- *   POST https://deplaoapp.com/api/shared-groups/submit   → shares a group into the shared library (public to other users)
- *   GET  https://deplaoapp.com/api/shared-groups/list     → the shared group library list
+ *   POST https://chatdesk.sadsha.com/api/scan/group            → scans group members (SENDS THE ZALO COOKIE, see below)
+ *   POST https://chatdesk.sadsha.com/api/shared-groups/submit   → shares a group into the shared library (public to other users)
+ *   GET  https://chatdesk.sadsha.com/api/shared-groups/list     → the shared group library list
  *
  * ─── Hidden group scan: data leaves the machine (read carefully before changing it / when reviewing security) ────────────────────────────────
  * - WHAT IS SENT: the Zalo login session (cookie + IMEI) of the account being scanned + groupId + page_id (= zalo_id). The cookie lets
@@ -29,7 +29,7 @@
 import { hasHiddenScanConsent } from './hiddenScanConsent';
 import { tr } from '../../../shared/i18n';
 
-const BACKEND_URL = 'https://deplaoapp.com';
+const BACKEND_URL = 'https://chatdesk.sadsha.com';
 const SECRET_KEY = 'fb7457b7a39bdc9e742f08b657a8059a5e6a8fda6e32bfe0bfecf37eadf519eb';
 
 interface ScanGroupResult {
@@ -114,7 +114,7 @@ async function callBackend<T>(endpoint: string, body: object): Promise<T> {
 // ─── API Methods ────────────────────────────────────────────────────────────
 
 /**
- * Scans group members through the backend: SENDS THE ZALO COOKIE + IMEI to deplaoapp.com (see the top of the file).
+ * Scans group members through the backend: SENDS THE ZALO COOKIE + IMEI to chatdesk.sadsha.com (see the top of the file).
  * Only runs when the user has agreed (`hasHiddenScanConsent()`); the caller must ask first with `ensureHiddenScanConsent()`.
  * Does not check the plan or the expiry date (the server is free for every account).
  * Why via the backend:
@@ -131,7 +131,7 @@ export async function scanGroupViaBackend(params: {
   if (!hasHiddenScanConsent()) {
     return {
       success: false, code: 'CONSENT_REQUIRED', groupId: params.groupId, totalMembers: 0, members: [],
-      error: tr('Chưa đồng ý quét qua máy chủ Deplao (CRM → Nhóm → Quét thành viên)'),
+      error: tr('Chưa đồng ý quét qua máy chủ SadSha ChatDesk (CRM → Nhóm → Quét thành viên)'),
     };
   }
   if (!params.cookie || !params.imei) {

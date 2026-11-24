@@ -1,6 +1,6 @@
 /**
  * Google Drive as the storage (instead of R2): OAuth sign-in (googleOAuth), the HTTP layer (DriveApi), an R2Client-style client for
- * each "bucket" = folder Deplao/<bucket> (DriveStore), and the aggregating service (GoogleDriveService).
+ * each "bucket" = folder SadSha ChatDesk/<bucket> (DriveStore), and the aggregating service (GoogleDriveService).
  *
  * CloudflareService calls createGoogleDrive() in its constructor; this function does not touch Electron / network / disk. Do not import
  * CloudflareService here (import cycle): everything needed comes in through deps.

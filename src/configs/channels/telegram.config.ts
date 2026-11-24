@@ -9,7 +9,7 @@
  *
  * Note: API_ID/API_HASH are an "app name", not a secret.
  * Telegram Desktop and Unigram publish theirs too. There is no security risk.
- * The current APP_ID belongs to Deplao; you can create your own app if you want..
+ * The current APP_ID belongs to SadSha ChatDesk; you can create your own app if you want..
  */
 
 export const API_ID = 35191552;       // Fill in api_id (number) - e.g. 12345678

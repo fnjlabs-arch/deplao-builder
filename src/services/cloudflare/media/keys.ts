@@ -4,7 +4,7 @@
  *  - rel_path (the key of the cloud_media table): path inside the workspace's media/ folder, separated by '/', KEEPS the name exactly as on disk
  *    (case, Unicode form) so the right file can be read back.
  *  - R2 object key: `<workspaceUid>/<rel_path>` normalized to Unicode NFC (R2 keys are case-sensitive → keep the letters as they are).
- *  - Bucket: `deplao-media-<first 8 characters of machineId>`.
+ *  - Bucket: `sadshachatdesk-media-<first 8 characters of machineId>`.
  *  - Skipped: temp files / half-written files, system files, the sticker cache folder, hidden folders.
  *  - Storage scope (account + from date + shared files): accountOfRelPath / relInScope / dirMayHaveInScope.
  */
@@ -57,10 +57,10 @@ export function absPathFor(root: string, rel: string): string {
     return path.join(root, ...rel.split('/'));
 }
 
-/** R2 bucket name of the machine: deplao-media-<first 8 characters of machineId> (a-z, 0-9). */
+/** R2 bucket name of the machine: sadshachatdesk-media-<first 8 characters of machineId> (a-z, 0-9). */
 export function mediaBucketName(machineId: string): string {
     const id = String(machineId || '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 8);
-    return `deplao-media-${id || 'local'}`;
+    return `sadshachatdesk-media-${id || 'local'}`;
 }
 
 // ─── Skipped ──────────────────────────────────────────────────────────────────

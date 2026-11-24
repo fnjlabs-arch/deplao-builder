@@ -158,8 +158,8 @@ export function chatRoutes(deps: ChatRouteDeps): RouteDef[] {
         }),
         route({
             method: 'PATCH', path: '/accounts/:accountId/conversations/:threadId', scope: 'chat:manage', tags, operationId: 'updateConversation',
-            summary: tr('Ghim, tắt thông báo, đặt biệt danh (trên Deplao)'),
-            description: tr('Các cờ lưu trên Deplao như UI: ghim cục bộ (db:setLocalPinnedConversation), tắt thông báo (db:setContactFlags), biệt danh (db:setContactAlias).'),
+            summary: tr('Ghim, tắt thông báo, đặt biệt danh (trên SadSha ChatDesk)'),
+            description: tr('Các cờ lưu trên SadSha ChatDesk như UI: ghim cục bộ (db:setLocalPinnedConversation), tắt thông báo (db:setContactFlags), biệt danh (db:setContactAlias).'),
             params: threadParams,
             body: s.object({
                 pinned: s.boolean().optional(),
@@ -424,7 +424,7 @@ export function chatRoutes(deps: ChatRouteDeps): RouteDef[] {
         route({
             method: 'DELETE', path: '/accounts/:accountId/conversations/:threadId/messages/:msgId', scope: 'chat:manage', tags, operationId: 'deleteMessageForMe',
             summary: tr('Xoá tin phía mình'),
-            description: tr('Zalo: zalo:deleteMessage (onlyMe) rồi đánh dấu trong DB như UI. Kênh khác: chỉ xoá khỏi DB của Deplao.'),
+            description: tr('Zalo: zalo:deleteMessage (onlyMe) rồi đánh dấu trong DB như UI. Kênh khác: chỉ xoá khỏi DB của SadSha ChatDesk.'),
             params: messageParams,
             handler: async ctx => {
                 const acc = await ctx.account(ctx.params.accountId);

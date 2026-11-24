@@ -1,5 +1,5 @@
 /**
- * UsageMeter: Deplao's operation counter on THIS machine: userData/cloud-usage.json.
+ * UsageMeter: SadSha ChatDesk's operation counter on THIS machine: userData/cloud-usage.json.
  *
  *  - R2 per UTC month ('YYYY-MM': Cloudflare's billing period): Class A / B / free + bytes up / down; keeps the 3 most recent months.
  *  - Google Drive per Pacific-time day ('YYYY-MM-DD': Google's daily quota resets at 00:00 LA time): quota units,

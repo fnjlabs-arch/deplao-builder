@@ -32,7 +32,7 @@ export function engagementPercents(counts: Partial<EngagementCounts> | null | un
 export function engagementNotes(channels: ReadonlyArray<string | null | undefined>, options: { sendsMessage?: boolean } = {}): string[] {
   if (options.sendsMessage === false) return [tr('Chiến dịch không gửi tin nhắn: chỉ tính khách có nhắn lại.')];
   const set = new Set(channels.map((channel) => String(channel || 'zalo')));
-  const notes = [tr('Khách trả lời cũng tính là đã xem. Deplao cần đang mở để nhận báo đã nhận / đã xem.')];
+  const notes = [tr('Khách trả lời cũng tính là đã xem. SadSha ChatDesk cần đang mở để nhận báo đã nhận / đã xem.')];
   if (set.has('zalo')) notes.push(tr('Zalo chỉ báo "đã xem" khi người nhận bật trạng thái Đã xem.'));
   if (set.has('telegram_user')) notes.push(tr('Telegram không báo "đã nhận".'));
   if (set.has('telegram_bot')) notes.push(tr('Telegram Bot không báo đã nhận / đã xem: chỉ tính khách trả lời.'));

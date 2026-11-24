@@ -1,10 +1,10 @@
 /**
- * UI language, main process: reads the chosen language (the "language" key of deplao-config.json), loads the catalog
+ * UI language, main process: reads the chosen language (the "language" key of sadshachatdesk-config.json), loads the catalog
  * resources/locales/<code>.json and hands it to the shared translation runtime (src/shared/i18n/runtime.ts). The renderer
  * gets the same payload from the preload (electron/ipc/i18n/i18nIpc.ts). A missing or broken catalog means Vietnamese text.
  *
  * Electron paths (app.getAppPath, userData) are read inside the functions, never at import time: userData is only
- * correct after app.setName('Deplao') (electron/bootstrap.ts).
+ * correct after app.setName('SadSha ChatDesk') (electron/bootstrap.ts).
  */
 import { app } from 'electron';
 import * as fs from 'fs';
@@ -23,7 +23,7 @@ import {
 export interface LocaleStoreDeps {
   /** Folder with the <code>.json catalogs and index.json (translation coverage) */
   localesDir: () => string;
-  /** deplao-config.json in the user data folder */
+  /** sadshachatdesk-config.json in the user data folder */
   configPath: () => string;
   /** Injected by tests; defaults to the real fs module */
   fs?: typeof import('fs');
@@ -150,7 +150,7 @@ function appLocalesDir(): string {
 // Default instance used by the app. Paths are resolved on each call, never at import time.
 const defaultStore = createLocaleStore({
   localesDir: appLocalesDir,
-  configPath: () => path.join(app.getPath('userData'), 'deplao-config.json'),
+  configPath: () => path.join(app.getPath('userData'), 'sadshachatdesk-config.json'),
 });
 
 export const initMainI18n = defaultStore.initMainI18n;

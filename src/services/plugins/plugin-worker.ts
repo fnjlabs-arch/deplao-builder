@@ -8,10 +8,10 @@
  *   host → worker  { t:'req', id, method, params }   activate | deactivate | node.execute | route.handle
  *                                                   | schedule.run | composer.command | ping
  *   worker → host  { t:'res', id, result } | { t:'res', id, error:{ code, message, status } }
- *   worker → host  { t:'call', id, method, params }  deplao.* (API, storage, log, events...)
+ *   worker → host  { t:'call', id, method, params }  sadshachatdesk.* (API, storage, log, events...)
  *   host → worker  { t:'ret', id, result } | { t:'ret', id, error }
  *   host → worker  { t:'note', method, params }     event | settings.changed
- *   worker → host  { t:'log', level, message }      console.* and deplao.log.*
+ *   worker → host  { t:'log', level, message }      console.* and sadshachatdesk.log.*
  */
 /* eslint-disable @typescript-eslint/no-var-requires */
 import * as path from 'path';
@@ -27,11 +27,11 @@ const send = (msg: Msg): void => {
     } catch { /* host already closed */ }
 };
 
-const PLUGIN_ID = process.env.DEPLAO_PLUGIN_ID || '';
-const PLUGIN_DIR = process.env.DEPLAO_PLUGIN_DIR || '';
-const DATA_DIR = process.env.DEPLAO_PLUGIN_DATA_DIR || '';
-const ENTRY = process.env.DEPLAO_PLUGIN_ENTRY || '';
-const IS_DEV = process.env.DEPLAO_PLUGIN_DEV === '1';
+const PLUGIN_ID = process.env.SADSHA_CHATDESK_PLUGIN_ID || '';
+const PLUGIN_DIR = process.env.SADSHA_CHATDESK_PLUGIN_DIR || '';
+const DATA_DIR = process.env.SADSHA_CHATDESK_PLUGIN_DATA_DIR || '';
+const ENTRY = process.env.SADSHA_CHATDESK_PLUGIN_ENTRY || '';
+const IS_DEV = process.env.SADSHA_CHATDESK_PLUGIN_DEV === '1';
 
 // ── Log: console.* → host ───────────────────────────────────────────────
 function fmt(args: any[]): string {
@@ -78,7 +78,7 @@ function toError(e: any): Error {
     return err;
 }
 
-// ── SDK deplao.* cho backend ────────────────────────────────────────────────
+// ── SDK sadshachatdesk.* cho backend ────────────────────────────────────────────────
 const eventHandlers = new Map<string, Set<(ev: any) => void>>();
 const settingsHandlers = new Set<(s: any) => void>();
 let currentSettings: Record<string, any> = {};
@@ -105,7 +105,7 @@ async function api(method: string, params?: any): Promise<any> {
     return data;
 }
 
-/** A group with its own functions (media.upload) can still call an operationId: deplao.media.downloadLibraryItem({ uuid }). */
+/** A group with its own functions (media.upload) can still call an operationId: sadshachatdesk.media.downloadLibraryItem({ uuid }). */
 function apiGroup<T extends Record<string, any>>(own: T): T {
     return new Proxy(own, {
         get(target, fn) {
@@ -168,9 +168,9 @@ const SPECIAL: Record<string, any> = {
     system: {
         info: () => hostCall('system.info'),
     },
-    // Cloudflare Worker + D1 already connected in Deplao (cloudflare:workers permission). The host checks the permission + name prefix;
+    // Cloudflare Worker + D1 already connected in SadSha ChatDesk (cloudflare:workers permission). The host checks the permission + name prefix;
     // bundleDir / dir is a relative folder inside the plugin: main reads the files itself, the contents are not sent over RPC.
-    // Attaching a domain: Deplao asks the user with its own dialog before writing DNS.
+    // Attaching a domain: SadSha ChatDesk asks the user with its own dialog before writing DNS.
     cloudflare: {
         status: () => hostCall('cloudflare.status'),
         zones: () => hostCall('cloudflare.zones'),
@@ -191,8 +191,8 @@ const SPECIAL: Record<string, any> = {
     },
 };
 
-/** deplao.<group>.<operationId>(params): the group is only for readability, the function name is the API v1 operationId. */
-const deplao: any = new Proxy(SPECIAL, {
+/** sadshachatdesk.<group>.<operationId>(params): the group is only for readability, the function name is the API v1 operationId. */
+const sadshachatdesk: any = new Proxy(SPECIAL, {
     get(target, ns: string) {
         if (typeof ns !== 'string') return undefined;
         if (ns in target) return target[ns];
@@ -220,7 +220,7 @@ async function loadBackend(): Promise<any> {
 }
 
 function ctxFor(extra: Record<string, any> = {}) {
-    return { deplao, pluginId: PLUGIN_ID, dataDir: DATA_DIR, dev: IS_DEV, settings: { ...currentSettings }, ...extra };
+    return { sadshachatdesk, pluginId: PLUGIN_ID, dataDir: DATA_DIR, dev: IS_DEV, settings: { ...currentSettings }, ...extra };
 }
 
 async function handle(method: string, params: any): Promise<any> {

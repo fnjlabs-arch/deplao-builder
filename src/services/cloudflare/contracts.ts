@@ -148,16 +148,16 @@ export interface CloudSettingsData {
     sync?: { includeMedia?: boolean };
     /** Storage for media + DB copies (missing = 'r2': older versions only had R2). */
     storage?: { provider: CloudStorageProvider };
-    /** Google Drive: signed-in account (not a secret) + the root folder "Deplao" + a separate OAuth client if any. */
+    /** Google Drive: signed-in account (not a secret) + the root folder "SadSha ChatDesk" + a separate OAuth client if any. */
     google?: GoogleSettingsData;
 }
 
 export interface GoogleSettingsData {
     email: string | null;
     displayName: string | null;
-    /** id of the "Deplao" folder in My Drive (created by the app, drive.file permission). */
+    /** id of the "SadSha ChatDesk" folder in My Drive (created by the app, drive.file permission). */
     rootFolderId: string | null;
-    /** client_id of the separate OAuth client the user enters; null = Deplao's shared client. */
+    /** client_id of the separate OAuth client the user enters; null = SadSha ChatDesk's shared client. */
     customClientId: string | null;
     connectedAt: number | null;
 }
@@ -181,25 +181,25 @@ export interface CloudSettingsStore {
 
 /**
  * Google Drive as storage: OAuth "Desktop app" (PKCE, redirects to http://127.0.0.1:<random port>), with the
- * drive.file permission (the app only sees files it created itself). "Bucket" = a subfolder of the "Deplao" folder in My Drive; the key
+ * drive.file permission (the app only sees files it created itself). "Bucket" = a subfolder of the "SadSha ChatDesk" folder in My Drive; the key
  * `a/b/c.jpg` = folder a → b → file c.jpg. The client returns the R2Client shape so the media / DB sync modules can use it unchanged.
  */
 export interface GoogleDriveCore {
     /** State remembered in RAM (no network calls). */
     status(): GoogleDriveStatus;
     isConnected(): boolean;
-    /** Open the sign-in browser; returns when done / cancelled / after 5 minutes. client null = Deplao's shared client. */
+    /** Open the sign-in browser; returns when done / cancelled / after 5 minutes. client null = SadSha ChatDesk's shared client. */
     connect(client?: GoogleClientInput | null): Promise<GoogleDriveStatus>;
     cancelConnect(): void;
     /** Revoke the token (best effort) + delete it on the machine. Does not delete files on Drive. */
     disconnect(): Promise<void>;
     /** Re-read the email + storage quota (about.get). */
     refresh(): Promise<GoogleDriveStatus>;
-    /** Client for a "bucket" (folder Deplao/<bucket>), cached by name. */
+    /** Client for a "bucket" (folder SadSha ChatDesk/<bucket>), cached by name. */
     store(bucket: string): R2Client;
-    /** Create the folder Deplao/<name> if it does not exist yet. */
+    /** Create the folder SadSha ChatDesk/<name> if it does not exist yet. */
     ensureBucket(name: string): Promise<void>;
-    /** Names of the Deplao subfolders that start with the prefix. */
+    /** Names of the SadSha ChatDesk subfolders that start with the prefix. */
     listBuckets(prefix: string): Promise<string[]>;
 }
 
@@ -234,7 +234,7 @@ export interface CloudflareCore {
     api(): CloudflareApi;                       // throws CloudError('NOT_CONNECTED') if not connected yet
     /**
      * Client of the SELECTED STORAGE for a bucket (the name stays r2 for history): R2 → R2 bucket; Google Drive → folder
-     * Deplao/<bucket>. Media / DB sync only call through here, so they run unchanged on both storages.
+     * SadSha ChatDesk/<bucket>. Media / DB sync only call through here, so they run unchanged on both storages.
      */
     r2(bucket: string): R2Client;
     /** Same as r2(bucket), with a new, clearer name. */

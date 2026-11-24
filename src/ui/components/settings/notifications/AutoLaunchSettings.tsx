@@ -1,5 +1,5 @@
 /**
- * Settings → Notifications → Start with the machine: opens Deplao when the machine boots (on by default) so no message is missed after a reboot;
+ * Settings → Notifications → Start with the machine: opens SadSha ChatDesk when the machine boots (on by default) so no message is missed after a reboot;
  * when opened automatically it runs in the background in the tray (default). Saved per machine, handled in main (src/utils/startup/autoLaunch.ts).
  */
 import React from 'react';
@@ -11,9 +11,9 @@ import { tr } from '../../../../shared/i18n';
 
 /** The OS is blocking the auto-start entry: this shows where to turn it back on. */
 export function autoLaunchBlockedHint(platform: string): string {
-  if (platform === 'win32') return tr('Windows đang tắt Deplao ở Task Manager → Ứng dụng khởi động. Tắt rồi bật lại công tắc trên để mở lại.');
-  if (platform === 'darwin') return tr('macOS cần cho phép: Cài đặt hệ thống → Chung → Mục đăng nhập → bật Deplao.');
-  return tr('Hệ điều hành đang tắt Deplao trong Ứng dụng khởi động. Tắt rồi bật lại công tắc trên để mở lại.');
+  if (platform === 'win32') return tr('Windows đang tắt SadSha ChatDesk ở Task Manager → Ứng dụng khởi động. Tắt rồi bật lại công tắc trên để mở lại.');
+  if (platform === 'darwin') return tr('macOS cần cho phép: Cài đặt hệ thống → Chung → Mục đăng nhập → bật SadSha ChatDesk.');
+  return tr('Hệ điều hành đang tắt SadSha ChatDesk trong Ứng dụng khởi động. Tắt rồi bật lại công tắc trên để mở lại.');
 }
 
 export default function AutoLaunchSettings() {
@@ -55,11 +55,11 @@ export default function AutoLaunchSettings() {
   return (
     <SettingsSection title={tr('Khởi động cùng máy')}>
       <SettingsRow
-        title={tr('Tự mở Deplao khi bật máy')}
+        title={tr('Tự mở SadSha ChatDesk khi bật máy')}
         description={tr('Không lỡ tin nhắn sau khi khởi động lại máy.')}
         control={(
           <Switch
-            aria-label={tr('Tự mở Deplao khi bật máy')}
+            aria-label={tr('Tự mở SadSha ChatDesk khi bật máy')}
             checked={status.enabled}
             disabled={locked}
             onCheckedChange={(on) => void update({ enabled: on })}

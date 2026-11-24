@@ -1,5 +1,5 @@
 /**
- * CloudflareTunnelManager: "Cloudflare tự động" (automatic Cloudflare): ONE tunnel per Boss machine, named `deplao-<machine-name>-<4 characters of machineId>`,
+ * CloudflareTunnelManager: "Cloudflare tự động" (automatic Cloudflare): ONE tunnel per Boss machine, named `sadshachatdesk-<machine-name>-<4 characters of machineId>`,
  * created through the API with config_src 'cloudflare' (the config lives at Cloudflare). ONE cloudflared process serves all three services
  * (relay 9900, payments 9888, workflow webhook 9889). Turning a service on / off only changes the ingress (PUT …/configurations),
  * without restarting the process; the process runs while at least 1 service is on. Ingress / DNS: ingress.ts, dns.ts.
@@ -159,7 +159,7 @@ function isNotFound(err: unknown): boolean {
     return (err as any)?.status === 404;
 }
 
-/** `deplao-<machine name as a slug>-<first 4 characters of machineId>`, e.g. deplao-may-ban-hang-ab12. */
+/** `sadshachatdesk-<machine name as a slug>-<first 4 characters of machineId>`, e.g. sadshachatdesk-may-ban-hang-ab12. */
 export function tunnelNameFor(machineName: string | null | undefined, machineId: string | null | undefined): string {
     const slug = String(machineName ?? '')
         .normalize('NFD')
@@ -171,7 +171,7 @@ export function tunnelNameFor(machineName: string | null | undefined, machineId:
         .slice(0, 32)
         .replace(/-+$/, '') || 'may';
     const suffix = String(machineId ?? '').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 4) || '0000';
-    return `deplao-${slug}-${suffix}`;
+    return `sadshachatdesk-${slug}-${suffix}`;
 }
 
 /** The tunnel part of cloud-settings.json, with defaults filled in for missing fields. */
@@ -230,7 +230,7 @@ export class CloudflareTunnelManager implements CloudTunnelModule {
     private queue: Promise<unknown> = Promise.resolve();
     /** The tunnel token is kept only in RAM (fetched again on each app launch: 1 request). */
     private tokenCache: { tunnelId: string; token: string } | null = null;
-    /** Ingress applied in this session (tunnel + Deplao's rules): if it matches, do not GET/PUT again. */
+    /** Ingress applied in this session (tunnel + SadSha ChatDesk's rules): if it matches, do not GET/PUT again. */
     private appliedIngress: string | null = null;
     /** The most recent error when allocating / starting the process. */
     private lastError: string | null = null;
@@ -503,7 +503,7 @@ export class CloudflareTunnelManager implements CloudTunnelModule {
                 if (t.tunnelId) {
                     const api = this.api();
                     const base = `/accounts/${this.accountId()}/cfd_tunnel/${t.tunnelId}`;
-                    // Order: clean up connections → delete the tunnel → delete the DNS records that carry the comment deplao:<id>
+                    // Order: clean up connections → delete the tunnel → delete the DNS records that carry the comment sadshachatdesk:<id>
                     await this.ignoreNotFound(() => api.request('DELETE', `${base}/connections`, {}));
                     await this.ignoreNotFound(() => api.request('DELETE', base, {}));
                     if (t.auto?.zoneId) {

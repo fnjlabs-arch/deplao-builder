@@ -17,7 +17,7 @@ export type GroupMemberSyncOutcome = 'synced' | 'declined' | 'skipped' | 'failed
 
 interface UseGroupMemberSyncResult {
   /**
-   * Fully scans the group members via the Deplao server (sends the Zalo cookie, needs the user's consent).
+   * Fully scans the group members via the SadSha ChatDesk server (sends the Zalo cookie, needs the user's consent).
    * `askConsent`: if no consent yet, asks with a dialog (the button the user clicks to scan); false = silently skip (e.g. the reload button
    * of the members panel: only scans more if consent was given earlier).
    */
@@ -25,9 +25,9 @@ interface UseGroupMemberSyncResult {
 }
 
 /**
- * Synchronizes Zalo group members through the Deplao scan endpoint (POST deplaoapp.com/api/scan/group).
+ * Synchronizes Zalo group members through the SadSha ChatDesk scan endpoint (POST chatdesk.sadsha.com/api/scan/group).
  *
- * PRIVACY: the scan sends the account's Zalo session (cookie + IMEI) to the Deplao server, so it only runs after the
+ * PRIVACY: the scan sends the account's Zalo session (cookie + IMEI) to the SadSha ChatDesk server, so it only runs after the
  * user opted in (default OFF since 26.11.0): `ensureHiddenScanConsent()` asks first, `scanGroupViaBackend` re-checks
  * and refuses without consent. See lib/crm/hiddenScanConsent.ts and lib/crm/backendService.ts.
  *

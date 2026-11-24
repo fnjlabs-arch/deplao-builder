@@ -75,7 +75,7 @@ export default function LogViewer() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `deplao-log-${Date.now()}.txt`;
+    a.download = `sadshachatdesk-log-${Date.now()}.txt`;
     a.click();
     URL.revokeObjectURL(url);
   };

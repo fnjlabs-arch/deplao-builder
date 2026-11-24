@@ -585,7 +585,7 @@ function EmployeeEditorModal({ employee, profile, departments, positions, canMan
             )}
             {!hasAccount && hasProfile && (
               <div className="rounded-lg border border-yellow-500/20 bg-yellow-500/10 px-3 py-2 text-[11px] text-yellow-200">
-                {tr('Hồ sơ ERP này chưa có tài khoản đăng nhập nên chưa thể gán quyền module Deplao.')}
+                {tr('Hồ sơ ERP này chưa có tài khoản đăng nhập nên chưa thể gán quyền module SadSha ChatDesk.')}
               </div>
             )}
           </div>
@@ -620,7 +620,7 @@ function EmployeeEditorModal({ employee, profile, departments, positions, canMan
             <div className="rounded-xl border border-border/60 bg-card p-3">
               <div className="flex items-center justify-between gap-2 mb-3">
                 <div>
-                  <div className="text-xs font-semibold text-foreground">{tr('Quyền module Deplao')}</div>
+                  <div className="text-xs font-semibold text-foreground">{tr('Quyền module SadSha ChatDesk')}</div>
                   <div className="text-[11px] text-muted-foreground mt-1">{tr('Áp dụng cho các module ngoài ERP khi nhân viên đăng nhập.')}</div>
                 </div>
                 {!canConfigureModulePermissions && <span className="text-[10px] text-muted-foreground">{tr('Chỉ quản lý mới được chỉnh')}</span>}

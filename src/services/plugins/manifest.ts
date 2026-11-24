@@ -1,5 +1,5 @@
 /**
- * manifest.ts: reads and checks deplao-plugin.json.
+ * manifest.ts: reads and checks sadshachatdesk-plugin.json.
  *
  * Hand-written checks (not zod) so it can return easy-to-understand Vietnamese error messages, collect several errors in one pass,
  * and apply the cross-rules: permissions ↔ extension points, runtime ↔ backend, node type prefixes...
@@ -11,7 +11,7 @@ import { compareSemver, isValidSemver } from './semver';
 import { tr } from '../../shared/i18n';
 
 export const PLUGIN_API_VERSION = 1;
-export const MANIFEST_FILE = 'deplao-plugin.json';
+export const MANIFEST_FILE = 'sadshachatdesk-plugin.json';
 const MAX_MANIFEST_BYTES = 256 * 1024;
 
 export type PluginRuntime = 'web' | 'local' | 'remote';
@@ -23,7 +23,7 @@ export type PluginPermission =
 
 export const PLUGIN_PERMISSIONS: ReadonlyArray<{ id: PluginPermission; label: string }> = [
     { id: 'storage', label: tr('Lưu dữ liệu riêng của ứng dụng trên máy này') },
-    { id: 'ui:pages', label: tr('Thêm trang riêng trong Deplao') },
+    { id: 'ui:pages', label: tr('Thêm trang riêng trong SadSha ChatDesk') },
     { id: 'ui:chat-panel', label: tr('Hiện panel trong màn hình chat và biết bạn đang mở hội thoại nào') },
     { id: 'ui:composer', label: tr('Thêm nút vào ô soạn tin nhắn') },
     // The app's UI frame is given allow="microphone" (PluginFrame): without this permission the browser blocks the microphone.
@@ -31,18 +31,18 @@ export const PLUGIN_PERMISSIONS: ReadonlyArray<{ id: PluginPermission; label: st
     { id: 'workflow:nodes', label: tr('Thêm node và trigger vào Workflow') },
     { id: 'events:emit', label: tr('Phát sự kiện cho Workflow, webhook và hệ thống khác') },
     { id: 'network', label: tr('Kết nối Internet') },
-    { id: 'schedules', label: tr('Chạy định kỳ khi Deplao đang mở') },
-    // deplao.cloudflare (backend only): the Cloudflare token is not given to the app; resource names = the pluginShortName prefix.
-    { id: 'cloudflare:workers', label: tr('Triển khai Worker và cơ sở dữ liệu D1 lên tài khoản Cloudflare đã kết nối trong Deplao (chỉ tài nguyên mang tên của ứng dụng này), gắn tên miền con cho Worker đó khi bạn đồng ý') },
+    { id: 'schedules', label: tr('Chạy định kỳ khi SadSha ChatDesk đang mở') },
+    // sadshachatdesk.cloudflare (backend only): the Cloudflare token is not given to the app; resource names = the pluginShortName prefix.
+    { id: 'cloudflare:workers', label: tr('Triển khai Worker và cơ sở dữ liệu D1 lên tài khoản Cloudflare đã kết nối trong SadSha ChatDesk (chỉ tài nguyên mang tên của ứng dụng này), gắn tên miền con cho Worker đó khi bạn đồng ý') },
 ];
 
 /** Scopes a plugin may not request (self-granting permissions / machine administration). */
 export const FORBIDDEN_PLUGIN_SCOPES: readonly string[] = ['admin', 'plugins:manage', 'employees:manage', 'settings:write'];
 
-/** Deplao's built-in node prefixes: the last part of the plugin id must not match one (to avoid overriding built-in nodes). */
+/** SadSha ChatDesk's built-in node prefixes: the last part of the plugin id must not match one (to avoid overriding built-in nodes). */
 export const RESERVED_SHORT_NAMES: readonly string[] = [
     'trigger', 'action', 'logic', 'output', 'data', 'ai', 'notify', 'sheets', 'payment', 'integration', 'crm', 'erp',
-    'zalo', 'fb', 'facebook', 'tg', 'tgbot', 'telegram', 'workflow', 'api', 'plugin', 'plugins', 'system', 'deplao',
+    'zalo', 'fb', 'facebook', 'tg', 'tgbot', 'telegram', 'workflow', 'api', 'plugin', 'plugins', 'system', 'sadshachatdesk',
     'ghn', 'ghtk', 'sapo', 'pancake', 'nhanh', 'kiotviet', 'haravan', 'casso', 'sepay', 'viettelpost', 'jt',
 ];
 
@@ -84,7 +84,7 @@ export interface ConfigField {
     /** Input field with workflow {{ ... }} variable suggestions. */
     'x-template'?: boolean;
     'x-multiline'?: boolean;
-    /** Uses a built-in app picker (assistant = pick a Deplao AI assistant, saves its id; empty = the app decides). */
+    /** Uses a built-in app picker (assistant = pick a SadSha ChatDesk AI assistant, saves its id; empty = the app decides). */
     'x-widget'?: 'account' | 'thread' | 'label' | 'assistant';
 }
 
@@ -131,7 +131,7 @@ export interface PluginManifest {
     name: string;
     version: string;
     apiVersion: number;
-    minDeplaoVersion?: string;
+    minSadShaChatDeskVersion?: string;
     description?: string;
     author?: string;
     homepage?: string;
@@ -246,21 +246,21 @@ function checkOutputs(c: Collector, where: string, outputs: any): void {
 
 /**
  * Checks the manifest. `dir` (if given) is used to check that the entry file exists;
- * `appVersion` is compared with minDeplaoVersion.
+ * `appVersion` is compared with minSadShaChatDeskVersion.
  */
 export function validateManifest(raw: any, opts: { dir?: string; appVersion?: string } = {}): ManifestResult {
     const c = new Collector();
-    if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return { ok: false, errors: [tr('deplao-plugin.json phải là một object JSON')] };
+    if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return { ok: false, errors: [tr('sadshachatdesk-plugin.json phải là một object JSON')] };
 
     if (!str(raw.id, 100) || !PLUGIN_ID_RE.test(raw.id)) c.add('id', tr('dạng reverse-DNS chữ thường, vd "vn.acme.spa-booking"'));
-    else if (RESERVED_SHORT_NAMES.includes(pluginShortName(raw.id))) c.add('id', tr('phần cuối "{{v1}}" trùng tiền tố node có sẵn của Deplao, hãy đổi tên', { v1: pluginShortName(raw.id) }));
+    else if (RESERVED_SHORT_NAMES.includes(pluginShortName(raw.id))) c.add('id', tr('phần cuối "{{v1}}" trùng tiền tố node có sẵn của SadSha ChatDesk, hãy đổi tên', { v1: pluginShortName(raw.id) }));
     if (!str(raw.name, 80)) c.add('name', tr('bắt buộc, tối đa 80 ký tự'));
     if (!str(raw.version, 50) || !isValidSemver(raw.version)) c.add('version', tr('phải là semver, vd "1.0.0"'));
     if (raw.apiVersion !== PLUGIN_API_VERSION) c.add('apiVersion', tr('phải là {{PLUGIN_API_VERSION}}', { PLUGIN_API_VERSION }));
-    if (raw.minDeplaoVersion !== undefined) {
-        if (!isValidSemver(raw.minDeplaoVersion)) c.add('minDeplaoVersion', tr('phải là semver'));
-        else if (opts.appVersion && isValidSemver(opts.appVersion) && compareSemver(opts.appVersion, raw.minDeplaoVersion) < 0) {
-            c.add('minDeplaoVersion', tr('cần Deplao {{minDeplaoVersion}} trở lên (máy đang chạy {{appVersion}})', { minDeplaoVersion: raw.minDeplaoVersion, appVersion: opts.appVersion }));
+    if (raw.minSadShaChatDeskVersion !== undefined) {
+        if (!isValidSemver(raw.minSadShaChatDeskVersion)) c.add('minSadShaChatDeskVersion', tr('phải là semver'));
+        else if (opts.appVersion && isValidSemver(opts.appVersion) && compareSemver(opts.appVersion, raw.minSadShaChatDeskVersion) < 0) {
+            c.add('minSadShaChatDeskVersion', tr('cần SadSha ChatDesk {{minSadShaChatDeskVersion}} trở lên (máy đang chạy {{appVersion}})', { minSadShaChatDeskVersion: raw.minSadShaChatDeskVersion, appVersion: opts.appVersion }));
         }
     }
     if (raw.description !== undefined && (typeof raw.description !== 'string' || raw.description.length > 500)) c.add('description', tr('tối đa 500 ký tự'));
@@ -285,8 +285,8 @@ export function validateManifest(raw: any, opts: { dir?: string; appVersion?: st
         }
     }
     const has = (p: string) => perms.includes(p);
-    // deplao.cloudflare exists only in the backend running on the machine (PluginApiBridge rejects calls from the UI).
-    if (has('cloudflare:workers') && runtime !== 'local') c.add('permissions', tr('quyền "cloudflare:workers" chỉ dùng với runtime local (deplao.cloudflare ở backend)'));
+    // sadshachatdesk.cloudflare exists only in the backend running on the machine (PluginApiBridge rejects calls from the UI).
+    if (has('cloudflare:workers') && runtime !== 'local') c.add('permissions', tr('quyền "cloudflare:workers" chỉ dùng với runtime local (sadshachatdesk.cloudflare ở backend)'));
 
     if (raw.accounts !== undefined && raw.accounts !== 'all') {
         if (!Array.isArray(raw.accounts) || raw.accounts.length > 200 || raw.accounts.some((a: any) => !str(a, 200))) c.add('accounts', tr('"all" hoặc mảng id tài khoản'));

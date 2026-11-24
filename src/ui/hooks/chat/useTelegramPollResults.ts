@@ -1,7 +1,7 @@
 /**
  * Telegram poll results like the Telegram app: when a conversation is opened and every 30 s (while the window is shown), asks again for the results of the
  * latest polls being loaded (messages.getPollResults, main: telegramUser:refreshPollResults) and patches the attachments in the store.
- * Before, the results were only captured when the message arrived, so Deplao showed "0 lượt bình chọn" (0 votes) forever. Closed polls are not asked again (the
+ * Before, the results were only captured when the message arrived, so SadSha ChatDesk showed "0 lượt bình chọn" (0 votes) forever. Closed polls are not asked again (the
  * results do not change); when Telegram pushes new results (UpdateMessagePoll) main patches them itself via event:messagesRepaired.
  */
 import React from 'react';

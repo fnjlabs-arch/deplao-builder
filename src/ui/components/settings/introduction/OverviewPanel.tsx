@@ -10,7 +10,7 @@ import { Badge, BulletList, Card, SectionTitle } from './introUi';
 import { tr } from '../../../../shared/i18n';
 import { trx } from '@/lib/i18n/trx';
 
-const RELEASES_URL = 'https://github.com/babyvibe/deplao-builder/releases';
+const RELEASES_URL = 'https://github.com/fnjlabs-arch/deplao-builder/releases';
 
 type InfoItem = { icon: React.ReactNode; title: string; desc: string };
 
@@ -26,7 +26,7 @@ const TARGET_USERS: InfoItem[] = [
   { icon: <UsersIcon className="w-5 h-5" />, title: tr('Đội nhóm bán hàng nhiều người'), desc: tr('Boss cấp tài khoản nhân viên, giao từng tài khoản chat và phân quyền từng module; nhân viên kết nối qua mạng LAN hoặc Internet, Boss theo dõi hiệu suất từng người.') },
   { icon: <BriefcaseIcon className="w-5 h-5" />, title: tr('Đại lý / Nhà phân phối'), desc: tr('Gửi bảng giá, sản phẩm mới cho mạng lưới đại lý bằng chiến dịch hoặc workflow; phân nhóm đại lý theo khu vực bằng nhãn.') },
   { icon: <SmartphoneIcon className="w-5 h-5" />, title: tr('Content Creator / KOC / KOL'), desc: tr('Gom tin nhắn từ người theo dõi về một chỗ, dùng AI trả lời câu hỏi thường gặp 24/7, chăm sóc người theo dõi thành khách mua hàng.') },
-  { icon: <TerminalIcon className="w-5 h-5" />, title: tr('Đội kỹ thuật / Tích hợp hệ thống'), desc: tr('Nối Zalo, Facebook, Telegram vào website, n8n hay phần mềm riêng qua Public API, webhook hoặc ứng dụng tự viết chạy ngay trong Deplao.') },
+  { icon: <TerminalIcon className="w-5 h-5" />, title: tr('Đội kỹ thuật / Tích hợp hệ thống'), desc: tr('Nối Zalo, Facebook, Telegram vào website, n8n hay phần mềm riêng qua Public API, webhook hoặc ứng dụng tự viết chạy ngay trong SadSha ChatDesk.') },
 ];
 
 // From the README "✨ Điểm nổi bật" (Highlights)
@@ -56,7 +56,7 @@ export function OverviewPanel() {
           <BotIcon className="w-5 h-5" />
         </span>
         <div>
-          <h3 className="text-foreground font-bold text-base">Deplao</h3>
+          <h3 className="text-foreground font-bold text-base">SadSha ChatDesk</h3>
           <p className="text-muted-foreground text-xs mt-0.5 leading-relaxed">
             {trx('Phần mềm desktop quản lý nhiều tài khoản <0>Zalo</0> (cá nhân / Business), <1>Facebook</1> (Messenger), <2>Telegram</2> (tài khoản cá nhân) và <3>Telegram Bot</3> trong một ứng dụng. Tích hợp CRM, chiến dịch gửi tin, Workflow tự động, Trợ lý AI, POS - vận chuyển - thanh toán và quản lý công việc nội bộ, giúp đội bán hàng, chăm sóc khách hàng và marketing làm việc tập trung.', { 0: <strong className="text-foreground" />, 1: <strong className="text-foreground" />, 2: <strong className="text-foreground" />, 3: <strong className="text-foreground" /> })}
           </p>
@@ -121,7 +121,7 @@ export function OverviewPanel() {
           tr('RAM tối thiểu: <strong class="text-foreground">4 GB</strong> (đề xuất 8 GB trở lên)'),
           tr('Ổ đĩa còn nhiều dung lượng trống: tin nhắn, ảnh, video lưu trên máy và tăng dần theo thời gian (chuyển thư mục dữ liệu sang ổ khác ở Cài đặt → Lưu trữ)'),
           tr('Kết nối Internet ổn định để nhận tin nhắn theo thời gian thực'),
-          tr('Để app chạy liên tục <strong class="text-foreground">24/7</strong> nếu dùng workflow, chiến dịch hoặc cho nhân viên kết nối vào máy Boss. Nút × trên thanh tiêu đề chỉ ẩn app xuống khay hệ thống (vẫn nhận tin); muốn tắt hẳn: chuột phải vào biểu tượng Deplao ở khay hệ thống → <em>Thoát hoàn toàn</em>. Deplao tự mở cùng máy (chạy ngầm ở khay) nên khởi động lại máy không lỡ tin; tắt ở Cài đặt → Thông báo → Khởi động cùng máy.'),
+          tr('Để app chạy liên tục <strong class="text-foreground">24/7</strong> nếu dùng workflow, chiến dịch hoặc cho nhân viên kết nối vào máy Boss. Nút × trên thanh tiêu đề chỉ ẩn app xuống khay hệ thống (vẫn nhận tin); muốn tắt hẳn: chuột phải vào biểu tượng SadSha ChatDesk ở khay hệ thống → <em>Thoát hoàn toàn</em>. SadSha ChatDesk tự mở cùng máy (chạy ngầm ở khay) nên khởi động lại máy không lỡ tin; tắt ở Cài đặt → Thông báo → Khởi động cùng máy.'),
           tr('Bộ cài chưa ký chứng chỉ nên lần đầu mở có thể bị cảnh báo: Windows chọn <em>More info</em> → <em>Run anyway</em>; macOS chuột phải → <em>Open</em> (hoặc System Settings → Privacy &amp; Security → <em>Open Anyway</em>).'),
         ]} />
         <div className="flex justify-end">

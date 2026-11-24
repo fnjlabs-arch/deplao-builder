@@ -7,7 +7,7 @@
  *  - Replied: the recipient has a REAL message that arrives AFTER the anchor (at any time, even after the report range). System messages, OA broadcasts, Page template messages and deleted messages are not counted (REPLY_STATE_IGNORED_MSG_TYPES, like the "đã trả lời" (replied) state).
  * Same rule as the ✓✓ marks in the chat frame (ui/lib/chat/messages/messageStatus.ts): replied ⇒ read ⇒ delivered.
  *
- * Limits (the UI shows a note): the delivered / read marks are only recorded while Deplao is open when the platform reports them (services/receipts/peerReceipts.ts). Zalo only reports "đã xem" when the recipient (and my account) turn on "Hiện trạng thái Đã xem", so on Zalo most "đã xem" comes from the customer replying. The mark belongs to the whole conversation, so "đã xem" means read up to (at least) that message, as of when the report is viewed.
+ * Limits (the UI shows a note): the delivered / read marks are only recorded while SadSha ChatDesk is open when the platform reports them (services/receipts/peerReceipts.ts). Zalo only reports "đã xem" when the recipient (and my account) turn on "Hiện trạng thái Đã xem", so on Zalo most "đã xem" comes from the customer replying. The mark belongs to the whole conversation, so "đã xem" means read up to (at least) that message, as of when the report is viewed.
  */
 import { REPLY_STATE_IGNORED_MSG_TYPES } from '../chat/replyState';
 

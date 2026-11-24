@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 'use strict';
 /**
- * deplao-plugin — tạo, kiểm tra, đóng gói plugin Deplao.
+ * sadshachatdesk-plugin — tạo, kiểm tra, đóng gói plugin SadSha ChatDesk.
  *
- *   deplao-plugin create <thư-mục> [--runtime web|local|remote] [--id vn.acme.ten] [--name "Tên"]
- *   deplao-plugin validate <thư-mục>
- *   deplao-plugin pack <thư-mục> [--out plugin.zip]
+ *   sadshachatdesk-plugin create <thư-mục> [--runtime web|local|remote] [--id vn.acme.ten] [--name "Tên"]
+ *   sadshachatdesk-plugin validate <thư-mục>
+ *   sadshachatdesk-plugin pack <thư-mục> [--out plugin.zip]
  *
  * validate/pack dùng chính bộ kiểm tra manifest của app (src/services/plugins/manifest.ts).
  */
@@ -31,7 +31,7 @@ function parseArgs(argv) {
 
 function loadPluginModules() {
   const root = findRepoRoot(process.cwd()) || findRepoRoot(__dirname);
-  if (!root) throw new Error('Không tìm thấy repo Deplao (cần src/services/plugins/manifest.ts).');
+  if (!root) throw new Error('Không tìm thấy repo SadSha ChatDesk (cần src/services/plugins/manifest.ts).');
   register(root);
   return {
     root,
@@ -100,7 +100,7 @@ function create(dir, opts) {
     fs.mkdirSync(path.dirname(full), { recursive: true });
     fs.writeFileSync(full, content);
   };
-  write('deplao-plugin.json', templates.manifest({ id, name, runtime }));
+  write('sadshachatdesk-plugin.json', templates.manifest({ id, name, runtime }));
   write('README.md', templates.readme(name, runtime));
   if (runtime !== 'remote') {
     write('ui/index.html', templates.INDEX_HTML);
@@ -123,7 +123,7 @@ function main() {
     console.error('✗ ' + (err && err.message ? err.message : err));
     return 1;
   }
-  console.log('Cách dùng:\n  deplao-plugin create <thư-mục> [--runtime web|local|remote] [--id vn.acme.ten] [--name "Tên"]\n  deplao-plugin validate <thư-mục>\n  deplao-plugin pack <thư-mục> [--out plugin.zip]');
+  console.log('Cách dùng:\n  sadshachatdesk-plugin create <thư-mục> [--runtime web|local|remote] [--id vn.acme.ten] [--name "Tên"]\n  sadshachatdesk-plugin validate <thư-mục>\n  sadshachatdesk-plugin pack <thư-mục> [--out plugin.zip]');
   return cmd ? 1 : 0;
 }
 

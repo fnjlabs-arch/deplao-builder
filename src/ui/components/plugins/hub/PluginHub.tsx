@@ -1,5 +1,5 @@
 /**
- * PluginHub - the "Ứng dụng, API & Webhook" (Apps, API & Webhook) page (Tools → Apps, API & Webhook): everything that exposes Deplao to the outside, in one place.
+ * PluginHub - the "Ứng dụng, API & Webhook" (Apps, API & Webhook) page (Tools → Apps, API & Webhook): everything that exposes SadSha ChatDesk to the outside, in one place.
  *  - Apps (plugins): grid of installed apps, each tile has Open / On; click a tile → detail drawer (intro, settings, logs, uninstall);
  *    the "Phát triển ứng dụng" (App development) button (next to "Cài ứng dụng" (Install app)) opens a drawer: add dev folder, steps, API/SDK docs.
  *  - API (previously under Settings → API): server, remote access, API keys, logs, advanced settings.
@@ -149,12 +149,12 @@ export default function PluginHub() {
   const sections: Array<{ id: HubSection; icon: React.ReactNode; title: string; desc: string; meta: React.ReactNode; isNew?: boolean }> = [
     {
       id: 'plugins', icon: <PluginIcon />, title: tr('Ứng dụng'),
-      desc: tr('Thêm tính năng chạy ngay trong Deplao: trang riêng, panel chat, node workflow…'),
+      desc: tr('Thêm tính năng chạy ngay trong SadSha ChatDesk: trang riêng, panel chat, node workflow…'),
       meta: <Badge size="sm" variant={plugins.length ? 'primary' : 'default'}>{plugins.length ? tr('{{count}} đã cài', { count: plugins.length }) : tr('Chưa cài')}</Badge>,
     },
     {
       id: 'api', icon: <KeyIcon />, title: 'API',
-      desc: tr('Cho website, phần mềm, n8n… đọc dữ liệu và gửi tin qua Deplao'),
+      desc: tr('Cho website, phần mềm, n8n… đọc dữ liệu và gửi tin qua SadSha ChatDesk'),
       meta: apiState
         ? <Badge size="sm" dot variant={apiState.running ? 'success' : 'default'}>{apiState.running ? tr('Đang chạy · {{port}}', { port: apiState.port }) : tr('Đang tắt')}</Badge>
         : null,
@@ -333,8 +333,8 @@ export default function PluginHub() {
             )}
             {modal.kind === 'credentials' && (
               <div className="p-4 space-y-3">
-                <OneTimeSecret title={tr('API key cho "{{name}}" (server {{baseUrl}} dùng để gọi ngược Deplao)', { name: modal.name, baseUrl: modal.baseUrl })} value={modal.apiKey || tr('(ứng dụng không xin quyền API nào)')} onDone={() => undefined} />
-                <OneTimeSecret title={tr('Secret ký request (cấu hình ở server của ứng dụng để kiểm tra X-Deplao-Signature)')} value={modal.secret} onDone={() => setModal(null)} />
+                <OneTimeSecret title={tr('API key cho "{{name}}" (server {{baseUrl}} dùng để gọi ngược SadSha ChatDesk)', { name: modal.name, baseUrl: modal.baseUrl })} value={modal.apiKey || tr('(ứng dụng không xin quyền API nào)')} onDone={() => undefined} />
+                <OneTimeSecret title={tr('Secret ký request (cấu hình ở server của ứng dụng để kiểm tra X-SadSha-ChatDesk-Signature)')} value={modal.secret} onDone={() => setModal(null)} />
               </div>
             )}
           </div>

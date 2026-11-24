@@ -123,7 +123,7 @@ export default function EmployeeSettings() {
   return (
     <SettingsPage
       title={tr('Nhân viên')}
-      description={tr('Nhân viên dùng Deplao trên máy riêng, chỉ thấy tài khoản và mục được giao.')}
+      description={tr('Nhân viên dùng SadSha ChatDesk trên máy riêng, chỉ thấy tài khoản và mục được giao.')}
       actions={(
         <Button size="sm" onClick={() => setCreating(true)} leftIcon={<PlusIcon className="h-4 w-4" />}>
           {tr('Thêm nhân viên')}

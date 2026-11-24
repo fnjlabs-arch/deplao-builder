@@ -5,7 +5,7 @@
 let cachedVersion: string | null = null;
 
 /**
- * App version (compared with the plugin's minDeplaoVersion, /health, backup metadata…).
+ * App version (compared with the plugin's minSadShaChatDeskVersion, /health, backup metadata…).
  * Packaged build: app.getVersion() = package.json at build time. Dev run (`electron dist-electron/electron/bootstrap.js`):
  * Electron receives the file path, so it does not read package.json → getVersion() returns the version stamped in the electron.exe of
  * node_modules (postinstall patch-electron-icon.js, only updated on npm install → usually old) → read the repo's package.json instead.

@@ -26,12 +26,12 @@ export const LOGIN_TIMEOUT_MS = 5 * 60_000;
 const TOKEN_TIMEOUT_MS = 30_000;
 const REVOKE_TIMEOUT_MS = 10_000;
 
-export const MSG_DENIED = tr('Bạn đã từ chối cho Deplao truy cập Google Drive.');
-export const MSG_SCOPE_DENIED = tr('Bạn chưa cho phép Deplao xem, tạo và xoá tệp Google Drive do Deplao tạo — đăng nhập lại và đánh dấu ô quyền Google Drive.');
+export const MSG_DENIED = tr('Bạn đã từ chối cho SadSha ChatDesk truy cập Google Drive.');
+export const MSG_SCOPE_DENIED = tr('Bạn chưa cho phép SadSha ChatDesk xem, tạo và xoá tệp Google Drive do SadSha ChatDesk tạo — đăng nhập lại và đánh dấu ô quyền Google Drive.');
 export const MSG_TIMEOUT = tr('Quá 5 phút chưa đăng nhập xong Google — bấm Đăng nhập để thử lại.');
 export const MSG_CANCELLED = tr('Đã huỷ đăng nhập Google');
 export const MSG_SESSION_EXPIRED = tr('Phiên Google đã hết hạn hoặc bị thu hồi — đăng nhập lại Google Drive.');
-export const MSG_NO_REFRESH = tr('Google không trả về phiên đăng nhập dài hạn — vào myaccount.google.com → Bảo mật → Kết nối với ứng dụng bên thứ ba, gỡ Deplao rồi đăng nhập lại.');
+export const MSG_NO_REFRESH = tr('Google không trả về phiên đăng nhập dài hạn — vào myaccount.google.com → Bảo mật → Kết nối với ứng dụng bên thứ ba, gỡ SadSha ChatDesk rồi đăng nhập lại.');
 
 /** OAuth client used to sign in / refresh (the secret may be empty for a Desktop client + PKCE). */
 export interface OAuthClient {
@@ -98,7 +98,7 @@ function escapeHtml(s: string): string {
 function page(title: string, detail: string, ok: boolean): string {
     const color = ok ? '#16a34a' : '#dc2626';
     return '<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
-        + '<title>Deplao — Google Drive</title><style>'
+        + '<title>SadSha ChatDesk — Google Drive</title><style>'
         + 'body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#f5f7fb;'
         + 'font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#1f2937}'
         + '.card{background:#fff;border-radius:14px;padding:32px 40px;max-width:460px;text-align:center;box-shadow:0 6px 28px rgba(15,23,42,.08)}'
@@ -177,7 +177,7 @@ export function startLoopbackLogin(opts: { state: string; timeoutMs?: number }):
                 return;
             }
             if (done) {
-                reply(200, page(tr('Đăng nhập đã kết thúc'), tr('Quay lại Deplao để xem kết quả.'), true));
+                reply(200, page(tr('Đăng nhập đã kết thúc'), tr('Quay lại SadSha ChatDesk để xem kết quả.'), true));
                 return;
             }
             const error = url.searchParams.get('error');
@@ -199,7 +199,7 @@ export function startLoopbackLogin(opts: { state: string; timeoutMs?: number }):
                 finish(failure);
                 return;
             }
-            reply(200, page(tr('Đã kết nối Google Drive — quay lại Deplao.'), tr('Có thể đóng thẻ này.'), true));
+            reply(200, page(tr('Đã kết nối Google Drive — quay lại SadSha ChatDesk.'), tr('Có thể đóng thẻ này.'), true));
             finish(null, { code: code as string, scope });
         });
 

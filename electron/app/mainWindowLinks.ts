@@ -1,6 +1,6 @@
 /**
  * Links and navigation of the main window. Preload attaches electronAPI to every page the main window shows, so the main window can
- * only stay in the Deplao UI:
+ * only stay in the SadSha ChatDesk UI:
  *  - will-navigate: only allows navigation to the app UI (installed build: exactly dist/index.html; dev build: Vite). Web links open in
  *    the machine's browser (keeps the user's login session); everything else is blocked.
  *  - window.open / target="_blank" / middle-click: does not open an Electron window; web links open in the machine's browser.
@@ -39,7 +39,7 @@ export interface AppUrlOptions {
   platform?: NodeJS.Platform;
 }
 
-/** Navigation stays in the Deplao UI (hash / query change, reload). Installed build: only the UI file itself, not any other file on the machine. */
+/** Navigation stays in the SadSha ChatDesk UI (hash / query change, reload). Installed build: only the UI file itself, not any other file on the machine. */
 export function isAppUrl(raw: string, opts: AppUrlOptions): boolean {
   let url: URL;
   try { url = new URL(raw); } catch { return false; }

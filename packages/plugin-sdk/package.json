@@ -1,7 +1,7 @@
 {
-  "name": "@deplao/plugin-sdk",
+  "name": "@sadshachatdesk/plugin-sdk",
   "version": "1.0.0",
-  "description": "SDK cho plugin Deplao (UI iframe và backend)",
+  "description": "SDK cho plugin SadSha ChatDesk (UI iframe và backend)",
   "main": "web.js",
   "types": "index.d.ts",
   "files": ["web.js", "index.d.ts", "README.md"],

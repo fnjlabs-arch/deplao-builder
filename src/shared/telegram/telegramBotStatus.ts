@@ -1,8 +1,8 @@
 /**
  * Receiving status of a Telegram bot (getUpdates): shared by main (TelegramBotIngressService) and the UI.
  *
- * Telegram allows only ONE caller of getUpdates per bot: a second one (OpenClaw, a bot server, Deplao on another machine…) makes
- * Deplao get error 409. Then Deplao pauses (it does not compete for messages) until the user clicks Reconnect.
+ * Telegram allows only ONE caller of getUpdates per bot: a second one (OpenClaw, a bot server, SadSha ChatDesk on another machine…) makes
+ * SadSha ChatDesk get error 409. Then SadSha ChatDesk pauses (it does not compete for messages) until the user clicks Reconnect.
  */
 
 /** Pause reason: conflict = another place receives the messages (409); unauthorized = token revoked (401); not_found = bot deleted (404). */

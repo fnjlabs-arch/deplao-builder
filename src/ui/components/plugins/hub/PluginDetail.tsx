@@ -18,7 +18,7 @@ type Tab = 'overview' | 'settings' | 'logs';
 
 interface Place { title: string; items: string[]; hint?: string }
 
-/** "Hiện ở đâu trong Deplao" (Where it appears in Deplao): read from manifest.contributes. */
+/** "Hiện ở đâu trong SadSha ChatDesk" (Where it appears in SadSha ChatDesk): read from manifest.contributes. */
 export function pluginPlaces(p: PluginInfo): Place[] {
   const c = p.manifest.contributes || {};
   const names = (list: any[] | undefined, key = 'title') => (list || []).map(x => String(x?.[key] || x?.id || x?.type || '')).filter(Boolean);
@@ -159,7 +159,7 @@ export default function PluginDetail({ plugin: p, pages, onClose, onChanged }: {
               {p.manifest.description && <p className="text-sm text-foreground/80 leading-relaxed">{p.manifest.description}</p>}
 
               <section className="space-y-2">
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-subtle-foreground">{tr('Có trong Deplao')}</h3>
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-subtle-foreground">{tr('Có trong SadSha ChatDesk')}</h3>
                 {places.length === 0 ? (
                   <p className="text-xs text-subtle-foreground">{tr('Ứng dụng chạy nền, không thêm giao diện.')}</p>
                 ) : (

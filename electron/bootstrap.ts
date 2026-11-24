@@ -9,10 +9,10 @@
 process.env.WS_NO_BUFFER_UTIL = '1';
 process.env.WS_NO_UTF_8_VALIDATE = '1';
 
-// Set the app name BEFORE anything else: Electron locks the data folder (userData = %APPDATA%/Deplao) the first time code asks for it
+// Set the app name BEFORE anything else: Electron locks the data folder (userData = %APPDATA%/SadSha ChatDesk) the first time code asks for it
 // The dev build runs straight from the bootstrap file, so its default name is "Electron" → if code asks for userData before main.ts
 // sets the name, the app opens an empty new DB in %APPDATA%/Electron (incident 22/10/2026). main.ts sets it again anyway (harmless).
-require('electron').app.setName('Deplao');
+require('electron').app.setName('SadSha ChatDesk');
 
 // UI language (src/services/i18n/localeStore.ts): loaded before main.ts, so module-level tr() calls in the main
 // process are translated. It must stay after setName (userData path).

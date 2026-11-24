@@ -62,7 +62,7 @@ export function TextMessageBody({ ctx, msg, isSent, content, richBlocks, telegra
           })()}
         </>
       )}
-      {/* Expired self-deleting message: Zalo deletes it on Zalo devices, Deplao keeps the content (FR-ZL05.6) */}
+      {/* Expired self-deleting message: Zalo deletes it on Zalo devices, SadSha ChatDesk keeps the content (FR-ZL05.6) */}
       <TtlExpiredNote ttl={(msg as any).ttl} sentAt={msg.timestamp} />
       {/* Leave room at the end of the last line for the send time at the bottom right (inlineTime); if there is no room, wrap to a new line.
           A message with an upcoming date / time ("mai 9h", "20 phút nữa"): the "Tạo lịch hẹn" (Create appointment) button right below, on the same line as the send time */}

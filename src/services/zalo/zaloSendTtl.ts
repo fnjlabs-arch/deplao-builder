@@ -1,5 +1,5 @@
 /**
- * zaloSendTtl.ts: FR-ZL05.7 (Deplao SRS ZL-05). When auto-delete is on for a Zalo conversation, messages sent from Deplao carry the conversation's ttl
+ * zaloSendTtl.ts: FR-ZL05.7 (SadSha ChatDesk SRS ZL-05). When auto-delete is on for a Zalo conversation, messages sent from SadSha ChatDesk carry the conversation's ttl
  * like the Zalo app does (each message sets its own ttl). It is installed once on the zca-js api object in ConnectionManager, so every send path has it: the UI, employee machines (Boss sends on their behalf), Public API, workflows, CRM campaigns, Apps.
  *
  * - The caller already passed a ttl → kept as is. Conversation with auto-delete off (or a DB lookup error) → called as before, parameters unchanged.
@@ -13,7 +13,7 @@ import Logger from '../../utils/Logger';
 /** threadId → ttl (ms) of the conversation; 0 = no auto-delete. */
 export type ZaloTtlLookup = (threadId: string) => number;
 
-const INSTALLED = Symbol.for('deplao.zaloSendTtl');
+const INSTALLED = Symbol.for('sadshachatdesk.zaloSendTtl');
 const SINGLE_THREAD_SENDS = ['sendMessage', 'sendLink', 'sendVideo', 'sendVoice', 'sendCard'] as const;
 
 /** The conversation's ttl that is on in Boss's DB (the right DB even when Boss is viewing an employee workspace). */

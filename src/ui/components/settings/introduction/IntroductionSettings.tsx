@@ -127,7 +127,7 @@ export default function IntroductionSettings({ initialSubtab }: IntroductionSett
   }, [initialSubtab]);
 
   return (
-    <SettingsPage title={tr('Giới thiệu & Hướng dẫn sử dụng')} description={tr('Deplao làm được gì và cách dùng từng tính năng.')} width="full" fill>
+    <SettingsPage title={tr('Giới thiệu & Hướng dẫn sử dụng')} description={tr('SadSha ChatDesk làm được gì và cách dùng từng tính năng.')} width="full" fill>
       <div className="flex min-h-0 flex-1 overflow-hidden rounded-xl border border-border/60 bg-card">
         {/* Left: list of items */}
         <nav aria-label={tr('Mục hướng dẫn')} className="flex w-52 flex-shrink-0 flex-col gap-0.5 overflow-y-auto border-r border-border/60 py-2">

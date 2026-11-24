@@ -797,7 +797,7 @@ export function useZaloEvents() {
   useEffect(() => { requestNotificationPermission(); }, []);
 
   // ── QR login finished while the Add Account window was closed ─────────
-  // Users often close the window after the phone reports success while Deplao is still fetching the session: main still saves + connects the
+  // Users often close the window after the phone reports success while SadSha ChatDesk is still fetching the session: main still saves + connects the
   // account, but the list is only loaded inside that window → the account only appears after reopening the app. Always reload it here.
   useEffect(() => {
     const unsub = ipc.on('qr:update', (data: any) => {
@@ -806,7 +806,7 @@ export function useZaloEvents() {
       ipc.login?.getAccounts().then((res: any) => {
         if (!Array.isArray(res?.accounts)) return;
         useAccountStore.getState().setAccounts(res.accounts);
-        if (!modalOpen) showNotification(tr('Đã thêm tài khoản Zalo vào Deplao'), 'success');
+        if (!modalOpen) showNotification(tr('Đã thêm tài khoản Zalo vào SadSha ChatDesk'), 'success');
       }).catch(() => {});
     });
     return unsub;
@@ -1418,7 +1418,7 @@ export function useZaloEvents() {
         if (!isEmployeeMode()) DataAccessor.markAsRead({ zaloId, contactId: threadId }).catch(() => {});
         // A reply in the open conversation = read → report to the platform if there are still incoming messages not yet reported (e.g. a conversation reopened at
         // startup that was never reported); if reported up to the latest incoming message, liveReadSync does not send it again
-        // (replyState is not checked: a message sent from Deplao already updated the last message time before the echo comes back → replyState is usually undefined)
+        // (replyState is not checked: a message sent from SadSha ChatDesk already updated the last message time before the echo comes back → replyState is usually undefined)
         const chatNow = useChatStore.getState();
         if (!isSilent && windowFocusedRef.current && isChatPaneVisible()
           && chatNow.activeThreadId === threadId && useAccountStore.getState().activeAccountId === zaloId) {
@@ -2129,7 +2129,7 @@ export function useZaloEvents() {
         delete newTopics[cacheKey];
         useChatStore.setState({ forumTopics: newTopics });
         // Also clear persisted cache
-        try { localStorage.removeItem(`deplao_forum_topics_${cacheKey}`); } catch {}
+        try { localStorage.removeItem(`sadshachatdesk_forum_topics_${cacheKey}`); } catch {}
       }
     });
 

@@ -7,11 +7,11 @@
  * while Telegram Desktop (layer 232) shows them in full.
  *
  * GramJS builds the whole `Api.*` class set when its module loads, from the schema string in `telegram/tl/apiTl.js`, and sends
- * `invokeWithLayer(AllTLObjects.LAYER, …)` on connect. Deplao puts the new schema (telegramApiSchema.ts) into the Node module cache
+ * `invokeWithLayer(AllTLObjects.LAYER, …)` on connect. SadSha ChatDesk puts the new schema (telegramApiSchema.ts) into the Node module cache
  * BEFORE GramJS is first loaded, and changes LAYER: node_modules is not edited, and it works in the packaged app too.
  * It must be called before any `require('telegram')`: electron/bootstrap.ts calls it right after `app.setName`.
  *
- * To run with the old layer again (diagnosis): environment variable DEPLAO_TELEGRAM_LAYER=198.
+ * To run with the old layer again (diagnosis): environment variable SADSHA_CHATDESK_TELEGRAM_LAYER=198.
  */
 import Module = require('module');
 import { TELEGRAM_API_LAYER, TELEGRAM_API_SCHEMA } from './telegramApiSchema';
@@ -41,8 +41,8 @@ function loadedLayer(): number {
 /** Replace GramJS's schema with the new layer. Calling it several times is harmless (only the first call has an effect). */
 export function installTelegramApiLayer(env: NodeJS.ProcessEnv = process.env): TelegramApiLayerState {
   if (state) return state;
-  if (String(env.DEPLAO_TELEGRAM_LAYER || '') === String(GRAMJS_BUNDLED_LAYER)) {
-    state = { layer: GRAMJS_BUNDLED_LAYER, installed: false, reason: 'DEPLAO_TELEGRAM_LAYER' };
+  if (String(env.SADSHA_CHATDESK_TELEGRAM_LAYER || '') === String(GRAMJS_BUNDLED_LAYER)) {
+    state = { layer: GRAMJS_BUNDLED_LAYER, installed: false, reason: 'SADSHA_CHATDESK_TELEGRAM_LAYER' };
     return state;
   }
   try {

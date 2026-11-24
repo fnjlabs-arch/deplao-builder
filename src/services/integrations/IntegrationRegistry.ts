@@ -59,7 +59,7 @@ export interface WebhookHttpResult {
 const webhookStatus = new Map<string, { lastAccepted?: WebhookEventInfo; lastRejected?: WebhookEventInfo }>();
 /** Transactions already emitted (Casso / SePay resend them after an error, admin re-emits manually): each transaction runs the workflow only once. */
 const seenTransactions = new RecentKeys();
-/** POS events already emitted (the platform resends them when Deplao replies slowly / errors): each order / customer / product runs the workflow only once. */
+/** POS events already emitted (the platform resends them when SadSha ChatDesk replies slowly / errors): each order / customer / product runs the workflow only once. */
 const seenPosEvents = new RecentKeys();
 
 const ACCEPTED_MESSAGES: Record<WebhookAuthMethod, string> = {

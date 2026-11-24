@@ -520,7 +520,7 @@ export function systemPrincipal(): Principal {
     return {
         kind: 'system',
         id: 'system',
-        name: 'Deplao',
+        name: 'SadSha ChatDesk',
         scopes: new Set(['admin']),
         accountIds: null,
         rateLimitPerMin: 0,

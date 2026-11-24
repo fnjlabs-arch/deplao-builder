@@ -147,7 +147,7 @@ const MODES: Array<{ title: string; badge?: string; desc: string }> = [
   {
     title: tr('Cloudflare tự động'),
     badge: tr('Khuyên dùng'),
-    desc: tr('Cần kết nối Cloudflare và một tên miền đã thêm vào Cloudflare (gói Free là đủ). Chọn {{v1}} + {{v2}} (vd shop → shop.tenmien.vn), xem trước rồi bấm {{v3}}. Deplao tự tạo tunnel và tên miền con; địa chỉ cố định, mặc định một địa chỉ cho cả ba dịch vụ.', { v1: bold(tr('Tên miền')), v2: bold(tr('Tên máy')), v3: bold(tr('Áp dụng')) }),
+    desc: tr('Cần kết nối Cloudflare và một tên miền đã thêm vào Cloudflare (gói Free là đủ). Chọn {{v1}} + {{v2}} (vd shop → shop.tenmien.vn), xem trước rồi bấm {{v3}}. SadSha ChatDesk tự tạo tunnel và tên miền con; địa chỉ cố định, mặc định một địa chỉ cho cả ba dịch vụ.', { v1: bold(tr('Tên miền')), v2: bold(tr('Tên máy')), v3: bold(tr('Áp dụng')) }),
   },
   {
     title: 'ngrok',
@@ -188,7 +188,7 @@ const GDRIVE_USAGE = [
   tr('{{v1}} — dùng chung Gmail, Drive, Photos.', { v1: bold(tr('Dung lượng tài khoản Google')) }),
   tr('{{v1}} — tính bằng "đơn vị": đọc thông tin {{unitsRead}}, liệt kê {{unitsList}}, tải xuống {{unitsDownload}}, ghi/sửa {{unitsEdit}}; ngưỡng miễn phí {{v2}} đơn vị/ngày cho cả client OAuth (Google báo sẽ tính phí phần vượt từ cuối 2026).', { v1: bold(tr('Lượt dùng Drive API hôm nay')), unitsRead: G.unitsRead, unitsList: G.unitsList, unitsDownload: G.unitsDownload, unitsEdit: G.unitsEdit, v2: millions(G.unitsPerDayPerProject) }),
   tr('{{v1}} — miễn phí dưới {{v2}}/ngày cho cả client OAuth. {{v3}} — tối đa {{v4}}/ngày mỗi tài khoản.', { v1: bold(tr('Tải xuống hôm nay')), v2: bytes(G.egressBytesPerDayPerProject), v3: bold(tr('Tải lên hôm nay')), v4: bytes(G.uploadBytesPerDayPerUser) }),
-  tr('"Hôm nay" tính theo giờ Mỹ – Thái Bình Dương. Google không cho đọc mức dùng của cả client OAuth, nên số lượt và dung lượng tải là của Deplao trên máy này.'),
+  tr('"Hôm nay" tính theo giờ Mỹ – Thái Bình Dương. Google không cho đọc mức dùng của cả client OAuth, nên số lượt và dung lượng tải là của SadSha ChatDesk trên máy này.'),
 ];
 
 export function CloudPanel() {
@@ -223,7 +223,7 @@ export function CloudPanel() {
           },
           {
             title: tr('Bấm Kết nối'),
-            desc: tr('Deplao kiểm tra token, đọc danh sách tên miền và thử quyền của từng tính năng. Token được lưu mã hoá trên máy này.'),
+            desc: tr('SadSha ChatDesk kiểm tra token, đọc danh sách tên miền và thử quyền của từng tính năng. Token được lưu mã hoá trên máy này.'),
           },
         ]} />
         <SubTitle>{tr('Token xin những quyền gì (nói dễ hiểu)')}</SubTitle>
@@ -232,11 +232,11 @@ export function CloudPanel() {
           tr('{{v1}} tạo tên miền con (vd shop.tenmien.vn) trỏ vào đường hầm đó.', { v1: bold('DNS — Edit:') }),
           tr('{{v1}} đọc danh sách tên miền bạn đã thêm vào Cloudflare.', { v1: bold('Zone — Read:') }),
           tr('{{v1}} tạo kho (bucket) lưu ảnh, file và bản sao dữ liệu.', { v1: bold('Workers R2 Storage — Edit:') }),
-          tr('{{v1}} đọc mức dùng R2 của cả tài khoản cho thẻ Mức sử dụng &amp; chi phí; thiếu quyền này thì chỉ đếm được thao tác của Deplao trên máy này.', { v1: bold('Account Analytics — Read:') }),
+          tr('{{v1}} đọc mức dùng R2 của cả tài khoản cho thẻ Mức sử dụng &amp; chi phí; thiếu quyền này thì chỉ đếm được thao tác của SadSha ChatDesk trên máy này.', { v1: bold('Account Analytics — Read:') }),
         ]} />
         <SubTitle>{tr('Lưu ý')}</SubTitle>
         <BulletList items={[
-          tr('Deplao chỉ tạo tunnel, tên miền con và bucket có tên {{v1}}; dữ liệu khác trên Cloudflare không bị đụng tới.', { v1: mono('deplao-…') }),
+          tr('SadSha ChatDesk chỉ tạo tunnel, tên miền con và bucket có tên {{v1}}; dữ liệu khác trên Cloudflare không bị đụng tới.', { v1: mono('sadshachatdesk-…') }),
           tr('Dùng kho R2 thì phải bật R2 trên tài khoản (Cloudflare → R2 Object Storage). Cloudflare yêu cầu thêm phương thức thanh toán dù chỉ dùng phần miễn phí.'),
           tr('Đã kết nối: nút {{v1}} có Kiểm tra lại token · Đổi token · Mở Cloudflare · Ngắt kết nối. Token thiếu quyền hoặc sắp hết hạn (còn ≤ 14 ngày) được báo ngay dưới tên tài khoản.', { v1: bold(tr('Quản lý')) }),
           tr('Ngắt kết nối: địa chỉ cố định và đồng bộ lên R2 trên máy này dừng; dữ liệu đã có trên Cloudflare vẫn giữ nguyên.'),
@@ -246,7 +246,7 @@ export function CloudPanel() {
       <Card>
         <SectionTitle>{trx('<0/> Địa chỉ Internet', { 0: <GlobeIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <Paragraph>
-          {tr('Máy tính của bạn không có địa chỉ công khai. Địa chỉ Internet giúp nhân viên ở xa và hệ thống bên ngoài gọi vào Deplao mà không cần VPS hay mở cổng router. Đây là nơi duy nhất bật, tắt và đổi địa chỉ — các màn Nhân viên, API, Webhook, Tích hợp, Workflow chỉ hiện địa chỉ và dẫn về đây.')}
+          {tr('Máy tính của bạn không có địa chỉ công khai. Địa chỉ Internet giúp nhân viên ở xa và hệ thống bên ngoài gọi vào SadSha ChatDesk mà không cần VPS hay mở cổng router. Đây là nơi duy nhất bật, tắt và đổi địa chỉ — các màn Nhân viên, API, Webhook, Tích hợp, Workflow chỉ hiện địa chỉ và dẫn về đây.')}
         </Paragraph>
         <SubTitle>{tr('Ba dịch vụ, mỗi dịch vụ một công tắc riêng')}</SubTitle>
         <div className="grid gap-2 md:grid-cols-3">
@@ -260,8 +260,8 @@ export function CloudPanel() {
           {tr('Ở chế độ ngrok và Cloudflare thủ công, Thanh toán, tích hợp và Webhook workflow vẫn dùng Địa chỉ tạm (đổi mỗi lần bật lại). Muốn cả ba dịch vụ có địa chỉ cố định, chọn Cloudflare tự động.')}
         </Callout>
         <BulletList items={[
-          tr('{{v1}} tunnel chạy lại ngay khi mở Deplao. Ở các chế độ khác Cloudflare tự động, chỉ Nhân viên và API tự bật lại, và chỉ khi máy chủ nhân viên (LAN) cũng tự chạy lúc mở app; Thanh toán và Webhook workflow bật lại ở bảng dịch vụ khi cần.', { v1: bold(tr('Tự bật khi mở app:')) }),
-          tr('Địa chỉ chỉ hoạt động khi Deplao đang mở trên máy chủ.'),
+          tr('{{v1}} tunnel chạy lại ngay khi mở SadSha ChatDesk. Ở các chế độ khác Cloudflare tự động, chỉ Nhân viên và API tự bật lại, và chỉ khi máy chủ nhân viên (LAN) cũng tự chạy lúc mở app; Thanh toán và Webhook workflow bật lại ở bảng dịch vụ khi cần.', { v1: bold(tr('Tự bật khi mở app:')) }),
+          tr('Địa chỉ chỉ hoạt động khi SadSha ChatDesk đang mở trên máy chủ.'),
           tr('Đổi tên miền / tên máy hoặc đổi cách tạo địa chỉ thì địa chỉ cũ ngừng hoạt động — nhớ cập nhật ở Casso, SePay, phần mềm bán hàng, website và gửi địa chỉ mới cho nhân viên ở xa.'),
           tr('{{v1}} (Cloudflare tự động): tách tên riêng cho từng dịch vụ (shop, shop-pay, shop-hook) · Chuyển sang máy này khi đổi máy chủ · Ngắt máy lạ đang chạy cùng tunnel · Gỡ tunnel và địa chỉ.', { v1: bold(tr('Nâng cao')) }),
         ]} />
@@ -277,11 +277,11 @@ export function CloudPanel() {
           <ListTile title="Google Drive (Google One)" items={GDRIVE_LINES} />
         </div>
         <BulletList items={[
-          tr('{{v1}} diễn ra trên trình duyệt của máy: bấm Đăng nhập Google ở thẻ Google Drive rồi đồng ý trên trang Google. Deplao chỉ thấy file do chính Deplao tạo (thư mục {{v2}} trong Drive của bạn), không đọc được file khác.', { v1: bold(tr('Đăng nhập Google')), v2: bold('Deplao') }),
-          tr('{{v1}} — tạo miễn phí một client "Desktop app" trên Google Cloud theo 4 bước hướng dẫn ngay trong thẻ (bật Google Drive API, quyền drive.file, Publishing status chọn In production — để Testing thì sau 7 ngày phải đăng nhập lại), rồi dán Client ID / Client secret. Hạn mức Drive API mỗi ngày khi đó là của riêng bạn. Bản Deplao không có sẵn client Google chung thì phần này tự mở và là cách để đăng nhập.', { v1: bold(tr('Nâng cao: dùng client OAuth riêng')) }),
-          tr('Dùng client riêng thì máy khác muốn khôi phục phải đăng nhập bằng {{v1}} đó (Deplao chỉ thấy file do chính client đó tạo).', { v1: bold(tr('cùng client')) }),
+          tr('{{v1}} diễn ra trên trình duyệt của máy: bấm Đăng nhập Google ở thẻ Google Drive rồi đồng ý trên trang Google. SadSha ChatDesk chỉ thấy file do chính SadSha ChatDesk tạo (thư mục {{v2}} trong Drive của bạn), không đọc được file khác.', { v1: bold(tr('Đăng nhập Google')), v2: bold('SadSha ChatDesk') }),
+          tr('{{v1}} — tạo miễn phí một client "Desktop app" trên Google Cloud theo 4 bước hướng dẫn ngay trong thẻ (bật Google Drive API, quyền drive.file, Publishing status chọn In production — để Testing thì sau 7 ngày phải đăng nhập lại), rồi dán Client ID / Client secret. Hạn mức Drive API mỗi ngày khi đó là của riêng bạn. Bản SadSha ChatDesk không có sẵn client Google chung thì phần này tự mở và là cách để đăng nhập.', { v1: bold(tr('Nâng cao: dùng client OAuth riêng')) }),
+          tr('Dùng client riêng thì máy khác muốn khôi phục phải đăng nhập bằng {{v1}} đó (SadSha ChatDesk chỉ thấy file do chính client đó tạo).', { v1: bold(tr('cùng client')) }),
           tr('{{v1}} chỉ được khi đồng bộ đang tắt và máy không làm máy dự phòng. Sau khi đổi, ảnh, file tải lại từ đầu lên kho mới, dữ liệu tạo bản gốc mới; bản trên kho cũ vẫn giữ — chọn lại kho cũ để khôi phục từ đó. Còn file đã dọn khỏi máy (chỉ nằm trên kho cũ) thì tải về máy trước.', { v1: bold(tr('Đổi kho')) }),
-          tr('Ngắt kết nối Google Drive: Deplao thu hồi quyền và xoá đăng nhập trên máy này; file đã lên Drive vẫn giữ.'),
+          tr('Ngắt kết nối Google Drive: SadSha ChatDesk thu hồi quyền và xoá đăng nhập trên máy này; file đã lên Drive vẫn giữ.'),
         ]} />
         <Callout tone="warning">
           {tr('Dung lượng Google dùng chung với Gmail và Google Photos: đầy thì không tải lên được và Gmail có thể không nhận thư — nên dùng một tài khoản Google riêng cho sao lưu.')}
@@ -312,7 +312,7 @@ export function CloudPanel() {
           },
           {
             title: tr('Bấm Bật đồng bộ'),
-            desc: tr('Lần đầu Deplao hỏi {{v1}} (ít nhất 8 ký tự, nhập hai lần, tick ô xác nhận) rồi chụp bản gốc ngay: sao chép DB → lọc theo phạm vi → nén → mã hoá → tải lên. Sau đó chỉ đẩy phần thay đổi. Bản gốc mới (khoảng mỗi ngày) chỉ tự chụp khi máy rảnh, đang cắm sạc và không ngay lúc máy vừa thức dậy; bấm {{v2}} để chụp luôn.', { v1: bold(tr('mật khẩu sao lưu')), v2: bold(tr('Đồng bộ ngay')) }),
+            desc: tr('Lần đầu SadSha ChatDesk hỏi {{v1}} (ít nhất 8 ký tự, nhập hai lần, tick ô xác nhận) rồi chụp bản gốc ngay: sao chép DB → lọc theo phạm vi → nén → mã hoá → tải lên. Sau đó chỉ đẩy phần thay đổi. Bản gốc mới (khoảng mỗi ngày) chỉ tự chụp khi máy rảnh, đang cắm sạc và không ngay lúc máy vừa thức dậy; bấm {{v2}} để chụp luôn.', { v1: bold(tr('mật khẩu sao lưu')), v2: bold(tr('Đồng bộ ngay')) }),
           },
         ]} />
         <Callout tone="destructive">
@@ -321,7 +321,7 @@ export function CloudPanel() {
           </p>
         </Callout>
         <BulletList items={[
-          tr('Đang đồng bộ thì thiết lập thu gọn thành một dòng tóm tắt; bấm {{v1}} để sửa. Đổi tài khoản / thời gian khi đã có bản trên kho thì Deplao tạo bản gốc mới thay bản cũ (file ảnh đã lên vẫn giữ).', { v1: bold(tr('Thay đổi')) }),
+          tr('Đang đồng bộ thì thiết lập thu gọn thành một dòng tóm tắt; bấm {{v1}} để sửa. Đổi tài khoản / thời gian khi đã có bản trên kho thì SadSha ChatDesk tạo bản gốc mới thay bản cũ (file ảnh đã lên vẫn giữ).', { v1: bold(tr('Thay đổi')) }),
           tr('{{v1}} Dữ liệu (lần đồng bộ gần nhất, bản trên kho, phạm vi; nút {{v2}}, {{v3}}) và Ảnh &amp; file (đã lên bao nhiêu file; {{v4}} / {{v5}}).', { v1: bold(tr('Trạng thái:')), v2: bold(tr('Đồng bộ ngay')), v3: bold(tr('Khôi phục…')), v4: bold(tr('Tạm dừng')), v5: bold(tr('Tiếp tục')) }),
           tr('Đổi mật khẩu ở dòng Mật khẩu sao lưu → Đổi mật khẩu; máy dự phòng phải nhập lại mật khẩu mới.'),
           tr('Mỗi workspace của máy chủ có thư mục riêng trên kho; máy nhân viên không tải lên. Cài đặt → Lưu trữ có dòng "Media trên đám mây" để xem nhanh.'),
@@ -335,7 +335,7 @@ export function CloudPanel() {
         </Paragraph>
         <BulletList items={[
           tr('{{v1}} — kho chỉ giữ thêm một bản sao.', { v1: bold(tr('Mặc định giữ nguyên file trên máy')) }),
-          tr('{{v1}} "Xoá bản trên máy của file cũ để giải phóng ổ" chỉ xoá bản trên máy của file đã có trên kho, không mở trong 30 ngày gần đây và khi ổ còn trống dưới 20 GB (hai số này đổi được). Mở lại file thì Deplao tự tải về từ kho.', { v1: bold(tr('Giải phóng ổ (tuỳ chọn):')) }),
+          tr('{{v1}} "Xoá bản trên máy của file cũ để giải phóng ổ" chỉ xoá bản trên máy của file đã có trên kho, không mở trong 30 ngày gần đây và khi ổ còn trống dưới 20 GB (hai số này đổi được). Mở lại file thì SadSha ChatDesk tự tải về từ kho.', { v1: bold(tr('Giải phóng ổ (tuỳ chọn):')) }),
           tr('{{v1}} về máy khi cần (cần đủ chỗ trống trên ổ).', { v1: bold(tr('Tải lại toàn bộ file đã dọn')) }),
           tr('{{v1}} số file tải song song, giới hạn băng thông (0 = không giới hạn), "Chỉ chạy từ 22:00 đến 07:00".', { v1: bold(tr('Tải ảnh &amp; file:')) }),
           tr('Ngoài ra: {{v1}}, {{v2}} trên kho (xem, xoá hẳn bản của máy cũ không dùng nữa) và {{v3}}.', { v1: bold(tr('Máy dự phòng')), v2: bold(tr('Bản sao DB')), v3: bold(tr('Nhật ký đồng bộ')) }),
@@ -353,7 +353,7 @@ export function CloudPanel() {
       <Card>
         <SectionTitle>{trx('<0/> Khôi phục sang máy mới & máy dự phòng', { 0: <DownloadIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <Paragraph>
-          {trx('Đổi máy, cài lại Windows hay máy chủ hỏng: lấy lại dữ liệu từ bản sao trên kho. Trên máy mới cài Deplao, bấm <0>Khôi phục dữ liệu từ đám mây</0> (dòng "Chuyển từ máy khác?" ở Dashboard khi chưa có tài khoản, hoặc trong hộp Thêm tài khoản) — dùng được cho cả Cloudflare R2 và Google Drive. Khôi phục ngay trên máy đang dùng: bấm <1>Khôi phục…</1> ở phần Trạng thái.', { 0: <strong className="text-foreground" />, 1: <strong className="text-foreground" /> })}
+          {trx('Đổi máy, cài lại Windows hay máy chủ hỏng: lấy lại dữ liệu từ bản sao trên kho. Trên máy mới cài SadSha ChatDesk, bấm <0>Khôi phục dữ liệu từ đám mây</0> (dòng "Chuyển từ máy khác?" ở Dashboard khi chưa có tài khoản, hoặc trong hộp Thêm tài khoản) — dùng được cho cả Cloudflare R2 và Google Drive. Khôi phục ngay trên máy đang dùng: bấm <1>Khôi phục…</1> ở phần Trạng thái.', { 0: <strong className="text-foreground" />, 1: <strong className="text-foreground" /> })}
         </Paragraph>
         <StepList steps={[
           {
@@ -362,11 +362,11 @@ export function CloudPanel() {
           },
           {
             title: tr('Chọn workspace'),
-            desc: tr('Mỗi workspace có một bản, kèm tên máy, lần đồng bộ, dung lượng, phạm vi. Bản do Deplao mới hơn tạo bị khoá — cập nhật app trước.'),
+            desc: tr('Mỗi workspace có một bản, kèm tên máy, lần đồng bộ, dung lượng, phạm vi. Bản do SadSha ChatDesk mới hơn tạo bị khoá — cập nhật app trước.'),
           },
           {
             title: tr('Nhập mật khẩu sao lưu'),
-            desc: tr('Mật khẩu đặt khi bật đồng bộ trên máy chủ; Deplao giải mã trên máy này, không gửi mật khẩu đi đâu. Có thể chọn khôi phục tới một thời điểm cũ hơn.'),
+            desc: tr('Mật khẩu đặt khi bật đồng bộ trên máy chủ; SadSha ChatDesk giải mã trên máy này, không gửi mật khẩu đi đâu. Có thể chọn khôi phục tới một thời điểm cũ hơn.'),
           },
           {
             title: tr('Khôi phục dữ liệu'),
@@ -378,12 +378,12 @@ export function CloudPanel() {
           },
           {
             title: tr('Bật lại tự động hoá'),
-            desc: tr('Chiến dịch, workflow và lịch của ứng dụng tạm dừng sau khôi phục để không gửi trùng với máy cũ. Tick "Máy cũ đã tắt hoặc đã ngắt Deplao" rồi bấm Bật lại tự động hoá; đang dùng Cloudflare tự động thì có thể chuyển luôn địa chỉ Internet sang máy này.'),
+            desc: tr('Chiến dịch, workflow và lịch của ứng dụng tạm dừng sau khôi phục để không gửi trùng với máy cũ. Tick "Máy cũ đã tắt hoặc đã ngắt SadSha ChatDesk" rồi bấm Bật lại tự động hoá; đang dùng Cloudflare tự động thì có thể chuyển luôn địa chỉ Internet sang máy này.'),
           },
         ]} />
         <SubTitle>{tr('Máy dự phòng')}</SubTitle>
         <BulletList items={[
-          tr('Máy thứ hai cài Deplao, kết nối cùng Cloudflare (hoặc chọn kho Google Drive và đăng nhập cùng tài khoản Google) → Đồng bộ dữ liệu → Nâng cao → Máy dự phòng → {{v1}} → chọn bản sao, nhập mật khẩu sao lưu của máy chủ.', { v1: bold(tr('Dùng máy này theo dõi bản của máy khác…')) }),
+          tr('Máy thứ hai cài SadSha ChatDesk, kết nối cùng Cloudflare (hoặc chọn kho Google Drive và đăng nhập cùng tài khoản Google) → Đồng bộ dữ liệu → Nâng cao → Máy dự phòng → {{v1}} → chọn bản sao, nhập mật khẩu sao lưu của máy chủ.', { v1: bold(tr('Dùng máy này theo dõi bản của máy khác…')) }),
           tr('Máy dự phòng tải đoạn mới mỗi phút; máy chủ thấy máy nào đang theo dõi và trễ bao lâu.'),
           tr('Máy chủ hỏng: trên máy dự phòng bấm {{v1}} → đăng nhập lại kênh → bật lại tự động hoá. Chỉ làm khi máy chủ cũ đã hỏng hoặc đã tắt, tránh hai máy cùng gửi tin.', { v1: bold(tr('Chuyển sang máy này')) }),
         ]} />
@@ -399,7 +399,7 @@ export function CloudPanel() {
         </Paragraph>
         <BulletList items={[
           tr('Mỗi mục có thanh % so với phần miễn phí / ngưỡng: chuyển vàng từ 70%, đỏ khi vượt 100%; kèm số dự kiến cuối kỳ theo nhịp dùng hiện tại.'),
-          tr('Nút {{v1}} đọc lại số liệu ngay (tối đa một lần mỗi phút). Nhãn {{v2}} nghĩa là số chỉ tính Deplao trên máy này, chưa gồm máy khác hay ứng dụng khác.', { v1: bold(tr('Cập nhật')), v2: bold(tr('máy này')) }),
+          tr('Nút {{v1}} đọc lại số liệu ngay (tối đa một lần mỗi phút). Nhãn {{v2}} nghĩa là số chỉ tính SadSha ChatDesk trên máy này, chưa gồm máy khác hay ứng dụng khác.', { v1: bold(tr('Cập nhật')), v2: bold(tr('máy này')) }),
         ]} />
         <div className="grid gap-2 md:grid-cols-2">
           <ListTile title={tr('Cloudflare R2 — tính theo tháng')} items={R2_USAGE} />

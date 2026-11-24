@@ -196,7 +196,7 @@ export function parseSegment(text: string): ParsedSegment {
         }
     }
     if (!header) throw new Error('Đoạn thay đổi thiếu phần đầu');
-    if (header.v !== SEGMENT_FORMAT) throw new Error(`Đoạn thay đổi định dạng v${header.v} — hãy cập nhật Deplao`);
+    if (header.v !== SEGMENT_FORMAT) throw new Error(`Đoạn thay đổi định dạng v${header.v} — hãy cập nhật SadSha ChatDesk`);
     return { header, upserts, deletes, seq };
 }
 

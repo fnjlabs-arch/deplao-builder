@@ -201,7 +201,7 @@ export default function BulkImportGroupsModal({ pageId, onClose, onImported }: B
       alert(tr('Không tìm thấy tài khoản Zalo đang đăng nhập'));
       return;
     }
-    // Counting members of each group = scanning through the Deplao server (sends the Zalo cookie) → ask consent once for the whole import run
+    // Counting members of each group = scanning through the SadSha ChatDesk server (sends the Zalo cookie) → ask consent once for the whole import run
     if (!(await ensureHiddenScanConsent({ accountName: acc.full_name || acc.zalo_id }))) return;
 
     setStep('importing');

@@ -2,7 +2,7 @@
  * Zalo login with a QR code (zca-js loginQR): classifies how the QR attempt ended + the message shown to the user.
  *
  * "Operation aborted" (ZaloApiLoginQRAborted) is not an error that Zalo returns: zca-js only throws when the app itself calls
- * actions.abort(). Deplao calls it when the Add account window closes, the tab changes, the user goes back, or they click Refresh QR.
+ * actions.abort(). SadSha ChatDesk calls it when the Add account window closes, the tab changes, the user goes back, or they click Refresh QR.
  */
 
 /** QR attempt cancelled by the app (window closed / Refresh). */

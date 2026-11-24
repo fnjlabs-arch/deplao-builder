@@ -9,7 +9,7 @@
  *  - Normal link button: opens in the machine's browser, as in Telegram.
  */
 
-/** tgWebAppPlatform: Deplao is a desktop app, so the Mini App is handled like Telegram Desktop. */
+/** tgWebAppPlatform: SadSha ChatDesk is a desktop app, so the Mini App is handled like Telegram Desktop. */
 export const MINI_APP_PLATFORM = 'tdesktop';
 
 export const MINI_APP_THEME_KEYS = [

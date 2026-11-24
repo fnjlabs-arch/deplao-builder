@@ -496,7 +496,7 @@ function ProxySelectStep({
 
 /**
  * zca-js cancels the QR code 100 s after it is created. It used to count 60 s: a code that could still be used was hidden and reported as expired, and the user
- * clicked Refresh, which cancelled the exact attempt just scanned → the phone reported a successful login but Deplao had no account.
+ * clicked Refresh, which cancelled the exact attempt just scanned → the phone reported a successful login but SadSha ChatDesk had no account.
  */
 const QR_TIMEOUT_SECONDS = 100;
 

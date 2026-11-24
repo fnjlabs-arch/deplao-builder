@@ -15,7 +15,7 @@ import { tr } from '../../../shared/i18n';
 /** Max rows per dataset (the query limit). */
 export const R2_ANALYTICS_LIMIT = 10_000;
 
-export const R2_USAGE_QUERY = `query DeplaoR2Usage($accountTag: string!, $start: Time, $end: Time) {
+export const R2_USAGE_QUERY = `query SadSha ChatDeskR2Usage($accountTag: string!, $start: Time, $end: Time) {
   viewer {
     accounts(filter: { accountTag: $accountTag }) {
       r2OperationsAdaptiveGroups(limit: ${R2_ANALYTICS_LIMIT}, filter: { datetime_geq: $start, datetime_leq: $end }) {

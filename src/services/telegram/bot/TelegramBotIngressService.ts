@@ -85,7 +85,7 @@ interface ActivePoller {
   running: boolean;
   /**
    * Paused because of a Telegram error (the poller still keeps the account + consumers, so it can run again without losing anything):
-   *  - conflict (409): somewhere else (OpenClaw, a bot server, another Deplao machine…) is calling getUpdates with the same token. It does not run
+   *  - conflict (409): somewhere else (OpenClaw, a bot server, another SadSha ChatDesk machine…) is calling getUpdates with the same token. It does not run
    *    again by itself (the two would fight over the messages); it only runs again when the user clicks reconnect (resumeBot).
    *  - unauthorized / not_found (401 / 404): token revoked / bot deleted; the health check retries every minute.
    */

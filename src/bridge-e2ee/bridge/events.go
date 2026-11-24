@@ -108,7 +108,7 @@ type Attachment struct {
 	MediaSHA256    []byte `json:"mediaSha256,omitempty"`
 	MediaEncSHA256 []byte `json:"mediaEncSha256,omitempty"`
 	DirectPath     string `json:"directPath,omitempty"`
-	// DEPLAO_ADAPTER: Page template / XMA card fields (type "template"; see xma.go).
+	// SADSHA_ADAPTER: Page template / XMA card fields (type "template"; see xma.go).
 	Title    string            `json:"title,omitempty"`
 	Subtitle string            `json:"subtitle,omitempty"`
 	Header   string            `json:"header,omitempty"`
@@ -148,7 +148,7 @@ type Message struct {
 	ReplyTo     *ReplyTo      `json:"replyTo,omitempty"`
 	Mentions    []*Mention    `json:"mentions,omitempty"`
 	IsAdminMsg  bool          `json:"isAdminMsg,omitempty"`
-	// DEPLAO_ADAPTER: history rows of unsent messages (live unsends arrive as
+	// SADSHA_ADAPTER: history rows of unsent messages (live unsends arrive as
 	// messageUnsend events) and messages whose content the bridge cannot show.
 	IsUnsent    bool   `json:"isUnsent,omitempty"`
 	Unsupported string `json:"unsupported,omitempty"`
@@ -224,7 +224,7 @@ type E2EEMessage struct {
 	Attachments []*Attachment `json:"attachments,omitempty"`
 	ReplyTo     *ReplyTo      `json:"replyTo,omitempty"`
 	Mentions    []*Mention    `json:"mentions,omitempty"`
-	// DEPLAO_ADAPTER: kind of content the bridge cannot show (view_once,
+	// SADSHA_ADAPTER: kind of content the bridge cannot show (view_once,
 	// payment, contact…); the app renders a placeholder instead of an empty bubble.
 	Unsupported string `json:"unsupported,omitempty"`
 }
@@ -294,9 +294,9 @@ func (c *Client) handleTable(tbl *table.LSTable) {
 	// upsert = sync/backfill messages (should NOT emit events)
 	// insert = new real-time messages (should emit events)
 	upsert, insert := tbl.WrapMessages()
-	// DEPLAO_ADAPTER: all CTAs + carousel items of this table (xma.go).
+	// SADSHA_ADAPTER: all CTAs + carousel items of this table (xma.go).
 	extras := newTableExtras(tbl)
-	// DEPLAO_ADAPTER: range-backed upserts answer a waiting history request (history.go).
+	// SADSHA_ADAPTER: range-backed upserts answer a waiting history request (history.go).
 	c.deliverHistory(tbl, upsert, extras)
 
 	// Track handled message IDs to avoid duplicates
@@ -662,7 +662,7 @@ func parseMentionsWithTypes(offsets, lengths, ids, types string) []*Mention {
 }
 
 // convertWrappedMessage converts a wrapped message with attachments.
-// DEPLAO_ADAPTER: extras (may be nil) carries the table's CTA and carousel rows.
+// SADSHA_ADAPTER: extras (may be nil) carries the table's CTA and carousel rows.
 func (c *Client) convertWrappedMessage(msg *table.WrappedMessage, extras *tableExtras) *Message {
 	text := msg.Text
 	stickers := msg.Stickers
@@ -706,7 +706,7 @@ func (c *Client) convertWrappedMessage(msg *table.WrappedMessage, extras *tableE
 		m.Mentions = mentions
 	}
 
-	// DEPLAO_ADAPTER: attachments already turned into cards / media (their CTA
+	// SADSHA_ADAPTER: attachments already turned into cards / media (their CTA
 	// rows are not orphan buttons, see orphanButtons in xma.go).
 	cardFbids := make(map[string]bool)
 
@@ -787,7 +787,7 @@ func (c *Client) convertWrappedMessage(msg *table.WrappedMessage, extras *tableE
 			continue
 		}
 
-		// DEPLAO_ADAPTER: keep every card (template with texts, image, all
+		// SADSHA_ADAPTER: keep every card (template with texts, image, all
 		// buttons) instead of only those with a URL or preview; plain URL
 		// previews still come out as "link" (xma.go).
 		if att := extras.convertXMA(xma); att != nil {
@@ -795,7 +795,7 @@ func (c *Client) convertWrappedMessage(msg *table.WrappedMessage, extras *tableE
 		}
 	}
 
-	// DEPLAO_ADAPTER: legacy attachment rows (LSInsertAttachment) were ignored.
+	// SADSHA_ADAPTER: legacy attachment rows (LSInsertAttachment) were ignored.
 	for _, legacy := range msg.Attachments {
 		if att := extras.convertLegacyAttachment(legacy); att != nil {
 			if legacy.AttachmentFbid != "" {
@@ -805,11 +805,11 @@ func (c *Client) convertWrappedMessage(msg *table.WrappedMessage, extras *tableE
 		}
 	}
 
-	// DEPLAO_ADAPTER: carousel items (LSInsertAttachmentItem) are never wrapped
+	// SADSHA_ADAPTER: carousel items (LSInsertAttachmentItem) are never wrapped
 	// by WrapMessages; attach them to the message's card.
 	m.Attachments = extras.attachTemplateItems(msg.MessageId, m.Attachments)
 
-	// DEPLAO_ADAPTER: buttons of a Page button template (text + CTA rows, no
+	// SADSHA_ADAPTER: buttons of a Page button template (text + CTA rows, no
 	// card) — see orphanButtons in xma.go.
 	if buttons := extras.orphanButtons(msg, cardFbids, usedCtaIDs(m.Attachments)); len(buttons) > 0 {
 		m.Attachments = attachOrphanButtons(m.Attachments, buttons)
@@ -1339,7 +1339,7 @@ func (c *Client) extractE2EEMessage(e *events.FBMessage, senderID int64) *E2EEMe
 	}
 
 	if e.Message == nil {
-		// DEPLAO_ADAPTER: no sub-message and no text = protocol traffic, not a
+		// SADSHA_ADAPTER: no sub-message and no text = protocol traffic, not a
 		// visible message; emitting it produced an empty bubble.
 		if msg.Text == "" {
 			return nil
@@ -1347,7 +1347,7 @@ func (c *Client) extractE2EEMessage(e *events.FBMessage, senderID int64) *E2EEMe
 		return msg
 	}
 
-	// DEPLAO_ADAPTER: true once the payload carried user-visible content, so an
+	// SADSHA_ADAPTER: true once the payload carried user-visible content, so an
 	// unmapped kind becomes a placeholder while signal-only payloads are dropped.
 	hasVisibleContent := false
 
@@ -1357,7 +1357,7 @@ func (c *Client) extractE2EEMessage(e *events.FBMessage, senderID int64) *E2EEMe
 			if content := p.GetContent(); content != nil {
 				hasVisibleContent = true
 
-				// DEPLAO_ADAPTER: content kinds without a dedicated mapping below.
+				// SADSHA_ADAPTER: content kinds without a dedicated mapping below.
 				switch {
 				case content.GetViewOnceMessage() != nil:
 					msg.Unsupported = "view_once"
@@ -1499,7 +1499,7 @@ func (c *Client) extractE2EEMessage(e *events.FBMessage, senderID int64) *E2EEMe
 	if armadillo, ok := e.Message.(*waArmadilloApplication.Armadillo); ok {
 		payload := armadillo.GetPayload()
 		if payload == nil {
-			// DEPLAO_ADAPTER: empty Armadillo payloads are signals, not messages.
+			// SADSHA_ADAPTER: empty Armadillo payloads are signals, not messages.
 			if msg.Text == "" {
 				return nil
 			}
@@ -1510,7 +1510,7 @@ func (c *Client) extractE2EEMessage(e *events.FBMessage, senderID int64) *E2EEMe
 		if content := payload.GetContent(); content != nil {
 			hasVisibleContent = true
 
-			// DEPLAO_ADAPTER: Armadillo kinds that came out empty.
+			// SADSHA_ADAPTER: Armadillo kinds that came out empty.
 			switch {
 			case content.GetCommonSticker() != nil:
 				// The E2EE "like" button (small / medium / large thumbs-up).
@@ -1568,7 +1568,7 @@ func (c *Client) extractE2EEMessage(e *events.FBMessage, senderID int64) *E2EEMe
 		}
 	}
 
-	// DEPLAO_ADAPTER: never emit an empty message. Visible content we could not
+	// SADSHA_ADAPTER: never emit an empty message. Visible content we could not
 	// map gets a placeholder kind; payloads without visible content are dropped.
 	if msg.Text == "" && len(msg.Attachments) == 0 && msg.Unsupported == "" {
 		if !hasVisibleContent {
@@ -1642,7 +1642,7 @@ func (c *Client) extractE2EEImageAttachment(img *waConsumerApplication.ConsumerA
 }
 
 // e2eeImageAttachmentFromTransport builds an image attachment (download fields
-// included) from a decoded transport. DEPLAO_ADAPTER: shared with E2EE image
+// included) from a decoded transport. SADSHA_ADAPTER: shared with E2EE image
 // galleries, whose images are the same transport.
 func e2eeImageAttachmentFromTransport(transport *waMediaTransport.ImageTransport) *Attachment {
 	att := &Attachment{

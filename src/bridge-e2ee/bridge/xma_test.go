@@ -1,6 +1,6 @@
 package bridge
 
-// DEPLAO_ADAPTER: tests for Page template / XMA conversion (xma.go).
+// SADSHA_ADAPTER: tests for Page template / XMA conversion (xma.go).
 
 import (
 	"testing"

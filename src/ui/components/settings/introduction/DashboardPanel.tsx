@@ -21,7 +21,7 @@ export function DashboardPanel() {
           {trx('Dashboard là trang mở ra đầu tiên khi vào app (mục <0>Dashboard</0> ở thanh bên trái). Mỗi tài khoản Zalo, Facebook, Telegram, Telegram Bot là một thẻ, kèm trạng thái kết nối và các thao tác nhanh.', { 0: <strong className="text-foreground" /> })}
         </Paragraph>
         <BulletList items={[
-          tr('<strong class="text-foreground">Thanh công cụ:</strong> số tài khoản; nút <em>Thêm tài khoản</em>; <em>Gộp tài khoản</em> (khi có từ 2 tài khoản); <em>Thêm workspace</em> (mở Cài đặt → Workspace); <em>Hỗ trợ, báo lỗi</em> (mở trang GitHub của Deplao).'),
+          tr('<strong class="text-foreground">Thanh công cụ:</strong> số tài khoản; nút <em>Thêm tài khoản</em>; <em>Gộp tài khoản</em> (khi có từ 2 tài khoản); <em>Thêm workspace</em> (mở Cài đặt → Workspace); <em>Hỗ trợ, báo lỗi</em> (mở trang GitHub của SadSha ChatDesk).'),
           tr('<strong class="text-foreground">Tìm kiếm:</strong> ô <em>Tên, SĐT, UID...</em> lọc thẻ theo tên, số điện thoại hoặc UID.'),
           tr('<strong class="text-foreground">Sắp xếp:</strong> kéo thả thẻ để đổi thứ tự - thứ tự này dùng chung với danh sách avatar ở thanh bên trái (ở đó cũng kéo thả được).'),
         ]} />
@@ -68,7 +68,7 @@ export function DashboardPanel() {
           tr('<strong class="text-foreground">Chưa có tài khoản:</strong> Dashboard hiện nút <em>+ Thêm tài khoản</em>, <em>Đăng nhập dành cho nhân viên</em> (nhập địa chỉ máy Boss, tên đăng nhập và mật khẩu do quản lý cấp) và <em>Khôi phục dữ liệu từ Cloudflare</em> (khi chuyển từ máy khác đã bật sao lưu).'),
           tr('<strong class="text-foreground">Máy nhân viên:</strong> chỉ thấy các tài khoản được giao; thẻ chỉ có nút Chat (không ngắt kết nối, xoá hay kéo thả). Chưa được giao tài khoản nào thì hiện <em>Chưa có trang nào được quản lý</em> - liên hệ Boss để được gán.'),
           tr('<strong class="text-foreground">Boss giả lập nhân viên</strong> (từ Cài đặt → Nhân viên): Dashboard hiện nhãn <em>Giả lập: tên nhân viên</em> và chỉ các tài khoản giao cho người đó.'),
-          tr('<strong class="text-foreground">Sau khi khôi phục dữ liệu</strong> từ bản sao lưu: Dashboard báo <em>Đã khôi phục dữ liệu</em> - chiến dịch, workflow và lịch đang tạm dừng để không gửi trùng với máy cũ. Chỉ bấm <em>Bật lại tự động hoá</em> khi máy cũ đã tắt hoặc đã ngắt Deplao; kênh nào cần đăng nhập lại thì làm trên thẻ của tài khoản đó.'),
+          tr('<strong class="text-foreground">Sau khi khôi phục dữ liệu</strong> từ bản sao lưu: Dashboard báo <em>Đã khôi phục dữ liệu</em> - chiến dịch, workflow và lịch đang tạm dừng để không gửi trùng với máy cũ. Chỉ bấm <em>Bật lại tự động hoá</em> khi máy cũ đã tắt hoặc đã ngắt SadSha ChatDesk; kênh nào cần đăng nhập lại thì làm trên thẻ của tài khoản đó.'),
         ]} />
       </Card>
     </div>

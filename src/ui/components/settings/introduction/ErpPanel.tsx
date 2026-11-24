@@ -13,7 +13,7 @@ export function ErpPanel() {
           <div>
             <SectionTitle>{tr('ERP quản trị nội bộ — Quản lý công việc')}</SectionTitle>
             <Paragraph>
-              {trx('Giao việc, lịch làm việc, ghi chú nội bộ, nhân sự (chấm công, nghỉ phép) và báo cáo vận hành ngay trong Deplao, dùng chung giữa Boss và nhân viên. Mở ở <0>Công cụ → Quản lý công việc</0> trên thanh bên trái, hoặc tìm trong <1>Tất cả tính năng</1> trên thanh tiêu đề.', { 0: <strong className="text-foreground" />, 1: <strong className="text-foreground" /> })}
+              {trx('Giao việc, lịch làm việc, ghi chú nội bộ, nhân sự (chấm công, nghỉ phép) và báo cáo vận hành ngay trong SadSha ChatDesk, dùng chung giữa Boss và nhân viên. Mở ở <0>Công cụ → Quản lý công việc</0> trên thanh bên trái, hoặc tìm trong <1>Tất cả tính năng</1> trên thanh tiêu đề.', { 0: <strong className="text-foreground" />, 1: <strong className="text-foreground" /> })}
             </Paragraph>
           </div>
         </div>

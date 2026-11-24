@@ -1,5 +1,5 @@
 /**
- * Asks for consent before sending the Zalo login session (cookie + IMEI) to the Deplao server to scan hidden group members, and the
+ * Asks for consent before sending the Zalo login session (cookie + IMEI) to the SadSha ChatDesk server to scan hidden group members, and the
  * on / off switch in CRM → Groups → Scan members. The dialog states what is sent, why it goes via the server, what the server keeps, the risks,
  * the right to decline, and where to turn it off. Rules + where the choice is saved: lib/crm/hiddenScanConsent.ts.
  */
@@ -27,10 +27,10 @@ export function HiddenScanConsentDialog({ accountName, mode = 'ask', confirmLabe
 }) {
   const who = accountName ? tr('tài khoản {{accountName}}', { accountName }) : tr('tài khoản đang quét');
   const points: Array<[string, string]> = [
-    [tr('Gửi gì'), tr('Phiên đăng nhập Zalo (cookie + IMEI) của {{who}} và ID nhóm, gửi lên deplaoapp.com qua HTTPS.', { who })],
+    [tr('Gửi gì'), tr('Phiên đăng nhập Zalo (cookie + IMEI) của {{who}} và ID nhóm, gửi lên chatdesk.sadsha.com qua HTTPS.', { who })],
     [tr('Vì sao'), tr('Cách quét nhóm ẩn thành viên chạy trên máy chủ để giữ kín, không nằm trong mã nguồn mở của app.')],
     [tr('Máy chủ giữ gì'), tr('Chỉ dùng phiên này gọi Zalo lấy danh sách thành viên rồi trả về máy bạn, không lưu cookie. Nhật ký chỉ có ID tài khoản, ID nhóm, IP, thời gian.')],
-    [tr('Rủi ro'), tr('Ai có cookie có thể dùng tài khoản Zalo đó. Chỉ đồng ý nếu bạn tin Deplao.')],
+    [tr('Rủi ro'), tr('Ai có cookie có thể dùng tài khoản Zalo đó. Chỉ đồng ý nếu bạn tin SadSha ChatDesk.')],
   ];
   return (
     <Dialog open onOpenChange={(open) => { if (!open) onAnswer(false); }} size="md">
@@ -38,7 +38,7 @@ export function HiddenScanConsentDialog({ accountName, mode = 'ask', confirmLabe
         <div className="flex min-w-0 items-start gap-2.5">
           <ShieldIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-warning" />
           <div className="min-w-0">
-            <DialogTitle>{mode === 'info' ? tr('Quét qua máy chủ Deplao') : tr('Quét thành viên qua máy chủ Deplao?')}</DialogTitle>
+            <DialogTitle>{mode === 'info' ? tr('Quét qua máy chủ SadSha ChatDesk') : tr('Quét thành viên qua máy chủ SadSha ChatDesk?')}</DialogTitle>
             <DialogDescription>
               {mode === 'info' ? tr('Những gì được gửi đi khi bật quét qua máy chủ.') : tr('Cần bạn đồng ý trước khi phiên đăng nhập Zalo rời khỏi máy.')}
             </DialogDescription>
@@ -107,7 +107,7 @@ function formatAt(at: number | null): string {
   return new Date(at).toLocaleString(appLocale(), { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
 }
 
-/** Toggle "Quét qua máy chủ Deplao" (CRM → Groups → Scan members). On = must go through the consent dialog; Off = applies immediately. */
+/** Toggle "Quét qua máy chủ SadSha ChatDesk" (CRM → Groups → Scan members). On = must go through the consent dialog; Off = applies immediately. */
 export function HiddenScanConsentSwitch({ className }: { className?: string }) {
   const consent = useHiddenScanConsent();
   const showNotification = useAppStore((s) => s.showNotification);
@@ -116,7 +116,7 @@ export function HiddenScanConsentSwitch({ className }: { className?: string }) {
   const change = async (on: boolean) => {
     if (!on) {
       setHiddenScanConsent(false);
-      showNotification(tr('Đã tắt quét qua máy chủ. Deplao không gửi cookie Zalo ra khỏi máy nữa.'), 'info');
+      showNotification(tr('Đã tắt quét qua máy chủ. SadSha ChatDesk không gửi cookie Zalo ra khỏi máy nữa.'), 'info');
       return;
     }
     setAsking(true);
@@ -131,11 +131,11 @@ export function HiddenScanConsentSwitch({ className }: { className?: string }) {
     <div className={cn('flex items-start gap-3 rounded-xl border bg-card p-4', consent.granted ? 'border-warning/40' : 'border-border', className)}>
       <ShieldIcon className={cn('mt-0.5 h-5 w-5 flex-shrink-0', consent.granted ? 'text-warning' : 'text-muted-foreground')} />
       <div className="min-w-0 flex-1">
-        <p className="text-sm font-semibold text-foreground">{tr('Quét qua máy chủ Deplao')}</p>
+        <p className="text-sm font-semibold text-foreground">{tr('Quét qua máy chủ SadSha ChatDesk')}</p>
         <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
           {consent.granted
-            ? tr('Đang bật{{v1}}: mỗi lần quét, phiên đăng nhập Zalo (cookie) được gửi lên deplaoapp.com.', { v1: consent.at ? tr(' (đồng ý lúc {{v1}})', { v1: formatAt(consent.at) }) : '' })
-            : tr('Đang tắt: Deplao không gửi cookie Zalo ra khỏi máy. Bấm Quét sẽ hỏi bạn trước.')}
+            ? tr('Đang bật{{v1}}: mỗi lần quét, phiên đăng nhập Zalo (cookie) được gửi lên chatdesk.sadsha.com.', { v1: consent.at ? tr(' (đồng ý lúc {{v1}})', { v1: formatAt(consent.at) }) : '' })
+            : tr('Đang tắt: SadSha ChatDesk không gửi cookie Zalo ra khỏi máy. Bấm Quét sẽ hỏi bạn trước.')}
         </p>
         <Button variant="link" size="sm" className="mt-1 h-auto p-0 text-xs"
           onClick={() => { void askHiddenScanConsent({ mode: 'info' }); }}>
@@ -143,7 +143,7 @@ export function HiddenScanConsentSwitch({ className }: { className?: string }) {
         </Button>
       </div>
       <Switch checked={consent.granted} disabled={asking} onCheckedChange={(on) => { void change(on); }}
-        aria-label={tr('Quét qua máy chủ Deplao')} />
+        aria-label={tr('Quét qua máy chủ SadSha ChatDesk')} />
     </div>
   );
 }

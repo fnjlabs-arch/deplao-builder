@@ -193,7 +193,7 @@ function TelegramMiniApp({ request, onClose }: { request: MiniAppRequest; onClos
     return () => clearInterval(timer);
   }, [webView?.queryId, accountId, botId, peerId, notify, onClose]);
 
-  // ── Deplao theme changed → notify the Mini App ──
+  // ── SadSha ChatDesk theme changed → notify the Mini App ──
   React.useEffect(() => {
     post('theme_changed', { theme_params: theme });
   }, [theme, post]);
@@ -570,7 +570,7 @@ function MiniAppPrompt({ prompt, botName, onAnswer }: {
       : prompt.kind === 'phone'
         ? {
           title: botName,
-          message: tr('{{botName}} muốn biết số điện thoại của bạn. Deplao sẽ gửi số của tài khoản Telegram này cho bot.', { botName }),
+          message: tr('{{botName}} muốn biết số điện thoại của bạn. SadSha ChatDesk sẽ gửi số của tài khoản Telegram này cho bot.', { botName }),
           buttons: [{ id: 'cancel', type: 'cancel', text: tr('Không') }, { id: 'share', type: 'default', text: tr('Chia sẻ') }],
         }
         : {

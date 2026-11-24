@@ -1,5 +1,5 @@
 /**
- * TrackingService: sends page tracking data to the deplaoapp.com API.
+ * TrackingService: sends page tracking data to the chatdesk.sadsha.com API.
  *
  * - Only runs in the production build (GitHub Actions / NODE_ENV=production).
  * - Local cache: pushes once per day. If a new integrated page appears → track again the same day.
@@ -12,7 +12,7 @@
  * page (or only Telegram, which was filtered wrongly) and sent "machine:<id>", and the machineId was regenerated at each use, so a new machine
  * created 2 junk rows on the same day.
  *
- * API: POST https://deplaoapp.com/api/tracking/page
+ * API: POST https://chatdesk.sadsha.com/api/tracking/page
  * Rate limit: 10 req/hour/IP; returns 429 when exceeded.
  */
 
@@ -64,10 +64,10 @@ export interface TrackedFacebookRow {
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
-const API_URL = 'https://deplaoapp.com/api/tracking/page';
+const API_URL = 'https://chatdesk.sadsha.com/api/tracking/page';
 const CACHE_FILENAME = 'tracking-cache.json';
 const CHECK_INTERVAL_MS = 60 * 60 * 1000; // 60 minutes
-const DEFAULT_DB_NAME = 'deplao-tool.db';
+const DEFAULT_DB_NAME = 'sadshachatdesk-tool.db';
 
 /** Platform UIDs (Zalo, Facebook, Telegram) are numeric. The internal ID (UUID), "9", empty… are not integrated pages. */
 const PLATFORM_UID = /^\d{5,20}$/;

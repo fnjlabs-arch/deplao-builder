@@ -1,7 +1,7 @@
 /**
  * The Webhook section of the Apps, API & Webhook page: both directions of data in one place, to make it easier to understand:
- *  - Incoming data: other systems send data into Deplao (previously Settings → Webhooks).
- *  - Outgoing events: Deplao reports events to your URL (previously the Webhook tab of the API).
+ *  - Incoming data: other systems send data into SadSha ChatDesk (previously Settings → Webhooks).
+ *  - Outgoing events: SadSha ChatDesk reports events to your URL (previously the Webhook tab of the API).
  */
 import React, { useEffect, useState } from 'react';
 import ipc from '@/lib/ipc';
@@ -18,8 +18,8 @@ import { trx } from '@/lib/i18n/trx';
 export type WebhookSub = 'inbound' | 'outbound';
 
 const SUBS: Array<{ id: WebhookSub; label: string; direction: string; icon: React.ReactNode }> = [
-  { id: 'inbound', label: tr('Nhận dữ liệu vào'), direction: tr('Hệ thống khác → Deplao'), icon: <DownloadIcon /> },
-  { id: 'outbound', label: tr('Gửi sự kiện ra ngoài'), direction: tr('Deplao → URL của bạn'), icon: <SendIcon /> },
+  { id: 'inbound', label: tr('Nhận dữ liệu vào'), direction: tr('Hệ thống khác → SadSha ChatDesk'), icon: <DownloadIcon /> },
+  { id: 'outbound', label: tr('Gửi sự kiện ra ngoài'), direction: tr('SadSha ChatDesk → URL của bạn'), icon: <SendIcon /> },
 ];
 
 export default function WebhooksSection({ initial = 'inbound' }: { initial?: WebhookSub }) {

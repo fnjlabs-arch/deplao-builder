@@ -153,7 +153,7 @@ export function isZaloMessagePin(pin: { msgId?: unknown; msgType?: unknown } | n
 /**
  * Name of the author shown with the pin. The pin is stored on the group / friend board, so the other people in the chat
  * see it: only public names are used (the account's name, the member's name in the group, the contact's Zalo name),
- * never an alias set in Deplao.
+ * never an alias set in SadSha ChatDesk.
  */
 function publicSenderName(zaloId: string, threadId: string, isGroup: boolean, senderUid: string, isOwn: boolean): string {
   const db = DatabaseService.getInstance();
@@ -184,7 +184,7 @@ function connectedApi(zaloId: string, action: 'pin' | 'unpin'): any {
 }
 
 /**
- * Pin on Zalo the message a Deplao pin names. Throws a readable error (account offline, message not stored, Zalo refusal);
+ * Pin on Zalo the message a SadSha ChatDesk pin names. Throws a readable error (account offline, message not stored, Zalo refusal);
  * the caller then keeps the app unchanged.
  */
 export async function pinZaloMessageOnServer(

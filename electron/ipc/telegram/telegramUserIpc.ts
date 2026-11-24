@@ -199,7 +199,7 @@ export function registerTelegramUserIpc(): void {
   });
 
   // ── Telegram WebView (Mini App) + bot login button ─────────────────
-  // peerId = the conversation where the button is clicked (a bot message in a group → the group); themeParams = colors from the Deplao theme (main filters them again).
+  // peerId = the conversation where the button is clicked (a bot message in a group → the group); themeParams = colors from the SadSha ChatDesk theme (main filters them again).
   ipcMain.handle('telegramUser:requestWebView', async (_event, params: { accountId: string; botId: string; url: string; fromBotMenu?: boolean; peerId?: string; themeParams?: unknown }) => {
     try {
       return await TelegramUser.requestWebView(params.accountId, params.botId, params.url, params.fromBotMenu,

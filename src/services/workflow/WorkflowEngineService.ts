@@ -1147,7 +1147,7 @@ class WorkflowEngineService {
   }
 
   /**
-   * A plugin fires its own trigger (deplao.workflow.trigger). The payload fields sit at the top
+   * A plugin fires its own trigger (sadshachatdesk.workflow.trigger). The payload fields sit at the top
    * level so they can be used as {{ $trigger.<field> }}; accountId (if present) is used to filter the workflow's accounts.
    */
   public triggerPluginEvent(type: string, payload: any, meta: { pluginId: string }): { matched: number; workflowIds: string[] } {
@@ -3182,7 +3182,7 @@ class WorkflowEngineService {
 
       // ── Notify: Telegram ─────────────────────────────────────────────────
       case 'notify.telegram': {
-        // 1. A Telegram Bot account connected in Deplao: sent through it, no token to paste
+        // 1. A Telegram Bot account connected in SadSha ChatDesk: sent through it, no token to paste
         const botAccountId = String(cfg.botAccountId || '').trim();
         if (botAccountId) {
           const botMessage = this.resolveMessageFromConfigOrUpstream(node, cfg, ctx, _wf);
@@ -3640,7 +3640,7 @@ class WorkflowEngineService {
       case 'fb.action.sendVideo':
       case 'fb.action.sendFile':
       case 'fb.action.sendAudio': {
-        // DEPLAO_ADAPTER: Delegate to FacebookSendService.sendAttachment() —
+        // SADSHA_ADAPTER: Delegate to FacebookSendService.sendAttachment() —
         // single entry point for all Facebook attachment sends.
         const rawAccountId = cfg.accountId || ctx.trigger?.fbAccountId || ctx.pageId;
         if (!rawAccountId) throw new Error('[fb.action.sendImage] accountId required');
@@ -4641,7 +4641,7 @@ class WorkflowEngineService {
       } catch (err: any) { return { success: false, error: err.message }; }
     }
     if (channel === 'facebook') {
-      // DEPLAO_ADAPTER: Delegate to FacebookSendService.sendAttachment().
+      // SADSHA_ADAPTER: Delegate to FacebookSendService.sendAttachment().
       const typeChat = threadType === 0 ? 'user' : threadType === 1 ? null : undefined;
       return FacebookSendService.sendAttachment({
         accountId: this.resolveFBAccountId(accountId),
@@ -4664,7 +4664,7 @@ class WorkflowEngineService {
       return this.forwardTelegramMessage(accountId, sourceChatId, targetChatId, messageId);
     }
     if (channel === 'facebook') {
-      // DEPLAO_ADAPTER: Don't pass source message type — forwardMessage()
+      // SADSHA_ADAPTER: Don't pass source message type — forwardMessage()
       // resolves target thread kind from DB via resolveThreadKind().
       // Passing sourceMessage.is_group would incorrectly route a group→user
       // forward as group, or user→group as user.
@@ -5349,7 +5349,7 @@ class WorkflowEngineService {
    * Download a URL to a temporary file. Returns the local temp file path.
    */
   private async downloadUrlToTempFile(url: string): Promise<string> {
-    const tmpDir = path.join(os.tmpdir(), 'deplao-workflow-images');
+    const tmpDir = path.join(os.tmpdir(), 'sadshachatdesk-workflow-images');
     if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
 
     // Extract extension from URL or default to .jpg

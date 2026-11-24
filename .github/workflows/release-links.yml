@@ -51,8 +51,8 @@ jobs:
           INPUT_TAG: ${{ inputs.tag }}
         with:
           script: |
-            const START = '<!-- deplao-release-links:start -->';
-            const END = '<!-- deplao-release-links:end -->';
+            const START = '<!-- sadshachatdesk-release-links:start -->';
+            const END = '<!-- sadshachatdesk-release-links:end -->';
             const { owner, repo } = context.repo;
             const base = `https://github.com/${owner}/${repo}`;
 
@@ -95,7 +95,7 @@ jobs:
 
               // Bình luận trên commit đã build: mở commit trên GitHub là thấy link Release (không sửa lịch sử git).
               // Có marker ẩn nên chạy lại chỉ cập nhật bình luận cũ, không nhân đôi.
-              const COMMENT_MARK = '<!-- deplao-release-comment -->';
+              const COMMENT_MARK = '<!-- sadshachatdesk-release-comment -->';
               const commentBody = `${COMMENT_MARK}\n📦 Phát hành trong **[${rel.name || tag}](${rel.html_url})**`;
               try {
                 const commitComments = await github.paginate(github.rest.repos.listCommentsForCommit, { owner, repo, commit_sha: sha, per_page: 100 });

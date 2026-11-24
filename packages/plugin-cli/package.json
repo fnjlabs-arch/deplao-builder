@@ -1,8 +1,8 @@
 {
-  "name": "@deplao/plugin-cli",
+  "name": "@sadshachatdesk/plugin-cli",
   "version": "1.0.0",
-  "description": "Tạo, kiểm tra, đóng gói plugin Deplao",
-  "bin": { "deplao-plugin": "bin/deplao-plugin.js" },
+  "description": "Tạo, kiểm tra, đóng gói plugin SadSha ChatDesk",
+  "bin": { "sadshachatdesk-plugin": "bin/sadshachatdesk-plugin.js" },
   "files": ["bin", "lib"],
   "license": "UNLICENSED",
   "private": true

@@ -50,7 +50,7 @@ export function ConnectForm({ onConnected, initialAccountId = '', onCancel }: Co
 
   const openTemplate = async () => {
     const api = cloudApi();
-    if (!api) { notify(tr('Bản app này chưa có tính năng Cloudflare. Hãy cập nhật Deplao.'), 'warning'); return; }
+    if (!api) { notify(tr('Bản app này chưa có tính năng Cloudflare. Hãy cập nhật SadSha ChatDesk.'), 'warning'); return; }
     setBusy('template');
     try {
       const res = await api.tokenTemplateUrl();
@@ -69,7 +69,7 @@ export function ConnectForm({ onConnected, initialAccountId = '', onCancel }: Co
     const tok = token.trim();
     if (!tok) { setError(tr('Dán token vừa tạo trên Cloudflare.')); return; }
     if (!ACCOUNT_ID_RE.test(id)) { setError(tr('Account ID gồm 32 ký tự (chữ a–f và số). Xem ở trang Overview của tên miền trên Cloudflare.')); return; }
-    if (!api) { setError(tr('Bản app này chưa có tính năng Cloudflare. Hãy cập nhật Deplao.')); return; }
+    if (!api) { setError(tr('Bản app này chưa có tính năng Cloudflare. Hãy cập nhật SadSha ChatDesk.')); return; }
     setBusy('connect');
     setError(null);
     try {
@@ -147,7 +147,7 @@ export function ConnectForm({ onConnected, initialAccountId = '', onCancel }: Co
         <Step
           n={3}
           title={tr('Kết nối')}
-          description={tr('Deplao kiểm tra token, đọc danh sách tên miền và thử quyền của từng tính năng. Token lưu mã hoá trên máy này.')}
+          description={tr('SadSha ChatDesk kiểm tra token, đọc danh sách tên miền và thử quyền của từng tính năng. Token lưu mã hoá trên máy này.')}
         >
           <div className="flex flex-wrap items-center gap-2">
             <Button type="submit" loading={busy === 'connect'}>{tr('Kết nối')}</Button>
@@ -202,7 +202,7 @@ export function ConnectCard({ title = tr('Kết nối Cloudflare'), className, .
         <div className="min-w-0">
           <p className="text-sm font-semibold text-foreground">{title}</p>
           <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
-            {tr('Dùng tài khoản Cloudflare của bạn. Deplao chỉ tạo tunnel, tên miền con và bucket có tên deplao-… (ứng dụng được cấp quyền chỉ tạo Worker, D1 mang tên của ứng dụng); dữ liệu đã có trên Cloudflare không bị đụng tới.')}
+            {tr('Dùng tài khoản Cloudflare của bạn. SadSha ChatDesk chỉ tạo tunnel, tên miền con và bucket có tên sadshachatdesk-… (ứng dụng được cấp quyền chỉ tạo Worker, D1 mang tên của ứng dụng); dữ liệu đã có trên Cloudflare không bị đụng tới.')}
           </p>
         </div>
       </div>

@@ -1,13 +1,13 @@
 /**
- * Kiểu cho SDK plugin Deplao.
- *  - UI (iframe): biến toàn cục `deplao` do /__deplao/sdk.js tạo.
- *  - Backend (runtime local): `ctx.deplao` trong activate/nodes/routes/handlers/commands.
- * Hàm API: deplao.<nhóm>.<operationId>(params) — operationId xem ở /docs (vd chat.sendMessage).
+ * Kiểu cho SDK plugin SadSha ChatDesk.
+ *  - UI (iframe): biến toàn cục `sadshachatdesk` do /__sadshachatdesk/sdk.js tạo.
+ *  - Backend (runtime local): `ctx.sadshachatdesk` trong activate/nodes/routes/handlers/commands.
+ * Hàm API: sadshachatdesk.<nhóm>.<operationId>(params) — operationId xem ở /docs (vd chat.sendMessage).
  * Tham số phẳng: path params + query (GET/DELETE) hoặc body (POST/PUT/PATCH); có thể truyền
  * { query, body } tường minh.
  */
 
-export interface DeplaoApiError extends Error {
+export interface SadSha ChatDeskApiError extends Error {
   code: string;
   status?: number;
   details?: unknown;
@@ -29,7 +29,7 @@ export type Paged<T> = T[] & { readonly pagination?: Pagination };
 /**
  * Hàm API trả file (qua HTTP là stream): downloadMessageMedia, downloadLibraryItem, downloadLibraryThumb.
  * Ứng dụng nhận nội dung base64, tối đa 25 MB (lớn hơn → lỗi PAYLOAD_TOO_LARGE). Cần quyền media:read.
- * Ghi âm Zalo (msg_type chat.voice) chưa có trên máy thì Deplao tự tải bằng phiên của tài khoản.
+ * Ghi âm Zalo (msg_type chat.voice) chưa có trên máy thì SadSha ChatDesk tự tải bằng phiên của tài khoản.
  */
 export interface FileContent {
   name: string;
@@ -38,7 +38,7 @@ export interface FileContent {
   base64: string;
 }
 
-export interface DeplaoEvent<T = any> {
+export interface SadSha ChatDeskEvent<T = any> {
   id: string;
   seq: number;
   type: string;
@@ -64,8 +64,8 @@ export interface ThemeInfo {
 type ApiFn = (params?: Record<string, any>) => Promise<any>;
 type ApiGroup = Record<string, ApiFn>;
 
-export interface DeplaoCommon {
-  /** Gọi theo operationId: deplao.call('sendMessage', {...}). */
+export interface SadSha ChatDeskCommon {
+  /** Gọi theo operationId: sadshachatdesk.call('sendMessage', {...}). */
   call(operationId: string, params?: Record<string, any>): Promise<any>;
   api: {
     call(operationId: string, params?: Record<string, any>): Promise<any>;
@@ -89,7 +89,7 @@ export interface DeplaoCommon {
   };
   events: {
     /** 'message.received', 'message.*', '*'. Cần scope events:subscribe. */
-    on<T = any>(type: string, handler: (event: DeplaoEvent<T>) => void): () => void;
+    on<T = any>(type: string, handler: (event: SadSha ChatDeskEvent<T>) => void): () => void;
     /** Tên phải có trong contributes.events; phát thành plugin.<id>.<name>. */
     emit(name: string, data?: any): Promise<{ id: string | null; seq: number }>;
   };
@@ -115,7 +115,7 @@ export interface DeplaoCommon {
 }
 
 /** SDK trong iframe UI. */
-export interface DeplaoWeb extends DeplaoCommon {
+export interface SadSha ChatDeskWeb extends SadSha ChatDeskCommon {
   media: ApiGroup & {
     upload(file: Blob & { name?: string }, name?: string): Promise<{ upload_id: string; name: string; kind: string; size: number; mime: string; expires_at: number }>;
   };
@@ -137,14 +137,14 @@ export interface DeplaoWeb extends DeplaoCommon {
 }
 
 /**
- * Worker + D1 trên tài khoản Cloudflare đã kết nối trong Deplao (chỉ backend, quyền manifest "cloudflare:workers").
+ * Worker + D1 trên tài khoản Cloudflare đã kết nối trong SadSha ChatDesk (chỉ backend, quyền manifest "cloudflare:workers").
  * Token Cloudflare không bao giờ đưa cho ứng dụng. Tên Worker / D1 phải ĐÚNG BẰNG tiền tố của ứng dụng (phần cuối id,
  * vd "io.github.acme.fintrack" → "fintrack") hoặc bắt đầu bằng "<tiền tố>-" (1–63 ký tự a-z, 0-9, "-").
- * Lỗi: DeplaoApiError với code PLUGIN_PERMISSION | CF_NOT_CONNECTED | CF_PERMISSION | CF_NAME_FORBIDDEN |
+ * Lỗi: SadSha ChatDeskApiError với code PLUGIN_PERMISSION | CF_NOT_CONNECTED | CF_PERMISSION | CF_NAME_FORBIDDEN |
  * CF_BUNDLE_INVALID | CF_API | CF_DECLINED (+ VALIDATION_ERROR, NOT_FOUND, CONFLICT, TIMEOUT).
- * Mỗi lời gọi tốn request trong ngân sách 100 request / 5 phút dùng chung của Deplao — đừng gọi theo vòng lặp.
+ * Mỗi lời gọi tốn request trong ngân sách 100 request / 5 phút dùng chung của SadSha ChatDesk — đừng gọi theo vòng lặp.
  */
-export interface DeplaoCloudflare {
+export interface SadSha ChatDeskCloudflare {
   /** Không gọi Cloudflare nếu chưa kết nối; kết quả nhớ ~60 giây. */
   status(): Promise<{
     connected: boolean;
@@ -198,8 +198,8 @@ export interface DeplaoCloudflare {
     /**
      * Tên miền riêng (Workers Custom Domain) của Worker: Cloudflare tự tạo bản ghi DNS + chứng chỉ, vài phút sau tên mới
      * trả lời được (HTTPS). Chỉ tên con mới của một tên miền trong tài khoản: không gắn tên miền gốc, không đè bản ghi DNS
-     * đang có (CONFLICT), không lấy tên đang gắn cho Worker khác. Trước khi ghi, Deplao hỏi người dùng bằng hộp thoại của
-     * Deplao: bấm "Không" → CF_DECLINED (60 giây sau mới hỏi lại được). Thiếu quyền Zone / DNS của token → CF_PERMISSION.
+     * đang có (CONFLICT), không lấy tên đang gắn cho Worker khác. Trước khi ghi, SadSha ChatDesk hỏi người dùng bằng hộp thoại của
+     * SadSha ChatDesk: bấm "Không" → CF_DECLINED (60 giây sau mới hỏi lại được). Thiếu quyền Zone / DNS của token → CF_PERMISSION.
      */
     domains: {
       /** Tên miền đang gắn cho Worker `name` (nhớ ~1 phút, gắn / gỡ thì đọc lại). */
@@ -213,7 +213,7 @@ export interface DeplaoCloudflare {
 }
 
 /** SDK ở backend. */
-export interface DeplaoBackend extends DeplaoCommon {
+export interface SadSha ChatDeskBackend extends SadSha ChatDeskCommon {
   media: ApiGroup & {
     upload(name: string, data: Buffer | string, mime?: string): Promise<{ upload_id: string; name: string; kind: string; size: number; mime: string; expires_at: number }>;
   };
@@ -225,11 +225,11 @@ export interface DeplaoBackend extends DeplaoCommon {
     fetch(url: string, init?: { method?: string; headers?: Record<string, string>; body?: string; timeoutMs?: number; responseType?: 'auto' | 'text' | 'base64' }): Promise<{ status: number; url: string; headers: Record<string, any>; truncated: boolean; text?: string; base64?: string }>;
   };
   /** Cần quyền cloudflare:workers (runtime local). */
-  cloudflare: DeplaoCloudflare;
+  cloudflare: SadSha ChatDeskCloudflare;
 }
 
 export interface BackendContext {
-  deplao: DeplaoBackend;
+  sadshachatdesk: SadSha ChatDeskBackend;
   pluginId: string;
   dataDir: string;
   dev: boolean;
@@ -269,7 +269,7 @@ export interface PluginBackend {
 
 declare global {
   interface Window {
-    deplao: DeplaoWeb;
+    sadshachatdesk: SadSha ChatDeskWeb;
   }
-  const deplao: DeplaoWeb;
+  const sadshachatdesk: SadSha ChatDeskWeb;
 }

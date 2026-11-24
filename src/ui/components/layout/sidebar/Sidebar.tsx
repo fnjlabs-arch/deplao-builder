@@ -772,8 +772,8 @@ const TOOLS_GUIDE = [
         icon: <TagIcon className="w-4 h-4 inline" />,
         title: tr('Hệ thống nhãn kép'),
         items: [
-          tr('Nhãn Zalo: đồng bộ 2 chiều với app Zalo - gán từ Deplao, thấy trên Zalo và ngược lại'),
-          tr('Nhãn Local: nhãn riêng của Deplao, chọn màu + emoji, dùng chung cho nhiều tài khoản'),
+          tr('Nhãn Zalo: đồng bộ 2 chiều với app Zalo - gán từ SadSha ChatDesk, thấy trên Zalo và ngược lại'),
+          tr('Nhãn Local: nhãn riêng của SadSha ChatDesk, chọn màu + emoji, dùng chung cho nhiều tài khoản'),
           tr('Chọn người nhận chiến dịch theo nhãn (vd. chỉ gửi cho khách có nhãn "VIP")'),
           tr('Dùng nhãn làm Trigger trong Workflow: "Khi gán hoặc gỡ nhãn" → tự động chạy luồng xử lý'),
         ],
@@ -880,7 +880,7 @@ const TOOLS_GUIDE = [
     icon: <LinkIcon className="w-4 h-4" />, title: tr('Tích hợp - Kết nối bên thứ 3'),
     color: 'border-green-500/40 bg-green-900/30',
     badgeColor: 'bg-card text-foreground/80',
-    purpose: tr('Kết nối Deplao với phần mềm bán hàng, cổng thanh toán và đơn vị vận chuyển. Tra cứu dữ liệu ngay trong khung chat, nhận thông báo chuyển khoản tự động, kết hợp Workflow để xử lý trọn quy trình.'),
+    purpose: tr('Kết nối SadSha ChatDesk với phần mềm bán hàng, cổng thanh toán và đơn vị vận chuyển. Tra cứu dữ liệu ngay trong khung chat, nhận thông báo chuyển khoản tự động, kết hợp Workflow để xử lý trọn quy trình.'),
     sections: [
       {
         icon: <ShoppingCartIcon className="w-4 h-4 inline" />,
@@ -918,7 +918,7 @@ const TOOLS_GUIDE = [
           tr('Cloudflare tự động: địa chỉ cố định; Địa chỉ tạm đổi mỗi lần khởi động lại - phải dán lại vào Casso / SePay'),
           tr('Địa chỉ nhận của từng kết nối nằm ngay trong trang Casso / SePay (nút sao chép)'),
           tr('Website / dịch vụ ngoài kích hoạt Workflow qua dòng "Webhook workflow" ở cùng trang'),
-          tr('Chỉ nhận được khi Deplao đang mở'),
+          tr('Chỉ nhận được khi SadSha ChatDesk đang mở'),
         ],
       },
       {
@@ -949,7 +949,7 @@ const COMBO_SCENARIOS = [
       { icon: <TrendingUpIcon className="w-3 h-3" />, text: 'Ghi Google Sheets' },
       { icon: <MessageCircleIcon className="w-3 h-3" />, text: tr('Báo nhóm Zalo nội bộ') },
     ],
-    desc: tr('Khách chuyển khoản → Casso / SePay báo về Deplao → Workflow ghi sổ và báo ngay cho nhân viên để xác nhận đơn, không cần ngồi soát sao kê.'),
+    desc: tr('Khách chuyển khoản → Casso / SePay báo về SadSha ChatDesk → Workflow ghi sổ và báo ngay cho nhân viên để xác nhận đơn, không cần ngồi soát sao kê.'),
   },
   {
     icon: <BotIcon className="w-4 h-4" />,
@@ -1017,7 +1017,7 @@ const COMBO_SCENARIOS = [
       { icon: <BellIcon className="w-3 h-3" />, text: tr('Báo mã vận đơn qua Telegram') },
       { icon: <TrendingUpIcon className="w-3 h-3" />, text: 'Ghi Sheets' },
     ],
-    desc: tr('Website gửi đơn mới về Deplao (Webhook bên ngoài) → Workflow tạo vận đơn GHN từ thông tin người nhận → báo mã vận đơn cho kho và ghi sổ.'),
+    desc: tr('Website gửi đơn mới về SadSha ChatDesk (Webhook bên ngoài) → Workflow tạo vận đơn GHN từ thông tin người nhận → báo mã vận đơn cho kho và ghi sổ.'),
   },
   {
     icon: <BellIcon className="w-4 h-4" />,

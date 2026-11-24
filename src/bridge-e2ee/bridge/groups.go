@@ -1,6 +1,6 @@
 package bridge
 
-// DEPLAO_ADAPTER: Messenger group creation for Deplao's quick "Tạo nhóm" action
+// SADSHA_ADAPTER: Messenger group creation for SadSha ChatDesk's quick "Tạo nhóm" action
 // (same LightSpeed task as mautrix-meta connector/startchat.go CreateGroup).
 
 import (

@@ -1,5 +1,5 @@
 /**
- * Handles JSON-RPC from the plugin iframe (renderer side). deplao.ui.* runs right inside the app;
+ * Handles JSON-RPC from the plugin iframe (renderer side). sadshachatdesk.ui.* runs right inside the app;
  * events.subscribe is grouped through pluginEvents; every other function is passed to main (plugins:invoke)
  * - where the scope/permission is checked and the shared IPC is called.
  */

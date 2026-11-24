@@ -1,6 +1,6 @@
 /**
  * Telegram "Cuộc gọi" (Calls): the account's call log (messages.Search + InputMessagesFilterPhoneCalls), Missed calls tab,
- * click to open the conversation. Deplao cannot take or place calls yet (Telegram does not publish the tgcalls voice protocol), noted here at the top.
+ * click to open the conversation. SadSha ChatDesk cannot take or place calls yet (Telegram does not publish the tgcalls voice protocol), noted here at the top.
  */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import type { AccountInfo } from '@/store/accounts/accountStore';
@@ -111,7 +111,7 @@ export default function TelegramCallsDialog({ account, onClose, onOpenConversati
       </DialogHeader>
       <DialogBody className="space-y-2.5">
         <Notice>
-          {tr('Deplao chưa nghe / gọi được cuộc gọi Telegram — hãy nghe máy trên điện thoại hoặc Telegram Desktop. Khi có cuộc gọi đến, Deplao báo ngay để bạn từ chối hoặc mở hội thoại; cuộc gọi cũng hiện trong khung chat.')}
+          {tr('SadSha ChatDesk chưa nghe / gọi được cuộc gọi Telegram — hãy nghe máy trên điện thoại hoặc Telegram Desktop. Khi có cuộc gọi đến, SadSha ChatDesk báo ngay để bạn từ chối hoặc mở hội thoại; cuộc gọi cũng hiện trong khung chat.')}
         </Notice>
         <div className="flex items-center justify-between gap-2">
           <Tabs value={tab} onValueChange={value => setTab(value as 'all' | 'missed')} variant="pills">

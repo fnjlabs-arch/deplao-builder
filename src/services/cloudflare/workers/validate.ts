@@ -2,7 +2,7 @@
  * validate.ts: naming rules + input checks for an app's (plugin) Worker / D1, shared by
  * PluginApiBridge (checks BEFORE calling IPC), the IPC handler cloudflare:workers:* and WorkersDeployer (checked again in main).
  *
- * Contract: fintrack-deplao-app/docs/CONTRACTS.md §1.
+ * Contract: fintrack-sadshachatdesk-app/docs/CONTRACTS.md §1.
  *  - Resource prefix = pluginShortName(id) (the last part of the app id). An app can only read / create / change Workers and D1 whose name
  *    is EXACTLY the prefix or starts with "<prefix>-". prefix null = the machine owner's UI (no prefix limit).
  *  - Errors throw CloudError with the contract codes: CF_NAME_FORBIDDEN, VALIDATION_ERROR (CF_BUNDLE_INVALID is in bundle.ts).
@@ -13,7 +13,7 @@
 import { CloudError } from '../contracts';
 import { tr } from '../../../shared/i18n';
 
-/** The app manifest permission for deplao.cloudflare.*. */
+/** The app manifest permission for sadshachatdesk.cloudflare.*. */
 export const WORKERS_PERMISSION = 'cloudflare:workers';
 
 /** Permission names exactly as on Cloudflare's token creation page (English Dashboard). */
@@ -24,7 +24,7 @@ export const WORKERS_PERMISSION_LABELS = {
 
 /**
  * Extra permissions needed when attaching a domain to a Worker: list domains (zones) and read DNS records so no existing record is overwritten.
- * Deplao's sample token-creation link already has both (Zone Read, DNS Edit). Not part of `missing` in status: only needed when
+ * SadSha ChatDesk's sample token-creation link already has both (Zone Read, DNS Edit). Not part of `missing` in status: only needed when
  * an app attaches a domain.
  */
 export const DOMAIN_PERMISSION_LABELS = {
@@ -33,7 +33,7 @@ export const DOMAIN_PERMISSION_LABELS = {
 } as const;
 
 /**
- * Error codes returned to the app → HTTP status of DeplaoApiError. Contract codes: CF_NOT_CONNECTED, CF_PERMISSION,
+ * Error codes returned to the app → HTTP status of SadSha ChatDeskApiError. Contract codes: CF_NOT_CONNECTED, CF_PERMISSION,
  * CF_NAME_FORBIDDEN, CF_BUNDLE_INVALID, CF_API, PLUGIN_PERMISSION; plus the shared API codes VALIDATION_ERROR, NOT_FOUND, CONFLICT.
  */
 export const WORKERS_ERROR_STATUS: Readonly<Record<string, number>> = {
@@ -43,7 +43,7 @@ export const WORKERS_ERROR_STATUS: Readonly<Record<string, number>> = {
     CF_BUNDLE_INVALID: 400,
     CF_API: 502,
     PLUGIN_PERMISSION: 403,
-    /** The user clicks "Không" (No) in Deplao's confirmation dialog (attaching a domain). */
+    /** The user clicks "Không" (No) in SadSha ChatDesk's confirmation dialog (attaching a domain). */
     CF_DECLINED: 403,
     VALIDATION_ERROR: 400,
     NOT_FOUND: 404,
@@ -53,7 +53,7 @@ export const WORKERS_ERROR_STATUS: Readonly<Record<string, number>> = {
 /** Worker / D1 name: 1–63 characters a-z, 0-9, '-', must not start or end with '-' (it is the DNS label of <name>.<sub>.workers.dev). */
 export const RESOURCE_NAME_RE = /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/;
 
-/** Binding name (env variable of the Worker): DB, AI, ASSETS, DEPLAO_INTEGRATION_SECRET… */
+/** Binding name (env variable of the Worker): DB, AI, ASSETS, SADSHA_CHATDESK_INTEGRATION_SECRET… */
 export const BINDING_NAME_RE = /^[A-Za-z_][A-Za-z0-9_]{0,63}$/;
 
 /** Cloudflare: each variable / secret ≤ 5 KB, total variables + secrets ≤ 64 (Free plan). */

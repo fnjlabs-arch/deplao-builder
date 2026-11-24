@@ -40,7 +40,7 @@ const SERVICES: InboundService[] = [
     suffix: tr('/webhook/<loại>'),
     title: tr('Thanh toán & tích hợp'),
     icon: <CreditCardIcon className="w-5 h-5" />,
-    description: tr('Nhận báo chuyển khoản từ Casso, SePay và đơn hàng / khách hàng từ phần mềm bán hàng (KiotViet, Haravan, Sapo, Nhanh.vn, Pancake POS). Đơn vị vận chuyển không gửi vào đây — Deplao tự hỏi khi tra cứu.'),
+    description: tr('Nhận báo chuyển khoản từ Casso, SePay và đơn hàng / khách hàng từ phần mềm bán hàng (KiotViet, Haravan, Sapo, Nhanh.vn, Pancake POS). Đơn vị vận chuyển không gửi vào đây — SadSha ChatDesk tự hỏi khi tra cứu.'),
     uses: [
       tr('Có người chuyển khoản VietQR → chạy workflow "Khi nhận thanh toán"'),
       tr('Phần mềm bán hàng có đơn mới / đổi trạng thái → chạy workflow "Khi phần mềm bán hàng gửi webhook" (chỉ webhook xác thực đúng khoá)'),
@@ -50,7 +50,7 @@ const SERVICES: InboundService[] = [
       tr('Bật địa chỉ "Thanh toán, tích hợp" ở Cài đặt → Internet & Cloud → Địa chỉ Internet'),
       tr('Vào Công cụ → Tích hợp, thêm kết nối Casso / SePay hoặc phần mềm bán hàng (đặt khoá xác thực webhook)'),
       tr('Sao chép địa chỉ nhận trong trang tích hợp đó, dán vào phần webhook của Casso / SePay / phần mềm bán hàng'),
-      tr('Có giao dịch / đơn hàng → Deplao kiểm tra chữ ký → workflow "Khi nhận thanh toán" / "Khi phần mềm bán hàng gửi webhook" chạy'),
+      tr('Có giao dịch / đơn hàng → SadSha ChatDesk kiểm tra chữ ký → workflow "Khi nhận thanh toán" / "Khi phần mềm bán hàng gửi webhook" chạy'),
     ],
     urlHint: tr('Mỗi tích hợp có đường dẫn riêng dạng <địa chỉ>/webhook/<loại> (xem trong trang tích hợp đó).'),
   },
@@ -106,12 +106,12 @@ export default function InboundWebhooksPanel() {
         <InfoIcon className="w-4 h-4 mt-0.5 flex-shrink-0 text-info" />
         <div className="space-y-1 text-xs text-foreground/90 leading-relaxed">
           <p>
-            {trx('Hệ thống khác gửi dữ liệu vào Deplao qua <0>địa chỉ Internet</0> của máy chủ. ', { 0: <strong /> })}
+            {trx('Hệ thống khác gửi dữ liệu vào SadSha ChatDesk qua <0>địa chỉ Internet</0> của máy chủ. ', { 0: <strong /> })}
             {publicAddresses.serverManaged
               ? tr('Địa chỉ do máy chủ quản lý.')
               : tr('Bật, tắt hoặc đổi địa chỉ ở Cài đặt → Internet & Cloud → Địa chỉ Internet.')}
           </p>
-          <p className="text-muted-foreground">{tr('Chỉ dùng trong cùng mạng LAN thì không cần bật. Địa chỉ chỉ chạy khi Deplao đang mở.')}</p>
+          <p className="text-muted-foreground">{tr('Chỉ dùng trong cùng mạng LAN thì không cần bật. Địa chỉ chỉ chạy khi SadSha ChatDesk đang mở.')}</p>
         </div>
       </div>
 

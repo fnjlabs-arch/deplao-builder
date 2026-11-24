@@ -2,7 +2,7 @@
  * posWebhook: webhooks from POS software (KiotViet, Haravan, Sapo, Nhanh.vn, Pancake POS): verifies + normalizes them into
  * events for the trigger "When the sales software sends a webhook" (trigger.posWebhook). Pure (no Electron), for testing.
  *
- * Unlike payment webhooks (paymentWebhook.ts): a verification key is REQUIRED. If no key is set in Deplao, or the signature / token is wrong,
+ * Unlike payment webhooks (paymentWebhook.ts): a verification key is REQUIRED. If no key is set in SadSha ChatDesk, or the signature / token is wrong,
  * the request is rejected (401) and no workflow runs, because workflows use this data to message customers, create shipments...
  *
  * KiotViet (kiotviet.vn → Public API → 2.11 Webhook): registered with the API POST /webhooks, Secret = a random string of 8+ characters, Base64-encoded;
@@ -20,7 +20,7 @@
  *   body { event, businessId, data } (data may be a JSON string). `webhooksEnabled` is a test ping → returns 200, runs no
  *   workflow. The old webhook v2 puts the token in the body as `webhooksVerifyToken` - still accepted.
  * Pancake POS (docs.pancake.biz/pos/api → Webhook configuration): does not sign the content; declare Request Headers when configuring the webhook →
- *   Deplao reads the header `X-API-KEY` (or Authorization) = the key that was set. The body is an order / customer (raw object) or
+ *   SadSha ChatDesk reads the header `X-API-KEY` (or Authorization) = the key that was set. The body is an order / customer (raw object) or
  *   { data: { record } } (products, stock), with no event name → inferred from the data shape.
  * If the platform does not send an event name, add `?event=<name>` to the receiving address (e.g. Sapo registers one address per topic).
  */
@@ -86,7 +86,7 @@ export interface ParsedPosWebhook {
 
 // ─── Authentication ──────────────────────────────────────────────────────────
 
-const NO_SECRET_MESSAGE = tr('Chưa đặt khoá xác thực webhook trong Deplao — webhook bị từ chối, không chạy workflow');
+const NO_SECRET_MESSAGE = tr('Chưa đặt khoá xác thực webhook trong SadSha ChatDesk — webhook bị từ chối, không chạy workflow');
 
 const rejected = (reason: 'missing_signature' | 'invalid_signature', message: string): PosWebhookAuth => ({ ok: false, reason, message });
 
@@ -356,7 +356,7 @@ export function parsePosWebhook(type: PosWebhookType, input: ParsePosWebhookInpu
 
 // ─── Trigger filters ─────────────────────────────────────────────────────────
 
-/** Case-insensitive matching; NFC so that accented text typed in Deplao matches the platform data (precomposed / combining forms). */
+/** Case-insensitive matching; NFC so that accented text typed in SadSha ChatDesk matches the platform data (precomposed / combining forms). */
 const fold = (value: unknown): string => String(value ?? '').normalize('NFC').toLowerCase();
 
 function textList(value: unknown): string[] {

@@ -1,5 +1,5 @@
 /**
- * zaloPresence.ts: Zalo online status (ZL-01, SRS Deplao): pure part shared by main + renderer.
+ * zaloPresence.ts: Zalo online status (ZL-01, SRS SadSha ChatDesk): pure part shared by main + renderer.
  *
  * Source (zca-js 2.2.0): lastOnline(uid) → { settings: { show_online_status }, lastOnline } and getFriendOnlines() →
  * { onlines: [{ userId, status }] } (only friends who are online). The unit of lastOnline has not been checked on a real account, so

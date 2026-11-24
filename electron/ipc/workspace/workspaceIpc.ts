@@ -163,7 +163,7 @@ async function syncWorkspaceDatabases(): Promise<boolean> {
     const uiWs = wsm.getUiActiveWorkspace();
     if (uiWs?.type !== 'remote') db.closeUiWorkspaceDb();
 
-    const runtimeDbPath = wsm.resolveDbPath(runtimeWs?.dbPath || 'deplao-tool.db');
+    const runtimeDbPath = wsm.resolveDbPath(runtimeWs?.dbPath || 'sadshachatdesk-tool.db');
     const runtimeChanged = !sameDbFile(runInRuntimeScope(() => db.getDbPath()), runtimeDbPath);
     if (runtimeChanged) {
         await db.switchToWorkspaceDb(runtimeDbPath);
@@ -173,7 +173,7 @@ async function syncWorkspaceDatabases(): Promise<boolean> {
     if (uiWs?.type === 'remote') {
         db.openUiWorkspaceDb({
             workspaceId: uiWs.id,
-            dbPath: wsm.resolveDbPath(uiWs.dbPath || `workspace-${uiWs.id}/deplao-tool.db`),
+            dbPath: wsm.resolveDbPath(uiWs.dbPath || `workspace-${uiWs.id}/sadshachatdesk-tool.db`),
             mediaDir: wsm.resolveMediaPath(uiWs),
         });
     }
@@ -272,7 +272,7 @@ export function registerWorkspaceIpc(mainWindow: BrowserWindow | null): void {
             if (wasRuntime) {
                 const fallback = wm().listWorkspaces().find(w => w.type !== 'remote' && w.id !== id);
                 if (fallback) {
-                    await db.switchToWorkspaceDb(wm().resolveDbPath(fallback.dbPath || 'deplao-tool.db'));
+                    await db.switchToWorkspaceDb(wm().resolveDbPath(fallback.dbPath || 'sadshachatdesk-tool.db'));
                     FileStorageService.resetBaseDir();
                 }
             }
@@ -454,7 +454,7 @@ export function registerWorkspaceIpc(mainWindow: BrowserWindow | null): void {
         try {
             const ws = wm().getWorkspaceById(id);
             if (!ws) return { success: false, error: 'Workspace not found' };
-            const dbPath = wm().resolveDbPath(ws.dbPath || 'deplao-tool.db');
+            const dbPath = wm().resolveDbPath(ws.dbPath || 'sadshachatdesk-tool.db');
             return { success: true, dbPath };
         } catch (err: any) {
             return { success: false, error: err.message };

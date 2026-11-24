@@ -640,7 +640,7 @@ export class FacebookService {
     // IMPORTANT: Only media types that require download (image, video, audio, file)
     // legitimately need directPath. Link/sticker type attachments do NOT have directPath
     // by design - they must NOT be caught by the "no directPath" check.
-    // See BUG https://github.com/deplao/builder/issues/...
+    // See BUG https://github.com/sadshachatdesk/builder/issues/...
     const MEDIA_DOWNLOAD_TYPES = new Set(['image', 'video', 'audio', 'file']);
     const isSelfEchoMedia = isSelf && msg.isE2EE && (
       // Case 1: has media-type attachment requiring download but no directPath → incomplete echo
@@ -1547,7 +1547,7 @@ export class FacebookService {
         break;
 
       case 'deviceDataChanged':
-        // DEPLAO_ADAPTER: device state persistence is handled in the listener
+        // SADSHA_ADAPTER: device state persistence is handled in the listener
         // callback (line 1019) before this switch. Log at debug level only.
         break;
 
@@ -1592,7 +1592,7 @@ export class FacebookService {
           // application failure. Keep permanent/decryption failures prominent.
           const transientSocketSync = code === 0 && /(?:timeout waiting for response|failed to ensure db \d+ is synced|failed to handle connect ack|lightspeed socket request)/i.test(message);
           if (transientSocketSync) {
-            // DEPLAO_ADAPTER: Transient socket sync errors are handled internally
+            // SADSHA_ADAPTER: Transient socket sync errors are handled internally
             // by Meta's LightSpeed reconnect loop. The Facebook account itself
             // remains connected, but this E2EE socket cannot send until it has
             // re-established its state. Keep that distinction visible to the
@@ -2681,7 +2681,7 @@ export class FacebookService {
   public async sendMessage(threadId: string, body: string, opts?: FBSendOptions): Promise<FBSendResult> {
     const agent = this.httpsAgent;
     // ── Resolve 1:1 vs group (Phase 4: use resolveThreadKind) ───────────
-    // DEPLAO_ADAPTER: No numeric-ID inference. Caller supplies typeChat or we
+    // SADSHA_ADAPTER: No numeric-ID inference. Caller supplies typeChat or we
     // resolve from DB. Unknown → structured error, never guess.
     const resolved = await resolveThreadKind(threadId, opts?.typeChat, this.accountId);
     if (resolved.kind === 'unknown') {
@@ -2699,7 +2699,7 @@ export class FacebookService {
     // ═════════════════════════════════════════════════════════════════════
     // 1:1 ROUTING — E2EE ONLY, no REST fallback
     // ═════════════════════════════════════════════════════════════════════
-    // DEPLAO_ADAPTER: Per plan §8 — once a thread is resolved as 'user',
+    // SADSHA_ADAPTER: Per plan §8 — once a thread is resolved as 'user',
     // we send via E2EE bridge exclusively. If E2EE fails, return the error
     // directly. We do NOT fallback to REST for 1:1 conversations.
     // The only exception is the initial probe: if the thread is NOT yet known
@@ -2744,12 +2744,12 @@ export class FacebookService {
             }
             throw new Error(r.error || 'E2EE send did not return a message ID.');
           } catch (err: any) {
-            // DEPLAO_ADAPTER: A thread that has already succeeded with E2EE
+            // SADSHA_ADAPTER: A thread that has already succeeded with E2EE
             // must NEVER be downgraded to REST merely because a send failed.
             if (this.e2eeThreads.has(threadId)) {
               return { success: false, error: tr('Không thể gửi tin nhắn E2EE: {{message}}', { message: err.message }) };
             }
-            // DEPLAO_ADAPTER: If E2EE timed out, the message may have been
+            // SADSHA_ADAPTER: If E2EE timed out, the message may have been
             // sent but response lost. Do NOT fallback to REST to avoid duplicate.
             // Only fallback for real connection errors (not timeout).
             if (/timeout|ETIMEDOUT/i.test(err.message || '')) {
@@ -2815,7 +2815,7 @@ export class FacebookService {
     // ═════════════════════════════════════════════════════════════════════
     // GROUP ROUTING — REST ONLY, no bridge fallback
     // ═════════════════════════════════════════════════════════════════════
-    // DEPLAO_ADAPTER: Group messages go through REST exclusively.
+    // SADSHA_ADAPTER: Group messages go through REST exclusively.
     // Bridge sendMessage for groups is unreliable and not part of the plan.
 
     const result = await sendMessageREST(this.requireSession(), threadId, body, opts, agent);
@@ -2897,7 +2897,7 @@ export class FacebookService {
     if (route.kind === 'user') {
       if (!this.isE2EEConnected()) return { success: false, error: tr('E2EE bridge chưa sẵn sàng.') };
       // The encrypted message key is tied to the original sender JID. An
-      // internal Deplao account UUID is not a valid JID.
+      // internal SadSha ChatDesk account UUID is not a valid JID.
       if (!route.senderId) return { success: false, error: tr('Thiếu người gửi của tin nhắn E2EE.') };
       return this.sendE2EEReaction(
         normalizeChatJid(route.threadId),
@@ -3221,7 +3221,7 @@ export class FacebookService {
         return { success: false, code: 'BRIDGE_DOWN', error: tr('Bridge Facebook chưa chạy (đang kết nối lại) — thử lại sau ít phút') };
       }
       if (!bridge.supportsCapability('fetchMessages')) {
-        return { success: false, code: 'BRIDGE_OLD', error: tr('Bridge Facebook bản cũ chưa hỗ trợ tải lịch sử — khởi động lại Deplao sau khi cập nhật') };
+        return { success: false, code: 'BRIDGE_OLD', error: tr('Bridge Facebook bản cũ chưa hỗ trợ tải lịch sử — khởi động lại SadSha ChatDesk sau khi cập nhật') };
       }
     }
     // A real user's pace before asking Facebook

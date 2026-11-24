@@ -1,6 +1,6 @@
 /**
  * Incoming Telegram call alert (event:telegramCall from main): a card in the top-right corner with "Từ chối" (Decline, phone.DiscardCall) and
- * "Mở chat" (Open chat). Deplao cannot answer calls yet (no tgcalls voice engine), so this is stated clearly for users to answer on their phone.
+ * "Mở chat" (Open chat). SadSha ChatDesk cannot answer calls yet (no tgcalls voice engine), so this is stated clearly for users to answer on their phone.
  * Mounted once in App (every screen).
  */
 import React, { useEffect, useState } from 'react';
@@ -79,7 +79,7 @@ function CallCard({ call, onDone }: { call: RingingCall; onDone: () => void }) {
           <p className="truncate text-xs text-muted-foreground">{trx('Gọi tới {{v1}}', { v1: accountLabel(account) || tr('tài khoản Telegram') })}</p>
         </div>
       </div>
-      <p className="px-4 text-[11px] leading-4 text-subtle-foreground">{tr('Nghe máy trên điện thoại hoặc Telegram Desktop — Deplao chưa nghe được cuộc gọi.')}</p>
+      <p className="px-4 text-[11px] leading-4 text-subtle-foreground">{tr('Nghe máy trên điện thoại hoặc Telegram Desktop — SadSha ChatDesk chưa nghe được cuộc gọi.')}</p>
       <div className="flex gap-2 px-4 pb-4 pt-3">
         <Button variant="destructive" size="sm" className="flex-1" loading={declining} onClick={() => void decline()}
           leftIcon={<PhoneGlyph className="h-3.5 w-3.5 rotate-[135deg]" />}>

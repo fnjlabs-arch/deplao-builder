@@ -42,11 +42,11 @@ module.exports = async function afterPack(context) {
       icon: iconPath,
       'version-string': {
         ProductName:      pkg.build.productName || pkg.name,
-        // Tên hiện ở Task Manager, Ứng dụng khởi động, Trình trộn âm lượng, hộp thoại tường lửa: giữ ngắn "Deplao"
+        // Tên hiện ở Task Manager, Ứng dụng khởi động, Trình trộn âm lượng, hộp thoại tường lửa: giữ ngắn "SadSha ChatDesk"
         // (trước đây là cả câu mô tả trong package.json). Dev: scripts/patch-electron-icon.js cũng dùng productName.
         FileDescription:  pkg.build.productName || pkg.name,
-        CompanyName:      'Deplao',
-        LegalCopyright:   `Copyright © ${new Date().getFullYear()} Deplao`,
+        CompanyName:      'SadSha ChatDesk',
+        LegalCopyright:   `Copyright © ${new Date().getFullYear()} SadSha ChatDesk`,
         OriginalFilename: `${productName}.exe`,
       },
       'file-version':    pkg.version,

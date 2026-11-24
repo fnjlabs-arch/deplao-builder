@@ -139,7 +139,7 @@ export const BOSS_ONLY_CHANNELS: Readonly<Record<string, string>> = Object.freez
   'relay:tunnelStatusUpdate': 'Trạng thái tunnel của Boss; nhân viên nhận địa chỉ mới qua relay:bossUrlChanged',
   'event:telegramSync': 'Tiến độ đồng bộ lịch sử Telegram do Boss chạy; kết quả tới nhân viên qua db:unreadChanged',
   // To notify the employee assigned the account: move to RELAY_CHANNELS + EPHEMERAL (the ring state is not replayed during catch-up)
-  'event:telegramCall': 'Báo cuộc gọi Telegram đến (đang làm) — Deplao không nghe máy được, chỉ báo trên máy Boss / điện thoại',
+  'event:telegramCall': 'Báo cuộc gọi Telegram đến (đang làm) — SadSha ChatDesk không nghe máy được, chỉ báo trên máy Boss / điện thoại',
   'event:mobileSync': 'Tiến độ "Đồng bộ từ điện thoại" chạy trên máy Boss',
   'event:fbHistorySync': 'Tiến độ "Đồng bộ tin nhắn Facebook" chạy trên máy Boss; tin đã lưu tới nhân viên qua đọc DB của Boss',
   'event:mediaProgress': 'Nhịp tiến độ tải video ("2.1 / 5.0 MB") trên máy Boss đang tải; file xong tới nhân viên qua event:localPath',

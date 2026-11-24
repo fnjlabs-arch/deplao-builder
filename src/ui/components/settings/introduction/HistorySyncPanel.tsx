@@ -34,7 +34,7 @@ export function HistorySyncPanel() {
       <Card>
         <SectionTitle>{trx('<0/> Đồng bộ tin nhắn cũ - Khi nào cần?', { 0: <RefreshIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <Paragraph>
-          {tr('Tin nhắn mới tự về Deplao khi app đang chạy, không cần làm gì thêm. Chỉ khi cần xem lại tin nhắn cũ chưa có trong app (ví dụ tin từ trước khi bạn đăng nhập tài khoản vào Deplao) mới dùng tính năng đồng bộ — mỗi kênh một cách:')}
+          {tr('Tin nhắn mới tự về SadSha ChatDesk khi app đang chạy, không cần làm gì thêm. Chỉ khi cần xem lại tin nhắn cũ chưa có trong app (ví dụ tin từ trước khi bạn đăng nhập tài khoản vào SadSha ChatDesk) mới dùng tính năng đồng bộ — mỗi kênh một cách:')}
         </Paragraph>
         <BulletList items={[
           tr('{{v1}} lấy lịch sử từ Zalo trên điện thoại — nút {{v2}}.', { v1: b('Zalo:'), v2: b(tr('Đồng bộ tin nhắn từ điện thoại')) }),
@@ -49,7 +49,7 @@ export function HistorySyncPanel() {
       <Card>
         <SectionTitle>{trx('<0/> Zalo - Đồng bộ tin nhắn từ điện thoại', { 0: <SmartphoneIcon className="w-4 h-4 inline" /> })}</SectionTitle>
         <Paragraph>
-          {tr('Lấy tin nhắn trên Zalo điện thoại trong khoảng thời gian bạn chọn và ghép vào đúng các hội thoại trên Deplao. Đây là cách lấy tin nhắn Zalo cũ về app (thay cho nút "Tải tin nhắn cũ" trước đây).')}
+          {tr('Lấy tin nhắn trên Zalo điện thoại trong khoảng thời gian bạn chọn và ghép vào đúng các hội thoại trên SadSha ChatDesk. Đây là cách lấy tin nhắn Zalo cũ về app (thay cho nút "Tải tin nhắn cũ" trước đây).')}
         </Paragraph>
         <StepList steps={[
           {
@@ -78,7 +78,7 @@ export function HistorySyncPanel() {
         ]} />
         <Callout tone="warning" icon={<AlertIcon className="w-4 h-4" />} title={tr('Điều kiện để đồng bộ được')}>
           <BulletList items={[
-            tr('Tài khoản Zalo đang online trên Deplao.'),
+            tr('Tài khoản Zalo đang online trên SadSha ChatDesk.'),
             tr('Điện thoại có Zalo của chính tài khoản đó, có mạng và mở Zalo trong suốt quá trình. Điện thoại tạm dừng thì app báo — mở lại Zalo để tiếp tục; chờ quá lâu (khoảng 30 phút) phiên sẽ tự dừng.'),
             tr('Mỗi tài khoản chạy một phiên đồng bộ một lúc. Nếu Zalo trên điện thoại đang khôi phục dữ liệu, hãy thử lại sau.'),
           ]} />
@@ -91,7 +91,7 @@ export function HistorySyncPanel() {
           {tr('Tải tin nhắn Messenger trong khoảng thời gian bạn chọn cho mọi hội thoại có hoạt động trong khoảng đó — tải lần lượt từng trang tới hết khoảng, không giới hạn số tin, chạy nền và huỷ được.')}
         </Paragraph>
         <Callout tone="warning" icon={<AlertIcon className="w-4 h-4" />} title={tr('Không cần tin nhắn cũ thì đừng tải')}>
-          {trx('Tin nhắn mới vẫn tự về khi Deplao đang chạy — không cần đồng bộ. Tải lịch sử gửi nhiều yêu cầu tới Facebook: Deplao đã giãn nhịp như người dùng thật (nghỉ ngẫu nhiên giữa các trang, nghỉ giải lao sau mỗi 30–50 trang, tối đa khoảng 240 trang mỗi giờ, tự dừng khi Facebook có dấu hiệu hạn chế) nhưng <0>vẫn có rủi ro bị checkpoint</0> — Facebook yêu cầu xác minh hoặc tạm khoá tài khoản. Hãy chọn khoảng thời gian ngắn nhất đủ dùng.', { 0: <strong className="text-foreground" /> })}
+          {trx('Tin nhắn mới vẫn tự về khi SadSha ChatDesk đang chạy — không cần đồng bộ. Tải lịch sử gửi nhiều yêu cầu tới Facebook: SadSha ChatDesk đã giãn nhịp như người dùng thật (nghỉ ngẫu nhiên giữa các trang, nghỉ giải lao sau mỗi 30–50 trang, tối đa khoảng 240 trang mỗi giờ, tự dừng khi Facebook có dấu hiệu hạn chế) nhưng <0>vẫn có rủi ro bị checkpoint</0> — Facebook yêu cầu xác minh hoặc tạm khoá tài khoản. Hãy chọn khoảng thời gian ngắn nhất đủ dùng.', { 0: <strong className="text-foreground" /> })}
         </Callout>
         <StepList steps={[
           {
@@ -113,7 +113,7 @@ export function HistorySyncPanel() {
         ]} />
         <BulletList items={[
           tr('Tải nhiều có thể mất vài giờ. Tin đã có được bỏ qua; tin mẫu của Trang trước đây hiện rỗng được sửa lại.'),
-          tr('Hội thoại mã hoá đầu cuối không tải được tin cũ (Facebook không cho thiết bị mới đọc) — chỉ có tin nhận khi Deplao đang chạy.'),
+          tr('Hội thoại mã hoá đầu cuối không tải được tin cũ (Facebook không cho thiết bị mới đọc) — chỉ có tin nhận khi SadSha ChatDesk đang chạy.'),
           tr('Khi Facebook có dấu hiệu hạn chế, yêu cầu xác minh hoặc phiên hết hạn, đồng bộ tự dừng để bảo vệ tài khoản và tạm ngưng tải lịch sử khoảng 30 phút.'),
           tr('Tài khoản Facebook phải đang kết nối. Nếu báo có hội thoại Facebook chưa trả lời, bấm Đồng bộ lại để thử tiếp.'),
           tr('Cuộn lên đầu một hội thoại Facebook cũng tải thêm tin cũ — dùng chung nhịp tải an toàn ở trên.'),

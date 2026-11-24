@@ -12,7 +12,7 @@ import { tr } from '../../../../shared/i18n';
 
 type Tab = 'security' | 'recovery' | 'disable';
 
-const PAGE_DESCRIPTION = tr('Khoá Deplao bằng mật khẩu khi mở app hoặc khi bạn rời máy.');
+const PAGE_DESCRIPTION = tr('Khoá SadSha ChatDesk bằng mật khẩu khi mở app hoặc khi bạn rời máy.');
 
 function StatusPill({ on }: { on: boolean }) {
   return (
@@ -314,7 +314,7 @@ export default function LockScreenSettings() {
           <ShieldIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-success" />
           <div className="min-w-0 flex-1">
             <p className="text-sm font-medium text-foreground">{tr('Khoá màn hình')}</p>
-            <p className="text-xs text-muted-foreground">{tr('Cần mật khẩu mỗi khi mở Deplao.')}</p>
+            <p className="text-xs text-muted-foreground">{tr('Cần mật khẩu mỗi khi mở SadSha ChatDesk.')}</p>
           </div>
           <StatusPill on />
         </div>

@@ -5,8 +5,8 @@
  * - buildCopilotSystemPrompt: role, step-by-step method, reply protocol, engine rules, design tips,
  *   the variables each trigger really provides, the node catalogue generated from the live
  *   CONFIG_SCHEMA / DEFAULT_CONFIGS / NODE_GROUPS (always current) and the current canvas.
- * - parseCopilotReply: a reply = text + at most one ```deplao-workflow``` proposal or one
- *   ```deplao-tool``` call; tolerant to the usual mistakes of weaker models (```json fences, smart
+ * - parseCopilotReply: a reply = text + at most one ```sadshachatdesk-workflow``` proposal or one
+ *   ```sadshachatdesk-tool``` call; tolerant to the usual mistakes of weaker models (```json fences, smart
  *   quotes, comments, trailing commas, unfenced JSON, cut-off blocks).
  * - validateProposal / formatValidationFeedback: checks a proposal the way the engine will run it,
  *   so the dialog can send precise errors back for an automatic repair.
@@ -432,13 +432,13 @@ function examplesDoc(channel: string): string {
 - Kích hoạt: tin nhắn cá nhân có chữ "giá" / "bao nhiêu".
 - Luồng: Nhận tin → AI soạn câu trả lời → Gửi trả lời.
 - Giả định: chỉ tin nhắn cá nhân; gom tin trong 10 giây.
-\`\`\`deplao-workflow
+\`\`\`sadshachatdesk-workflow
 ${JSON.stringify(first)}
 \`\`\`
 **Sau khi áp dụng**: kiểm tra trợ lý AI trong node "AI soạn trả lời", bấm Lưu và bật workflow.
 
 Ví dụ 2 - người dùng: "chờ 3 giây rồi mới gửi, và bảo AI trả lời lịch sự hơn" (sơ đồ đang có a1 → a2 → a3 như ví dụ 1):
-\`\`\`deplao-workflow
+\`\`\`sadshachatdesk-workflow
 ${JSON.stringify(second)}
 \`\`\``;
 }
@@ -461,7 +461,7 @@ export function buildCopilotSystemPrompt(ctx: CopilotContext): string {
   const assistant = ctx.defaultAssistant?.name ? `"${ctx.defaultAssistant.name}" (tự điền vào node AI)` : 'chưa có - nhắc người dùng chọn trợ lý trong node AI';
 
   return `# VAI TRÒ
-Bạn là "Kiến trúc sư Workflow" của Deplao - phần mềm CRM nhắn tin đa kênh (Zalo, Facebook, Telegram). Bạn trò chuyện với người dùng để hiểu nhu cầu, cùng phân tích rồi thiết kế workflow tự động chạy trên kênh ${ctx.channelLabel}. Người dùng thường là chủ shop / nhân viên bán hàng, không rành kỹ thuật: trả lời bằng tiếng Việt, ngắn gọn, thân thiện, tránh thuật ngữ; luôn giải thích bằng lời thường workflow sẽ làm gì.
+Bạn là "Kiến trúc sư Workflow" của SadSha ChatDesk - phần mềm CRM nhắn tin đa kênh (Zalo, Facebook, Telegram). Bạn trò chuyện với người dùng để hiểu nhu cầu, cùng phân tích rồi thiết kế workflow tự động chạy trên kênh ${ctx.channelLabel}. Người dùng thường là chủ shop / nhân viên bán hàng, không rành kỹ thuật: trả lời bằng tiếng Việt, ngắn gọn, thân thiện, tránh thuật ngữ; luôn giải thích bằng lời thường workflow sẽ làm gì.
 
 # BỐI CẢNH
 - Kênh của workflow: ${ctx.channelLabel} (mã "${ctx.channel}"). CHỈ dùng node trong DANH MỤC NODE bên dưới - danh mục đã lọc đúng kênh này.
@@ -480,7 +480,7 @@ Bước 7 - Trả lời theo ĐỊNH DẠNG TRẢ LỜI.
 Người dùng chỉ hỏi, nhờ giải thích hoặc góp ý workflow hiện tại → trả lời bằng văn bản; chỉ xuất đề xuất khi cần thay đổi sơ đồ.
 
 # ĐỊNH DẠNG TRẢ LỜI
-Mỗi lượt gồm văn bản cho người dùng và TỐI ĐA 1 khối giao thức (deplao-workflow HOẶC deplao-tool).
+Mỗi lượt gồm văn bản cho người dùng và TỐI ĐA 1 khối giao thức (sadshachatdesk-workflow HOẶC sadshachatdesk-tool).
 
 (A) Hỏi lại / tư vấn / giải thích: chỉ viết văn bản.
 
@@ -490,9 +490,9 @@ Mỗi lượt gồm văn bản cho người dùng và TỐI ĐA 1 khối giao th
 - Kích hoạt: …
 - Luồng: Bước 1 → Bước 2 → …
 - Giả định: …
-rồi đúng 1 khối \`\`\`deplao-workflow … \`\`\`, rồi **Sau khi áp dụng**: những việc người dùng cần tự làm (chọn ảnh/file, kiểm tra nội dung, Lưu và bật workflow…).
+rồi đúng 1 khối \`\`\`sadshachatdesk-workflow … \`\`\`, rồi **Sau khi áp dụng**: những việc người dùng cần tự làm (chọn ảnh/file, kiểm tra nội dung, Lưu và bật workflow…).
 
-Khối deplao-workflow là JSON:
+Khối sadshachatdesk-workflow là JSON:
 {
   "mode": "append" hoặc "replace",
   "title": "Tên ngắn của kịch bản",
@@ -510,7 +510,7 @@ Khối deplao-workflow là JSON:
 - JSON hợp lệ: nháy kép, không chú thích, không dấu phẩy thừa, xuống dòng trong chuỗi viết \\n.
 
 (C) Cần tra cứu: viết 1 câu ngắn rồi đúng 1 khối, sau đó DỪNG chờ kết quả (hệ thống gửi lại "[KẾT QUẢ CÔNG CỤ]"):
-\`\`\`deplao-tool
+\`\`\`sadshachatdesk-tool
 {"tool": "get_node_details", "args": {"types": ["zalo.sendImage"]}}
 \`\`\`
 
@@ -673,7 +673,7 @@ export function normalizeProposal(value: any): AIProposal | null {
 }
 
 const BLOCK_RE = /```([^\n`]*)\n([\s\S]*?)```/g;
-const OPEN_PROTOCOL_RE = /```[^\n`]*deplao-(workflow|tool)[^\n`]*\n[\s\S]*$/;
+const OPEN_PROTOCOL_RE = /```[^\n`]*sadshachatdesk-(workflow|tool)[^\n`]*\n[\s\S]*$/;
 
 export function parseCopilotReply(raw: string): ParsedReply {
   const text = String(raw ?? '');
@@ -684,19 +684,19 @@ export function parseCopilotReply(raw: string): ParsedReply {
 
   const without = (block: string) => text.replace(block, '').replace(/\n{3,}/g, '\n\n').trim();
 
-  const toolBlock = blocks.find(block => block.info.includes('deplao-tool'));
+  const toolBlock = blocks.find(block => block.info.includes('sadshachatdesk-tool'));
   if (toolBlock) {
     try {
       const call = normalizeToolCall(lenientJsonParse(toolBlock.body));
       return call
         ? { text: without(toolBlock.full), toolCall: call }
-        : { text: without(toolBlock.full), parseError: tr('Khối deplao-tool thiếu "tool".') };
+        : { text: without(toolBlock.full), parseError: tr('Khối sadshachatdesk-tool thiếu "tool".') };
     } catch (err: any) {
-      return { text: without(toolBlock.full), parseError: tr('Khối deplao-tool không phải JSON hợp lệ ({{v1}}).', { v1: err?.message || err }) };
+      return { text: without(toolBlock.full), parseError: tr('Khối sadshachatdesk-tool không phải JSON hợp lệ ({{v1}}).', { v1: err?.message || err }) };
     }
   }
 
-  const workflowBlock = blocks.find(block => block.info.includes('deplao-workflow'))
+  const workflowBlock = blocks.find(block => block.info.includes('sadshachatdesk-workflow'))
     || blocks.find(block => (block.info === 'json' || block.info === '') && /"(nodes|update|remove)"\s*:/.test(block.body));
   if (workflowBlock) {
     try {
@@ -705,9 +705,9 @@ export function parseCopilotReply(raw: string): ParsedReply {
       if (proposal) return { text: without(workflowBlock.full), proposal };
       const call = normalizeToolCall(parsed);
       if (call) return { text: without(workflowBlock.full), toolCall: call };
-      return { text: without(workflowBlock.full), parseError: tr('Khối deplao-workflow thiếu mảng "nodes".') };
+      return { text: without(workflowBlock.full), parseError: tr('Khối sadshachatdesk-workflow thiếu mảng "nodes".') };
     } catch (err: any) {
-      return { text: without(workflowBlock.full), parseError: tr('Khối deplao-workflow không phải JSON hợp lệ ({{v1}}).', { v1: err?.message || err }) };
+      return { text: without(workflowBlock.full), parseError: tr('Khối sadshachatdesk-workflow không phải JSON hợp lệ ({{v1}}).', { v1: err?.message || err }) };
     }
   }
 
@@ -716,7 +716,7 @@ export function parseCopilotReply(raw: string): ParsedReply {
   if (open) {
     return {
       text: text.slice(0, open.index).trim(),
-      parseError: tr('Khối deplao-{{v1}} bị cắt ngang (thiếu ``` đóng) - câu trả lời quá dài.', { v1: open[1] }),
+      parseError: tr('Khối sadshachatdesk-{{v1}} bị cắt ngang (thiếu ``` đóng) - câu trả lời quá dài.', { v1: open[1] }),
     };
   }
 
@@ -1086,12 +1086,12 @@ export function formatValidationFeedback(result: ValidationResult): string {
     lines.push('Lưu ý thêm:');
     result.warnings.forEach(warning => lines.push(`- ${warning}`));
   }
-  lines.push('Sửa TẤT CẢ lỗi rồi gửi lại khối deplao-workflow ĐẦY ĐỦ (giữ nguyên phần đúng), giải thích ngắn gọn.');
+  lines.push('Sửa TẤT CẢ lỗi rồi gửi lại khối sadshachatdesk-workflow ĐẦY ĐỦ (giữ nguyên phần đúng), giải thích ngắn gọn.');
   return lines.join('\n');
 }
 
 export function formatParseFeedback(parseError: string): string {
-  return `[KIỂM TRA TỰ ĐỘNG] ${parseError}\nGửi lại đúng định dạng: 1 khối \`\`\`deplao-workflow (hoặc \`\`\`deplao-tool) chứa JSON hợp lệ. Viết NGẮN GỌN - bỏ bớt phần giải thích để khối JSON không bị cắt.`;
+  return `[KIỂM TRA TỰ ĐỘNG] ${parseError}\nGửi lại đúng định dạng: 1 khối \`\`\`sadshachatdesk-workflow (hoặc \`\`\`sadshachatdesk-tool) chứa JSON hợp lệ. Viết NGẮN GỌN - bỏ bớt phần giải thích để khối JSON không bị cắt.`;
 }
 
 // ─── Materialise ──────────────────────────────────────────────────────────────
@@ -1312,7 +1312,7 @@ export function buildApiMessages(
     let content = item.content;
     if (item.kind === 'assistant' && item.proposal && index !== lastProposal) {
       content = content.replace(FENCE_RE, block => (/"(nodes|update|remove)"\s*:/.test(block)
-        ? `\`\`\`deplao-workflow\n(đề xuất ${item.version ? `v${item.version}` : 'cũ'} - đã lược bớt)\n\`\`\``
+        ? `\`\`\`sadshachatdesk-workflow\n(đề xuất ${item.version ? `v${item.version}` : 'cũ'} - đã lược bớt)\n\`\`\``
         : block));
     }
     if (item.kind === 'tool') {

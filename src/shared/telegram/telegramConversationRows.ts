@@ -2,7 +2,7 @@
  * Telegram User rows of the `contacts` table that are not conversations.
  *
  * The table also stores people only for their name / avatar (senders in a group whose profile the renderer saved). Telegram never
- * lists such people among chats; Deplao showed them at the bottom of the conversation list with no message and no time (1,551
+ * lists such people among chats; SadSha ChatDesk showed them at the bottom of the conversation list with no message and no time (1,551
  * rows on one account), and opening one that turned out to have a private chat loaded its history and made it jump up the list.
  */
 export type TelegramConversationRowFields = {

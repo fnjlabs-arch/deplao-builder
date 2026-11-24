@@ -1,9 +1,9 @@
 /**
- * zaloAutoDelete.ts: auto-delete messages on Zalo (ZL-05, SRS Deplao): pure part shared by main + renderer.
+ * zaloAutoDelete.ts: auto-delete messages on Zalo (ZL-05, SRS SadSha ChatDesk): pure part shared by main + renderer.
  *
  * zca-js 2.2.0: updateAutoDeleteChat(ttl: ChatTTL, threadId, type) with ChatTTL (ms) = 0 | 1 day | 7 days | 14 days;
  * getAutoDeleteChat() → { convers: [{ destId, isGroup, ttl, createdAt }] } (only conversations where it is turned on).
- * Zalo deletes messages on the Zalo devices; Deplao always keeps the messages stored on the machine.
+ * Zalo deletes messages on the Zalo devices; SadSha ChatDesk always keeps the messages stored on the machine.
  */
 
 import { tr } from '../i18n';
@@ -15,7 +15,7 @@ export const ZALO_AUTO_DELETE_OPTIONS: ReadonlyArray<{ value: number; label: str
   { value: 1_209_600_000, label: tr('14 ngày') },
 ];
 
-export const ZALO_AUTO_DELETE_NOTE = tr('Zalo sẽ tự xoá tin nhắn mới sau thời gian này trên điện thoại và Zalo PC của mọi người trong hội thoại. Deplao vẫn giữ nguyên tin nhắn trên máy này.');
+export const ZALO_AUTO_DELETE_NOTE = tr('Zalo sẽ tự xoá tin nhắn mới sau thời gian này trên điện thoại và Zalo PC của mọi người trong hội thoại. SadSha ChatDesk vẫn giữ nguyên tin nhắn trên máy này.');
 
 /** Accepts only the 4 values Zalo supports. */
 export function isZaloAutoDeleteTtl(value: unknown): value is number {
@@ -31,7 +31,7 @@ export function zaloAutoDeleteLabel(ttl: number | null | undefined): string {
   return tr('{{v1}} giờ', { v1: Math.max(1, Math.round(value / 3_600_000)) });
 }
 
-/** Label for a message past its auto-delete time: Zalo has deleted it on the Zalo devices, Deplao still keeps the content (FR-ZL05.6). */
+/** Label for a message past its auto-delete time: Zalo has deleted it on the Zalo devices, SadSha ChatDesk still keeps the content (FR-ZL05.6). */
 export const ZALO_TTL_EXPIRED_LABEL = tr('Đã tự xoá trên Zalo');
 
 /** Zalo's delete / recall event can arrive a little before the expiry time (machine clock skew). */

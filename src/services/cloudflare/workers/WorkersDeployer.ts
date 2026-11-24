@@ -1,6 +1,6 @@
 /**
  * WorkersDeployer: Worker + D1 on the connected Cloudflare account, for apps (plugins) with the cloudflare:workers permission
- * (fintrack-deplao-app/docs/CONTRACTS.md §1). Runs in main; the Cloudflare token only lives in CloudflareApi
+ * (fintrack-sadshachatdesk-app/docs/CONTRACTS.md §1). Runs in main; the Cloudflare token only lives in CloudflareApi
  * (cloudflare.api()) and never goes out to an app.
  *
  * Only used through scoped(prefix): EVERY Worker / D1 name (including D1 in bindings) must be the prefix or "<prefix>-…"
@@ -18,9 +18,9 @@
  *    or `cronsError` when Cloudflare refused them: not fatal, the Worker is live and the app falls back to plugin jobs).
  *    Every request (including asset uploads) goes through the shared budget; progress is only logged.
  *  - zones / domain*: custom domains (Workers Custom Domain) for the app's Worker. Only attaches a NEW SUBDOMAIN of a domain
- *    in the account: never the root domain, never overwrites existing DNS records (Deplao's Internet address, website, mail…),
+ *    in the account: never the root domain, never overwrites existing DNS records (SadSha ChatDesk's Internet address, website, mail…),
  *    never takes a name already attached to another Worker; detach only touches the name attached to that same Worker. Cloudflare creates the DNS record +
- *    certificate itself. When an app calls it → the IPC handler passes `confirm` (Deplao's dialog), which runs AFTER the checks and BEFORE the write.
+ *    certificate itself. When an app calls it → the IPC handler passes `confirm` (SadSha ChatDesk's dialog), which runs AFTER the checks and BEFORE the write.
  *  - Errors: CloudError with contract codes CF_NOT_CONNECTED | CF_PERMISSION | CF_NAME_FORBIDDEN | CF_BUNDLE_INVALID | CF_API
  *    (+ VALIDATION_ERROR, NOT_FOUND, CONFLICT). Never logs the token, JWT, secret or SQL statement.
  */
@@ -62,7 +62,7 @@ export interface DeployResult {
     deployedAt: number;
     /**
      * The Worker's active Cron Triggers after the deploy. Present only when bundle.json declares `crons`; an app that finds no
-     * `crons` (field not declared, or an older Deplao that ignores it) must run its periodic jobs from the plugin instead.
+     * `crons` (field not declared, or an older SadSha ChatDesk that ignores it) must run its periodic jobs from the plugin instead.
      */
     crons?: string[];
     /**
@@ -460,7 +460,7 @@ export class WorkersDeployer {
                 main_module: bundle.mainModule,
                 compatibility_date: bundle.compatibilityDate,
                 bindings,
-                // Keep secrets set earlier (e.g. DEPLAO_INTEGRATION_SECRET) when redeploying without secrets.
+                // Keep secrets set earlier (e.g. SADSHA_CHATDESK_INTEGRATION_SECRET) when redeploying without secrets.
                 keep_bindings: ['secret_text', 'secret_key'],
             };
             if (bundle.compatibilityFlags.length) metadata.compatibility_flags = bundle.compatibilityFlags;
@@ -507,7 +507,7 @@ export class WorkersDeployer {
                     step(crons.length ? tr('đã đặt lịch chạy {{v1}}', { v1: crons.join(', ') }) : tr('đã tắt lịch chạy'));
                 } catch (err) {
                     cronsError = toWorkersError(err, 'workers').message;
-                    step(tr('chưa đặt được lịch chạy ({{v1}}), ứng dụng sẽ tự chạy việc định kỳ khi Deplao mở', { v1: cronsError }));
+                    step(tr('chưa đặt được lịch chạy ({{v1}}), ứng dụng sẽ tự chạy việc định kỳ khi SadSha ChatDesk mở', { v1: cronsError }));
                 }
             }
 
@@ -690,7 +690,7 @@ export class WorkersDeployer {
             const mine = existing.find(d => d.service === name);
             if (mine) return { ...publicDomain(mine), created: false };
             if (existing.length) throw new CloudError('CONFLICT', tr('{{hostname}} đang được dùng cho một Worker khác, hãy chọn tên khác', { hostname }));
-            // 3. Do not overwrite existing DNS records (Deplao's Internet address, website, mail…).
+            // 3. Do not overwrite existing DNS records (SadSha ChatDesk's Internet address, website, mail…).
             let records: Array<{ type?: string }>;
             try {
                 records = await listRecordsByName(api, zone.id, hostname);
@@ -701,9 +701,9 @@ export class WorkersDeployer {
                 const types = Array.from(new Set(records.map(r => String(r?.type || '?').toUpperCase()))).join(', ');
                 throw new CloudError('CONFLICT', tr('{{hostname}} đã có bản ghi DNS ({{types}}), hãy chọn tên khác hoặc xoá bản ghi đó trên Cloudflare trước', { hostname, types }));
             }
-            // 4. The user agrees (called by the app: Deplao's dialog), after the checks and before the write.
+            // 4. The user agrees (called by the app: SadSha ChatDesk's dialog), after the checks and before the write.
             if (confirm && !(await confirm({ worker: name, hostname, zoneName: zone.name }))) {
-                throw new CloudError('CF_DECLINED', tr('Chưa gắn {{hostname}}: bạn đã chọn "Không" ở hộp thoại của Deplao', { hostname }));
+                throw new CloudError('CF_DECLINED', tr('Chưa gắn {{hostname}}: bạn đã chọn "Không" ở hộp thoại của SadSha ChatDesk', { hostname }));
             }
             // 5. Attach: Cloudflare creates the DNS record + certificate (the new name answers a few minutes later).
             let res: any;

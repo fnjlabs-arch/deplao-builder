@@ -1,5 +1,5 @@
 /**
- * Event types Deplao registers for you on KiotViet / Sapo (Integrations → platform page → "Đăng ký webhook tự động" (Register webhooks automatically)) and the
+ * Event types SadSha ChatDesk registers for you on KiotViet / Sapo (Integrations → platform page → "Đăng ký webhook tự động" (Register webhooks automatically)) and the
  * rules for the receiving address. Pure: used by the renderer (event picker, webhook list) and main (services/integrations/posWebhookRegistration.ts).
  *
  * KiotViet (kiotviet.vn → Public API → 2.11 Webhook): Type = order.update, invoice.update, customer.update / delete,
@@ -64,10 +64,10 @@ function parseUrl(value: unknown): URL | null {
 const trimPath = (path: string): string => path.replace(/\/+$/, '');
 
 /**
- * The address Deplao registers for an event: <base address>/webhook/<connection id>. Sapo adds `?event=<topic>` so the event name
+ * The address SadSha ChatDesk registers for an event: <base address>/webhook/<connection id>. Sapo adds `?event=<topic>` so the event name
  * does not depend on the topic header (IntegrationRegistry reads the `?event=` override).
  */
-export function deplaoWebhookUrl(type: WebhookRegistrationType, baseUrl: string, integrationId: string, event: string): string {
+export function sadshachatdeskWebhookUrl(type: WebhookRegistrationType, baseUrl: string, integrationId: string, event: string): string {
   const url = `${String(baseUrl || '').trim().replace(/\/+$/, '')}/webhook/${encodeURIComponent(integrationId)}`;
   return type === 'sapo' ? `${url}?event=${encodeURIComponent(event)}` : url;
 }
@@ -84,11 +84,11 @@ export function sameWebhookUrl(a: string, b: string): boolean {
 }
 
 /**
- * Webhook on the platform compared with this Deplao connection:
- *  - current: exactly the address Deplao will register now;
- *  - stale: belongs to Deplao but the address is old (the temporary address has changed, or ?event=… is missing): /webhook/<connection id> on any host,
+ * Webhook on the platform compared with this SadSha ChatDesk connection:
+ *  - current: exactly the address SadSha ChatDesk will register now;
+ *  - stale: belongs to SadSha ChatDesk but the address is old (the temporary address has changed, or ?event=… is missing): /webhook/<connection id> on any host,
  *    or /webhook/<type> on the current address itself;
- *  - other: another system (or Deplao on another machine).
+ *  - other: another system (or SadSha ChatDesk on another machine).
  */
 export type WebhookOwnership = 'current' | 'stale' | 'other';
 
@@ -98,7 +98,7 @@ export function classifyWebhook(
   integrationId: string,
   baseUrl: string | null,
 ): WebhookOwnership {
-  if (baseUrl && sameWebhookUrl(webhook.url, deplaoWebhookUrl(type, baseUrl, integrationId, webhook.event))) return 'current';
+  if (baseUrl && sameWebhookUrl(webhook.url, sadshachatdeskWebhookUrl(type, baseUrl, integrationId, webhook.event))) return 'current';
   const url = parseUrl(webhook.url);
   if (!url) return 'other';
   let path = trimPath(url.pathname);

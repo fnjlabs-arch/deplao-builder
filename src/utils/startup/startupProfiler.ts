@@ -1,15 +1,15 @@
 /**
  * CPU profile when the app opens: diagnostics when Logs reports "[Hiệu năng] Luồng chính bị chặn" (main thread blocked) or "Giao diện bận" (UI busy) without naming
  * a function (the log only has the time). Runs only when requested, once:
- *  - a flag file `<appData>/Deplao/diagnostics/profile-next-startup` exists (read and deleted right away), or
- *  - the environment variable DEPLAO_PROFILE_STARTUP=1.
- * Writes a CPU sample every 1 ms of the main process (from bootstrap) and of the UI for the first 120 s → `<appData>/Deplao/diagnostics/
+ *  - a flag file `<appData>/SadSha ChatDesk/diagnostics/profile-next-startup` exists (read and deleted right away), or
+ *  - the environment variable SADSHA_CHATDESK_PROFILE_STARTUP=1.
+ * Writes a CPU sample every 1 ms of the main process (from bootstrap) and of the UI for the first 120 s → `<appData>/SadSha ChatDesk/diagnostics/
  * {main,renderer}-startup-<time>.cpuprofile` + `.meta.json` (a time marker to match Logs). Open it with Chrome DevTools
  * (Performance → Load profile) or analyze it with a script. Keeps the 6 newest profiles.
  *
- * DO NOT call app.getPath() here: startMainStartupProfile runs in bootstrap, and asking for getPath('userData') before the app has the name "Deplao"
+ * DO NOT call app.getPath() here: startMainStartupProfile runs in bootstrap, and asking for getPath('userData') before the app has the name "SadSha ChatDesk"
  * makes Electron lock the folder "%APPDATA%/Electron" for the whole session → the app opens a new, empty DB and looks like all data was lost (incident of 22/10/2026).
- * The folder is computed from the OS appData = Deplao's userData.
+ * The folder is computed from the OS appData = SadSha ChatDesk's userData.
  */
 import { app, type WebContents } from 'electron';
 import * as fs from 'fs';
@@ -36,15 +36,15 @@ function appDataDir(): string {
   return process.env.XDG_CONFIG_HOME || path.join(os.homedir(), '.config');
 }
 
-/** = Deplao's `<userData>/diagnostics` (userData = appData/Deplao after app.setName('Deplao')). */
+/** = SadSha ChatDesk's `<userData>/diagnostics` (userData = appData/SadSha ChatDesk after app.setName('SadSha ChatDesk')). */
 export function diagnosticsDir(): string {
-  return path.join(appDataDir(), 'Deplao', 'diagnostics');
+  return path.join(appDataDir(), 'SadSha ChatDesk', 'diagnostics');
 }
 
 /** Whether this app launch writes a profile (reads and deletes the flag file exactly once). */
 export function startupProfilingEnabled(): boolean {
   if (enabled !== null) return enabled;
-  enabled = process.env.DEPLAO_PROFILE_STARTUP === '1';
+  enabled = process.env.SADSHA_CHATDESK_PROFILE_STARTUP === '1';
   try {
     const flag = path.join(diagnosticsDir(), FLAG_FILE);
     if (fs.existsSync(flag)) {

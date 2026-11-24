@@ -882,7 +882,7 @@ export default function WorkflowList({ onEdit, onOpenStore }: Props) {
 
   const handleExport = (wf: any) => {
     const exportData = {
-      _deplaoWorkflow: true,
+      _sadshachatdeskWorkflow: true,
       _version: 1,
       _exportedAt: new Date().toISOString(),
       channel: normalizeWorkflowChannel(wf.channel),
@@ -911,8 +911,8 @@ export default function WorkflowList({ onEdit, onOpenStore }: Props) {
     reader.onload = async (ev) => {
       try {
         const data = JSON.parse(ev.target?.result as string);
-        if (!data._deplaoWorkflow) {
-          showNotification(tr('File không phải workflow Deplao hợp lệ'), 'error');
+        if (!data._sadshachatdeskWorkflow) {
+          showNotification(tr('File không phải workflow SadSha ChatDesk hợp lệ'), 'error');
           return;
         }
         // Old file without a channel → defaults to Zalo

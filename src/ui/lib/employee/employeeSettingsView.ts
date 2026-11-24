@@ -207,11 +207,11 @@ export function employeeLoginText(info: {
   port?: number | null;
   internetUrl?: string | null;
 }): string {
-  const lines = [tr('Tài khoản Deplao của {{v1}}', { v1: info.displayName || info.username })];
+  const lines = [tr('Tài khoản SadSha ChatDesk của {{v1}}', { v1: info.displayName || info.username })];
   if (info.lanHost) lines.push(tr('Địa chỉ máy chủ: {{lanHost}}', { lanHost: info.lanHost }), tr('Cổng: {{v1}}', { v1: info.port || 9900 }));
   if (info.internetUrl) lines.push(`${info.lanHost ? tr('Ở xa, dùng địa chỉ') : tr('Địa chỉ máy chủ')}: ${info.internetUrl}`);
   lines.push(tr('Tên đăng nhập: {{username}}', { username: info.username }), tr('Mật khẩu: {{password}}', { password: info.password }));
-  lines.push(tr('Trong Deplao: Cài đặt → Workspace → Thêm workspace → Kết nối máy chủ.'));
+  lines.push(tr('Trong SadSha ChatDesk: Cài đặt → Workspace → Thêm workspace → Kết nối máy chủ.'));
   return lines.join('\n');
 }
 

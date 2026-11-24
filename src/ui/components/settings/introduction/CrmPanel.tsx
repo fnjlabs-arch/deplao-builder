@@ -107,7 +107,7 @@ export function CrmPanel() {
               tr('Không giới hạn số nhãn; một hội thoại gắn được nhiều nhãn'),
               tr('Dùng chung cho nhiều tài khoản Zalo, Facebook, Telegram'),
               tr('Tuỳ chỉnh màu, emoji, thứ tự, phím tắt'),
-              tr('Chỉ có trong Deplao, không hiện trên điện thoại'),
+              tr('Chỉ có trong SadSha ChatDesk, không hiện trên điện thoại'),
             ]} />
           </div>
         </div>
@@ -160,12 +160,12 @@ export function CrmPanel() {
         <StepList steps={[
           { title: tr('Dán link nhóm'), desc: tr('CRM → Nhóm → <strong class="text-foreground">Quét thành viên</strong>, dán link nhóm Zalo (dạng https://zalo.me/g/…) hoặc Group ID dạng số.') },
           { title: tr('Tham gia nếu chưa là thành viên'), desc: tr('Bấm <strong class="text-foreground">Tham gia</strong>; kết quả hiện ngay bên dưới: Đã tham gia, Đã là thành viên, Đang chờ duyệt hoặc Nhóm đã đủ thành viên. Nhóm bật duyệt thành viên sẽ nhận yêu cầu chờ duyệt - đang chờ duyệt là quét được, không cần đợi admin.') },
-          { title: tr('Quét'), desc: tr('Bấm <strong class="text-foreground">Quét</strong>. Lần đầu app hỏi bạn có đồng ý gửi phiên đăng nhập Zalo lên máy chủ Deplao không (xem lưu ý). Xong sẽ báo số thành viên và lưu vào tab Thành viên nhóm (nút Xem trong tab Thành viên).') },
+          { title: tr('Quét'), desc: tr('Bấm <strong class="text-foreground">Quét</strong>. Lần đầu app hỏi bạn có đồng ý gửi phiên đăng nhập Zalo lên máy chủ SadSha ChatDesk không (xem lưu ý). Xong sẽ báo số thành viên và lưu vào tab Thành viên nhóm (nút Xem trong tab Thành viên).') },
           { title: tr('Dùng kết quả'), desc: tr('Chọn thành viên → <strong class="text-foreground">Thêm vào chiến dịch</strong> (kết bạn, nhắn tin, mời vào nhóm) hoặc <strong class="text-foreground">Thêm vào liên hệ</strong>.') },
         ]} />
         <Note tone="warning" title={<>{trx('<0/> Lưu ý', { 0: <AlertIcon className="w-3.5 h-3.5" /> })}</>}>
           <BulletList items={[
-            tr('<strong class="text-foreground">Quét qua máy chủ Deplao, cần bạn đồng ý:</strong> để giữ kín cách quét, việc quét chạy trên deplaoapp.com nên app gửi phiên đăng nhập Zalo (cookie + IMEI) của tài khoản lên đó. Mặc định tắt; app hỏi trước khi gửi, không đồng ý thì không gửi gì. Bật / tắt bằng công tắc <strong class="text-foreground">Quét qua máy chủ Deplao</strong> ở đầu tab Quét thành viên. Máy chủ không lưu cookie, chỉ ghi ID tài khoản, ID nhóm, IP, thời gian. Áp dụng cả cho nút Tải thông tin thành viên và nút Quét đủ trong panel thành viên của hội thoại nhóm'),
+            tr('<strong class="text-foreground">Quét qua máy chủ SadSha ChatDesk, cần bạn đồng ý:</strong> để giữ kín cách quét, việc quét chạy trên chatdesk.sadsha.com nên app gửi phiên đăng nhập Zalo (cookie + IMEI) của tài khoản lên đó. Mặc định tắt; app hỏi trước khi gửi, không đồng ý thì không gửi gì. Bật / tắt bằng công tắc <strong class="text-foreground">Quét qua máy chủ SadSha ChatDesk</strong> ở đầu tab Quét thành viên. Máy chủ không lưu cookie, chỉ ghi ID tài khoản, ID nhóm, IP, thời gian. Áp dụng cả cho nút Tải thông tin thành viên và nút Quét đủ trong panel thành viên của hội thoại nhóm'),
             tr('Với nhóm chưa tham gia, cần ít nhất ở trạng thái chờ duyệt; nhóm tắt chế độ chờ duyệt thì không quét được'),
             tr('UID thành viên không dùng chung được giữa các tài khoản (chính sách của Zalo) - hãy quét bằng chính tài khoản sẽ gửi chiến dịch'),
             tr('Nút Chia sẻ gửi nhóm lên kho Nhóm chung của cộng đồng (chờ admin duyệt); Khám phá kho nhóm chung để tìm nhóm có sẵn theo danh mục'),
@@ -237,7 +237,7 @@ export function CrmPanel() {
           tr('<strong class="text-foreground">Nhân bản sang nhiều tài khoản:</strong> ở ô Tài khoản nhận bản sao chọn một hay nhiều tài khoản cùng kênh (tìm theo tên, SĐT), mỗi tài khoản nhận một bản nháp. Mã người nhận và nhóm chỉ dùng được ở tài khoản gốc, nên tài khoản khác chỉ nhận người nhận có SĐT (Zalo) và cần chọn lại nhóm mời'),
           tr('<strong class="text-foreground">Màn chi tiết:</strong> giãn cách, giờ chạy mỗi ngày, giới hạn/ngày; 4 ô Tổng liên hệ · Đã gửi · Đang chờ · Lỗi và thanh Đã xử lý x/y (kèm Hôm nay a/b khi có giới hạn) cập nhật ngay khi gửi'),
           tr('<strong class="text-foreground">Danh sách liên hệ</strong> của chiến dịch: tìm tên / UID / SĐT, lọc Tất cả · Chờ gửi · Đã gửi · Lỗi, xem lỗi và giờ gửi từng người, xuất CSV'),
-          tr('<strong class="text-foreground">Hiệu quả tin đã gửi:</strong> Đã nhận · Đã xem · Đã phản hồi (kèm %), nút Cập nhật; mỗi người nhận hiện mức cao nhất đã đạt. Lọc <strong class="text-foreground">Đã phản hồi · Đã xem, chưa phản hồi · Chưa xem · Chưa nhận</strong>, rồi bấm <strong class="text-foreground">Tạo chiến dịch từ N liên hệ</strong> để gửi tiếp đúng nhóm khách (chiến dịch nháp, chép nội dung để bạn sửa). Đã xem tính cả khách đã trả lời; Zalo chỉ báo đã xem khi người nhận bật trạng thái Đã xem, Telegram không báo đã nhận, Deplao cần đang mở để nhận các báo này'),
+          tr('<strong class="text-foreground">Hiệu quả tin đã gửi:</strong> Đã nhận · Đã xem · Đã phản hồi (kèm %), nút Cập nhật; mỗi người nhận hiện mức cao nhất đã đạt. Lọc <strong class="text-foreground">Đã phản hồi · Đã xem, chưa phản hồi · Chưa xem · Chưa nhận</strong>, rồi bấm <strong class="text-foreground">Tạo chiến dịch từ N liên hệ</strong> để gửi tiếp đúng nhóm khách (chiến dịch nháp, chép nội dung để bạn sửa). Đã xem tính cả khách đã trả lời; Zalo chỉ báo đã xem khi người nhận bật trạng thái Đã xem, Telegram không báo đã nhận, SadSha ChatDesk cần đang mở để nhận các báo này'),
           tr('<strong class="text-foreground">Hỗn hợp:</strong> người nhận có hành động lỗi (vd đã nhắn tin nhưng kết bạn lỗi) hiện <strong class="text-foreground">Gửi một phần</strong> kèm hành động lỗi và có bộ lọc Lỗi một phần; mọi hành động đều lỗi thì hiện Lỗi'),
           tr('<strong class="text-foreground">Tab Lịch sử:</strong> nhật ký gửi của mọi chiến dịch, lọc theo chiến dịch, khoảng ngày, trạng thái, loại gửi (Tin nhắn / Kết bạn / Mời nhóm); bấm một dòng để xem chi tiết; Xuất CSV'),
           tr('Gửi hết danh sách thì chiến dịch tự chuyển Hoàn thành; so sánh các chiến dịch (đã nhận, đã xem, phản hồi) ở Báo cáo → Chiến dịch'),

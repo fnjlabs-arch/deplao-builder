@@ -3,8 +3,8 @@
  *
  * Protocol:
  *   POST <url>   Content-Type: application/json   body = event envelope
- *   X-Deplao-Event: <type>   X-Deplao-Delivery: <id>   X-Deplao-Timestamp: <seconds>
- *   X-Deplao-Signature: v1=<hex HMAC-SHA256(secret, timestamp + "." + body)>
+ *   X-SadSha-ChatDesk-Event: <type>   X-SadSha-ChatDesk-Delivery: <id>   X-SadSha-ChatDesk-Timestamp: <seconds>
+ *   X-SadSha-ChatDesk-Signature: v1=<hex HMAC-SHA256(secret, timestamp + "." + body)>
  * Success = 2xx within 10 seconds (redirects are not followed).
  * Retried after 30 s, 2 min, 10 min, 1 h, 6 h (6 attempts in total) → failed (dead-letter).
  * 100 consecutive failures → the subscription turns itself off.
@@ -271,7 +271,7 @@ export class WebhookOutboundService {
     async test(id: string, keyId?: string | null): Promise<PostResult & { took_ms: number }> {
         this.get(id, keyId);
         const row = apiDb().queryOne<SubRow>('SELECT * FROM webhook_subscriptions WHERE id = ?', [id])!;
-        const event = { id: `evt_ping_${Date.now()}`, seq: 0, type: 'ping', ts: Date.now(), account_id: '', channel: '', data: { message: 'Deplao webhook test' } };
+        const event = { id: `evt_ping_${Date.now()}`, seq: 0, type: 'ping', ts: Date.now(), account_id: '', channel: '', data: { message: 'SadSha ChatDesk webhook test' } };
         const started = Date.now();
         const r = await this.post(row.url, decryptSecret(row.secret), `dlv_test_${Date.now()}`, 'ping', JSON.stringify(event), this.allowPrivate(row.allow_private));
         return { ...r, took_ms: Date.now() - started };
@@ -440,11 +440,11 @@ export class WebhookOutboundService {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'User-Agent': 'Deplao-Webhook/1',
-                    'X-Deplao-Event': eventType,
-                    'X-Deplao-Delivery': deliveryId,
-                    'X-Deplao-Timestamp': String(ts),
-                    'X-Deplao-Signature': signPayload(secret, ts, body),
+                    'User-Agent': 'SadSha ChatDesk-Webhook/1',
+                    'X-SadSha-ChatDesk-Event': eventType,
+                    'X-SadSha-ChatDesk-Delivery': deliveryId,
+                    'X-SadSha-ChatDesk-Timestamp': String(ts),
+                    'X-SadSha-ChatDesk-Signature': signPayload(secret, ts, body),
                 },
                 body,
                 timeoutMs: TIMEOUT_MS,

@@ -183,7 +183,7 @@ export default function FeatureLauncherPanel({ onClose }: FeatureLauncherPanelPr
     { id: 'settings-employees', section: 'Cài đặt', label: tr('Nhân viên'), description: tr('Quản lý nhân viên, vai trò và quyền truy cập'), icon: <UsersIcon />, onClick: () => openSettings('employees') },
     { id: 'settings-workspace', section: 'Cài đặt', label: tr('Workspace'), description: tr('Thiết lập không gian làm việc hiện tại'), icon: <ServerIcon />, onClick: () => openSettings('workspace') },
     { id: 'settings-storage', section: 'Cài đặt', label: tr('Lưu trữ'), description: tr('Quản lý thư mục dữ liệu, media và bộ nhớ'), icon: <HardDriveIcon />, onClick: () => openSettings('storage') },
-    { id: 'settings-introduction', section: 'Cài đặt', label: tr('Giới thiệu'), description: tr('Hướng dẫn sử dụng và thông tin về Deplao'), icon: <BookIcon />, onClick: () => openSettings('introduction', 'overview') },
+    { id: 'settings-introduction', section: 'Cài đặt', label: tr('Giới thiệu'), description: tr('Hướng dẫn sử dụng và thông tin về SadSha ChatDesk'), icon: <BookIcon />, onClick: () => openSettings('introduction', 'overview') },
     { id: 'settings-changelog', section: 'Cài đặt', label: tr('Log phiên bản'), description: tr('Xem các thay đổi và tính năng mới theo phiên bản'), icon: <FileIcon />, onClick: () => openSettings('changelog') },
     { id: 'settings-logs', section: 'Cài đặt', label: tr('Nhật ký'), description: tr('Xem log hoạt động và chẩn đoán lỗi ứng dụng'), icon: <ActivityIcon />, onClick: () => openSettings('logs') },
   ], []);
@@ -253,7 +253,7 @@ export default function FeatureLauncherPanel({ onClose }: FeatureLauncherPanelPr
           <div className="flex items-start justify-between gap-3">
             <div>
               <h2 className="text-lg font-semibold">{tr('Tất cả tính năng')}</h2>
-              <p className={`text-xs mt-1 ${muted}`}>{tr('Truy cập nhanh các menu đã có trong Deplao')}</p>
+              <p className={`text-xs mt-1 ${muted}`}>{tr('Truy cập nhanh các menu đã có trong SadSha ChatDesk')}</p>
             </div>
             <button onClick={onClose} className={`w-8 h-8 rounded-lg flex items-center justify-center ${muted} hover:text-current ${isDark ? 'hover:bg-card' : 'hover:bg-gray-100'}`} aria-label={tr('Đóng')}>
               <span className="text-xl leading-none">×</span>

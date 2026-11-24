@@ -1,5 +1,5 @@
 /**
- * Settings → Accounts → the "Quyền riêng tư Zalo" (Zalo privacy) row under a Zalo account (ZL-02, Deplao SRS): reads getSettings every time it
+ * Settings → Accounts → the "Quyền riêng tư Zalo" (Zalo privacy) row under a Zalo account (ZL-02, SadSha ChatDesk SRS): reads getSettings every time it
  * opens, changes each item with updateSettings, then reads back to confirm (the two camelCase keys of zca-js are not yet verified on a
  * real account). Switching to "Chỉ bạn bè" (Friends only) under Messaging / Calls needs confirmation, because non-friends can no longer reach the user.
  */

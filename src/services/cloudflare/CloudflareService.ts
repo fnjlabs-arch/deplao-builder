@@ -6,7 +6,7 @@
  *    + tokenId + tokenKind.
  *  - status(): state remembered in RAM (no network calls). recheck() tests the permissions again.
  *  - api(): shared REST client (budget 100 requests / 5 minutes for the whole app). r2(bucket) / store(bucket): the client of
- *    the SELECTED STORAGE: R2 (S3 per bucket) or Google Drive (folder Deplao/<bucket>, ./gdrive). Media and DB sync only
+ *    the SELECTED STORAGE: R2 (S3 per bucket) or Google Drive (folder SadSha ChatDesk/<bucket>, ./gdrive). Media and DB sync only
  *    call through here, so they work with both storages. google: signs in to Google Drive; usage: counts operations + estimates the cost.
  *  - notifyChanged(area): pushes CLOUD_CHANGED_EVENT to every window + listeners in main.
  *
@@ -58,16 +58,16 @@ export const TOKEN_TEMPLATE_PERMISSIONS: ReadonlyArray<{ key: string; type: 'rea
     { key: 'workers_r2', type: 'edit' },
     // Account-wide R2 usage (GraphQL Analytics), key per developers.cloudflare.com/fundamentals/api/how-to/account-owned-token-template
     { key: 'account_analytics', type: 'read' },
-    // Worker + D1 for apps (deplao.cloudflare): keys `workers_scripts`, `d1` per the "Permission reference" table of
+    // Worker + D1 for apps (sadshachatdesk.cloudflare): keys `workers_scripts`, `d1` per the "Permission reference" table of
     // the account-owned-token-template page above (checked 20/10/2026); display names "Workers Scripts Edit", "D1 Edit".
     { key: 'workers_scripts', type: 'edit' },
     { key: 'd1', type: 'edit' },
 ];
 
-/** Link to Cloudflare's API token creation page, with the permissions Deplao needs pre-filled. */
+/** Link to Cloudflare's API token creation page, with the permissions SadSha ChatDesk needs pre-filled. */
 export function tokenTemplateUrl(): string {
     const keys = encodeURIComponent(JSON.stringify(TOKEN_TEMPLATE_PERMISSIONS));
-    return `https://dash.cloudflare.com/profile/api-tokens?permissionGroupKeys=${keys}&accountId=*&zoneId=all&name=Deplao`;
+    return `https://dash.cloudflare.com/profile/api-tokens?permissionGroupKeys=${keys}&accountId=*&zoneId=all&name=SadSha ChatDesk`;
 }
 
 const ACCOUNT_ID_RE = /^[0-9a-f]{32}$/;
@@ -599,7 +599,7 @@ function workersCheck(scripts: PromiseSettledResult<unknown>, d1: PromiseSettled
 }
 
 /**
- * Storage used by Deplao that it has uploaded (photos/files already uploaded + DB copies), based on the local state, to estimate when there are no
+ * Storage used by SadSha ChatDesk that it has uploaded (photos/files already uploaded + DB copies), based on the local state, to estimate when there are no
  * account-wide figures. Reads the module at call time (late require, avoids circular imports). Never throws.
  */
 function localStoredBytes(): number {

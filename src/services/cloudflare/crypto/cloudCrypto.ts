@@ -58,7 +58,7 @@ interface ParsedHeader extends KdfParams {
     keyCheck: Buffer;
 }
 
-function formatError(msg = tr('Không phải file sao lưu Deplao (DPLC1) hoặc file đã hỏng')): CloudError {
+function formatError(msg = tr('Không phải file sao lưu SadSha ChatDesk (DPLC1) hoặc file đã hỏng')): CloudError {
     return new CloudError('CRYPTO_FORMAT', msg);
 }
 
@@ -99,7 +99,7 @@ function buildHeader(salt: Buffer, params: KdfParams, chunkSize: number, noncePr
 export function parseDplc1Header(buf: Buffer): ParsedHeader {
     if (!Buffer.isBuffer(buf) || buf.length < DPLC1_HEADER_BYTES) throw formatError();
     if (!buf.subarray(0, 5).equals(DPLC1_MAGIC)) throw formatError();
-    if (buf[5] !== DPLC1_VERSION) throw formatError(tr('File sao lưu dùng định dạng DPLC1 phiên bản {{v1}} — hãy cập nhật Deplao', { v1: buf[5] }));
+    if (buf[5] !== DPLC1_VERSION) throw formatError(tr('File sao lưu dùng định dạng DPLC1 phiên bản {{v1}} — hãy cập nhật SadSha ChatDesk', { v1: buf[5] }));
     if (buf[6] !== DPLC1_HEADER_BYTES) throw formatError();
     const log2N = buf[24];
     const r = buf[25];

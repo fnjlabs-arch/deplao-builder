@@ -31,7 +31,7 @@ const MANIFEST_PATH = path.resolve(__dirname, '..', 'docs', 'fbchat-v2.3.5-vendo
 const BINARY_NAME = process.platform === 'win32'
   ? 'fbchat-bridge-e2ee.exe'
   : 'fbchat-bridge-e2ee';
-// DEPLAO_ADAPTER: separate Go module (own go.mod) so `./...` in BRIDGE_DIR
+// SADSHA_ADAPTER: separate Go module (own go.mod) so `./...` in BRIDGE_DIR
 // never compiles it against the pinned meta/.
 const LOGIN_DIR = path.join(BRIDGE_DIR, 'login');
 const LOGIN_BINARY_NAME = process.platform === 'win32'

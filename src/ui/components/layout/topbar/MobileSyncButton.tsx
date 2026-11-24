@@ -241,7 +241,7 @@ export default function MobileSyncButton() {
             <div className="px-6 pb-5 space-y-4">
               {!status || (status.stage === 'idle') ? (
                 <div className="text-sm text-foreground/80 space-y-2 leading-relaxed">
-                  <p>{tr('Lấy tin nhắn trên Zalo điện thoại trong khoảng thời gian bạn chọn và ghép vào đúng các hội thoại trên Deplao.')}</p>
+                  <p>{tr('Lấy tin nhắn trên Zalo điện thoại trong khoảng thời gian bạn chọn và ghép vào đúng các hội thoại trên SadSha ChatDesk.')}</p>
                   <ol className="list-decimal list-inside text-muted-foreground space-y-1">
                     <li>{trx('Bấm <0>Bắt đầu đồng bộ</0>.', { 0: <span className="text-foreground" /> })}</li>
                     <li>{trx('Mở Zalo trên điện thoại, chọn <0>Đồng ý</0> ở yêu cầu đồng bộ tin nhắn (thiết bị “{{v1}}”).', { 0: <span className="text-foreground" />, v1: status?.pcName || 'Web' })}</li>

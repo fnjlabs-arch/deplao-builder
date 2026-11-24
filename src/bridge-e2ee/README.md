@@ -73,7 +73,7 @@ Python: `sendReaction`, `editMessage`, `unsendMessage`, `sendTyping`,
 `SendE2EEAudio`. To expose, add a `case "..."` in `handle(req)` of `main.go`
 and rebuild.
 
-## Deplao: credential login helper (`login/`)
+## SadSha ChatDesk: credential login helper (`login/`)
 
 `login/` is a separate Go module (its own `go.mod`) that
 `scripts/build-bridge-e2ee.js` builds into `build/fbchat-login-bridge[.exe]`

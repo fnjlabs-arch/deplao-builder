@@ -1,5 +1,5 @@
 /**
- * Event bridge between Telegram Mini Apps and Deplao (pure part). The Mini App runs in an iframe, as in Telegram Web: the official SDK
+ * Event bridge between Telegram Mini Apps and SadSha ChatDesk (pure part). The Mini App runs in an iframe, as in Telegram Web: the official SDK
  * (telegram-web-app.js) sees it is inside an iframe, so it sends window.parent.postMessage(JSON.stringify({ eventType, eventData }),
  * '*') and receives the client's events by postMessage in the same form.
  * Event list: https://core.telegram.org/api/web-events (Mini App → client), https://core.telegram.org/api/bots/webapps
@@ -31,7 +31,7 @@ export function parseMiniAppEvent(data: unknown): MiniAppEvent | null {
   return { eventType, eventData: raw.eventData ?? null };
 }
 
-/** Deplao theme (the --dp-* variables of pluginTheme) → Telegram's theme_params. */
+/** SadSha ChatDesk theme (the --dp-* variables of pluginTheme) → Telegram's theme_params. */
 export function miniAppThemeFromVars(vars: Record<string, string>): MiniAppThemeParams {
   const pick = (name: string): string | undefined => (isHexColor(vars[name]) ? vars[name].toLowerCase() : undefined);
   const theme: MiniAppThemeParams = {
@@ -198,7 +198,7 @@ export function miniAppCustomCall(data: any): MiniAppCustomCall | null {
 }
 
 /**
- * Deplao events not supported yet that the Mini App waits on: reply "không hỗ trợ" (not supported) at once so the Mini App does not hang (fullscreen,
+ * SadSha ChatDesk events not supported yet that the Mini App waits on: reply "không hỗ trợ" (not supported) at once so the Mini App does not hang (fullscreen,
  * biometrics, QR scan, payments, location, on-device storage...). Reading the clipboard: Telegram only allows it for bots in the attachment menu.
  */
 export function unsupportedReply(event: MiniAppEvent): MiniAppEvent | null {

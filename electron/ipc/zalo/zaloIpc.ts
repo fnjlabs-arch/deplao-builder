@@ -585,7 +585,7 @@ export function registerZaloIpc() {
     // ─── Conversations ────────────────────────────────────────────────────
     wrap('zalo:getPinConversations', (s) => s.getPinConversations());
 
-    // ─── Access status (ZL-01) / self-deleting messages (ZL-05): Deplao SRS ───
+    // ─── Access status (ZL-01) / self-deleting messages (ZL-05): SadSha ChatDesk SRS ───
     wrap('zalo:getPresence', (s, p) => s.getPresence(String(p.userId || ''), !!p.force));
     wrap('zalo:getFriendOnlines', (s, p) => s.getFriendOnlineIds(!!p.force));
     wrap('zalo:getAutoDeleteChats', (s) => s.syncAutoDeleteChats());

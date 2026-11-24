@@ -254,7 +254,7 @@ function SyncSectionBody({
   const apply = async (cfg: SyncConfig) => {
     const sync = cloudApi()?.sync;
     if (typeof sync?.apply !== 'function') {
-      notify(tr('Bản app này chưa có tính năng này. Hãy cập nhật Deplao.'), 'warning');
+      notify(tr('Bản app này chưa có tính năng này. Hãy cập nhật SadSha ChatDesk.'), 'warning');
       return;
     }
     const before = saved;

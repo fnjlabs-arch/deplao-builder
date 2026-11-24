@@ -2,7 +2,7 @@
  * starredMessages.ts - "Tin đánh dấu" (starred messages, like Zalo).
  *
  * Pure helpers shared by the message context menu, the panel and the store (unit-tested in
- * src/__tests__/chat/messages/starredMessages.test.ts + starredMessagesAccounts.test.ts). Stars are local to Deplao
+ * src/__tests__/chat/messages/starredMessages.test.ts + starredMessagesAccounts.test.ts). Stars are local to SadSha ChatDesk
  * (table `starred_messages`, every channel); each star keeps a snapshot of the message
  * so the panel can still show it after the message row is deleted from the app.
  */

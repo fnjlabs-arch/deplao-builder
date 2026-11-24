@@ -1,7 +1,7 @@
 /**
- * Consent to "Quét thành viên nhóm ẩn qua máy chủ Deplao" (Hidden group member scan via the Deplao server) (Zalo). Saved per machine (localStorage), OFF by default from 26.11.0.
+ * Consent to "Quét thành viên nhóm ẩn qua máy chủ SadSha ChatDesk" (Hidden group member scan via the SadSha ChatDesk server) (Zalo). Saved per machine (localStorage), OFF by default from 26.11.0.
  *
- * Why consent is needed: the hidden group member scan runs on the deplaoapp.com server (kept private, not in the app's open source code),
+ * Why consent is needed: the hidden group member scan runs on the chatdesk.sadsha.com server (kept private, not in the app's open source code),
  * so the app must send the ZALO LOGIN SESSION (cookie + IMEI) of the account being scanned to the server
  * (`scanGroupViaBackend`, lib/crm/backendService.ts). Anyone with that cookie can use the Zalo account, so it is only sent when the user
  * has clearly agreed:
@@ -19,7 +19,7 @@
  */
 import { useSyncExternalStore } from 'react';
 
-const STORAGE_KEY = 'deplao.crm.hiddenScanConsent';
+const STORAGE_KEY = 'sadshachatdesk.crm.hiddenScanConsent';
 
 export interface HiddenScanConsent {
   granted: boolean;
@@ -51,7 +51,7 @@ export function getHiddenScanConsent(): HiddenScanConsent {
   return cached;
 }
 
-/** Agreed to send the Zalo login session to the Deplao server to scan hidden groups (on this machine). */
+/** Agreed to send the Zalo login session to the SadSha ChatDesk server to scan hidden groups (on this machine). */
 export function hasHiddenScanConsent(): boolean {
   return getHiddenScanConsent().granted;
 }

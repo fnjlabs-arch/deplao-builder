@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import ipc from '@/lib/ipc';
 import { DataAccessor, isReadFailure } from '@/lib/data/DataAccessor';
 
-const SUPPORT_GITHUB_URL = 'https://github.com/babyvibe/deplao-builder';
+const SUPPORT_GITHUB_URL = 'https://github.com/fnjlabs-arch/deplao-builder';
 import { useAppStore, FONT_SCALE_MIN, FONT_SCALE_MAX, FONT_SCALE_STEP } from '@/store/app/appStore';
 import { useShallow } from 'zustand/react/shallow';
 import { useAccountStore } from '@/store/accounts/accountStore';
@@ -42,7 +42,7 @@ import { trx } from '@/lib/i18n/trx';
 const APP_VERSION: string = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '?';
 
 /** Old build's localStorage key (base64 password): read only, to move it to main and then delete it. */
-const LEGACY_PASSWORD_KEY = 'deplao_employee_password';
+const LEGACY_PASSWORD_KEY = 'sadshachatdesk_employee_password';
 
 /** Map scale factor to px value for display */
 const scaleToPx = (s: number) => Math.round(16 * s);
@@ -578,7 +578,7 @@ export default function TopBar() {
       style={{ WebkitAppRegion: 'drag' } as any}
     >
       <div className="flex items-center gap-2 px-3" style={{ WebkitAppRegion: 'no-drag', paddingLeft: isMac ? 72 : 12 } as any}>
-        <span className="text-blue-400 font-bold text-sm">Deplao</span>
+        <span className="text-blue-400 font-bold text-sm">SadSha ChatDesk</span>
         <span className="text-muted-foreground text-xs">v{APP_VERSION}</span>
         {updateInfo && (updateStatus === 'available' || updateStatus === 'downloading' || updateStatus === 'downloaded') && (
           <button onClick={openUpdatePopup}
@@ -950,7 +950,7 @@ export default function TopBar() {
         <button
           onClick={() => ipc.shell?.openExternal(SUPPORT_GITHUB_URL)}
           className="w-9 h-9 flex items-center justify-center text-muted-foreground hover:bg-muted hover:text-yellow-400 transition-colors relative group/gh"
-          title={tr('Star Deplao trên GitHub\nDự án mã nguồn mở - Ủng hộ team bằng cách ghé thăm và thả sao nhé!')}
+          title={tr('Star SadSha ChatDesk trên GitHub\nDự án mã nguồn mở - Ủng hộ team bằng cách ghé thăm và thả sao nhé!')}
         >
           <span className="relative">
             {/* GitHub icon */}
@@ -1064,7 +1064,7 @@ export default function TopBar() {
               <button
                 onClick={() => {
                   setMoreOpen(false);
-                  ipc.shell?.openExternal('https://fb.com/deplaoapp');
+                  ipc.shell?.openExternal('https://fb.com/sadshachatdeskapp');
                 }}
                 className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-foreground/80 hover:bg-muted hover:text-blue-400 transition-colors text-left"
               >

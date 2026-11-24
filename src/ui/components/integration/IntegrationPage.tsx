@@ -142,7 +142,7 @@ const CATALOG: Record<string, CatalogItem[]> = {
       desc: tr('Nhận webhook khi có giao dịch chuyển khoản VietQR. Tự động xác nhận đơn.'),
       credentialFields: [
         { key: 'apiKey',    label: tr('API Key'), secret: true, placeholder: tr('Casso API Key') },
-        // Key set → Deplao only accepts webhooks with a valid signature (X-Casso-Signature / secure-token)
+        // Key set → SadSha ChatDesk only accepts webhooks with a valid signature (X-Casso-Signature / secure-token)
         { key: 'secretKey', label: tr('Secret Key (webhook)'), secret: true, optional: true, placeholder: tr('Key bảo mật của tích hợp Webhook V2 trong Casso (khuyên dùng)') },
       ],
     },
@@ -152,7 +152,7 @@ const CATALOG: Record<string, CatalogItem[]> = {
       desc: tr('Nhận webhook giao dịch từ SePay. Kích hoạt workflow tự động khi nhận tiền.'),
       credentialFields: [
         { key: 'apiKey',          label: tr('API Key'), secret: true, placeholder: tr('SePay API Key') },
-        // Key set → Deplao only accepts webhooks with a valid signature (X-SePay-Signature / Authorization: Apikey)
+        // Key set → SadSha ChatDesk only accepts webhooks with a valid signature (X-SePay-Signature / Authorization: Apikey)
         { key: 'webhookSecretKey', label: tr('Webhook Secret'), secret: true, optional: true, placeholder: tr('Secret Key (HMAC-SHA256, khuyên dùng) hoặc API Key ở bước Bảo mật của webhook SePay') },
       ],
     },
@@ -396,7 +396,7 @@ function WebhookAddressCard({ webhookPort, tunnelUrl, savedList }: {
           {trx('<0/> Địa chỉ nhận webhook', { 0: <GlobeIcon className="h-4 w-4" /> })}
         </h3>
         <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-          {tr('Casso và SePay gửi giao dịch chuyển khoản vào Deplao qua địa chỉ Internet này để chạy workflow “Khi nhận thanh toán”; KiotViet, Haravan, Sapo, Nhanh.vn, Pancake POS gửi đơn hàng / khách hàng để chạy workflow “Khi phần mềm bán hàng gửi webhook” (cần đặt khoá xác thực webhook trong trang tích hợp). Đơn vị vận chuyển không gửi dữ liệu vào đây — Deplao tự hỏi khi bạn tra cứu. Chỉ chạy khi Deplao đang mở.')}
+          {tr('Casso và SePay gửi giao dịch chuyển khoản vào SadSha ChatDesk qua địa chỉ Internet này để chạy workflow “Khi nhận thanh toán”; KiotViet, Haravan, Sapo, Nhanh.vn, Pancake POS gửi đơn hàng / khách hàng để chạy workflow “Khi phần mềm bán hàng gửi webhook” (cần đặt khoá xác thực webhook trong trang tích hợp). Đơn vị vận chuyển không gửi dữ liệu vào đây — SadSha ChatDesk tự hỏi khi bạn tra cứu. Chỉ chạy khi SadSha ChatDesk đang mở.')}
           {!pub.serverManaged && (
             <> {trx('Bật, tắt hoặc đổi địa chỉ ở <0>Cài đặt → Internet & Cloud → Địa chỉ Internet</0>.', { 0: <strong className="text-foreground" /> })}</>
           )}
@@ -415,7 +415,7 @@ function WebhookAddressCard({ webhookPort, tunnelUrl, savedList }: {
             {trx('<0/> Đã kết nối {{v1}} nhưng chưa bật địa chỉ nhận', { 0: <AlertIcon className="inline h-4 w-4 text-warning" />, v1: receivers.join(', ') })}
           </p>
           <p className="mt-0.5 text-[11px] text-muted-foreground">
-            {tr('Webhook chưa vào được Deplao (thanh toán tự động, workflow theo webhook chưa chạy). Bật ở Cài đặt → Internet & Cloud → Địa chỉ Internet.')}
+            {tr('Webhook chưa vào được SadSha ChatDesk (thanh toán tự động, workflow theo webhook chưa chạy). Bật ở Cài đặt → Internet & Cloud → Địa chỉ Internet.')}
           </p>
         </div>
       )}

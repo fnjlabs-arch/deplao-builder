@@ -45,7 +45,7 @@ export function RestoreStateBanner({ className, onOpenAccounts, initialState = n
   const resume = async () => {
     const ok = await showConfirm({
       title: tr('Bật lại tự động hoá?'),
-      message: tr('Chỉ bật khi máy cũ đã tắt hoặc đã ngắt Deplao.'),
+      message: tr('Chỉ bật khi máy cũ đã tắt hoặc đã ngắt SadSha ChatDesk.'),
       confirmText: tr('Bật lại'),
       variant: 'warning',
     });

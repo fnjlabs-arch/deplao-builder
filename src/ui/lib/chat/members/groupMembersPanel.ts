@@ -10,7 +10,7 @@ import type { GroupMember } from '@/store/app/appStore';
 
 export const GROUP_MEMBERS_PAGE_SIZE = 50;
 
-const API_SYNC_PREFIX = 'deplao:groupMembersApiSync:';
+const API_SYNC_PREFIX = 'sadshachatdesk:groupMembersApiSync:';
 
 function apiSyncKey(accountId: string, groupId: string): string {
   return `${API_SYNC_PREFIX}${accountId}:${groupId}`;

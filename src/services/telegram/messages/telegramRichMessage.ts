@@ -3,7 +3,7 @@
  * levels, paragraphs, lists (including checkboxes), quotes, tables, formulas, button rows…) in `message.richMessage`, and the plain
  * `message` text is left empty. The old layer receives these as an empty `messageMediaUnsupported` ("Loại tin nhắn Telegram chưa được hỗ trợ" (Telegram message type not supported yet)).
  *
- * Deplao shows / searches / previews a Telegram message as plain text, so the blocks are converted to plain text: each block is one paragraph
+ * SadSha ChatDesk shows / searches / previews a Telegram message as plain text, so the blocks are converted to plain text: each block is one paragraph
  * (separated by a blank line), lists use "•" / "1." / "☐ ☑", quotes use "│ ", tables join cells with " | ", buttons become "[…]",
  * and links keep their address when the shown text differs from it. Images / videos / files in a block are only a label + caption.
  */

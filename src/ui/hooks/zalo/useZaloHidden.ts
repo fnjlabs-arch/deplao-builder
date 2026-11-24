@@ -1,5 +1,5 @@
 /**
- * Zalo PIN-hidden conversations (ZL-03, SRS Deplao), UI side.
+ * Zalo PIN-hidden conversations (ZL-03, SRS SadSha ChatDesk), UI side.
  *  - Hidden and the account is locked → not shown in the list / merged inbox / global search.
  *  - Type exactly the 4 digits of the PIN into the search box → unlocks that account (the PIN is checked in main on the Boss machine; a wrong PIN shows nothing):
  *    the conversation list only keeps that account's hidden conversations (ConversationList), without mixing in normal conversations.

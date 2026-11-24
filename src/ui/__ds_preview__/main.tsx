@@ -24,7 +24,7 @@ function Harness() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border bg-card/90 px-6 py-3 backdrop-blur">
-        <div className="text-sm font-semibold">Deplao UI kit · preview</div>
+        <div className="text-sm font-semibold">SadSha ChatDesk UI kit · preview</div>
         <button
           type="button"
           className="h-8 rounded-md border border-input bg-muted px-3 text-sm text-foreground hover:bg-accent"

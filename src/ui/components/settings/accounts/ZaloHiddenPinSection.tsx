@@ -57,7 +57,7 @@ export default function ZaloHiddenPinSection({ accountId }: { accountId: string 
     const count = status.hiddenCount;
     const proceed = await showConfirm({
       title: tr('Quên mã PIN — đặt lại?'),
-      message: tr('Zalo sẽ xoá mã PIN hội thoại ẩn của {{name}} và có thể xoá luôn toàn bộ tin nhắn của {{v1}}hội thoại đang ẩn trên điện thoại và Zalo PC (không lấy lại được trên Zalo). Deplao vẫn giữ tin đã lưu trên máy này.', { name, v1: count > 0 ? `${count} ` : tr('các ') }),
+      message: tr('Zalo sẽ xoá mã PIN hội thoại ẩn của {{name}} và có thể xoá luôn toàn bộ tin nhắn của {{v1}}hội thoại đang ẩn trên điện thoại và Zalo PC (không lấy lại được trên Zalo). SadSha ChatDesk vẫn giữ tin đã lưu trên máy này.', { name, v1: count > 0 ? `${count} ` : tr('các ') }),
       confirmText: tr('Tiếp tục'),
       variant: 'warning',
     });

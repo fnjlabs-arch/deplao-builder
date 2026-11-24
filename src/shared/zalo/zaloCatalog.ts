@@ -1,10 +1,10 @@
 /**
- * zaloCatalog.ts: Zalo Business product catalog (ZL-04, SRS Deplao): pure part shared by main + renderer + API.
+ * zaloCatalog.ts: Zalo Business product catalog (ZL-04, SRS SadSha ChatDesk): pure part shared by main + renderer + API.
  *
  * zca-js 2.2.0: getCatalogList / createCatalog / updateCatalog / deleteCatalog, getProductCatalogList /
  * createProductCatalog / updateProductCatalog / deleteProductCatalog (endpoint mdelete), uploadProductPhoto.
  * A zca-js bug: createProductCatalog / updateProductCatalog only upload `files` when files.length == 0, so photos are ignored;
- * Deplao always uploads photos with uploadProductPhoto and then passes product_photos (up to 5 URLs). Currency is fixed to "₫".
+ * SadSha ChatDesk always uploads photos with uploadProductPhoto and then passes product_photos (up to 5 URLs). Currency is fixed to "₫".
  */
 
 import { tr, appLocale } from '../i18n';

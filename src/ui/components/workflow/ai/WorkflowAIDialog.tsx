@@ -4,8 +4,8 @@
  *
  * Agent loop per user message (logic in aiCopilot.ts):
  *   system prompt (live node catalogue + current canvas) + conversation → ipc.ai.chatRaw
- *   → reply with a ```deplao-tool``` call   → run the tool locally, send "[KẾT QUẢ CÔNG CỤ]" (tool result), loop
- *   → reply with a ```deplao-workflow```    → validate like the engine; errors → automatic repair
+ *   → reply with a ```sadshachatdesk-tool``` call   → run the tool locally, send "[KẾT QUẢ CÔNG CỤ]" (tool result), loop
+ *   → reply with a ```sadshachatdesk-workflow```    → validate like the engine; errors → automatic repair
  *                                              (max MAX_REPAIRS), then show the proposal + preview
  *   → plain text                            → question / advice, the user answers
  * The conversation is kept per workflow (memory + localStorage) so it survives closing the dialog.
@@ -60,8 +60,8 @@ const TEMPERATURE = 0.3;
 
 // ─── Conversation storage (per workflow) ──────────────────────────────────────
 
-const STORAGE_PREFIX = 'deplao.wfCopilot.';
-const ASSISTANT_KEY = 'deplao.wfCopilot.assistant';
+const STORAGE_PREFIX = 'sadshachatdesk.wfCopilot.';
+const ASSISTANT_KEY = 'sadshachatdesk.wfCopilot.assistant';
 const MAX_STORED_ITEMS = 80;
 const conversationCache = new Map<string, CopilotItem[]>();
 

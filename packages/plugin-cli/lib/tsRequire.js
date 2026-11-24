@@ -1,6 +1,6 @@
 'use strict';
 /**
- * Nạp file .ts của repo Deplao trực tiếp (transpile bằng typescript, không type-check) —
+ * Nạp file .ts của repo SadSha ChatDesk trực tiếp (transpile bằng typescript, không type-check) —
  * để CLI và script dùng CHÍNH bộ kiểm tra manifest / router của app, không chép lại luật.
  */
 const fs = require('fs');
@@ -14,7 +14,7 @@ function register(repoRoot) {
   try {
     ts = require(require.resolve('typescript', { paths: [repoRoot, __dirname] }));
   } catch {
-    throw new Error('Cần package "typescript" (chạy trong repo Deplao sau khi npm install).');
+    throw new Error('Cần package "typescript" (chạy trong repo SadSha ChatDesk sau khi npm install).');
   }
   require.extensions['.ts'] = function compileTs(module, filename) {
     const source = fs.readFileSync(filename, 'utf8');
@@ -32,7 +32,7 @@ function register(repoRoot) {
   registered = true;
 }
 
-/** Thư mục gốc repo Deplao (chứa src/services/plugins). */
+/** Thư mục gốc repo SadSha ChatDesk (chứa src/services/plugins). */
 function findRepoRoot(start) {
   let dir = path.resolve(start || __dirname);
   for (;;) {

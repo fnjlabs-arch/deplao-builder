@@ -23,7 +23,7 @@
 // sendImage, sendFile, sendE2EESticker, sendE2EEAudio, sendE2EEVideo, sendE2EEDocument,
 // getUserInfo.
 //
-// DEPLAO_ADAPTER: the credential login wizard is not served here. It needs a
+// SADSHA_ADAPTER: the credential login wizard is not served here. It needs a
 // newer mautrix/meta than fbchat-v2 pins and runs in the separate
 // fbchat-login-bridge (./login), which only returns session cookies.
 //
@@ -64,7 +64,7 @@ const (
 	maxRPCRequestBytes = 150 * 1024 * 1024
 )
 
-// DEPLAO_ADAPTER: localPath media transport — Electron-only adapter.
+// SADSHA_ADAPTER: localPath media transport — Electron-only adapter.
 // Upstream expects base64 `data` in JSON-RPC. Electron passes `localPath`
 // (filesystem path) to avoid copying large buffers across IPC.
 // This adapter reads the file, validates it, then passes bytes to bridge/.
@@ -170,7 +170,7 @@ func handle(req *request) {
 		})
 
 	case "newClient":
-		// DEPLAO_ADAPTER: deviceData transport — Electron passes device state
+		// SADSHA_ADAPTER: deviceData transport — Electron passes device state
 		// as a JSON string via secureStorage instead of file I/O.
 		// Upstream uses DevicePath (file); Electron uses DeviceData (string).
 		// See: docs/fbchat-v2.3.5-vendor-manifest.json
@@ -230,7 +230,7 @@ func handle(req *request) {
 		ok(req.ID, initialData)
 
 	case "fetchMessages":
-		// DEPLAO_ADAPTER: one page of a thread's history (bridge/history.go).
+		// SADSHA_ADAPTER: one page of a thread's history (bridge/history.go).
 		// The answer arrives asynchronously on the LightSpeed socket, so the wait
 		// runs in a goroutine: requests are served one at a time and a blocking
 		// wait would hold up sends.
@@ -329,7 +329,7 @@ func handle(req *request) {
 		ok(req.ID, map[string]interface{}{})
 
 	case "sendImage":
-		// DEPLAO_ADAPTER: localPath media transport (see readAndValidateLocalPath)
+		// SADSHA_ADAPTER: localPath media transport (see readAndValidateLocalPath)
 		if client == nil {
 			fail(req.ID, fmt.Errorf("client not initialised"))
 			return
@@ -361,7 +361,7 @@ func handle(req *request) {
 		ok(req.ID, res)
 
 	case "sendFile":
-		// DEPLAO_ADAPTER: localPath media transport (see readAndValidateLocalPath)
+		// SADSHA_ADAPTER: localPath media transport (see readAndValidateLocalPath)
 		if client == nil {
 			fail(req.ID, fmt.Errorf("client not initialised"))
 			return
@@ -458,7 +458,7 @@ func handle(req *request) {
 		ok(req.ID, res)
 
 	case "sendE2EEAudio":
-		// DEPLAO_ADAPTER: localPath media transport (see readAndValidateLocalPath)
+		// SADSHA_ADAPTER: localPath media transport (see readAndValidateLocalPath)
 		if client == nil {
 			fail(req.ID, fmt.Errorf("client not initialised"))
 			return
@@ -494,7 +494,7 @@ func handle(req *request) {
 		ok(req.ID, res)
 
 	case "sendE2EEVideo":
-		// DEPLAO_ADAPTER: localPath media transport (see readAndValidateLocalPath)
+		// SADSHA_ADAPTER: localPath media transport (see readAndValidateLocalPath)
 		if client == nil {
 			fail(req.ID, fmt.Errorf("client not initialised"))
 			return
@@ -526,7 +526,7 @@ func handle(req *request) {
 		ok(req.ID, res)
 
 	case "sendE2EEImage":
-		// DEPLAO_ADAPTER: localPath media transport (see readAndValidateLocalPath)
+		// SADSHA_ADAPTER: localPath media transport (see readAndValidateLocalPath)
 		if client == nil {
 			fail(req.ID, fmt.Errorf("client not initialised"))
 			return
@@ -566,7 +566,7 @@ func handle(req *request) {
 		ok(req.ID, res)
 
 	case "sendE2EEDocument":
-		// DEPLAO_ADAPTER: localPath media transport (see readAndValidateLocalPath)
+		// SADSHA_ADAPTER: localPath media transport (see readAndValidateLocalPath)
 		if client == nil {
 			fail(req.ID, fmt.Errorf("client not initialised"))
 			return
@@ -775,7 +775,7 @@ func handle(req *request) {
 		ok(req.ID, info)
 
 	case "createGroup":
-		// DEPLAO_ADAPTER: quick "Tạo nhóm" action. Participant ids are strings across the
+		// SADSHA_ADAPTER: quick "Tạo nhóm" action. Participant ids are strings across the
 		// Electron boundary (JavaScript number precision); the task needs int64.
 		if client == nil {
 			fail(req.ID, fmt.Errorf("client not initialised"))
@@ -816,7 +816,7 @@ func handle(req *request) {
 // handleSafely turns a panic in one request into an error response for that
 // request. Without it, a nil dereference inside a dependency (seen in the
 // Messenger Lite Bloks interpreter) killed the whole process, and Electron only
-// saw "Bridge exited". DEPLAO_ADAPTER.
+// saw "Bridge exited". SADSHA_ADAPTER.
 func handleSafely(req *request) {
 	defer func() {
 		recovered := recover()

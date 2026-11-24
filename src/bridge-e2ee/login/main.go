@@ -1,7 +1,7 @@
-// Command fbchat-login-bridge runs Deplao's Facebook credential login
+// Command fbchat-login-bridge runs SadSha ChatDesk's Facebook credential login
 // ("Đăng nhập tài khoản", Messenger Lite) wizard.
 //
-// DEPLAO_ADAPTER: this helper is not part of fbchat-v2. The E2EE bridge stays
+// SADSHA_ADAPTER: this helper is not part of fbchat-v2. The E2EE bridge stays
 // on the mautrix/meta revision that fbchat-v2 pins, but Facebook's current Bloks
 // login pages need a newer interpreter than that revision ships (it panicked in
 // bk.action.core.GetArg and lacked bk.action.array.Get). This separate process
